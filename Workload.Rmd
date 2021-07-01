@@ -1,0 +1,93 @@
+---
+title: "Workload"
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    css: styles.css
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r, include=FALSE}
+source("common_code.R")
+```
+
+## Weekly Paid Work Hours
+**Estimate the number of hours you work in a PAID job (for example, server at a restaurant, office assistant, etc.) or paid internship (for example, training, shadowing, or practicum) per week.**
+```{r}
+bns$paid_work_hours <- fct_relevel(factor(bns$paid_work_hours), "0", "1-5", "6-10")
+
+plot_frq(bns$paid_work_hours, ylim=c(0,150)) + xlab('Paid Hours Per Week')
+```
+It seems that the majority of people work either part-time or not at all. Only a small number of people are considered to be working full-time (40 or more hours per week). Below is a breakdown of the exact paid hours worked by survey participants as well as the impacts that COVID had on their hours. 
+
+### Exact Hours Breakdown
+```{r, fig.width=8.5}
+xlbls <- c(as.character(seq(0,39,5)), "41+")
+bns <- bns %>% mutate(q19=recode(q19, "41+"="41"),
+                      q19=as.numeric(q19))
+
+plot_frq(bns$q19, type='histogram', geom.size = 1, xlim = c(1,20), show.prc = FALSE, show.n = FALSE) + 
+  scale_x_continuous(breaks=c(seq(0,39,5), 41), labels=xlbls) + xlab('Weekly Hours')
+```
+*Note that "41+" was rounded for 41 in the following analysis for the paid hours worked per week*. 
+
+The average number of paid hours worked per week is `r round(mean(bns$q19, na.rm = TRUE), 2)`, while the median is `r median(bns$q19, na.rm = TRUE)` hours. It seems that the majority of students are considered part-time workers (less than 40 hours per week), with `r names(sort(table(bns$q19), decreasing=TRUE)[1])` hours being most common (`r unname(sort(table(bns$q29), decreasing=TRUE)[1])` people) and `r names(sort(table(bns$q19), decreasing=TRUE)[2])` hours following that.
+
+### Impact of COVID
+**Have the hours you work in a PAID job or internship changed due to COVID-19?**
+```{r, fig.width=8}
+plot_frq(bns$q20, ylim=c(0,135), wrap.labels = 20) + xlab('')
+```
+With the impact of COVID, it seems that most people were able to keep their current paid jobs with only slight changes. 108 people had their hours decrease (composing 29.5% of the data), 87 people maintained the same hours (composing 23.8% of the data), and 30 people had their hours increase (composing 8.2% of the data). There was also 68 people who claimed that they no longer had their paid position due to the impact of COVID (composing 18.6% of the data), while 73 people also claimed that they did not have a paid position before COVID (composing 20.0% of the data).
+
+## Unpaid Work Hours
+**Estimate the number of hours you work in an UNPAID internship (for example, training, shadowing, practicum, and/or volunteer, etc.). Do not combine with answers above. **
+```{r, fig.height=4.5}
+bns$unpaid_work_hours <- fct_relevel(factor(bns$unpaid_work_hours), "0", "1-5", "6-10")
+
+plot_frq(bns$unpaid_work_hours) + xlab('Unpaid Hours Per Week')
+```
+We can see that the majority of people (`r unname(table(bns$unpaid_work_hours)['0'])`) do not work an unpaid job. A small number of people work part-time at an unpaid job and only a select few people work full-time at an unpaid job. Below is a breakdown of the number of unpaid hours worked per week.
+
+### Exact Hours Breakdown
+```{r, fig.width=8.5}
+bns <- bns %>% mutate(q21=recode(q21, "41+"="41"),
+                      q21=as.numeric(q21))
+
+plot_frq(bns$q21, type='histogram', geom.size = 1, xlim = c(1,20), show.prc = FALSE, show.n = FALSE) + 
+  scale_x_continuous(breaks=c(seq(0,39,5), 41), labels=xlbls) + xlab('Weekly Hours')
+```
+*Note that "41+" was rounded for 41 in the following analysis for the unpaid hours worked per week*. 
+
+The average number of unpaid hours worked per week is `r round(mean(bns$q21, na.rm = TRUE), 2)`, while the median is `r median(bns$q21, na.rm = TRUE)` hours. It seems that the majority of students do not work unpaid positions, with `r names(sort(table(bns$q21), decreasing=TRUE)[1])` hours being most common (`r unname(sort(table(bns$q21), decreasing=TRUE)[1])` people) and `r names(sort(table(bns$q21), decreasing=TRUE)[2])` hours following that.
+
+## Unpaid Caregiving Hours
+**Estimate the number of hours you spend each week on unpaid family obligations (for example, taking care of younger siblings, preparing family meals, running errands for the family, etc.)**
+```{r}
+bns$caregiving_hours <- fct_relevel(factor(bns$caregiving_hours), "0", "1-5", "6-10")
+
+plot_frq(bns$caregiving_hours) + xlab('Unpaid Caregiving Hours Per Week')
+```
+It seems that the majority of people in the data do spend some time each week caring for family members. Only `r unname(table(bns$caregiving_hours)['0'])` people estimated that they spent 0 hours per week for family obligations. There are also around the same number of people who estimated they work full-time (40 or more hours per week) on these family obligations. Below is a breakdown of these unpaid hours spent on family obligations each week.
+
+### Exact Hours Breakdown
+```{r, fig.width=8.5}
+bns <- bns %>% mutate(q22=recode(q22, "41+"="41"),
+                      q22=as.numeric(q22))
+
+plot_frq(bns$q22, type='histogram', geom.size = 1, xlim = c(1,20), show.prc = FALSE, show.n = FALSE) + 
+  scale_x_continuous(breaks=c(seq(0,39,5), 41), labels=xlbls) + xlab('Weekly Hours')
+```
+*Note that "41+" was rounded for 41 in the following analysis for the unpaid caregiving hours worked per week*. 
+
+The average number of unpaid caregiving hours worked per week is `r round(mean(bns$q22, na.rm = TRUE), 2)`, while the median is `r median(bns$q22, na.rm = TRUE)` hours. There does not seem to be a clear pattern in the number of unpaid caregiving hours worked, with `r names(sort(table(bns$q22), decreasing=TRUE)[1])` hours being most common (`r unname(sort(table(bns$q22), decreasing=TRUE)[1])` people) and `r names(sort(table(bns$q22), decreasing=TRUE)[2])` hours following that (`r unname(sort(table(bns$q22), decreasing=TRUE)[2])` people). It seems either people don't work any hours, or work over full-time taking care of others.
+
+
+
+
+
+
+

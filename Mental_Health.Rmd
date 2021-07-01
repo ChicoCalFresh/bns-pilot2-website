@@ -1,0 +1,62 @@
+---
+title: "Mental Health"
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    css: styles.css
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+source("common_code.R")
+library(gridExtra)
+```
+
+## Increased Mental Stress
+**How many days in the past month have you experienced heightened anxiety, stress, depression and/or problems with emotions?**
+```{r}
+hist_with_box('q90', 46, 7, 0.4, NULL, c(0,52), 'Number of Days in Last Month')
+```
+Over the past month, the participants of the survey claimed to have experienced increased mental stress for any average of `r round(mean(bns$q90, na.rm = TRUE), 1)` days, with a median value of `r round(median(bns$q90, na.rm = TRUE), 1)` days. A large amount, and the most selected answer, claim to have experienced increased mental stress every day over the last month (`r unname(table(bns$q90)['30'])` people).
+
+## Mental Health Services 
+**Have you received or tried to receive mental health services over the past 12 months?**
+```{r}
+plot_frq(bns$q91) + xlab('Seeked Out Services')
+```
+Over the past year, the majority of students did not receive or try to receive mental health services (`r unname(sort(table(bns$q91), decreasing = TRUE)['No'])` people). `r unname(sort(table(bns$q91), decreasing = TRUE)['Yes'])` people claim that they have received or try to receive mental health services.
+
+## *Possible Idea (?)*
+*Possible idea of using a pie chart for Yes/No questions instead of bar chart? Style could be changed too.*
+```{r, fig.height=4.5, fig.width=4.5}
+tmp <- as.data.frame(table(bns['q91'])) %>% arrange(desc(Var1)) %>% mutate(Var1 = paste0(Var1, " (", Freq, ")"),
+                                                                           prop = (Freq/sum(Freq))*100,
+                                                                           ypos = cumsum(prop)- 0.5*prop)
+colnames(tmp)[1] <- c('Response')
+ggplot(tmp, aes(x="", y=prop, fill=Response)) + geom_bar(stat="identity", width=2, color='black') + 
+  coord_polar("y", start=0) + theme_void() + theme(legend.position="none") + 
+  geom_text(aes(y = ypos, label = Response), color = "black", size=5) + 
+  scale_fill_manual(values=c("#587db6", "#b5d43b"))
+```
+
+
+## Mental Health Feelings
+**In the last month how often have you felt:**
+```{r, fig.width=8}
+questions <- bns %>% select(q92, q93, q94, q97)
+names(questions) <- c("That you were unable to control the important things in your life.",
+                      "Confident about your ability to handle your personal problems.",
+                      "That things were going your way.",
+                      "Difficulties were piling up so high that you could not overcome them.")
+plot_likert(questions,
+            grid.range = c(1.2, 1.2),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 5,
+            geom.colors = 'YlGnBu',
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+```
+

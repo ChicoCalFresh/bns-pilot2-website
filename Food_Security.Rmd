@@ -1,0 +1,103 @@
+---
+title: "Food Security"
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    css: styles.css
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+source("common_code.R")
+```
+
+## Food Eaten in Household
+**For the following statements, please state whether they were often true, sometimes true, or never true for you/your household in the last 30 days.**
+
+*Household is determined by the number of people you purchase and prepare food with. This may or may not include your roommates.	*
+```{r}
+questions <- bns %>% select(q64, q65, q66)
+names(questions) <- c("I/We worried whether food would run out before I/we got money to buy more.",
+                      "The food that I/we bought just didn’t last, and I/we didn’t have money to get more.",
+                      "“I/We couldn’t afford to eat balanced meals.")
+plot_likert(questions,
+            grid.range = c(1.2, 1.2),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 3,
+            geom.colors = 'Paired',
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+
+```
+
+## Eating Situations (Lack of Money)
+*The following are statements that people have made about their eating situations over the last 30 days:*
+
+### Cut/Skip Meals
+**Did you ever cut the size of your meals or skip meals because there wasn’t enough money for food? If yes, how many days did this happen?**
+```{r, fig.height=3}
+plot_frq(bns$q67, ylim=c(0,300), title="Did you cut/skip any meals") +xlab('')
+```
+
+```{r, fig.width=7}
+hist_with_box('q68', 24, 3, 0.4, NULL, c(0,27), 'Number of days meals were cut/skipped')
+```
+The majority of people claim that they did not have to skip meals due to not having enough money (`r unname(table(bns$q67)['No'])` people). However, `r unname(table(bns$q67)['Yes'])` people claimed that they did have to skip meals due to not having enough money. Of the people that did skip meals, the average number of days where they had to skip/cut a meal was `r round(mean(bns$q68, na.rm = TRUE))` days, while the median was `r round(median(bns$q68, na.rm = TRUE))` days. The majority of the data is below 10 days, but a small amount of students did report skipping/cutting a meal more than 10 days in the last month.
+
+### No Food All Day
+**Did you ever not eat for a whole day because there wasn’t enough money for food? If yes, how many days did this happen?**
+```{r, fig.height=3}
+plot_frq(bns$q72, title="Did you not eat for a whole day") +xlab('')
+```
+```{r, fig.width=7}
+hist_with_box('q73', 9, 1.5, 0.4, NULL, c(0,10.5), 'Number of days all meals were cut/skipped')
+```
+Over the past 30 days at the time of the survey, `r unname(table(bns$q72)['No'])` people claimed they did not have to skip eating for a full day due to not having enough money for food and `r unname(table(bns$q72)['Yes'])` people claimed that they did skip eating for a full day. Of the people that did skip meals for an entire day, the average number of days where they had to skip/cut all meals was `r round(mean(bns$q73, na.rm = TRUE))` days, while the median was `r round(median(bns$q73, na.rm = TRUE))` days. The majority of the data is below 5 days, but a small amount of students did report skipping/cutting a meal more than 5 days in the last month.
+
+### More Eating Situations
+**Below are more questions asked in regards to the students eating situations due to lack of money.**
+```{r, fig.width=7}
+questions <- c('q69', 'q70', 'q71')
+rnames <- c("Did you ever eat less than you/your household felt you/your household should because there wasn’t enough money for food?",
+            "Were you ever hungry but didn’t eat because there wasn’t enough money for food?",
+            "Did you lose weight because there wasn’t enough money for food?")
+binary_table(questions, "Yes", rnames)
+binary_plot(questions, "Yes", rnames)
+```
+
+- When it comes to eating less because there was not enough money for food, `r unname(table(bns$q69)['Yes'])` people claimed that they experienced this and `r unname(table(bns$q69)['No'])` people claimed they did not experience this.
+- When it comes to being hungry but not eating because there was not enough money for food, `r unname(table(bns$q70)['Yes'])` people claimed that they experienced this and `r unname(table(bns$q70)['No'])` people claimed they did not experience this.
+- When it comes to losing weight because there was not enough money for food, `r unname(table(bns$q71)['Yes'])` people claimed that they experienced this and `r unname(table(bns$q71)['No'])` people claimed they did not experience this.
+
+## Ran Out of Money
+**In the last 30 days, if you ran out of money for food, what did you do? (choose all that apply):**
+```{r, fig.width=8.3}
+question <- "food"
+qlabel <- c("My friends, family or roommates gave me money for groceries.",
+            "My friends, family or roommates fed me or took me out to eat.",
+            "I started skipping meals.",
+            "I went to the food pantry or other free food organizations.",
+            "I can get free food/meals from my work.",
+            "I used my credit card (not debit card) to buy food.",
+            "I did not run out of money for food",
+            "Other")
+
+food_vars <- prep_binary_vars(question, qlabel) %>% slice(-8) # drop "other" since 0
+
+# Plot table of percentages
+food_vars %>% 
+  select(Measure = xlab, Percent = pct_lab) %>% 
+  kable() %>% kable_styling(bootstrap_options = "striped")
+
+# Create bar plot of values & percentage 
+food_vars %>% 
+  ggplot(aes(x=xlab, y=pct, label = pct_lab)) + 
+    geom_col(fill=primary.chc.col) + 
+    geom_text(aes(y=pct+.08), size=3.6) +
+    scale_y_continuous(limits = c(0,1), labels=percent) + 
+    scale_x_discrete(labels=label_wrap(13)) + xlab("") + ylab("Percent")
+```
+

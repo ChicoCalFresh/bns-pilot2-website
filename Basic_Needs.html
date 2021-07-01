@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Basic Needs Programs and Services</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BNS3</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Overview</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Demographics
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Personal_Demo.html">Personal Demographics</a>
+    </li>
+    <li>
+      <a href="Student_Demo.html">Student Demographics</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="Workload.html">Workload</a>
+</li>
+<li>
+  <a href="Housing.html">Housing</a>
+</li>
+<li>
+  <a href="CalFresh.html">CalFresh</a>
+</li>
+<li>
+  <a href="Basic_Needs.html">Basic Needs Services</a>
+</li>
+<li>
+  <a href="Food_Security.html">Food Security</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Health
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Eating_Habits.html">Eating Habits</a>
+    </li>
+    <li>
+      <a href="Physical_Activity.html">Physical Activity</a>
+    </li>
+    <li>
+      <a href="Sleep.html">Sleep</a>
+    </li>
+    <li>
+      <a href="Mental_Health.html">Mental Health</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Basic Needs Programs and Services</h1>
+
+</div>
+
+
+<div id="participation" class="section level1">
+<h1>Participation</h1>
+<p><strong>Pick all Basic Needs Programs and Services that you participate in (mark all that apply):</strong> <img src="Basic_Needs_files/figure-html/unnamed-chunk-2-1.png" width="816" style="display: block; margin: auto;" /></p>
+</div>
+<div id="impact" class="section level1">
+<h1>Impact</h1>
+<div id="calfresh-ebt" class="section level2">
+<h2>CalFresh EBT</h2>
+<p><img src="Basic_Needs_files/figure-html/unnamed-chunk-3-1.png" width="816" style="display: block; margin: auto;" /> Looking at the above graphs, the majority of people apply for CalFresh EBT as an individual (102 people) while only 41 people applied with other people in their household. Similarly, the majority of people claimed only 1 person is fed through the EBT card (64 people). 31 people claim to feed 2 people through the EBT card, and only a small amount of people claim to feed 5 or more people through the EBT card.</p>
+<div id="monthly-calfresh-money" class="section level3">
+<h3>Monthly CalFresh Money</h3>
+<p><strong>How much money do you receive from CalFresh each month?</strong> <img src="Basic_Needs_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /> The average amount of money received for people using CalFresh is $190.12, while the median is $191. The values range from $0 to $820. The majority of people who do receive these benefits seems to be getting around $250 or less per month.</p>
+</div>
+<div id="is-this-enough" class="section level3">
+<h3>Is This Enough?</h3>
+<p><img src="Basic_Needs_files/figure-html/unnamed-chunk-5-1.png" width="816" style="display: block; margin: auto;" /> Of the people who do receive money from CalFresh, 43 of them claim that it is enough money to provide healthy food for a month and 100 of them feel that it is not enough. People who do not feel it is enough money typically run out of CalFresh money in either the second week (39 people) or third week (40 people). A small group also run out within the first week, while an even smaller minority run out in the fourth week.</p>
+</div>
+</div>
+<div id="calfresh-benefits" class="section level2">
+<h2>CalFresh Benefits</h2>
+<p><strong>While you received CalFresh benefits:</strong> <img src="Basic_Needs_files/figure-html/unnamed-chunk-6-1.png" width="816" style="display: block; margin: auto;" /><img src="Basic_Needs_files/figure-html/unnamed-chunk-6-2.png" width="816" style="display: block; margin: auto;" /></p>
+</div>
+<div id="calfresh-barriers" class="section level2">
+<h2>CalFresh Barriers</h2>
+<strong>What are the reasons you do not have CalFresh or have never used CalFresh? (Select all that apply)</strong>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Measure
+</th>
+<th style="text-align:left;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+I do not think I’m eligible
+</td>
+<td style="text-align:left;">
+67 (37.2%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I feel other students need CalFresh more than I do.
+</td>
+<td style="text-align:left;">
+42 (23.3%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I don’t need CalFresh.
+</td>
+<td style="text-align:left;">
+29 (16.1%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No time to complete the application/ application is too long.
+</td>
+<td style="text-align:left;">
+25 (13.9%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The application is too difficult.
+</td>
+<td style="text-align:left;">
+22 (12.2%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No time to get verification documents or don’t know how to get verification document.
+</td>
+<td style="text-align:left;">
+19 (10.6%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Other
+</td>
+<td style="text-align:left;">
+18 (10.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+My family or household does not want to apply for CalFresh.
+</td>
+<td style="text-align:left;">
+12 (6.7%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I am embarrassed or ashamed to apply for CalFresh.
+</td>
+<td style="text-align:left;">
+9 (5.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I have heard from other students that it’s not worth my time because I won’t be eligible or I won’t receive much money.
+</td>
+<td style="text-align:left;">
+7 (3.9%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No time to call or go to the local social service office for my CalFresh interview.
+</td>
+<td style="text-align:left;">
+7 (3.9%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The staff in my local county social service office were not helpful or supportive during my application process.
+</td>
+<td style="text-align:left;">
+5 (2.8%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No transportation
+</td>
+<td style="text-align:left;">
+4 (2.2%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The CalFresh outreach team on campus was not helpful or supportive during my application process.
+</td>
+<td style="text-align:left;">
+3 (1.7%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I don’t believe in social services like CalFresh, WIC, or Welfare
+</td>
+<td style="text-align:left;">
+1 (0.6%)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="campus-food-pantry" class="section level2">
+<h2>Campus Food Pantry</h2>
+<p><strong>For the following questions, please choose how much you agree or disagree with the impact campus food pantries has or had on your life. While I utilized campus food pantry/pantries:</strong> <img src="Basic_Needs_files/figure-html/unnamed-chunk-8-1.png" width="816" style="display: block; margin: auto;" /><img src="Basic_Needs_files/figure-html/unnamed-chunk-8-2.png" width="816" style="display: block; margin: auto;" /></p>
+<div id="food-pantry-use" class="section level3">
+<h3>Food Pantry Use</h3>
+<p><strong>How often do you normally use the food pantry or if you are not currently using it, how often did you use it?</strong> <img src="Basic_Needs_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /> When people use the food pantry, the majority do not use it every week (95 people). 39 people claim to use it about once a week, 16 people use it more than once a week, and 18 people claim other uses.</p>
+</div>
+<div id="reasons-not-using-food-pantries" class="section level3">
+<h3>Reasons Not Using Food Pantries</h3>
+<strong>What are the reasons for you to not go to campus food pantries? (Select all that apply)</strong>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Measure
+</th>
+<th style="text-align:left;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+I feel other students need the food more than I do.
+</td>
+<td style="text-align:left;">
+128 (39.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Inconvenient to access due to lack of transportation or out-of-the way location.
+</td>
+<td style="text-align:left;">
+93 (28.4%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Inconvenient times of operation/limited pantry hours.
+</td>
+<td style="text-align:left;">
+67 (20.4%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I am embarrassed or scared to go to the campus food pantries or local food banks.
+</td>
+<td style="text-align:left;">
+42 (12.8%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Other
+</td>
+<td style="text-align:left;">
+31 (9.5%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I am not aware of any campus food pantries or local food banks.
+</td>
+<td style="text-align:left;">
+25 (7.6%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+There are no food pantries close to campus or my residence
+</td>
+<td style="text-align:left;">
+14 (4.3%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+My family doesn’t want me to go to campus food pantries or local food banks.
+</td>
+<td style="text-align:left;">
+4 (1.2%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I do not believe in using campus food pantries or local food banks.
+</td>
+<td style="text-align:left;">
+0 (0.0%)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="restaurant-meal-program-rmp" class="section level2">
+<h2>Restaurant Meal Program (RMP)</h2>
+<p><strong>While you participated in the Restaurant Meal Program (RMP):</strong> <img src="Basic_Needs_files/figure-html/unnamed-chunk-11-1.png" width="816" style="display: block; margin: auto;" /></p>
+<div id="reasons-not-using-rmp" class="section level3">
+<h3>Reasons Not Using RMP</h3>
+<strong>What are the reasons for you to not have RMP or have never used RMP? (Select all that apply)</strong>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Measure
+</th>
+<th style="text-align:left;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+I have never heard about this Restaurant Meal Program (RMP).
+</td>
+<td style="text-align:left;">
+214 (66.7%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I don’t need this Restaurant Meal Program (RMP).
+</td>
+<td style="text-align:left;">
+72 (22.4%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I have no access to these participating restaurants/no convenient locations.
+</td>
+<td style="text-align:left;">
+27 (8.4%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I have no time to go to these restaurants.
+</td>
+<td style="text-align:left;">
+19 (5.9%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Other
+</td>
+<td style="text-align:left;">
+16 (5.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I do not like the food offered in these participating restaurants.
+</td>
+<td style="text-align:left;">
+2 (0.6%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I have no transporation to these restaurants.
+</td>
+<td style="text-align:left;">
+0 (0.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I am emberarrassed or ashamed to use my EBT card in a restaurant.
+</td>
+<td style="text-align:left;">
+0 (0.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I don’t believe in social services like RMP, Medi-Cal, CalFresh, WIC, or Welfare/Cash Aid.
+</td>
+<td style="text-align:left;">
+0 (0.0%)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="medical" class="section level2">
+<h2>Medical</h2>
+<p><strong>Knowing that you have MediCal:</strong> <img src="Basic_Needs_files/figure-html/unnamed-chunk-13-1.png" width="816" style="display: block; margin: auto;" /></p>
+<div id="reasons-not-using-medical" class="section level3">
+<h3>Reasons Not Using Medical</h3>
+<strong>What are the reasons you do not have MediCal or have never used MediCal? (Select all that apply)</strong>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Measure
+</th>
+<th style="text-align:left;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+I do not think I am eligible for MediCal.
+</td>
+<td style="text-align:left;">
+20 (37.7%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I don’t need MediCal.
+</td>
+<td style="text-align:left;">
+14 (26.4%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I do not know what MediCal is or I think I already have health insurance.
+</td>
+<td style="text-align:left;">
+11 (20.8%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Other
+</td>
+<td style="text-align:left;">
+7 (13.2%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The MediCal application is too difficult to complete.
+</td>
+<td style="text-align:left;">
+6 (11.3%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No time to complete the MediCal application/MediCal application is too long.
+</td>
+<td style="text-align:left;">
+2 (3.8%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I have heard from other students that it is not worth my time because I wont be eligible.
+</td>
+<td style="text-align:left;">
+2 (3.8%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I am embarrassed or ashamed to apply for MediCal.
+</td>
+<td style="text-align:left;">
+2 (3.8%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I only need medical services at the student health center associated with my campus.
+</td>
+<td style="text-align:left;">
+1 (1.9%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+My family or household does not want me to apply for MediCal.
+</td>
+<td style="text-align:left;">
+1 (1.9%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I don’t believe in social services like MediCal, CalFresh, WIC, or Welfare/Cash Aid.
+</td>
+<td style="text-align:left;">
+0 (0.0%)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="emergency-housing-services-ehs" class="section level2">
+<h2>Emergency Housing Services (EHS)</h2>
+<p><img src="Basic_Needs_files/figure-html/unnamed-chunk-15-1.png" width="816" style="display: block; margin: auto;" /></p>
+<div id="reasons-not-using-ehs" class="section level3">
+<h3>Reasons Not Using EHS</h3>
+<strong>What are the reasons you do not have Emergency Housing Services or have never used Emergency Housing Services?</strong>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Measure
+</th>
+<th style="text-align:left;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+I don’t need Emergency Housing Services
+</td>
+<td style="text-align:left;">
+203 (60.8%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I was not aware that my campus had Emergency Housing Services like grants and housing placements in an emergency.
+</td>
+<td style="text-align:left;">
+135 (40.4%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I am embarrassed or ashamed to apply for Emergency Housing Services.
+</td>
+<td style="text-align:left;">
+10 (3.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Other
+</td>
+<td style="text-align:left;">
+9 (2.7%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No time to complete the Emergency Housing application or contact the Emergency Housing Staff.
+</td>
+<td style="text-align:left;">
+7 (2.1%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Emergency Housing Services application is too difficult to complete.
+</td>
+<td style="text-align:left;">
+5 (1.5%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The emergency housing grant/money is not enough to support what I need, so not worth my time to apply for it.
+</td>
+<td style="text-align:left;">
+5 (1.5%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I do not believe in social services like Emergency Housing Services, MediCal, CalFresh, or Welfare/Cash Aid.
+</td>
+<td style="text-align:left;">
+0 (0.0%)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+<hr>
+
+<h3>Funding</h3>
+
+Partially funded by USDA SNAP, known in California as CalFresh, an equal opportunity provider and employer, and the California Department of  Social Services. Any use of these results in further work must use the following citation: 
+
+<br> 
+
+<i>Center for Healthy Communities, "Basic Needs Survey", June 2020. Retrieved on xx-xxx-xxxx from https://chicocalfresh.github.io/bns-website/index.html</i>
+
+<br>
+
+<img src="CHC_Logo.png" alt="CHC Logo" width="300" height="85">
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

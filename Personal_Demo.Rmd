@@ -1,0 +1,111 @@
+---
+title: "Personal Demographics"
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    css: styles.css
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r, include=FALSE}
+source("common_code.R")
+```
+
+## Age
+```{r}
+hist_with_box('age', 93, 15, 0.3, 1, c(0,105), 'Age')
+```
+The age for participants in the survey range from `r min(bns$age, na.rm = TRUE)` to `r max(bns$age, na.rm = TRUE)` at the time of completion, with the majority of participants being between 20-30 years old. The average age of a participant in this survey is `r round(mean(bns$age, na.rm = TRUE),1)` years old.
+
+## Gender Identity
+**What is your gender identity?**
+```{r}
+plot_frq(bns$q7, sort.frq="desc") + xlab('Gender')
+```
+Of the people who participated in the survey, `r unname(table(bns$q7)['Woman'])` of them identify as a Woman, `r unname(table(bns$q7)['Man'])` identify as a Man, and `r unname(table(bns$q7)['Gender non-binary, non-conforming'])` identify as Gender non-binary, non-conforming. There are also people who preferred not to answer.
+
+## Hispanic Origin
+**In the US Census, Hispanic Origins are not races. Do you identify as Hispanic or Latino or Spanish Origin?**
+```{r}
+plot_frq(bns$q8, wrap.labels = 15, sort.frq="desc") + xlab('')
+```
+Looking at the above graph we see `r unname(table(bns$q8)['Yes, Mexican, Mexican American, Chicano'])` people identify as Mexican, Mexican American, or Chicano. `r unname(table(bns$q8)['No, not Hispanic, Latino or Spanish Origin'])` people do no identify as Hispanic, Latin, or Spanish Origin. `r unname(table(bns$q8)['Yes, another Hispanic, Latino or Spanish Origin'])` people identify as another Hispanic, Latino, or Spanish Origin. `r unname(table(bns$q8)['Yes, Puerto Rican'])` people identify as Puerto Rican.
+
+## Ethnicity
+**What race do you identify as?**
+```{r, fig.height=5, fig.width=8}
+question <- "eth"
+qlabels <- c('White','African American','American Indian','Chinese','Filipino','Asian Indian','Other Asian',
+             'Vietnamese','Korean','Japanese','Native Hawaiian','Samoan','Chamorro','Other Pacific Islander')
+
+ethnicity_vars <- prep_binary_vars(question, qlabels)
+
+# Plot table of percentages
+ethnicity_vars %>% 
+  select(Measure = xlab, Percent = pct_lab) %>% 
+  kable() %>% kable_styling(bootstrap_options = "striped")
+
+# Create bar plot of values & percentage 
+ethnicity_vars %>% 
+  ggplot(aes(x=xlab, y=pct, label = pct_lab)) + 
+    geom_col(fill=primary.chc.col) + 
+    geom_text(aes(y=pct+.08), size=3.6) +
+    scale_y_continuous(limits = c(0,1), labels=percent) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) + xlab("") + ylab("Percent")
+```
+
+
+## Marital Status
+**What is your marital status?**
+```{r}
+plot_frq(bns$q10, wrap.labels = 10, sort.frq="desc") + xlab('Marital Status')
+```
+The above graph tells us that the majority of people (`r unname(table(bns$q10)['Single, never married'])`) are single or never been married. `r unname(table(bns$q10)['Married'])` people are married, and `r unname(table(bns$q10)['Living with a partner'])` are living with a partner.
+
+## Dependents
+**If you have dependents, then how many of them receive more than 50% of their financial support from you?**
+```{r}
+plot_frq(bns$q11) + xlab('Number of Dependents')
+```
+The majority of people who participated in the survey (`r unname(table(bns$q11)['0'])`) claim to have 0 dependents. `r unname(table(bns$q11)['1'])` people claim to have only 1 dependent, and only `r nrow(bns[bns$q11 > 1, 'q11'] %>% na.omit())` people have 2 or more dependents.
+
+### Dependent Ages
+**What is/are the age(s) of these dependent(s)?**
+```{r, fig.height=4.5, fig.width=7}
+dep.ages <- as.numeric(unname(unlist(bns %>% select(starts_with('q12_')))) %>% na.omit())
+dep.ages.df <- data.frame(Ages=dep.ages) # wouldn't compile in a single line for some reason
+
+plot_frq(dep.ages.df$Ages, type='histogram', show.mean = TRUE, ylim=c(0,30), xlim=c(0,103), show.mean.val = FALSE, show.sd = FALSE) +
+  geom_jitter(data=dep.ages.df, aes(x=Ages, y=27), position=position_jitter(height=2)) + 
+  geom_boxplot(data=dep.ages.df, aes(x=Ages, y=27), alpha=0.6, width=5, fill="#ecf0b7") + xlab('Dependent Ages (Years)')
+```
+From the above graphs, the majority of dependents are under the age of 18. The ages of these dependents ranges from `r min(dep.ages)` to `r max(dep.ages)` with a standard deviation of `r round(sd(dep.ages),2)`. The average age for a dependent is `r round(mean(dep.ages),2)` while the median value is `r round(median(dep.ages),2)`. The most common dependent age is `r names(sort(table(dep.ages), decreasing=TRUE)[1])`, which appears `r unname(sort(table(dep.ages), decreasing=TRUE)[1])` times in the data.
+
+## Parents Education
+**What is the highest level of education completed by your parents/guardians?**
+```{r, fig.height=4.5, fig.width=8}
+tmp <- as.data.frame(table(bns$q13)) %>% 
+  mutate(Percent=lapply(Freq, function(x) paste0('(', percent(x/sum(!is.na(bns[['q13']])), accuracy = 0.1), ')')),
+         FirstGen=as.character(c(0,0,1,1,1,0,0,1)),
+         Var1=recode(Var1, "Other/Unknown" = "Other/ Unknown")) %>% arrange((desc(Freq)))
+
+ggplot(tmp, aes(x=factor(Var1, levels=Var1), y=Freq, fill=FirstGen, label=Percent)) + geom_col(colour = "black") + 
+  scale_fill_manual(values=c("#336699", "#ecf0b7")) + geom_text(aes(y=Freq+13)) + ylim(0,220) + 
+  scale_x_discrete(labels=label_wrap(10)) +   geom_text(aes(y=Freq + 29, label=Freq)) + 
+  xlab('') + theme(legend.position = "none")
+```
+*Note: Variables filled with yellow above are used to show the conditions used to build the First Generation variable in the next plot*.
+
+The highest level of education completed by most students parents is `r names(sort(table(bns$q13), decreasing=TRUE)[1])` (`r unname(sort(table(bns$q13), decreasing=TRUE)[1])`). `r unname(sort(table(bns$q13), decreasing=TRUE)[2])` students claim their parents highest level is `r names(sort(table(bns$q13), decreasing=TRUE)[2])`, and `r unname(sort(table(bns$q13), decreasing=TRUE)[3])` students claim their parents highest level is `r names(sort(table(bns$q13), decreasing=TRUE)[3])`. Only a minority of students have parents who have some type of college level degree.
+
+### First Generation
+```{r}
+plot_frq(bns$firstgen, ylim=c(0,415), axis.labels = c('Not First Gen', 'First Gen')) + xlab('')
+```
+Using the above information for parents highest level of education, a new variable was created to identify First Generation College Students. This was built upon the assumption that the parents highest level of education falls under one of the categories highlighted yellow above in the Parents Education graph.
+
+From this information, we can see that `r unname(sort(table(bns$firstgen), decreasing=TRUE)[1])` students who participated in the survey are First Generation College students and `r unname(sort(table(bns$firstgen), decreasing=TRUE)[2])` students are not First Generation College students. 
+

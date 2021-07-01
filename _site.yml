@@ -1,0 +1,41 @@
+name: "BNS3 Survey"
+output_dir: "."
+navbar:
+  title: "BNS3"
+  left:
+    - text: "Overview"
+      href: index.html
+    - text: "Demographics"
+      menu:
+        - text: "Personal Demographics"
+          href: Personal_Demo.html
+        - text: "Student Demographics"
+          href: Student_Demo.html
+    - text: "Workload"
+      href: Workload.html
+    - text: "Housing"
+      href: Housing.html
+    - text: "CalFresh"
+      href: CalFresh.html
+    - text: "Basic Needs Services"
+      href: Basic_Needs.html
+    - text: "Food Security"
+      href: Food_Security.html
+    - text: "Health"
+      menu:
+        - text: "Eating Habits"
+          href: Eating_Habits.html
+        - text: "Physical Activity"
+          href: Physical_Activity.html
+        - text: "Sleep"
+          href: Sleep.html
+        - text: "Mental Health"
+          href: Mental_Health.html
+      
+output:
+  html_document:
+    highlight: null
+    css: styles.css
+    include:
+      after_body: footer.html
+

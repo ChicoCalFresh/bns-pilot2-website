@@ -1,0 +1,351 @@
+---
+title: "Basic Needs Programs and Services"
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    css: styles.css
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+source("common_code.R")
+```
+
+# Participation
+**Pick all Basic Needs Programs and Services that you participate in (mark all that apply):**
+```{r, fig.width=8.5}
+questions <- bns %>% select(starts_with("q46_"))
+names(questions) <- c('CalFresh (also known as Food Stamps or SNAP benefits)',
+                      'Campus food pantry (e.g., food, toiletries, feminine products)',
+                      'Restaurant Meals Program (ability to use CalFresh EBT for hot meals on campus)',
+                      'MediCal',
+                      'Emergency Housing Services')
+plot_likert(questions,
+            grid.range = c(1.2, 1.2),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 5,
+            geom.colors = "YlGnBu",
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+```
+
+# Impact
+
+## CalFresh EBT
+```{r, fig.width=8.5}
+p1 <- plot_frq(bns$q47, wrap.title = 40, ylim=c(0,125), wrap.labels = 15, 
+               title="Did you apply for CalFresh EBT as an individual or with other people in your household?") +
+  xlab('')
+p2 <- plot_frq(bns$fed_through_EBT, wrap.title = 40, title="How many people in the household are regularly fed through your CalFresh EBT card?") + xlab('')
+
+grid.arrange(p1, p2, nrow=1)
+rm(p1,p2)
+```
+Looking at the above graphs, the majority of people apply for CalFresh EBT as an individual (`r unname(table(bns$q47)['As an individual'])` people) while only `r unname(table(bns$q47)['With other people in my household'])` people applied with other people in their household. Similarly, the majority of people claimed only `r names(sort(table(bns$fed_through_EBT), decreasing = TRUE))[1]` person is fed through the EBT card (`r unname(sort(table(bns$fed_through_EBT), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$fed_through_EBT), decreasing = TRUE))[2]` people claim to feed `r names(sort(table(bns$fed_through_EBT), decreasing = TRUE))[2]` people through the EBT card, and only a small amount of people claim to feed 5 or more people through the EBT card.
+
+### Monthly CalFresh Money
+**How much money do you receive from CalFresh each month?**
+```{r, fig.width=7}
+hist_with_box('q49_1', 29, 3, 0.2, NULL, c(0,32), 'Monthly Support ($)')
+```
+The average amount of money received for people using CalFresh is \$`r round(mean(bns$q49_1, na.rm=TRUE),2)`, while the median is \$`r round(median(bns$q49_1, na.rm=TRUE),2)`. The values range from \$`r min(bns$q49_1, na.rm=TRUE)` to \$`r max(bns$q49_1, na.rm=TRUE)`. The majority of people who do receive these benefits seems to be getting around \$250 or less per month.
+
+### Is This Enough?
+```{r, fig.height=4.5, fig.width=8.5}
+p1 <- plot_frq(bns$q50, ylim=c(0,125), title="Do you feel that this is enough money to provide healthy food for the month?") + xlab('')
+p2 <- plot_frq(bns$q51, wrap.labels = 12, title="If \"No\", then when do you typically run out?") + xlab('')
+
+grid.arrange(p1, p2, nrow=1)
+rm(p1,p2)
+```
+Of the people who do receive money from CalFresh, `r unname(table(bns$q50)['Yes'])` of them claim that it is enough money to provide healthy food for a month and `r unname(table(bns$q50)['No'])` of them feel that it is not enough. People who do not feel it is enough money typically run out of CalFresh money in either the second week (`r unname(table(bns$q51)['Second week after receiving benefits'])` people) or third week (`r unname(table(bns$q51)['Third week after receiving benefits'])` people). A small group also run out within the first week, while an even smaller minority run out in the fourth week.
+
+## CalFresh Benefits
+**While you received CalFresh benefits:**
+```{r, fig.height=8, fig.width=8.5}
+questions <- bns %>% select(starts_with("q52_"))
+names(questions) <- c('I worked fewer hours each week in a PAID position.',
+                      'I had more time to do an UNPAID internship or volunteer work.',
+                      'I had more money to pay for bills (rent, utility bills, clothes, etc.).',
+                      'I had more money for entertainment and social activities.',
+                      'I shopped more frequently at the farmers market.',
+                      'I had learned more about healthier foods.',
+                      'I purchased healthier foods.',
+                      'I cooked more frequently at home.',
+                      'I consumed a healthier diet.',
+                      'I consumed less fast food.',
+                      'I consumed fewer processed foods.',
+                      'I consumed fewer sugar-sweetened beverages like soda and energy drinks.',
+                      'I consumed less alcohol or fewer alcoholic beverages.',
+                      'I concentrated more in class(es).',
+                      'My grades had improved.',
+                      'My grades had decreased.',
+                      'I kept up with course materials..',
+                      'I had more time to go to my professors office hours and tutoring services when needed.',
+                      'I had more time to attend all classes as they are scheduled.',
+                      'I had more time to go on field trips or internships.',
+                      'My sleep quality had improved.',
+                      'My stress/anxiety level had decreased.')
+plot_likert(questions[1:11],
+            grid.range = c(1.2, 1.2),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 5,
+            geom.colors = sentiment.color.pal.5,
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+
+plot_likert(questions[11:22],
+            grid.range = c(1.2, 1.2),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 5,
+            geom.colors = sentiment.color.pal.5,
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+```
+
+## CalFresh Barriers
+**What are the reasons you do not have CalFresh or have never used CalFresh? (Select all that apply)**
+```{r}
+question <- "barrier"
+qlabel <- c('I do not think I’m eligible ',
+            'I have heard from other students that it’s not worth my time because I won’t be eligible or I won’t receive much money.',
+            'I am embarrassed or ashamed to apply for CalFresh.',
+            'My family or household does not want to apply for CalFresh.',
+            "I don't need CalFresh.",
+            'I feel other students need CalFresh more than I do.',
+            'No time to complete the application/ application is too long.',
+            'No time to get verification documents or don’t know how to get verification document.',
+            'No time to call or go to the local social service office for my CalFresh interview.',
+            'I don’t believe in social services like CalFresh, WIC, or Welfare',
+            'No transportation',
+            'Other',
+            'The application is too difficult.',
+            'The CalFresh outreach team on campus was not helpful or supportive during my application process.',
+            'The staff in my local county social service office were not helpful or supportive during my application process.')
+
+cf_barrier_vars <- prep_binary_vars(question, qlabel)
+
+# Plot table of Percentages
+cf_barrier_vars %>% 
+  select(Measure = xlab, Percent = pct_lab) %>% 
+  kable() %>% kable_styling(bootstrap_options = "striped")
+```
+
+## Campus Food Pantry
+**For the following questions, please choose how much you agree or disagree with the impact campus food pantries has or had on your life. While I utilized campus food pantry/pantries:**
+```{r, fig.height=8, fig.width=8.5}
+questions <- bns %>% select(starts_with("q55_"))
+names(questions) <- c('I worked fewer hours each week in a PAID position.',
+                      'I had more time to do an UNPAID internship or volunteer work.',
+                      'I had more money to pay for bills (rent, utility bills, clothes, etc.).',
+                      'I had more money for entertainment and social activities.',
+                      'I shopped more frequently at the farmers market.',
+                      'I had learned more about healthier foods.',
+                      'I purchased healthier foods.',
+                      'I cooked more frequently at home.',
+                      'I consumed a healthier diet.',
+                      'I consumed less fast food.',
+                      'I consumed fewer processed foods.',
+                      'I consumed fewer sugar-sweetened beverages like soda and energy drinks.',
+                      'I consumed less alcohol or fewer alcoholic beverages.',
+                      'I concentrated more in class(es).',
+                      'My grades had improved.',
+                      'My grades had decreased.',
+                      'I kept up with course materials.',
+                      'I had more time to go to my professors office hours and tutoring services when needed.',
+                      'I had more time to attend all classes as they are scheduled.',
+                      'I had more time to go on field trips or internships.',
+                      'My sleep quality had improved.',
+                      'My stress/anxiety level had decreased.')
+plot_likert(questions[1:11],
+            grid.range = c(1.2, 1.2),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 5,
+            geom.colors = sentiment.color.pal.5,
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+
+plot_likert(questions[11:22],
+            grid.range = c(1.2, 1.2),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 5,
+            geom.colors = sentiment.color.pal.5,
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+```
+
+### Food Pantry Use
+**How often do you normally use the food pantry or if you are not currently using it, how often did you use it?**
+```{r}
+plot_frq(bns$q54, wrap.labels = 15) + xlab('Food Pantry Use Frequency')
+```
+When people use the food pantry, the majority do not use it every week (`r unname(sort(table(bns$q54), decreasing = TRUE)['Not every week'])` people). `r unname(sort(table(bns$q54), decreasing = TRUE)['About once a week'])` people claim to use it about once a week, `r unname(sort(table(bns$q54), decreasing = TRUE)['More than once a week'])` people use it more than once a week, and `r unname(sort(table(bns$q54), decreasing = TRUE)['Other'])` people claim other uses.
+
+### Reasons Not Using Food Pantries
+**What are the reasons for you to not go to campus food pantries? (Select all that apply)**
+```{r}
+question <- "no_pantry"
+qlabel <- c("My family doesn't want me to go to campus food pantries or local food banks.",
+            'I am embarrassed or scared to go to the campus food pantries or local food banks.',
+            'I do not believe in using campus food pantries or local food banks.',
+            "Inconvenient to access due to lack of transportation or out-of-the way location.",
+            'Inconvenient times of operation/limited pantry hours.',
+            'I feel other students need the food more than I do.',
+            'I am not aware of any campus food pantries or local food banks.',
+            'There are no food pantries close to campus or my residence',
+            'Other')
+
+pantry_vars <- prep_binary_vars(question, qlabel)
+
+# Plot table of Percentages
+pantry_vars %>% 
+  select(Measure = xlab, Percent = pct_lab) %>% 
+  kable() %>% kable_styling(bootstrap_options = "striped")
+```
+
+## Restaurant Meal Program (RMP)
+**While you participated in the Restaurant Meal Program (RMP):**
+```{r, fig.height=8.5, fig.width=8.5}
+questions <- bns %>% select(starts_with("q57_"))
+names(questions) <- c('I have more time to receive assistance from the Accessibility Resource Center (ARC) or other disability programs.',
+                      'I concentrated more in class(es).',
+                      'My grades had improved.',
+                      'My grades had decreased.',
+                      'I kept up course materials.',
+                      'I had more time to go to my professors’ office hours and tutoring services when needed.',
+                      'I had more time to attend all classes as they are scheduled.',
+                      'I had more time to go on field trips or internships.',
+                      'My sleep quality had improved.',
+                      'My stress/anxiety level had decreased..',
+                      'I’m less concerned about housing issues.',
+                      'I felt more confident in my ability to maintain healthy relationships.')
+
+plot_likert(questions,
+            grid.range = c(1.2, 1.2),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 5,
+            geom.colors = sentiment.color.pal.5,
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+```
+
+### Reasons Not Using RMP
+**What are the reasons for you to not have RMP or have never used RMP? (Select all that apply)**
+```{r}
+question <- "RMP"
+qlabel <- c("I don’t need this Restaurant Meal Program (RMP).",
+            'I have no access to these participating restaurants/no convenient locations.',
+            'I have no transporation to these restaurants.',
+            'I have no time to go to these restaurants.',
+            'I have never heard about this Restaurant Meal Program (RMP).',
+            'I am emberarrassed or ashamed to use my EBT card in a restaurant.',
+            'I do not like the food offered in these participating restaurants.',
+            "I don’t believe in social services like RMP, Medi-Cal, CalFresh, WIC, or Welfare/Cash Aid.",
+            'Other')
+
+rmp_vars <- prep_binary_vars(question, qlabel)
+
+# Plot table of Percentages
+rmp_vars %>% 
+  select(Measure = xlab, Percent = pct_lab) %>% 
+  kable() %>% kable_styling(bootstrap_options = "striped")
+```
+
+## Medical
+**Knowing that you have MediCal:**
+```{r, fig.width=8.5}
+questions <- bns %>% select(starts_with("q59_"), "q60")
+names(questions) <- c("My mental health has improved.",
+                      "My physical health has improved.",
+                      "My sleep quality had improved.",
+                      "My stress/anxiety level had decreased.",
+                      "I was able to receive the healthcare I needed")
+
+plot_likert(questions,
+            grid.range = c(1.2, 1.2),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 5,
+            geom.colors = sentiment.color.pal.5,
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+```
+
+### Reasons Not Using Medical
+**What are the reasons you do not have MediCal or have never used MediCal? (Select all that apply)**
+```{r}
+question <- "no_medical"
+qlabel <- c("I don’t need MediCal.",
+            "I do not know what MediCal is or I think I already have health insurance.",
+            "I only need medical services at the student health center associated with my campus.",
+            "No time to complete the MediCal application/MediCal application is too long.",
+            "The MediCal application is too difficult to complete.",
+            "I do not think I am eligible for MediCal.",
+            "I have heard from other students that it is not worth my time because I wont be eligible.",
+            "My family or household does not want me to apply for MediCal.",
+            "I am embarrassed or ashamed to apply for MediCal.",
+            "I don’t believe in social services like MediCal, CalFresh, WIC, or Welfare/Cash Aid.",
+            "Other")
+
+medical_vars <- prep_binary_vars(question, qlabel)
+
+# Plot table of Percentages
+medical_vars %>% 
+  select(Measure = xlab, Percent = pct_lab) %>% 
+  kable() %>% kable_styling(bootstrap_options = "striped")
+```
+
+## Emergency Housing Services (EHS)
+```{r, fig.height=7.5, fig.width=8.5}
+questions <- bns %>% select(starts_with("q62_"))
+names(questions) <- c('I concentrated more in class(es).',
+                      'My grades had improved.',
+                      'My grades had decreased.',
+                      'I kept up course materials.',
+                      'I had more time to go to my professors’ office hours and tutoring services when needed.',
+                      'I had more time to attend all classes as they are scheduled.',
+                      'I had more time to go on field trips or internships.',
+                      'My sleep quality had improved.',
+                      'My stress/anxiety level had decreased.',
+                      'I’m less concerned about housing issues.',
+                      'I felt more confident in my ability to maintain healthy relationships.')
+
+plot_likert(questions,
+            grid.range = c(1.2, 1.2),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 5,
+            geom.colors = sentiment.color.pal.5,
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+```
+
+
+### Reasons Not Using EHS
+**What are the reasons you do not have Emergency Housing Services or have never used Emergency Housing Services?**
+```{r}
+question <- "EHS"
+qlabel <- c("I don’t need Emergency Housing Services",
+            "I was not aware that my campus had Emergency Housing Services like grants and housing placements in an emergency.",
+            "No time to complete the Emergency Housing application or contact the Emergency Housing Staff.",
+            "The Emergency Housing Services application is too difficult to complete.",
+            "The emergency housing grant/money is not enough to support what I need, so not worth my time to apply for it.",
+            "I am embarrassed or ashamed to apply for Emergency Housing Services.",
+            "I do not believe in social services like Emergency Housing Services, MediCal, CalFresh, or Welfare/Cash Aid.",
+            "Other")
+
+ehs_vars <- prep_binary_vars(question, qlabel)
+
+# Plot table of Percentages
+ehs_vars %>% 
+  select(Measure = xlab, Percent = pct_lab) %>% 
+  kable() %>% kable_styling(bootstrap_options = "striped")
+```

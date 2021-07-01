@@ -1,0 +1,91 @@
+---
+title: "Eating Habits"
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    css: styles.css
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+source("common_code.R")
+```
+
+## Current Eating/Cooking Habits
+**For each of the following statements, indicate how strongly you agree or disagree about your current eating and cooking habits:**
+```{r, fig.height=6.5, fig.width=7.7}
+questions <- bns %>% select(starts_with("q76_"))
+names(questions) <- c("I do not regularly have access to a kitchen where I can prepare meals.",
+                      "I have a secure place to store fresh food and pantry items.",
+                      "I do not have enough room to store food items.",
+                      "Thinking about food is stressful/causes anxiety.",
+                      "I wish I had more food to eat.",
+                      "I almost always skip meals.",
+                      "I don't cook or shop for food.",
+                      "No one cooks at home.",
+                      "I do not think about my eating/food habits.")
+plot_likert(questions,
+            grid.range = c(1.2, 1.2),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 5,
+            geom.colors = sentiment.color.pal.5,
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+```
+
+## Daily Consumption
+### Fruits & Vegetables
+**How many servings of fruits and vegetables do you usually consume per day? (not including fruit juices)**
+
+*1 serving= 1 medium piece of fruit; 1/2 cup fresh, frozen, or canned fruits/vegetables; 1 cup salad greens; or 1/4 cup dried fruit.*
+```{r, fig.height=3.5}
+plot_frq(bns$fruit_veg_serv_daily) + xlab('Daily Fruit & Vegetable Servings')
+```
+Looking at the daily consumption of fruits and vegetables, the majority of people claim to eat between `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[1]` servings (`r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[2]` people claim to eat `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[2]` servings, `r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[3]` people claim to eat `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[3]` servings, and `r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[4]` people claim to eat `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[4]` servings.
+
+### Sugar/Energy Drinks
+**How many ounces of regular soda/cola/pop, sports drink, or energy drinks do you consume each day?**
+```{r, fig.width=7}
+plot_frq(bns$sugar_drinks_ounces_daily) + xlab('Daily Sugar/Energy Drink Servings (Ounces)')
+```
+Looking at daily consumption of regular soda/cola/pop, sports drink, or energy drinks the majority of people claim to drink `r names(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[1]` ounces (`r unname(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[2]` people claim to drink between `r names(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[2]` ounces, `r unname(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[3]` people claim to drink between `r names(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[3]`, and only a small number of participants claim to drink 17 or more ounces per day.
+
+## Weekly Consumption
+### Eating Out
+**How frequently do you eat from fast food restaurants, convenience stores, or vending machines for a meal or meal replacement?**
+```{r}
+plot_frq(bns$eating_out_weekly) + xlab('Weekly Eating Out Frequency')
+```
+Looking at the weekly consumption of eating fast food, the majority of people claim to eat out `r names(sort(table(bns$eating_out_weekly), decreasing = TRUE))[1]` times per week (`r unname(sort(table(bns$eating_out_weekly), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$eating_out_weekly), decreasing = TRUE))[2]` people claim to eat out `r names(sort(table(bns$eating_out_weekly), decreasing = TRUE))[2]` times, `r unname(sort(table(bns$eating_out_weekly), decreasing = TRUE))[3]` people claim to eat out `r names(sort(table(bns$eating_out_weekly), decreasing = TRUE))[3]` times, and only a small minority of people claim to eat out 5 or more times per week.
+
+### Alcohol Consumption
+**How often do you consume at least one serving of alcohol? If consumed, how many servings of alcohol do you consume when you drink alcohol?**
+```{r, fig.height=4.3, fig.width=8}
+p1 <- plot_frq(bns$alc_consumption_weekly, ylim=c(0,310), title="How often do you consume alcohol:") +xlab('Days Consumed')
+p2 <- plot_frq(bns$alc_servings_if_consumed, title="If consumed, how many servings:") + xlab('Number of Alcohol Servings')
+
+grid.arrange(p1, p2, nrow=1)
+rm(p1,p2)
+```
+Looking at the weekly alcohol consumption, the majority of people claim to consume alcohol `r names(sort(table(bns$alc_consumption_weekly), decreasing = TRUE))[1]` days per week (`r unname(sort(table(bns$alc_consumption_weekly), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$alc_consumption_weekly), decreasing = TRUE))[2]` people claim to drink `r names(sort(table(bns$alc_consumption_weekly), decreasing = TRUE))[2]` days per week. Only a small number of people claim to drink 3 or more days per week. Of the people who do consume alcohol, the majority consume `r names(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[1]` servings (`r unname(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[2]` people claim to drink `r names(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[2]` servings,  `r unname(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[3]` people claim to drink `r names(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[3]` servings, and only a small number drink 5 or more servings.
+
+## Food Comfort
+**The following questions pertain to how comfortable you feel about buying or preparing food:**
+```{r, fig.width=8}
+questions <- bns %>% select(starts_with("q82_"))
+names(questions) <- c("How confident are you that you can use the same healthy ingredient in more than one meal?",
+                      "How confident are you that you can use basic cooking skills, like cutting fruits and vegetables, measuring out ingredients, or following a recipe?",
+                      "How confident are you that you can buy healthy foods for your family on a budget?",
+                      "How confident are you that you can cook healthy foods for your family on a budget?")
+plot_likert(questions,
+            grid.range = c(1, 1),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 6,
+            geom.colors = sentiment.color.pal.6,
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+```

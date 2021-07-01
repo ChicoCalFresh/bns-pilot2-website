@@ -1,0 +1,76 @@
+---
+title: "Sleep"
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    css: styles.css
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+source("common_code.R")
+```
+
+## Academic Year
+**On average, during the academic year, how many hours of sleep do you get in a typical 24-hour period:**
+
+#### During the Week (Monday-Friday)
+```{r, fig.height=3.5, fig.width=7}
+hist_with_box('q84', 145, 24, 0.4, NULL, c(0,162), 'Number of Hours')
+```
+
+#### During the Weekend (Saturday-Sunday)
+```{r, fig.height=3.5, fig.width=7}
+hist_with_box('q85', 108, 17, 0.4, NULL, c(0,122), 'Number of Hours')
+```
+During the week, students claim to get an average of `r round(mean(bns$q84, na.rm = TRUE), 2)` hours per night, with a median of `r round(median(bns$q84, na.rm = TRUE), 2)` hours. During the weekend, students claim to get an average of `r round(mean(bns$q85, na.rm = TRUE), 2)` hours per night, with a median of `r round(median(bns$q85, na.rm = TRUE), 2)` hours. Students get an average of `r round(mean(bns$q85, na.rm = TRUE), 2)-round(mean(bns$q84, na.rm = TRUE), 2)` more hours of sleep on the weekend versus during the week.
+
+## Sleep Deprived
+**On average, how many times per month do you feel deprived of sleep?**
+```{r}
+hist_with_box('q86', 55, 6, 0.4, NULL, c(0,61), 'Days Per Month')
+```
+Students claim that on average they were feeling sleep deprived for `r round(mean(bns$q86, na.rm = TRUE), 1)` days out of the month, with a median of `r round(median(bns$q86, na.rm = TRUE), 1)` days per month. 
+
+### Causes of Sleep Deprivation
+**Select the activities that cause you to feel deprived of sleep (Select all that apply).**
+```{r, fig.height=5, fig.width=8}
+question <- "sleep_loss"
+qlabels <- c("Studying or finishing coursework.",
+             "Working a paid, unpaid job or internship.",
+             "Attending social activities or events.",
+             "Spending time with family or friends.",
+             "Watching movies, playing games, social media etc.",
+             "Other")
+sleep_loss_vars <- prep_binary_vars(question, qlabels)
+
+# Plot table of Percentages
+sleep_loss_vars %>% 
+  select(Measure = xlab, Percent = pct_lab) %>% 
+  kable() %>% kable_styling(bootstrap_options = "striped")
+
+# Create bar plot of values & percentage 
+sleep_loss_vars %>% 
+  ggplot(aes(x=xlab, y=pct, label = pct_lab)) + 
+    geom_col(fill=primary.chc.col) + 
+    geom_text(aes(y=pct+.065)) +
+    scale_y_continuous(limits = c(0,1), labels=percent) + 
+    scale_x_discrete(labels=label_wrap(13)) + xlab("") + ylab("Percent")
+```
+
+## Tired at Work/School
+**How frequently do you feel tired while at work or school?**
+```{r}
+plot_frq(bns$q88) + xlab('Frequency')
+```
+The most common response that people felt tired at work or school was `r tolower(names(sort(table(bns$q88), decreasing = TRUE))[1])` (`r unname(sort(table(bns$q88), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$q88), decreasing = TRUE))[2]` people claimed that they were `r tolower(names(sort(table(bns$q88), decreasing = TRUE))[2])` tired, `r unname(sort(table(bns$q88), decreasing = TRUE))[3]` people claimed that they were `r tolower(names(sort(table(bns$q88), decreasing = TRUE))[3])` tired, and `r unname(sort(table(bns$q88), decreasing = TRUE))[4]` people claimed that they were `r tolower(names(sort(table(bns$q88), decreasing = TRUE))[4])` tired.
+
+## Fallen Asleep in Class
+**Have you fallen asleep in class in the past 12 months?**
+```{r}
+plot_frq(bns$q89, ylim=c(0,240)) + xlab('')
+```
+The majority of students (`r unname(sort(table(bns$q89), decreasing = TRUE)['No'])` people) claim that they have not fallen asleep in class in the past year, while `r unname(sort(table(bns$q89), decreasing = TRUE)['Yes'])` people claim that they have fallen asleep in class.
+
