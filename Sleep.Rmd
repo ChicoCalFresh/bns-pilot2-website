@@ -25,14 +25,14 @@ hist_with_box('q84', 145, 24, 0.4, NULL, c(0,162), 'Number of Hours')
 ```{r, fig.height=3.5, fig.width=7}
 hist_with_box('q85', 108, 17, 0.4, NULL, c(0,122), 'Number of Hours')
 ```
-During the week, students claim to get an average of `r round(mean(bns$q84, na.rm = TRUE), 2)` hours per night, with a median of `r round(median(bns$q84, na.rm = TRUE), 2)` hours. During the weekend, students claim to get an average of `r round(mean(bns$q85, na.rm = TRUE), 2)` hours per night, with a median of `r round(median(bns$q85, na.rm = TRUE), 2)` hours. Students get an average of `r round(mean(bns$q85, na.rm = TRUE), 2)-round(mean(bns$q84, na.rm = TRUE), 2)` more hours of sleep on the weekend versus during the week.
+During the week, students claim to get an average (denoted by the dotted line) of `r round(mean(bns$q84, na.rm = TRUE), 2)` hours per night, with a median of `r round(median(bns$q84, na.rm = TRUE), 2)` hours. During the weekend, students claim to get an average (denoted by the dotted line) of `r round(mean(bns$q85, na.rm = TRUE), 2)` hours per night, with a median of `r round(median(bns$q85, na.rm = TRUE), 2)` hours. Students get an average of `r round(mean(bns$q85, na.rm = TRUE), 2)-round(mean(bns$q84, na.rm = TRUE), 2)` more hours of sleep on the weekend versus during the week.
 
 ## Sleep Deprived
 **On average, how many times per month do you feel deprived of sleep?**
 ```{r}
 hist_with_box('q86', 55, 6, 0.4, NULL, c(0,61), 'Days Per Month')
 ```
-Students claim that on average they were feeling sleep deprived for `r round(mean(bns$q86, na.rm = TRUE), 1)` days out of the month, with a median of `r round(median(bns$q86, na.rm = TRUE), 1)` days per month. 
+Students claim that on average they were feeling sleep deprived (denoted by the dotted line) for `r round(mean(bns$q86, na.rm = TRUE), 1)` days out of the month, with a median of `r round(median(bns$q86, na.rm = TRUE), 1)` days per month. 
 
 ### Causes of Sleep Deprivation
 **Select the activities that cause you to feel deprived of sleep (Select all that apply).**

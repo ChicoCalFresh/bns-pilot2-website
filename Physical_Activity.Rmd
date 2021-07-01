@@ -46,6 +46,14 @@ ggplot(pa.data) +
 
 ### Moderate Exercise
 ```{r, results='asis'}
+# tmp <- data.frame(rbind(table(bns$moderate_exercise_past_week), 
+#                         table(bns$strength_training_past_week), 
+#                         table(bns$vigorous_exercise_past_week)))
+# colnames(tmp) <- as.character(0:7)
+# rownames(tmp) <- c("Moderate Exercise", "Strength Training", "Vigorous Training")
+# 
+# tmp %>% kable() %>% kable_styling(bootstrap_options = "striped")
+
 desc_vals("moderate_exercise_past_week")
 ```
 The majority of participants claim to have done `r names(sort(table(bns$moderate_exercise_past_week), decreasing = TRUE))[1]` days of moderate exercise in the past week (`r unname(sort(table(bns$moderate_exercise_past_week), decreasing = TRUE))[1]` people). The general trend is that as the number of days increases, the number of students who exercised for those given number of days decreases. This seems to be the most commonly performed type of exercise from the graph above (typically the highest number of days per week out of all exercise types).

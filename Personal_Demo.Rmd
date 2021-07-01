@@ -18,7 +18,7 @@ source("common_code.R")
 ```{r}
 hist_with_box('age', 93, 15, 0.3, 1, c(0,105), 'Age')
 ```
-The age for participants in the survey range from `r min(bns$age, na.rm = TRUE)` to `r max(bns$age, na.rm = TRUE)` at the time of completion, with the majority of participants being between 20-30 years old. The average age of a participant in this survey is `r round(mean(bns$age, na.rm = TRUE),1)` years old.
+The age for participants in the survey range from `r min(bns$age, na.rm = TRUE)` to `r max(bns$age, na.rm = TRUE)` at the time of completion, with the majority of participants being between 20-30 years old. The average age of a participant in this survey (denoted by the dotted line) is `r round(mean(bns$age, na.rm = TRUE),1)` years old.
 
 ## Gender Identity
 **What is your gender identity?**
@@ -78,11 +78,11 @@ The majority of people who participated in the survey (`r unname(table(bns$q11)[
 dep.ages <- as.numeric(unname(unlist(bns %>% select(starts_with('q12_')))) %>% na.omit())
 dep.ages.df <- data.frame(Ages=dep.ages) # wouldn't compile in a single line for some reason
 
-plot_frq(dep.ages.df$Ages, type='histogram', show.mean = TRUE, ylim=c(0,30), xlim=c(0,103), show.mean.val = FALSE, show.sd = FALSE) +
-  geom_jitter(data=dep.ages.df, aes(x=Ages, y=27), position=position_jitter(height=2)) + 
-  geom_boxplot(data=dep.ages.df, aes(x=Ages, y=27), alpha=0.6, width=5, fill="#ecf0b7") + xlab('Dependent Ages (Years)')
+plot_frq(dep.ages.df$Ages, type='histogram', show.mean = TRUE, ylim=c(0,30), xlim=c(0,103), show.mean.val = FALSE, show.sd = FALSE) + 
+  geom_boxplot(data=dep.ages.df, aes(x=Ages, y=27), alpha=0.8, width=5, fill="#587db6") +
+  geom_jitter(data=dep.ages.df, aes(x=Ages, y=27), position=position_jitter(height=2)) + xlab('Dependent Ages (Years)')
 ```
-From the above graphs, the majority of dependents are under the age of 18. The ages of these dependents ranges from `r min(dep.ages)` to `r max(dep.ages)` with a standard deviation of `r round(sd(dep.ages),2)`. The average age for a dependent is `r round(mean(dep.ages),2)` while the median value is `r round(median(dep.ages),2)`. The most common dependent age is `r names(sort(table(dep.ages), decreasing=TRUE)[1])`, which appears `r unname(sort(table(dep.ages), decreasing=TRUE)[1])` times in the data.
+From the above graphs, the majority of dependents are under the age of 18. The ages of these dependents ranges from `r min(dep.ages)` to `r max(dep.ages)` with a standard deviation of `r round(sd(dep.ages),2)`. The average age for a dependent (denoted by the dotted line) is `r round(mean(dep.ages),2)` while the median value is `r round(median(dep.ages),2)`. The most common dependent age is `r names(sort(table(dep.ages), decreasing=TRUE)[1])`, which appears `r unname(sort(table(dep.ages), decreasing=TRUE)[1])` times in the data.
 
 ## Parents Education
 **What is the highest level of education completed by your parents/guardians?**
@@ -95,7 +95,7 @@ tmp <- as.data.frame(table(bns$q13)) %>%
 ggplot(tmp, aes(x=factor(Var1, levels=Var1), y=Freq, fill=FirstGen, label=Percent)) + geom_col(colour = "black") + 
   scale_fill_manual(values=c("#336699", "#ecf0b7")) + geom_text(aes(y=Freq+13)) + ylim(0,220) + 
   scale_x_discrete(labels=label_wrap(10)) +   geom_text(aes(y=Freq + 29, label=Freq)) + 
-  xlab('') + theme(legend.position = "none")
+  xlab('') + theme(legend.position = "none") + ylab('')
 ```
 *Note: Variables filled with yellow above are used to show the conditions used to build the First Generation variable in the next plot*.
 

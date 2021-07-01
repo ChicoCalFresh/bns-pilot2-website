@@ -28,7 +28,7 @@ plot_likert(questions,
             expand.grid = FALSE,
             values = "sum.outside",
             catcount = 5,
-            geom.colors = "YlGnBu",
+            geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 
@@ -51,7 +51,7 @@ Looking at the above graphs, the majority of people apply for CalFresh EBT as an
 ```{r, fig.width=7}
 hist_with_box('q49_1', 29, 3, 0.2, NULL, c(0,32), 'Monthly Support ($)')
 ```
-The average amount of money received for people using CalFresh is \$`r round(mean(bns$q49_1, na.rm=TRUE),2)`, while the median is \$`r round(median(bns$q49_1, na.rm=TRUE),2)`. The values range from \$`r min(bns$q49_1, na.rm=TRUE)` to \$`r max(bns$q49_1, na.rm=TRUE)`. The majority of people who do receive these benefits seems to be getting around \$250 or less per month.
+The average amount of money received for people using CalFresh (denoted by the dotted line) is \$`r round(mean(bns$q49_1, na.rm=TRUE),2)`, while the median is \$`r round(median(bns$q49_1, na.rm=TRUE),2)`. The values range from \$`r min(bns$q49_1, na.rm=TRUE)` to \$`r max(bns$q49_1, na.rm=TRUE)`. The majority of people who do receive these benefits seems to be getting around \$250 or less per month.
 
 ### Is This Enough?
 ```{r, fig.height=4.5, fig.width=8.5}
@@ -95,7 +95,7 @@ plot_likert(questions[1:11],
             expand.grid = FALSE,
             values = "sum.outside",
             catcount = 5,
-            geom.colors = sentiment.color.pal.5,
+            geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 
 plot_likert(questions[11:22],
@@ -104,7 +104,7 @@ plot_likert(questions[11:22],
             expand.grid = FALSE,
             values = "sum.outside",
             catcount = 5,
-            geom.colors = sentiment.color.pal.5,
+            geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 
@@ -168,7 +168,7 @@ plot_likert(questions[1:11],
             expand.grid = FALSE,
             values = "sum.outside",
             catcount = 5,
-            geom.colors = sentiment.color.pal.5,
+            geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 
 plot_likert(questions[11:22],
@@ -177,7 +177,7 @@ plot_likert(questions[11:22],
             expand.grid = FALSE,
             values = "sum.outside",
             catcount = 5,
-            geom.colors = sentiment.color.pal.5,
+            geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 
@@ -233,7 +233,7 @@ plot_likert(questions,
             expand.grid = FALSE,
             values = "sum.outside",
             catcount = 5,
-            geom.colors = sentiment.color.pal.5,
+            geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 
@@ -275,7 +275,7 @@ plot_likert(questions,
             expand.grid = FALSE,
             values = "sum.outside",
             catcount = 5,
-            geom.colors = sentiment.color.pal.5,
+            geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 
@@ -324,7 +324,7 @@ plot_likert(questions,
             expand.grid = FALSE,
             values = "sum.outside",
             catcount = 5,
-            geom.colors = sentiment.color.pal.5,
+            geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 

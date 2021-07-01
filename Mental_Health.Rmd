@@ -19,7 +19,7 @@ library(gridExtra)
 ```{r}
 hist_with_box('q90', 46, 7, 0.4, NULL, c(0,52), 'Number of Days in Last Month')
 ```
-Over the past month, the participants of the survey claimed to have experienced increased mental stress for any average of `r round(mean(bns$q90, na.rm = TRUE), 1)` days, with a median value of `r round(median(bns$q90, na.rm = TRUE), 1)` days. A large amount, and the most selected answer, claim to have experienced increased mental stress every day over the last month (`r unname(table(bns$q90)['30'])` people).
+Over the past month, the participants of the survey claimed to have experienced increased mental stress for any average (denoted by the dotted line) of `r round(mean(bns$q90, na.rm = TRUE), 1)` days, with a median value of `r round(median(bns$q90, na.rm = TRUE), 1)` days. A large amount, and the most selected answer, claim to have experienced increased mental stress every day over the last month (`r unname(table(bns$q90)['30'])` people).
 
 ## Mental Health Services 
 **Have you received or tried to receive mental health services over the past 12 months?**
@@ -56,7 +56,7 @@ plot_likert(questions,
             expand.grid = FALSE,
             values = "sum.outside",
             catcount = 5,
-            geom.colors = 'YlGnBu',
+            geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 

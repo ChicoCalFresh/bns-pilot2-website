@@ -19,11 +19,16 @@ sjPlot::set_theme(base = theme_bw())
 # blue 1 587db6
 # blue 2 5b81a3
 # green b5d43b
-# black 000000
 # yellow ecf0b7
 
-sentiment.color.pal.5 <- c("#edf8b1", "#c7e9b4", "#bababa", "#41b6c4", "#225ea8")
-sentiment.color.pal.6 <- c("#edf8b1", "#c7e9b4", "#bababa", "#41b6c4", "#225ea8", "#081d58")
+likert.pal.5 <- brewer_pal("div")(5)
+likert.pal.5[3] <- "#b2b5a8"
+
+likert.pal.3 <- brewer_pal("div")(3)
+likert.pal.3[2] <- "#b2b5a8"
+
+likert.pal.6 <- brewer_pal("div")(6)
+likert.pal.6[3] <- "#b2b5a8"
 
 primary.chc.col <- "#336699"
 
@@ -40,8 +45,9 @@ display.text <- function(data, var){
 ## Plot histogram with a box plot overlay
 hist_with_box <- function(question, bpos, bwidth, jwidth, gsize, ylim, xlab) {
   plot_frq(bns[[question]], type='histogram', show.mean = TRUE, ylim=ylim, show.mean.val = FALSE, show.sd = FALSE, geom.size = gsize) +
+    geom_boxplot(data=bns, aes_string(x=question, y=bpos), alpha=0.8, width=bwidth, fill="#587db6") +
     geom_jitter(data=bns, aes_string(x=question, y=bpos), position=position_jitter(width=jwidth, height=floor(bwidth/2.3)), alpha=0.7) + 
-    geom_boxplot(data=bns, aes_string(x=question, y=bpos), alpha=0.6, width=bwidth, fill="#ecf0b7") + xlab(xlab)
+    xlab(xlab)
 }
 
 ## Get percent for variable for given value (ex: Housing - Sleeping Places)
