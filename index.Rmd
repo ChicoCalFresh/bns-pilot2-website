@@ -1,6 +1,12 @@
 ---
-title: "BNS3 Pilot 2 Exploratory Data Analysis"
+title: "Exploring patterns of basic needs in college students "
 output: html_document
 ---
 
-*To be filled in...*
+### Pilot #2: 415 EOP students at CSU Fresno, Chico and Northridge
+
+Food insecurity among college students is a serious problem that can impact student performance in the classroom and ultimately effect student success. The [Center for Healthy Communities](https://www.csuchico.edu/chc/) (CHC) developed the **Basic Needs Student Success Survey (BNS3)** and administered it to undergraduate students in the [Educational Opportunity Program (EOP)](https://www2.calstate.edu/attend/student-services/eop) at [California State University, Chico, CSU](https://www.csuchico.edu/eop/), [Fresno](https://www.fresnostate.edu/studentaffairs/eop/abouteop.html) and [CSU Northridge](https://www.csun.edu/csun-eop) in April 2020. The EOP office assisted in the recruitment and provided computers for students to take the survey. Participants were given a \$25 gift card for their participation. Initially, EOP students were identified as the target population for this survey because of their low-income and first-generation status which makes these students more likely eligible to qualify for CalFresh.
+
+The purpose of this second cross-sectional pilot study was to revise the BNS3 tool and validate whether questions measured student perception of the impact of receiving [CalFresh](https://www.csuchico.edu/calfresh/index.shtml) assistance and the utilization of the campus food pantry on their health, nutrition, cooking confidence, time management and academic performance.
+
+This report provides a top level descriptive analysis of each question in the survey. Researchers and campus staff are encouraged to review the information in this analysis to formulate additional research questions and hypotheses.

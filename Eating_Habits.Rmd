@@ -89,3 +89,16 @@ plot_likert(questions,
             geom.colors = likert.pal.6,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
+
+---
+
+## [Physical Activity](Physical_Activity.html)
+*Click here to go to the Physical Activity page.*
+
+## [Mental Health](Mental_Health.html)
+*Click here to go to the Mental Health page.*
+
+## [Sleep](Sleep.html)
+*Click here to go to the Sleep page.*
+
+

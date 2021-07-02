@@ -34,7 +34,7 @@ plot_frq(bns$q8, wrap.labels = 15, sort.frq="desc") + xlab('')
 ```
 Looking at the above graph we see `r unname(table(bns$q8)['Yes, Mexican, Mexican American, Chicano'])` people identify as Mexican, Mexican American, or Chicano. `r unname(table(bns$q8)['No, not Hispanic, Latino or Spanish Origin'])` people do no identify as Hispanic, Latin, or Spanish Origin. `r unname(table(bns$q8)['Yes, another Hispanic, Latino or Spanish Origin'])` people identify as another Hispanic, Latino, or Spanish Origin. `r unname(table(bns$q8)['Yes, Puerto Rican'])` people identify as Puerto Rican.
 
-## Ethnicity
+## Race
 **What race do you identify as?**
 ```{r, fig.height=5, fig.width=8}
 question <- "eth"
@@ -108,4 +108,9 @@ plot_frq(bns$firstgen, ylim=c(0,415), axis.labels = c('Not First Gen', 'First Ge
 Using the above information for parents highest level of education, a new variable was created to identify First Generation College Students. This was built upon the assumption that the parents highest level of education falls under one of the categories highlighted yellow above in the Parents Education graph.
 
 From this information, we can see that `r unname(sort(table(bns$firstgen), decreasing=TRUE)[1])` students who participated in the survey are First Generation College students and `r unname(sort(table(bns$firstgen), decreasing=TRUE)[2])` students are not First Generation College students. 
+
+---
+
+## [Student Demographics](Student_Demo.html)
+*Click here to go to the Student Demographics page.*
 

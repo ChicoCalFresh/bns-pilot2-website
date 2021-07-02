@@ -58,11 +58,13 @@ get_perct <- function(x, value) {
 
 ## Create table of percentages for single multiple choice question (ex: Housing - Current Housing Situation)
 question_table <- function(question, values, cnames) {
-  temp_df <- data.frame(qs=character(), prc=character())
+  temp_df <- data.frame(qs=character(), prc=character(), frq=numeric())
   for (idx in 1:length(values)) {
     temp_df[idx, 1] <- values[idx]
     temp_df[idx, 2] <- get_perct(bns[[question]], values[idx])
+    temp_df[idx, 3] <- sum(bns[[question]] == values[idx], na.rm = TRUE)
   }
+  temp_df <- temp_df %>% arrange(desc(frq)) %>% select(-frq)
   colnames(temp_df) <- cnames
   temp_df %>% kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spec(2, width='3.5cm')
 }
@@ -100,15 +102,6 @@ prep_binary_vars <- function(question, xlabels) {
            pct_lab = paste0(x, "\n(", percent(pct, accuracy=.1),")"), 
            xlab = xlabels, 
            xlab = fct_reorder(xlab, desc(x))) %>% arrange(desc(x))
-}
-
-## Transposed table used for shorter variables (ex: Physical Activity - Exercise charts)
-desc_vals <- function(question) {
-  total <- sum(!is.na(bns[[question]])) # get all non NA rows
-  tmp.data <- as.data.frame(table(bns[[question]]))
-  tmp.data <- tmp.data %>% mutate(Percent=lapply(Freq, function(x) percent(x/total, accuracy = 0.1)))
-  colnames(tmp.data) <- c('**Days**', '**Count**', '**Percent**')
-  t(tmp.data) %>% kable() %>% kable_styling(bootstrap_options = "striped")
 }
 
 # Load data

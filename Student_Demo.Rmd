@@ -13,20 +13,20 @@ editor_options:
 source("common_code.R")
 ```
 
-# School
+## School
 ```{r}
 plot_frq(bns$school, ylim=c(0,180)) + xlab('School')
 ```
 Three schools participated in this pilot of the survey: `r names(sort(table(bns$school), decreasing=TRUE)[1])` (`r unname(sort(table(bns$school), decreasing=TRUE)[1])`), `r names(sort(table(bns$school), decreasing=TRUE)[2])` (`r unname(sort(table(bns$school), decreasing=TRUE)[2])`), and C`r names(sort(table(bns$school), decreasing=TRUE)[3])` (`r unname(sort(table(bns$school), decreasing=TRUE)[3])`). From the above graph, it seems that students from each campus will be nearly equally represented in the data.
 
-# Class Standing
+## Class Standing
 **Estimate your class standing by units completed**
 ```{r, fig.width=8}
 plot_frq(bns$academic_level, wrap.labels = 10) + xlab('Class Standing')
 ```
 It seems that the majority of the people are either in their Junior (`r unname(sort(table(bns$academic_level), decreasing=TRUE)['Junior (60-89 semester units)'])` people) or Senior (`r unname(sort(table(bns$academic_level), decreasing=TRUE)['Senior (90+ semester units)'])` people) semester. There are a few Sophomores and very few Freshman or higher education students.
 
-# Major
+## Major
 **What is your major?**
 ```{r, fig.height=5, fig.width=8.2}
 bns <- bns %>% mutate(q16=recode(q16, 
@@ -43,14 +43,14 @@ qs <- unique(bns$q16_6_text) %>% na.omit()
 question_table('q16_6_text', qs, cnames)
 ```
 
-# Overall GPA
+## Overall GPA
 **What is your approximate overall grade point average (GPA)?**
 ```{r}
 plot_frq(bns$q17) + xlab('GPA')
 ```
 The most common GPA for the data ranges between `r names(sort(table(bns$q17), decreasing=TRUE)[1])` (`r unname(sort(table(bns$q17), decreasing=TRUE)[1])` students), followed by`r names(sort(table(bns$q17), decreasing=TRUE)[2])` (`r unname(sort(table(bns$q17), decreasing=TRUE)[2])` students). There are also `r unname(sort(table(bns$q17), decreasing=TRUE)[3])` students who have an overall GPA between `r names(sort(table(bns$q17), decreasing=TRUE)[3])`. 
 
-# Currently Enrolled Units
+## Currently Enrolled Units
 **How many units are you currently taking?**
 ```{r, fig.width=7}
 xlbls <- c(as.character(0:21), "22+")
@@ -63,11 +63,11 @@ plot_frq(bns$q18, type='histogram', show.prc = FALSE, show.n = FALSE) + scale_x_
 
 The average number of units that a student in this data is enrolled in is `r round(mean(bns$q18, na.rm = TRUE), 2)` units, while the median is `r median(bns$q18, na.rm = TRUE)` units. It seems that the majority of students are considered full-time (12 or more units), with `r names(sort(table(bns$q18), decreasing=TRUE)[1])` units being most common and `r names(sort(table(bns$q18), decreasing=TRUE)[2])` units following that.
 
-# Student Identifiers
+## Student Identifiers
 
 The following questions were asked as a series of Yes/No Responses to help further understand students. They were grouped together in this page by the start of the question.
 
-## I identify as...
+### I identify as...
 ```{r}
 questions <- c(paste0('q14_', 1:2), paste0('q14_', 5:15))
 rnames <- c("A Transfer Student", "LGBTQA+", "A student with a disability", "A former foster youth/child",
@@ -79,7 +79,7 @@ rnames <- c("A Transfer Student", "LGBTQA+", "A student with a disability", "A f
 binary_table(questions, "Yes", rnames)
 ```
 
-## Disability Support Services (LOOK INTO)
+### Disability Support Services (??)
 *Note*: This name varies by campus and may not always be called the Disability Support Service Center.
 ```{r, fig.height=5, fig.width=7}
 questions <- paste0('q14_', 3:4)
@@ -88,7 +88,7 @@ rnames <- c('I receive services through the Disability Support Services Center',
 binary_table(questions, "Yes", rnames)
 ```
 
-## I participate in...
+### I participate in...
 ```{r}
 questions <- paste0('q14_', 18:21)
 rnames <- c('CalWorks (i.e. TANF or cash aid for needy families) or Aid to Families with Dependent Children (AFDC)',
@@ -98,7 +98,7 @@ rnames <- c('CalWorks (i.e. TANF or cash aid for needy families) or Aid to Famil
 binary_table(questions, "Yes", rnames)
 ```
 
-## I am...
+### I am...
 ```{r}
 questions <- c(paste0('q14_', 16:17), paste0('q14_', 22:26), paste0('q101_', 1:2))
 rnames <- c('Approved, awarded, or accepted for work study (with or without a work study job)',
@@ -111,3 +111,9 @@ rnames <- c('Approved, awarded, or accepted for work study (with or without a wo
             'Enrolled in a Teaching Credential Program', 'Enrolled in the School of Social Work Practicum Program (Field work program)')
 binary_table(questions, "Yes", rnames)
 ```
+
+---
+
+## [Personal Demographics](Personal_Demo.html)
+*Click here to go to the Personal Demographics page.*
+

@@ -44,9 +44,9 @@ The average number of paid hours worked per week (denoted by the dotted line) is
 ### Impact of COVID
 **Have the hours you work in a PAID job or internship changed due to COVID-19?**
 ```{r, fig.width=8}
-plot_frq(bns$q20, ylim=c(0,135), wrap.labels = 20) + xlab('')
+plot_frq(bns$q20, ylim=c(0,135), wrap.labels = 20, sort.frq = 'desc') + xlab('')
 ```
-With the impact of COVID, it seems that most people were able to keep their current paid jobs with only slight changes. `r unname(table(bns$q20)['Yes, my hours have decreased but I still have a job.'])` people had their hours decrease, `r unname(table(bns$q20)['No, my hours have remained the same.'])` people maintained the same hours, and `r unname(table(bns$q20)['Yes, my hours have increased and I still have a job or I have a new job.'])` people had their hours increase). There was also `r unname(table(bns$q20)['Yes, I no longer have my job/internship.'])` people who claimed that they no longer had their paid position due to the impact of COVID, while `r unname(table(bns$q20)['I did not have a job or internship before COVID-19 and I still do not.'])` people also claimed that they did not have a paid position before COVID.
+With the impact of COVID, it seems that most people were able to keep their current paid jobs with only slight changes. `r unname(table(bns$q20)['Yes, my hours have decreased but I still have a job.'])` people had their hours decrease, `r unname(table(bns$q20)['No, my hours have remained the same.'])` people maintained the same hours, and `r unname(table(bns$q20)['Yes, my hours have increased and I still have a job or I have a new job.'])` people had their hours increase. There was also `r unname(table(bns$q20)['Yes, I no longer have my job/internship.'])` people who claimed that they no longer had their paid position due to the impact of COVID, while `r unname(table(bns$q20)['I did not have a job or internship before COVID-19 and I still do not.'])` people also claimed that they did not have a paid position before COVID.
 
 ## Unpaid Work Hours
 **Estimate the number of hours you work in an UNPAID internship (for example, training, shadowing, practicum, and/or volunteer, etc.). Do not combine with answers above. **

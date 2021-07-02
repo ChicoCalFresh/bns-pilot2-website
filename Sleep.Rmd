@@ -74,3 +74,14 @@ plot_frq(bns$q89, ylim=c(0,240)) + xlab('')
 ```
 The majority of students (`r unname(sort(table(bns$q89), decreasing = TRUE)['No'])` people) claim that they have not fallen asleep in class in the past year, while `r unname(sort(table(bns$q89), decreasing = TRUE)['Yes'])` people claim that they have fallen asleep in class.
 
+
+---
+
+## [Eating Habits](Eating_Habits.html)
+*Click here to go to the Eating Habits page.*
+
+## [Physical Activity](Physical_Activity.html)
+*Click here to go to the Physical Activity page.*
+
+## [Mental Health](Mental_Health.html)
+*Click here to go to the Mental Health page.*

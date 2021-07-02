@@ -11,7 +11,6 @@ editor_options:
 
 ```{r, include=FALSE}
 source("common_code.R")
-library(gridExtra)
 ```
 
 ## Increased Mental Stress
@@ -30,7 +29,7 @@ Over the past year, the majority of students did not receive or try to receive m
 
 ## *Possible Idea (?)*
 *Possible idea of using a pie chart for Yes/No questions instead of bar chart? Style could be changed too.*
-```{r, fig.height=4.5, fig.width=4.5}
+```{r, fig.height=3.8, fig.width=3.8}
 tmp <- as.data.frame(table(bns['q91'])) %>% arrange(desc(Var1)) %>% mutate(Var1 = paste0(Var1, " (", Freq, ")"),
                                                                            prop = (Freq/sum(Freq))*100,
                                                                            ypos = cumsum(prop)- 0.5*prop)
@@ -38,7 +37,8 @@ colnames(tmp)[1] <- c('Response')
 ggplot(tmp, aes(x="", y=prop, fill=Response)) + geom_bar(stat="identity", width=2, color='black') + 
   coord_polar("y", start=0) + theme_void() + theme(legend.position="none") + 
   geom_text(aes(y = ypos, label = Response), color = "black", size=5) + 
-  scale_fill_manual(values=c("#587db6", "#b5d43b"))
+  scale_fill_manual(values=c("#587db6", "#ecf0b7"))
+rm(tmp)
 ```
 
 
@@ -60,3 +60,15 @@ plot_likert(questions,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 
+
+
+---
+
+## [Eating Habits](Eating_Habits.html)
+*Click here to go to the Eating Habits page.*
+
+## [Physical Activity](Physical_Activity.html)
+*Click here to go to the Physical Activity page.*
+
+## [Sleep](Sleep.html)
+*Click here to go to the Sleep page.*
