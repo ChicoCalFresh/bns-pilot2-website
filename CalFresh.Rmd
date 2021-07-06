@@ -68,7 +68,7 @@ The majority of people claim to purchase/prepare food (household size) for `r na
 - The person is either a U.S. citizen or lawful permanent resident.  
 - Does not get more than half of their meals from meals plans (< 11 per week or none).  
 - Identifies as an EOP student.  
-- Falls under the household size/income from section A2 on the [CalFresh Basic Eligibility](https://www.csuchico.edu/calfresh/basics/eligibility.shtml).
+- Falls under the household size/income from section A2 on the [CalFresh Basic Eligibility](http://www.publiccounsel.org/pages/?id=0090).
 
 ```{r}
 plot_frq(bns$calfresh_eligible) + xlab('CalFresh Eligible')

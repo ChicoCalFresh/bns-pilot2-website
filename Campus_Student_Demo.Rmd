@@ -1,0 +1,54 @@
+---
+title: "Student Demographics by Campus"
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    css: styles.css
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+source("common_code.R")
+```
+The following is a comparison across the 3 campuses (Chico, Fresno, and Northridge) for information relating to the demographics of the students.
+
+
+## Major
+```{r, fig.height=4.6, fig.width=7.2}
+bns <- bns %>% mutate(q16=recode(q16, 
+                                 "Science, Technology, Engineering and Math (STEM) (Includes Medicine, Computer Science, Agriculture, Accounting, Statistics, Nursing, and Nutrition)" = "Science, Technology, Engineering and Math (STEM)"))
+
+plot_grpfrq(bns$q16, bns$school, wrap.labels = 15, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
+  xlab('') + theme(legend.position="top")
+```
+For the most part, each campus has a similar number of students identifying as each major. CSU Fresno seems to have slightly lower "Arts and Humanities" majors and slightly higher "Public Health, Social Services, Social Science, Education" majors. Each campus has almost equal STEM majors.
+
+## Overall GPA
+```{r, fig.height=4.6, fig.width=7}
+plot_grpfrq(bns$q17, bns$school, wrap.labels = 15, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
+  xlab('') + theme(legend.position="top")
+```
+Looking at the overall GPA, it seems that CSU Chico has the most in the 2.01-3.0 range (2 groups combined). Fresno seems to be leading for students with an overall GPA of 3.01 to 3.5, and has a clear lead for student with an overall GPA of 3.51 or above. Northridge seems to have the majority of their students having a 3.01 or above (2 groups combined). 
+
+## Currently Enrolled Units
+```{r, fig.height=8, fig.width=7}
+xlbls <- c(as.character(0:21), "22+")
+bns <- bns %>% mutate(q18=recode(q18, "22+"="22"),
+                      q18=as.numeric(q18))
+
+ggplot(data=bns, aes(x=q18, fill=school)) + geom_histogram(bins = 23) + facet_wrap(~school, dir="v") + xlab('') + ylab("") + 
+  theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
+  scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=0:22, labels=xlbls)
+```
+Looking at the currently enrolled units across each campus, it seems that again the distribution seems very similar for each. CSU Chico has an average `r unname(round(tapply(bns$q18, bns$school, mean, na.rm=TRUE),2)[1])` enrolled units, with a median of `r unname(round(tapply(bns$q18, bns$school, median, na.rm=TRUE),2)[1])` units. CSU Fresno has an average `r unname(round(tapply(bns$q18, bns$school, mean, na.rm=TRUE),2)[2])` enrolled units, with a median of `r unname(round(tapply(bns$q18, bns$school, median, na.rm=TRUE),2)[2])` units. CSU Northridge has an average `r unname(round(tapply(bns$q18, bns$school, mean, na.rm=TRUE),2)[3])` enrolled units, with a median of `r unname(round(tapply(bns$q18, bns$school, median, na.rm=TRUE),2)[3])` units. 
+
+---
+
+## [Personal Demographics](Campus_Personal_Demo.html)
+*Click here to go to the Personal Demographics page.*
+
+## [Workload](Campus_Workload.html)
+*Click here to go to the Workload page.*
+

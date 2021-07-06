@@ -1,0 +1,65 @@
+---
+title: "Workload by Campus"
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    css: styles.css
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+source("common_code.R")
+```
+The following is a comparison across the 3 campuses (Chico, Fresno, and Northridge) for information relating to the workload taken on by students, both academic and non-academic.
+
+## Paid Hours Per Week
+```{r, fig.height=4.6, fig.width=7.6}
+bns$paid_work_hours <- fct_relevel(factor(bns$paid_work_hours), "0", "1-5", "6-10")
+
+plot_grpfrq(bns$paid_work_hours, bns$school, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
+  xlab('') + theme(legend.position="top")
+```
+
+
+## Unpaid Hours Per Week
+```{r, fig.height=4.6, fig.width=8}
+bns$unpaid_work_hours <- fct_relevel(factor(bns$unpaid_work_hours), "0", "1-5", "6-10")
+
+plot_grpfrq(bns$unpaid_work_hours, bns$school, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
+  xlab('') + theme(legend.position="top")
+```
+
+
+## Academic Hours
+```{r, fig.height=8, fig.width=7}
+tmp <- data.frame(q18=bns$q18, school=bns$school) %>% mutate(q18=recode(q18, "22+"="22"), q18=as.numeric(q18),
+                                                             units=q18*3) %>% select(-q18)
+
+ggplot(data=tmp, aes(x=units, fill=school)) + geom_histogram() + facet_wrap(~school, dir="v") + xlab('') + ylab("") + 
+  theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
+  scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=seq(0,66,6), labels=seq(0,66,6))
+```
+
+
+## Non-Academic Hours
+```{r, fig.height=8, fig.width=7}
+
+```
+
+
+## Total Workload Hours
+```{r, fig.height=8, fig.width=7}
+
+```
+
+
+
+---
+
+## [Student Demographics](Campus_Student_Demo.html)
+*Click here to go to the Personal Demographics page.*
+
+## [Personal Demographics](Campus_Personal_Demo.html)
+*Click here to go to the Personal Demographics page.*

@@ -32,6 +32,8 @@ likert.pal.6[3] <- "#b2b5a8"
 
 primary.chc.col <- "#336699"
 
+campus.colors <- c("#b5d43b", "#587db6", "#ecf0b7")
+
 # Helper functions
 
 ## Display text answers without blank lines
