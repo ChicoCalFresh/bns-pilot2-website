@@ -138,7 +138,7 @@ The average number of total hours worked per week (denoted by the dotted line) i
 
 ## Total Workload
 Below is a combination of all worked hours per week, both academic and non-academic. This includes units (3 hr/unit), paid, and unpaid worked hours.
-```{r, fig.width=7}
+```{r, fig.width=8}
 tmp <- data.frame(q18=bns$q18, q19=bns$q19, q21=bns$q21)
 
 if (!is.numeric(tmp$q18) & !is.numeric(tmp$q19) & !is.numeric(tmp$q21)) {
@@ -146,17 +146,18 @@ if (!is.numeric(tmp$q18) & !is.numeric(tmp$q19) & !is.numeric(tmp$q21)) {
                         q19=recode(q19, "41+"="41"), q19=as.numeric(q19),
                         q21=recode(q21, "41+"="41"), q21=as.numeric(q21))
 }
+tmp <- tmp %>% mutate(q18=q18*3)
 
 tmp$TotalHours <- rowSums(tmp, na.rm = TRUE)
 tmp <- tmp %>% filter(TotalHours > 0)
 
-plot_frq(tmp$TotalHours, type='histogram', geom.size=1.5, xlim=c(3,98), ylim=c(0,55), show.prc = FALSE, 
+plot_frq(tmp$TotalHours, type='histogram', geom.size=1.9, ylim=c(0,55), show.prc = FALSE, 
          show.n = FALSE, show.mean = TRUE, show.mean.val = FALSE, show.sd = FALSE) +
   geom_boxplot(data=tmp, aes(x=TotalHours, y=45), alpha=0.8, width=7, fill="#587db6") +
   geom_jitter(data=tmp, aes(x=TotalHours, y=45), position=position_jitter(width=1.5, height=3), alpha=0.7) + 
-  scale_x_continuous(breaks=seq(3,98, 5), labels=seq(3,98, 5)) + xlab('Total Hours Per Week')
+  scale_x_continuous(breaks=floor(seq(10,135,12.5)), labels=floor(seq(9,134,12.5))) + xlab('Total Hours Per Week')
 ```
-The average number of total hours worked per week (denoted by the dotted line) is `r round(mean(tmp$TotalHours, na.rm = TRUE), 2)`, while the median is `r median(tmp$TotalHours, na.rm = TRUE)` hours. The majority of students do seem to be working part time in total, with `r names(sort(table(tmp$TotalHours), decreasing=TRUE)[1])` hours being most common (`r unname(sort(table(tmp$TotalHours), decreasing=TRUE)[1])` people) and `r names(sort(table(tmp$TotalHours), decreasing=TRUE)[2])` hours following that (`r unname(sort(table(tmp$TotalHours), decreasing=TRUE)[2])` people). Only a small number of people claim to be working (both job and school) more than 60 hours per week. 
+The average number of total hours worked per week (denoted by the dotted line) is `r round(mean(tmp$TotalHours, na.rm = TRUE), 2)`, while the median is `r median(tmp$TotalHours, na.rm = TRUE)` hours. The majority of students do seem to be working over full-time in total, with `r names(sort(table(tmp$TotalHours), decreasing=TRUE)[1])` hours being most common (`r unname(sort(table(tmp$TotalHours), decreasing=TRUE)[1])` people) and `r names(sort(table(tmp$TotalHours), decreasing=TRUE)[2])` hours following that (`r unname(sort(table(tmp$TotalHours), decreasing=TRUE)[2])` people).
 
 ```{r}
 rm(tmp) # remove tmp data set

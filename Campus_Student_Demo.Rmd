@@ -42,6 +42,8 @@ ggplot(data=bns, aes(x=q18, fill=school)) + geom_histogram(bins = 23) + facet_wr
   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
   scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=0:22, labels=xlbls)
 ```
+*Note: values corresponding to "22+" were rounded to 22.*
+
 Looking at the currently enrolled units across each campus, it seems that again the distribution seems very similar for each. CSU Chico has an average `r unname(round(tapply(bns$q18, bns$school, mean, na.rm=TRUE),2)[1])` enrolled units, with a median of `r unname(round(tapply(bns$q18, bns$school, median, na.rm=TRUE),2)[1])` units. CSU Fresno has an average `r unname(round(tapply(bns$q18, bns$school, mean, na.rm=TRUE),2)[2])` enrolled units, with a median of `r unname(round(tapply(bns$q18, bns$school, median, na.rm=TRUE),2)[2])` units. CSU Northridge has an average `r unname(round(tapply(bns$q18, bns$school, mean, na.rm=TRUE),2)[3])` enrolled units, with a median of `r unname(round(tapply(bns$q18, bns$school, median, na.rm=TRUE),2)[3])` units. 
 
 ---

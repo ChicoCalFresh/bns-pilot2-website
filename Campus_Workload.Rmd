@@ -15,7 +15,7 @@ source("common_code.R")
 The following is a comparison across the 3 campuses (Chico, Fresno, and Northridge) for information relating to the workload taken on by students, both academic and non-academic.
 
 ## Paid Hours Per Week
-```{r, fig.height=4.6, fig.width=7.6}
+```{r, fig.height=4.6, fig.width=8.5}
 bns$paid_work_hours <- fct_relevel(factor(bns$paid_work_hours), "0", "1-5", "6-10")
 
 plot_grpfrq(bns$paid_work_hours, bns$school, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
@@ -24,7 +24,7 @@ plot_grpfrq(bns$paid_work_hours, bns$school, wrap.legend.labels = 30, geom.color
 
 
 ## Unpaid Hours Per Week
-```{r, fig.height=4.6, fig.width=8}
+```{r, fig.height=4.6, fig.width=8.5}
 bns$unpaid_work_hours <- fct_relevel(factor(bns$unpaid_work_hours), "0", "1-5", "6-10")
 
 plot_grpfrq(bns$unpaid_work_hours, bns$school, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
@@ -41,20 +41,43 @@ ggplot(data=tmp, aes(x=units, fill=school)) + geom_histogram() + facet_wrap(~sch
   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
   scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=seq(0,66,6), labels=seq(0,66,6))
 ```
+*Note: values corresponding to "22+" were rounded to 22.*
 
+Looking at the academic hours across each campus, it seems that the distribution seems very similar for each. CSU Chico has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[1])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[1])` units. CSU Fresno has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[2])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[2])` units. CSU Northridge has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[3])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[3])` units.
 
 ## Non-Academic Hours
-```{r, fig.height=8, fig.width=7}
+```{r, fig.height=5, fig.width=7}
+tmp <- data.frame(q19=bns$q19, q21=bns$q21, school=bns$school) %>% mutate(q19=recode(q19, "41+"="41"), q19=as.numeric(q19),
+                                                                          q21=recode(q21, "41+"="41"), q21=as.numeric(q21))
+tmp$TotalHours <- rowSums(tmp[, c(1,2)], na.rm=TRUE)
+tmp <- tmp %>% filter(TotalHours > 0) %>% select(-q19, -q21)
 
+# ggplot(data=tmp, aes(x=TotalHours, fill=school)) + geom_histogram(bins=41) + facet_wrap(~school, dir="v") + xlab('') + ylab("") + 
+#   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
+#   scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=seq(2,82,4), labels=seq(2,82,4))
+
+plot_grpfrq(tmp$TotalHours, tmp$school, type="boxplot", title = "", wrap.legend.labels = 50, geom.colors = campus.colors) + 
+  xlab("") + scale_y_continuous(breaks=seq(0,90,10), labels=seq(0,90,10)) + ylab('Total Hours')
 ```
+*Note: values corresponding to "41+" were rounded to 41.*
 
+Looking at the non-academic hours across each campus, again it seems that the distribution are very similar for each. CSU Chico has an average non-academic workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[1])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[1])` hours. CSU Fresno has an average non-academic workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[2])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[2])` hours. CSU Northridge has an average non-academic workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[3])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[3])` hours.
 
 ## Total Workload Hours
-```{r, fig.height=8, fig.width=7}
+```{r, fig.height=5, fig.width=7}
+tmp <- data.frame(q18=bns$q18, q19=bns$q19, q21=bns$q21, school=bns$school) %>% 
+  mutate(q18=recode(q18, "22+"="22"), q18=as.numeric(q18),units=q18*3,
+         q19=recode(q19, "41+"="41"), q19=as.numeric(q19),
+         q21=recode(q21, "41+"="41"), q21=as.numeric(q21))
+tmp$TotalHours <- rowSums(tmp[, c(2,3,5)], na.rm=TRUE)
+tmp <- tmp %>% filter(TotalHours > 0) %>% select(-q18, -q19, -q21, -units)
 
+plot_grpfrq(tmp$TotalHours, tmp$school, type="boxplot", title = "", wrap.legend.labels = 50, geom.colors = campus.colors) + 
+  xlab("") + scale_y_continuous(breaks=seq(0,150,15), labels=seq(0,150,15)) + ylab('Total Hours')
 ```
+*Note: values corresponding to "41+" were rounded to 41, as well as values corresponding to "22+" being rounded to 22.*
 
-
+Looking at the total workload hours across each campus, again it seems that the distribution are very similar for each. CSU Chico has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[1])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[1])` hours. CSU Fresno has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[2])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[2])` hours. CSU Northridge has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[3])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[3])` hours. A small number of students also claim to work over 100 hours per week across academic and non-academic jobs.
 
 ---
 
