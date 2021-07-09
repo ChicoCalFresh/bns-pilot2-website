@@ -12,7 +12,7 @@ editor_options:
 ```{r, include=FALSE}
 source("common_code.R")
 ```
-The following is a comparison across the 3 campuses (Chico, Fresno, and Northridge) for information relating to the personal demographics of the students.
+The following is a comparison across the 3 campuses (Chico, Fresno, and Northridge) for information relating to the personal demographics of the students. This includes information such as students age at the time of the survey (2020), their gender identity, any ethnicities they identify as, and their parents education (in order to determine first generation students). The purpose is to see if any key differences are seen between the campuses, or if similar information is captured among them.
 
 ## Age
 ```{r, fig.height=8, fig.width=7}

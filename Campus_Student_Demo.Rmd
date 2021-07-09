@@ -12,7 +12,7 @@ editor_options:
 ```{r, include=FALSE}
 source("common_code.R")
 ```
-The following is a comparison across the 3 campuses (Chico, Fresno, and Northridge) for information relating to the demographics of the students.
+The following is a comparison across the 3 campuses (Chico, Fresno, and Northridge) for information relating to the demographics of the students. This includes general information for students from each campus such as major, GPA, and currently enrolled units. The purpose is to see if any key differences are seen between the campuses, or if similar information is captured among them.
 
 
 ## Major

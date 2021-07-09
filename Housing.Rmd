@@ -13,6 +13,8 @@ editor_options:
 source("common_code.R")
 ```
 
+The following questions were asking in regards to students current and past housing situations. This includes changes due to COVID, if they are living near their college (with most schools being remote at the time of the survey), the type of home they current live in, and hardships that they faced in the past year with housing. 
+
 ## COVID Housing Impact
 **Has your housing  situation changed due to COVID-19?**
 ```{r}
