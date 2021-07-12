@@ -13,6 +13,8 @@ editor_options:
 source("common_code.R")
 ```
 
+The following questions were asked in regards to students feelings towards food security due to a lack/no money. Students were asked in they had to cut or skip meals (and how often), went entire days without eating, and other situations due to a lack of money. Students were also asked how they handled situations when they had run out of money for food, and if they had gotten any assistance.
+
 ## Food Eaten in Household
 **For the following statements, please state whether they were often true, sometimes true, or never true for you/your household in the last 30 days.**
 

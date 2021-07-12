@@ -13,6 +13,8 @@ editor_options:
 source("common_code.R")
 ```
 
+The following questions were asked in regards to students sleep patterns. This includes their average nightly sleep during the academic year (week and weekend), if they feel sleep deprived, and what the causes of their sleep deprivation come from. They were also asked if they are tired at work/school, how often they are tired here, and if they have fallen asleep in class in the past year. 
+
 ## Academic Year
 **On average, during the academic year, how many hours of sleep do you get in a typical 24-hour period:**
 

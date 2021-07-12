@@ -44,7 +44,7 @@ tmp %>% kable() %>% kable_styling(bootstrap_options = "striped")
 It seems that for participants in the survey, over 50% identify as White for each campus. Both Chico and Fresno had their second most common ethnicity being Other Asian. Northridge had its second most common ethnicity being American Indian, closely followed by African American.
 
 ## Parents Education
-```{r, fig.height=5.8, fig.width=7.6}
+```{r, fig.height=5.8, fig.width=8.3}
 plot_grpfrq(bns$q13, bns$school, wrap.labels = 10, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```

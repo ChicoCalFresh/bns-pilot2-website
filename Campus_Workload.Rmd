@@ -11,6 +11,7 @@ editor_options:
 
 ```{r, include=FALSE}
 source("common_code.R")
+library(ggforce)
 
 tmp2 <- data.frame(q18=bns$q18, q19=bns$q19, q21=bns$q21, school=bns$school) %>% 
   mutate(q18=recode(q18, "22+"="22"), q18=as.numeric(q18),
@@ -30,6 +31,17 @@ plot_grpfrq(bns$paid_work_hours, bns$school, wrap.legend.labels = 30, geom.color
   xlab('') + theme(legend.position="top")
 ```
 
+### Exact Hour Breakdown
+*Note: below hours were filtered to only include people that worked (> 0 hours) a paid job. The value "41+" was also rounded to 41 for the graph/calculations.* 
+```{r, fig.height=5, fig.width=8}
+tmp <- tmp2 %>% filter(q19 > 0)
+plot_grpfrq(tmp$q19, tmp$school, type="violin", wrap.labels = 25, geom.colors = campus.colors,
+            inner.box.dotsize = 3.5, inner.box.width = 0.2, title = "", show.ci = TRUE) + 
+  geom_sina(maxwidth=0.55, alpha=0.4, seed=54) + scale_y_continuous(breaks=seq(0,50,5), labels=seq(0,50,5)) +
+  xlab('') + ylab("Weekly Paid Hours") + coord_flip()
+```
+Looking at the breakdown of both graphs, the distribution of paid weekly hours worked across all campuses seem to be mostly similar. CSU Northridge has a mean value of `r unname(round(tapply(tmp$q19, tmp$school, mean)[3],2))` hours and a median of `r unname(round(tapply(tmp$q19, tmp$school, median)[3],2))` hours.  CSU Fresno, which seems to have students who tend to work more hours, has a mean value of `r unname(round(tapply(tmp$q19, tmp$school, mean)[2],2))` hours and a median of `r unname(round(tapply(tmp$q19, tmp$school, median)[2],2))` hours. CSU Chico has a mean value of `r unname(round(tapply(tmp$q19, tmp$school, mean)[1],2))` hours and a median of `r unname(round(tapply(tmp$q19, tmp$school, median)[1],2))` hours.
+
 
 ## Unpaid Hours Per Week
 ```{r, fig.height=4.6, fig.width=8.5}
@@ -38,6 +50,17 @@ bns$unpaid_work_hours <- fct_relevel(factor(bns$unpaid_work_hours), "0", "1-5", 
 plot_grpfrq(bns$unpaid_work_hours, bns$school, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```
+
+### Exact Hour Breakdown
+*Note: below hours were filtered to only include people that worked (> 0 hours) an unpaid job. The value "41+" was also rounded to 41 for the graph/calculations.*
+```{r, fig.height=5, fig.width=8}
+tmp <- tmp2 %>% filter(q21> 0)
+plot_grpfrq(tmp$q21, tmp$school, type="violin", wrap.labels = 25, geom.colors = campus.colors,
+            inner.box.dotsize = 3.5, inner.box.width = 0.12, title = "", show.ci = TRUE) + 
+  geom_sina(maxwidth=0.55, alpha=0.4, seed=54) + scale_y_continuous(breaks=seq(0,50,5), labels=seq(0,50,5)) +
+  xlab('') + ylab("Weekly Unpaid Hours") + coord_flip()
+```
+Looking at the breakdown of both graphs, the distribution of unpaid weekly hours worked for Northridge and Fresno seem to be almost identical while Chico seems to have students who work more unpaid weekly hours. CSU Northridge has a mean value of `r unname(round(tapply(tmp$q21, tmp$school, mean)[3],2))` hours and a median of `r unname(round(tapply(tmp$q21, tmp$school, median)[3],2))` hours.  CSU Fresno has a mean value of `r unname(round(tapply(tmp$q21, tmp$school, mean)[2],2))` hours and a median of `r unname(round(tapply(tmp$q21, tmp$school, median)[2],2))` hours. CSU Chico has a mean value of `r unname(round(tapply(tmp$q21, tmp$school, mean)[1],2))` hours and a median of `r unname(round(tapply(tmp$q21, tmp$school, median)[1],2))` hours.
 
 
 ## Academic Hours
@@ -64,11 +87,11 @@ tmp <- tmp2 %>% filter(NonAcademic > 0)
 #   scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=seq(2,82,4), labels=seq(2,82,4))
 
 plot_grpfrq(tmp$NonAcademic, tmp$school, type="boxplot", title = "", wrap.legend.labels = 50, geom.colors = campus.colors, show.ci = TRUE) + 
-  geom_jitter(width=0.15, alpha=0.5) + xlab("") + scale_y_continuous(breaks=seq(0,90,10), labels=seq(0,90,10)) + ylab('Total Hours')
+  geom_jitter(width=0.15, alpha=0.5) + xlab("") + scale_y_continuous(breaks=seq(0,90,10), labels=seq(0,90,10)) + ylab('Non-Academic Hours')
 ```
 *Note: values corresponding to "41+" were rounded to 41. Values were also filtered so that only people who work (> 0 hours per week) were included.*
 
-Looking at the non-academic hours across each campus, again it seems that the distribution are very similar for each. CSU Chico has an average non-academic workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[1])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[1])` hours. CSU Fresno has an average non-academic workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[2])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[2])` hours. CSU Northridge has an average non-academic workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[3])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[3])` hours.
+Looking at the non-academic workload across each campus, it seems the distributions are similar for Fresno and Northridge while Chico seems to have students who work more paid/unpaid weekly hours. CSU Chico has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[1])` hours, and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[1])` hours. CSU Fresno has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[2])` hours, and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[2])` hours. CSU Northridge has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[3])` hours, and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[3])` hours.
 
 ## Total Workload Hours
 ```{r, fig.height=5, fig.width=7}

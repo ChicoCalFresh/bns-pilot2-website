@@ -82,7 +82,7 @@ dep.ages.df <- data.frame(Ages=dep.ages) # wouldn't compile in a single line for
 
 plot_frq(dep.ages.df$Ages, type='histogram', show.mean = TRUE, ylim=c(0,30), xlim=c(0,103), show.mean.val = FALSE, show.sd = FALSE) +
   geom_jitter(data=dep.ages.df, aes(x=Ages, y=27), position=position_jitter(height=2)) + 
-  geom_boxplot(data=dep.ages.df, aes(x=Ages, y=27), alpha=0.6, width=5, fill="#ecf0b7") + xlab('Dependent Ages (Years)')
+  geom_boxplot(data=dep.ages.df, aes(x=Ages, y=27), alpha=0.6, width=5, fill="#336699") + xlab('Dependent Ages (Years)')
 ```
 From the above graphs, the majority of dependents are under the age of 18. The ages of these dependents ranges from `r min(dep.ages)` to `r max(dep.ages)` with a standard deviation of `r round(sd(dep.ages),2)`. The average age for a dependent is `r round(mean(dep.ages),2)` while the median value is `r round(median(dep.ages),2)`. The most common dependent age is `r names(sort(table(dep.ages), decreasing=TRUE)[1])`, which appears `r unname(sort(table(dep.ages), decreasing=TRUE)[1])` times in the data.
 
