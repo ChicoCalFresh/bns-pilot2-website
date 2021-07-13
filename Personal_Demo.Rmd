@@ -52,11 +52,11 @@ ethnicity_vars %>%
 
 # Create bar plot of values & percentage 
 ethnicity_vars %>% 
-  ggplot(aes(x=xlab, y=pct, label = pct_lab)) + 
+  ggplot(aes(x=xlab, y=x, label = pct_lab)) + 
     geom_col(fill=primary.chc.col) + 
-    geom_text(aes(y=pct+.08), size=3.6) +
-    scale_y_continuous(limits = c(0,1), labels=percent) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) + xlab("") + ylab("Percent")
+    geom_text(aes(y=x+15), size=3.6) +
+    scale_y_continuous(breaks = seq(0,200,20), labels=seq(0,200,20), limits = c(0,180)) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) + xlab("") + ylab("")
 ```
 
 
@@ -97,7 +97,7 @@ tmp <- as.data.frame(table(bns$q13)) %>%
 ggplot(tmp, aes(x=factor(Var1, levels=Var1), y=Freq, fill=FirstGen, label=Percent)) + geom_col(colour = "black") + 
   scale_fill_manual(values=c("#336699", "#ecf0b7")) + geom_text(aes(y=Freq+13)) + ylim(0,220) + 
   scale_x_discrete(labels=label_wrap(10)) +   geom_text(aes(y=Freq + 29, label=Freq)) + 
-  xlab('') + theme(legend.position = "none")
+  xlab('') + ylab('') + theme(legend.position = "none")
 ```
 *Note: Variables filled with yellow above are used to show the conditions used to build the First Generation variable in the next plot*.
 
