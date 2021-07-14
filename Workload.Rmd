@@ -150,6 +150,45 @@ plot_frq(tmp$TotalHours, type='histogram', geom.size=1.9, ylim=c(0,55), show.prc
 ```
 The average number of total hours worked per week (denoted by the dotted line) is `r round(mean(tmp$TotalHours, na.rm = TRUE), 2)`, while the median is `r median(tmp$TotalHours, na.rm = TRUE)` hours. The majority of students do seem to be working over full-time in total, with `r names(sort(table(tmp$TotalHours), decreasing=TRUE)[1])` hours being most common (`r unname(sort(table(tmp$TotalHours), decreasing=TRUE)[1])` people) and `r names(sort(table(tmp$TotalHours), decreasing=TRUE)[2])` hours following that (`r unname(sort(table(tmp$TotalHours), decreasing=TRUE)[2])` people).
 
+## Full-Time vs. Part-Time
+The following are made under the assumption that a full-time employee for a non-academic workload is 40 hours per week (according to [California Code of Regulations](https://www.dir.ca.gov/t8/11040.html#:~:text=Full%2Dtime%20employment%20is%20defined%20in%20California%20Labor%20Code%20Section,as%2040%20hours%20per%20week.&text=full%2Dtime%20employment.-,Full%2Dtime%20employment%20is%20defined%20in%20Labor%20Code%20Section%20515,as%2040%20hours%20per%20week.)). Full time students are considered to be taking an academic workload of 12 or more semester units (36 or more hours per week). Any workload below the specified hours above are considered to be part time, and any workload above (i.e. over-time) are classified as full-time. Below are the exact definitions used to create the graph:
+
+- Full-time student - workload of 36+ weekly hours (12+ units)
+- Part-time student - workload of >36 weekly hours (>12 units)
+- Full-time worker - workload of 40+ weekly hours (combination of paid/unpaid)
+- Part-time worker - workload of >40 weekly hours (combination of paid/unpaid)
+- Full-time total workload - workload of 40+ weekly hours (combination of academic & paid/unpaid)
+- Part-time total workload - workload of >40 weekly hours (combination of academic & paid/unpaid)
+
+```{r, fig.height=3.3, fig.width=8}
+tmp <- tmp2
+tmp[tmp == 0] <- NA
+tmp <- tmp %>% mutate(student=factor(ifelse(is.na(q18), NA, ifelse(q18 >= 36, "Full-Time", "Part-Time")), levels=c("Part-Time", "Full-Time")),
+                      worker=factor(ifelse(is.na(NonAcademic), NA, ifelse(NonAcademic >= 40, "Full-Time", "Part-Time")), 
+                                    levels=c("Part-Time", "Full-Time")),
+                      total=factor(ifelse(is.na(TotalHours), NA, ifelse(TotalHours >= 40, "Full-Time", "Part-Time")), 
+                                   levels=c("Part-Time", "Full-Time"))) %>% select(student, worker, total)
+
+names(tmp) <- c("Academic Workload.",
+                "Non-Academic Workload.",
+                "Total Workload.")
+
+plot_likert(tmp,
+            grid.range = c(1.2, 1.2),
+            wrap.legend.labels = 20,
+            expand.grid = FALSE,
+            values = "sum.outside",
+            catcount = 2,
+            geom.colors = c("#D8B365","#5AB4AC"),
+            show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+```
+*Note: people with a workload of 0 hours were excluded from each category since they are not considered to be in either type.*
+
+- Looking at the full-time students, we can see a large majority of them are considered full-time students (`r unname(table(tmp['Academic Workload.'])['Full-Time'])` people). A small minority of participants identified as part-time students (`r unname(table(tmp['Academic Workload.'])['Part-Time'])` people).
+- Looking at the full-time workers, we can see that the majority of them are considered part-time workers (`r unname(table(tmp['Non-Academic Workload.'])['Part-Time'])` people). Around a quarter of participants also identify as part-time students (`r unname(table(tmp['Non-Academic Workload.'])['Full-Time'])` people).
+- Looking at the participants who take on a full-time workload, we can see that a majority of them are considered full-time workers (`r unname(table(tmp['Total Workload.'])['Full-Time'])` people). A smaller number of participants identified as part-time students (`r unname(table(tmp['Total Workload.'])['Part-Time'])` people).
+
+
 ```{r}
 rm(tmp) # remove tmp data set
 ```

@@ -29,14 +29,16 @@ plot_frq(bns$q7, sort.frq="desc") + xlab('Gender')
 ```
 Of the people who participated in the survey, `r unname(table(bns$q7)['Woman'])` of them identify as a Woman, `r unname(table(bns$q7)['Man'])` identify as a Man, and `r unname(table(bns$q7)['Gender non-binary, non-conforming'])` identify as Gender non-binary, non-conforming. There are also people who preferred not to answer.
 
-## Hispanic Origin
+## Ethnicity
 **In the US Census, Hispanic Origins are not races. Do you identify as Hispanic or Latino or Spanish Origin?**
 ```{r}
 plot_frq(bns$q8, wrap.labels = 15, sort.frq="desc") + xlab('')
+
+tmp <- data.frame(q8=bns$q8)
 ```
 Looking at the above graph we see `r unname(table(bns$q8)['Yes, Mexican, Mexican American, Chicano'])` people identify as Mexican, Mexican American, or Chicano. `r unname(table(bns$q8)['No, not Hispanic, Latino or Spanish Origin'])` people do no identify as Hispanic, Latin, or Spanish Origin. `r unname(table(bns$q8)['Yes, another Hispanic, Latino or Spanish Origin'])` people identify as another Hispanic, Latino, or Spanish Origin. `r unname(table(bns$q8)['Yes, Puerto Rican'])` people identify as Puerto Rican.
 
-## Ethnicity
+## Race
 **What race do you identify as?**
 ```{r, fig.height=5, fig.width=8}
 question <- "eth"
@@ -51,12 +53,12 @@ ethnicity_vars %>%
   kable() %>% kable_styling(bootstrap_options = "striped")
 
 # Create bar plot of values & percentage 
-ethnicity_vars %>% 
-  ggplot(aes(x=xlab, y=x, label = pct_lab)) + 
-    geom_col(fill=primary.chc.col) + 
-    geom_text(aes(y=x+15), size=3.6) +
-    scale_y_continuous(breaks = seq(0,200,20), labels=seq(0,200,20), limits = c(0,180)) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) + xlab("") + ylab("")
+# ethnicity_vars %>% 
+#   ggplot(aes(x=xlab, y=x, label = pct_lab)) + 
+#     geom_col(fill=primary.chc.col) + 
+#     geom_text(aes(y=x+15), size=3.6) +
+#     scale_y_continuous(breaks = seq(0,200,20), labels=seq(0,200,20), limits = c(0,180)) +
+#   theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) + xlab("") + ylab("")
 ```
 
 

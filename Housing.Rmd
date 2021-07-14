@@ -32,7 +32,7 @@ There are `r unname(table(bns$q24)['No'])` people that participated in the surve
 ## Current Housing Situation
 **Which best describes your current housing situation?**
 ```{r}
-cnames <- c('Current Housing Situation', 'Percentage')
+cnames <- c('Current Housing Situation', 'Percent')
 qs <- unique(bns[['q25']]) %>% na.omit()
 question_table('q25', qs, cnames)
 ```
@@ -55,10 +55,11 @@ binary_table(questions, "Yes", rnames)
 
 *The following were asked as frequency questions to help better understand the living situations of participating students.*
 
-```{r, fig.height=9}
-p1 <- plot_frq(bns$q34, wrap.title=45, title = 'How many times have you been unsure of where you were going to sleep at night?') + xlab('')
-p2 <- plot_frq(bns$q35, wrap.labels =15, title = 'How many times have you moved?') + xlab('')
-grid.arrange(p1, p2, nrow=2)
+```{r, fig.height=5, fig.width=9.4}
+p1 <- plot_frq(bns$q34, wrap.title=40, wrap.labels =12, ylim=c(0,360),
+               title = 'How many times have you been unsure of where you were going to sleep at night?') + xlab('')
+p2 <- plot_frq(bns$q35, wrap.labels =12, title = 'How many times have you moved?') + xlab('')
+grid.arrange(p1, p2, nrow=1)
 rm(p1,p2)
 ```
 Over the past 12 months, the majority of people were never unsure of where they would be sleeping (`r unname(table(bns$q34)['Never'])` people ) or have not moved housing (`r unname(table(bns$q35)['None'])` people). For uncertainty in where they would be sleeping, the remaining responses were mostly evenly distributed over the other options. For number of times that a person has moved, `r unname(table(bns$q35)['Once'])` people have claimed they moved once in the last 12 months and `r unname(table(bns$q35)['Twice'])` people have moved twice. Only a small minority have moved 3 or more times in the last 12 months.

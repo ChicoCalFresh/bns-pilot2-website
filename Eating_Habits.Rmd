@@ -87,8 +87,8 @@ plot_likert(questions,
             wrap.legend.labels = 20,
             expand.grid = FALSE,
             values = "sum.outside",
-            catcount = 6,
-            geom.colors = likert.pal.6,
+            catcount = 5,
+            geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 

@@ -40,12 +40,6 @@ plot_likert(questions,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 
-```{r}
-# Create variable for if student has used CalFresh in college
-calfresh.used <- data.frame(q46_1=bns$q46_1) %>% mutate(college=ifelse(grepl("past as a college student|use as a college student", q46_1), 1, 0),
-                                                        college=ifelse(is.na(q46_1), NA, college)) %>% select(-q46_1)
-```
-
 # Impact
 
 ## CalFresh EBT

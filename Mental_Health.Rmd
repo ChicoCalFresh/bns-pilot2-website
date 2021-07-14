@@ -29,25 +29,6 @@ plot_frq(bns$q91) + xlab('Seeked Out Services')
 ```
 Over the past year, the majority of students did not receive or try to receive mental health services (`r unname(sort(table(bns$q91), decreasing = TRUE)['No'])` people). `r unname(sort(table(bns$q91), decreasing = TRUE)['Yes'])` people claim that they have received or try to receive mental health services.
 
-## *Possible Idea (?)*
-*Possible idea of using a pie chart for Yes/No questions instead of bar chart? Style could be changed too.*
-```{r, fig.height=3.8, fig.width=3.8}
-tmp <- as.data.frame(table(bns['q91'])) %>% arrange(desc(Var1)) %>% 
-  mutate(prop = round((Freq/sum(Freq))*100, 1),
-         label = paste0(Var1, " - ", Freq, " (", prop, "%)"))
-
-# ggplot(tmp, aes(x="", y=Freq, fill=Var1)) + geom_bar(stat="identity", width=1, color="white") + coord_polar("y", start=0) + 
-#   geom_text(aes(label = paste0(Var1, "\n (", prop, "%)")), position = position_stack(vjust = 0.5)) + 
-#   scale_fill_manual(values=c("#587db6", "#ecf0b7")) + labs(x = NULL, y = NULL, fill = NULL) + theme_void() + 
-#   theme(legend.position="none")
-
-library(plotrix)
-
-pie3D(tmp$Freq, explode=0.05, col=c("#ecf0b7", "#587db6"), radius=1.5, start=0, shade=0.7)
-legend("top", tmp$label, inset=c(0, -.2), cex = 1.1, xpd=TRUE, fill = c("#ecf0b7", "#587db6"))
-```
-
-
 ## Mental Health Feelings
 **In the last month how often have you felt:**
 ```{r, fig.width=8}
