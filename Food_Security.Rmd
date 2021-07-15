@@ -60,24 +60,14 @@ hist_with_box('q73', 9, 1.5, 0.4, NULL, c(0,10.5), 'Number of days all meals wer
 Over the past 30 days at the time of the survey, `r unname(table(bns$q72)['No'])` people claimed they did not have to skip eating for a full day due to not having enough money for food and `r unname(table(bns$q72)['Yes'])` people claimed that they did skip eating for a full day. Of the people that did skip meals for an entire day, the average number of days where they had to skip/cut all meals (denoted by the dotted line) was `r round(mean(bns$q73, na.rm = TRUE))` days, while the median was `r round(median(bns$q73, na.rm = TRUE))` days. The majority of the data is below 5 days, but a small amount of students did report skipping/cutting a meal more than 5 days in the last month.
 
 ### More Eating Situations
-**Below are more questions asked in regards to the students eating situations due to lack of money.**
+**Below are more questions asked in regards to the students eating situations due to lack of money.**  
+*Note: these are a series of Yes/No questions with only the "Yes" responses being displayed along with the percent of the data it composes.*
 ```{r, fig.width=7}
-binary_table_2 <- function(var, value, rnames) {
-  tmp <- as.data.frame(t(bns[questions]))
-  tmp2 <- data.frame(Freq=apply(tmp, 1, function(x, value) sum(x == value, na.rm=TRUE), "Yes"))
-  n.s <- apply(tmp, 1, function(x) sum(!is.na(x)))
-  tmp2$label <- paste0(tmp2$Freq, " (", unname(percent(tmp2$Freq/n.s, accuracy=.1)), ")")
-  tmp2 <- tmp2 %>% select(-Freq)
-  rownames(tmp2) <- paste0(rnames, " (n = ", n.s, ")?")
-  colnames(tmp2) <- "Yes (%)"
-  tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spec(2, width='3.5cm')
-}
-
 questions <- c('q69', 'q70', 'q71')
 rnames <- c("Did you ever eat less than you/your household felt you/your household should because there wasn’t enough money for food",
             "Were you ever hungry but didn’t eat because there wasn’t enough money for food",
             "Did you lose weight because there wasn’t enough money for food")
-binary_table_2(questions, "Yes", rnames)
+binary_table(questions, "Yes", rnames, "?")
 ```
 
 - When it comes to eating less because there was not enough money for food, `r unname(table(bns$q69)['Yes'])` people claimed that they experienced this and `r unname(table(bns$q69)['No'])` people claimed they did not experience this.
@@ -101,7 +91,7 @@ food_vars <- prep_binary_vars(question, qlabel) %>% slice(-8) # drop "other" sin
 
 # Plot table of percentages
 food_vars %>% 
-  select(Measure = xlab, Percent = pct_lab) %>% 
+  select(Measure = xlab, "Yes (%)" = pct_lab) %>% 
   kable() %>% kable_styling(bootstrap_options = "striped")
 
 # Create bar plot of values & percentage 

@@ -35,13 +35,9 @@ plot_grpfrq(bns$paid_work_hours, bns$school, wrap.legend.labels = 30, geom.color
 *Note: below hours were filtered to only include people that worked (> 0 hours) a paid job. The value "41+" was also rounded to 41 for the graph/calculations.* 
 ```{r, fig.height=8, fig.width=8}
 tmp <- tmp2 %>% filter(q19 > 0)
-# plot_grpfrq(tmp$q19, tmp$school, type="violin", wrap.labels = 25, geom.colors = campus.colors,
-#             inner.box.dotsize = 3.5, inner.box.width = 0.2, title = "", show.ci = TRUE) + 
-#   geom_sina(maxwidth=0.55, alpha=0.4, seed=54) + scale_y_continuous(breaks=seq(0,50,5), labels=seq(0,50,5)) +
-#   xlab('') + ylab("Weekly Paid Hours") + coord_flip()
 
 ggplot(tmp, aes(x=q19, group=school, fill=school, color=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
-  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v") + xlab('Weekly Paid Hours') + ylab("") + 
+  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Weekly Paid Hours') + ylab("Density") + 
   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
   scale_fill_manual(values=campus.colors) + scale_color_manual(values=campus.colors) + 
   scale_x_continuous(breaks=seq(1,41,5), labels=c(as.character(seq(1,36,5)), "41+"))
@@ -62,13 +58,9 @@ plot_grpfrq(bns$unpaid_work_hours, bns$school, wrap.legend.labels = 30, geom.col
 *Note: below hours were filtered to only include people that worked (> 0 hours) an unpaid job. The value "41+" was also rounded to 41 for the graph/calculations.*
 ```{r, fig.height=8, fig.width=8}
 tmp <- tmp2 %>% filter(q21> 0)
-# plot_grpfrq(tmp$q21, tmp$school, type="violin", wrap.labels = 25, geom.colors = campus.colors,
-#             inner.box.dotsize = 3.5, inner.box.width = 0.12, title = "", show.ci = TRUE) + 
-#   geom_sina(maxwidth=0.55, alpha=0.4, seed=54) + scale_y_continuous(breaks=seq(0,50,5), labels=seq(0,50,5)) +
-#   xlab('') + ylab("Weekly Unpaid Hours") + coord_flip()
 
 ggplot(tmp, aes(x=q21, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
-  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v") + xlab('Weekly Unpaid Hours') + ylab("") + 
+  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Weekly Unpaid Hours') + ylab("Density") + 
   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
   scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=seq(1,41,5), labels=c(as.character(seq(1,36,5)), "41+"))
 ```
@@ -76,45 +68,68 @@ Looking at the breakdown of both graphs, the distribution of unpaid weekly hours
 
 
 ## Academic Hours
-```{r, fig.height=5, fig.width=7}
-# ggplot(data=tmp2, aes(x=units, fill=school)) + geom_histogram() + facet_wrap(~school, dir="v") + xlab('') + ylab("") + 
-#   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
-#   scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=seq(0,66,6), labels=seq(0,66,6))
-
+*Note: below the values corresponding to "22+" were rounded to 22. Values were also filtered so that only people who take classes (> 0 hours per week) were included.*
+```{r, fig.height=8, fig.width=8}
 tmp <- tmp2 %>% filter(units > 0)
 
-plot_grpfrq(tmp$units, tmp$school, type="boxplot", title = "", wrap.legend.labels = 50, geom.colors = campus.colors, show.ci = TRUE) + 
-  geom_jitter(width=0.15, alpha=0.4) + xlab("") + scale_y_continuous(breaks=seq(0,70,10), labels=seq(0,70,10)) + ylab('Academic Hours')
+ggplot(tmp, aes(x=units, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
+  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Academic Hours') + ylab("Density") + 
+  theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
+  scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=c(seq(9,59,7), 66), labels=c(as.character(seq(9,59,7)), "66+"))
 ```
-*Note: values corresponding to "22+" were rounded to 22. Values were also filtered so that only people who take classes (> 0 hours per week) were included.*
-
 Looking at the academic hours across each campus, it seems that the distribution seems very similar for each. CSU Chico has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[1])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[1])` units. CSU Fresno has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[2])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[2])` units. CSU Northridge has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[3])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[3])` units.
 
 ## Non-Academic Hours
-```{r, fig.height=5, fig.width=7}
+*Note: below the values corresponding to "41+" were rounded to 41. Values were also filtered so that only people who work (> 0 hours per week) were included.*
+```{r, fig.height=8, fig.width=8}
 tmp <- tmp2 %>% filter(NonAcademic > 0)
 
-# ggplot(data=tmp, aes(x=TotalHours, fill=school)) + geom_histogram(bins=41) + facet_wrap(~school, dir="v") + xlab('') + ylab("") + 
-#   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
-#   scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=seq(2,82,4), labels=seq(2,82,4))
-
-plot_grpfrq(tmp$NonAcademic, tmp$school, type="boxplot", title = "", wrap.legend.labels = 50, geom.colors = campus.colors, show.ci = TRUE) + 
-  geom_jitter(width=0.15, alpha=0.5) + xlab("") + scale_y_continuous(breaks=seq(0,90,10), labels=seq(0,90,10)) + ylab('Non-Academic Hours')
+ggplot(tmp, aes(x=NonAcademic, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
+  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Non-Academic Hours') + ylab("Density") + 
+  theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
+  scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=seq(2,82,10), labels=c(as.character(seq(2,72,10)), "82+"))
 ```
-*Note: values corresponding to "41+" were rounded to 41. Values were also filtered so that only people who work (> 0 hours per week) were included.*
-
-Looking at the non-academic workload across each campus, it seems the distributions are similar for Fresno and Northridge while Chico seems to have students who work more paid/unpaid weekly hours. CSU Chico has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[1])` hours, and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[1])` hours. CSU Fresno has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[2])` hours, and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[2])` hours. CSU Northridge has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[3])` hours, and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[3])` hours.
+Looking at the non-academic workload across each campus, it seems the distributions are slightly different for each campus. CSU Chico, who seem to have students who work the most paid/unpaid weekly hours, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[1])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[1])` hours. CSU Fresno, who seem to have students who work the least paid/unpaid weekly hours, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[2])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[2])` hours. CSU Northridge, who seem to be between the other two campuses, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[3])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[3])` hours.
 
 ## Total Workload Hours
-```{r, fig.height=5, fig.width=7}
+*Note: below the values corresponding to "41+" were rounded to 41, as well as values corresponding to "22+" being rounded to 22. Values were also filtered so that only people who work (> 0 hours per week) were included.*
+```{r, fig.height=8, fig.width=8}
 tmp <- tmp2 %>% filter(TotalHours > 0)
 
-plot_grpfrq(tmp$TotalHours, tmp$school, type="boxplot", title = "", wrap.legend.labels = 50, geom.colors = campus.colors, show.ci = TRUE) +
-  geom_jitter(width=0.15, alpha=0.5) + xlab("") + scale_y_continuous(breaks=seq(0,150,15), labels=seq(0,150,15)) + ylab('Total Hours')
+ggplot(tmp, aes(x=TotalHours, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
+  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Total Hours') + ylab("Density") + 
+  theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
+  scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=c(seq(9,134,10), 134), labels=as.character(c(seq(9,134,10), 134)))
 ```
-*Note: values corresponding to "41+" were rounded to 41, as well as values corresponding to "22+" being rounded to 22. Values were also filtered so that only people who work (> 0 hours per week) were included.*
-
 Looking at the total workload hours across each campus, again it seems that the distribution are very similar for each. CSU Chico has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[1])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[1])` hours. CSU Fresno has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[2])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[2])` hours. CSU Northridge has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[3])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[3])` hours. A small number of students also claim to work over 100 hours per week across academic and non-academic jobs.
+
+## Table Breakdown
+**Below is a breakdown of statistics about the workload taken on by students at each campus that may be of interest to us.**  
+*Note: values corresponding to 0 were removed from the below calculations to match the graphs above. We only want to consider students who claim to be working (academic, paid, unpaid) in these statistics. All values with "+" we also rounded down to their whole number.*
+```{r}
+tmp <- tmp2
+tmp[tmp == 0] <- NA
+
+stats <- data.frame(min.units=unname(tapply(tmp$q18, tmp$school, min, na.rm=TRUE)),
+                    mean.units=unname(round(tapply(tmp$q18, tmp$school, mean, na.rm=TRUE), 2)),
+                    med.units=unname(round(tapply(tmp$q18, tmp$school, median, na.rm=TRUE), 2)),
+                    max.units=unname(tapply(tmp$q18, tmp$school, max, na.rm=TRUE)),
+                    min.paid=unname(tapply(tmp$q19, tmp$school, min, na.rm=TRUE)),
+                    mean.paid=unname(round(tapply(tmp$q19, tmp$school, mean, na.rm=TRUE), 2)),
+                    med.paid=unname(round(tapply(tmp$q19, tmp$school, median, na.rm=TRUE), 2)),
+                    max.paid=unname(tapply(tmp$q19, tmp$school, max, na.rm=TRUE)),
+                    min.unpaid=unname(tapply(tmp$q21, tmp$school, min, na.rm=TRUE)),
+                    mean.unpaid=unname(round(tapply(tmp$q21, tmp$school, mean, na.rm=TRUE), 2)),
+                    med.unpaid=unname(round(tapply(tmp$q21, tmp$school, median, na.rm=TRUE), 2)),
+                    max.unpaid=unname(tapply(tmp$q21, tmp$school, max, na.rm=TRUE)))
+rownames(stats) <- sort(unique(tmp$school))
+colnames(stats) <- c("Minimum Units", "Mean Units", "Median Units", "Max Units",
+                     "Minimum Paid Hours", "Mean Paid Hours", "Median Paid Hours", "Max Paid Hours",
+                     "Minimum Unpaid Hours", "Mean Unpaid Hours", "Median Unpaid Hours", "Max Unpaid Hours")
+
+t(stats) %>% kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spec(1, width='4.5cm')
+```
+
 
 ---
 

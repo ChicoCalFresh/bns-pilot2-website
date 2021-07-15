@@ -50,7 +50,7 @@ sleep_loss_vars <- prep_binary_vars(question, qlabels)
 
 # Plot table of Percentages
 sleep_loss_vars %>% 
-  select(Measure = xlab, Percent = pct_lab) %>% 
+  select(Measure = xlab, "Yes (%)" = pct_lab) %>% 
   kable() %>% kable_styling(bootstrap_options = "striped")
 
 # Create bar plot of values & percentage 

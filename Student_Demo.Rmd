@@ -78,7 +78,7 @@ rnames <- c("A Transfer Student", "LGBTQA+", "A student with a disability", "A f
             "An EOP (Educational Opportunity Program) student", "An ESL (English as a Second Language) student",
             "A Veteran of military service", "A student athlete", "A DREAM (i.e. undocumented) student",
             "A DACA (i.e. Deferred Action for Childhood Arrivals) student")
-binary_table(questions, "Yes", rnames)
+binary_table(questions, "Yes", rnames, ".")
 ```
 
 ### Disability Support Services (??)
@@ -87,7 +87,7 @@ binary_table(questions, "Yes", rnames)
 questions <- paste0('q14_', 3:4)
 rnames <- c('I receive services through the Disability Support Services Center',
             'I have NOT received services through the Disability Support Services Center')
-binary_table(questions, "Yes", rnames)
+binary_table(questions, "Yes", rnames, ".")
 ```
 
 ### I participate in...
@@ -97,7 +97,7 @@ rnames <- c('CalWorks (i.e. TANF or cash aid for needy families) or Aid to Famil
             'The Job Opportunities and Basic Skills (JOBS) program',
             'The CalFresh Employment or Training (CFET) Program',
             'The Greek system. (i.e. sorority, fraternity)')
-binary_table(questions, "Yes", rnames)
+binary_table(questions, "Yes", rnames, ".")
 ```
 
 ### I am...
@@ -111,7 +111,7 @@ rnames <- c('Approved, awarded, or accepted for work study (with or without a wo
             'The parent/guardian of a dependent household member between the age of 6 and 12 with no adequate childcare',
             'A single parent of a dependent household member under the age of 12',
             'Enrolled in a Teaching Credential Program', 'Enrolled in the School of Social Work Practicum Program (Field work program)')
-binary_table(questions, "Yes", rnames)
+binary_table(questions, "Yes", rnames, ".")
 ```
 
 ---

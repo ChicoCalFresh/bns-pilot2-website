@@ -15,8 +15,9 @@ source("common_code.R")
 The following is a comparison across the 3 campuses (Chico, Fresno, and Northridge) for information relating to the personal demographics of the students. This includes information such as students age at the time of the survey (2020), their gender identity, any ethnicities they identify as, and their parents education (in order to determine first generation students). The purpose is to see if any key differences are seen between the campuses, or if similar information is captured among them.
 
 ## Age
-```{r, fig.height=8, fig.width=7}
-ggplot(data=bns, aes(x=age, fill=school)) + geom_histogram(bins = 23) + facet_wrap(~school, dir="v") + xlab('') + ylab("") + 
+```{r, fig.height=8, fig.width=8}
+ggplot(bns, aes(x=age, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
+  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Enrolled Units') + ylab("Density") + 
   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
   scale_fill_manual(values=campus.colors)
 ```

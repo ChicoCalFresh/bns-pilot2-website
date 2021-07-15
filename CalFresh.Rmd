@@ -19,11 +19,12 @@ The following questions were asked in regards to criteria laid out by the CalFre
 **Below are a series of Yes/No questions asked in order to help determine if a person is eligible for CalFresh benefits.**
 ```{r}
 qs <- c('q38', 'q39', 'q40', 'q41', 'q44')
-rnames <- c("Are you a U.S. citizen?", "If not a U.S. citizen, are you a lawful permanent resident (i.e. have a 'green card')?",
-            "I was approved for “work study” even though I may not actually have a work study job placement.",
-            "I received Cal Grant A or B.",
-            "Are you on a campus meal plan?")
-binary_table(qs, 'Yes', rnames)
+rnames <- c("Are you a U.S. citizen", 
+            "If not a U.S. citizen, are you a lawful permanent resident (i.e. have a 'green card')",
+            "I was approved for “work study” even though I may not actually have a work study job placement",
+            "I received Cal Grant A or B",
+            "Are you on a campus meal plan")
+binary_table(qs, 'Yes', rnames, "?")
 ```
 Of the participants in the survey `r unname(table(bns$q38)['Yes'])` claim to be U.S. citizens and `r unname(table(bns$q38)['No'])` claim to not be U.S. Citizens. For people who were not, `r unname(table(bns$q39)['Yes'])` people claim to be a lawful permanent residents and `r unname(table(bns$q39)['No'])` people claim to not be a lawful permanent residents. There are `r unname(table(bns$q40)['No'])` people who claim not to be approved for work study and `r unname(table(bns$q40)['Yes'])` claim to be approved for work study. There are `r unname(table(bns$q41)['No'])` students who do not receive Cal Grant A or B (composing 12.4% of the data), and `r unname(table(bns$q41)['Yes'])` students who do receive Cal Grant A or B. The majority of people in the data (`r unname(table(bns$q44)['No'])` people) do not receive any meals from a Campus Meal Plan and the `r unname(table(bns$q44)['No'])` people that are on a Campus Meal Plan claim the following assistance below:
 
@@ -70,7 +71,7 @@ The majority of people claim to purchase/prepare food (household size) for `r na
 - The person is either a U.S. citizen or lawful permanent resident.  
 - Does not get more than half of their meals from meals plans (< 11 per week or none).  
 - Identifies as an EOP student.  
-- Falls under the household size/income from section A2 on the [CalFresh Basic Eligibility](http://www.publiccounsel.org/pages/?id=0090).
+- Falls under the household size/income from the [Department of Social Services](https://www.cdss.ca.gov/inforesources/cdss-programs/calfresh/eligibility-and-issuance-requirements#income) requirements.
 
 ```{r}
 plot_frq(bns$calfresh_eligible) + xlab('CalFresh Eligible')

@@ -33,12 +33,13 @@ plot_grpfrq(bns$q17, bns$school, wrap.labels = 15, wrap.legend.labels = 30, geom
 Looking at the overall GPA, it seems that CSU Chico has the most in the 2.01-3.0 range (2 groups combined). Fresno seems to be leading for students with an overall GPA of 3.01 to 3.5, and has a clear lead for student with an overall GPA of 3.51 or above. Northridge seems to have the majority of their students having a 3.01 or above (2 groups combined). 
 
 ## Currently Enrolled Units
-```{r, fig.height=8, fig.width=7}
+```{r, fig.height=8, fig.width=8}
 xlbls <- c(as.character(0:21), "22+")
 bns <- bns %>% mutate(q18=recode(q18, "22+"="22"),
                       q18=as.numeric(q18))
 
-ggplot(data=bns, aes(x=q18, fill=school)) + geom_histogram(bins = 23) + facet_wrap(~school, dir="v") + xlab('') + ylab("") + 
+ggplot(bns, aes(x=q18, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
+  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Enrolled Units') + ylab("Density") + 
   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
   scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=0:22, labels=xlbls)
 ```

@@ -72,10 +72,20 @@ question_table <- function(question, values, cnames) {
 }
 
 ## Show percentage of students who selected given value of multiple binary variables (ex: Student Demographics - Identifiers)
-binary_table <- function(var, value, rnames) {
+# binary_table <- function(var, value, rnames) {
+#   tmp <- as.data.frame(t(bns[var]))
+#   tmp2 <- data.frame(Percent=apply(tmp, 1, get_perct, value))
+#   rownames(tmp2) <- rnames
+#   tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spec(2, width='3.5cm')
+# }
+binary_table <- function(var, value, rnames, punc) {
   tmp <- as.data.frame(t(bns[var]))
-  tmp2 <- data.frame(Percent=apply(tmp, 1, get_perct, value))
-  rownames(tmp2) <- rnames
+  tmp2 <- data.frame(Freq=apply(tmp, 1, function(x, value) sum(x == value, na.rm=TRUE), value))
+  n.s <- apply(tmp, 1, function(x) sum(!is.na(x)))
+  tmp2$label <- paste0(tmp2$Freq, " (", unname(percent(tmp2$Freq/n.s, accuracy=.1)), ")")
+  tmp2 <- tmp2 %>% select(-Freq)
+  rownames(tmp2) <- paste0(rnames, " (n = ", n.s, ")", punc)
+  colnames(tmp2) <- "Yes (%)"
   tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spec(2, width='3.5cm')
 }
 

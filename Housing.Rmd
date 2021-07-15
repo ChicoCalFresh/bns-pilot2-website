@@ -32,7 +32,7 @@ There are `r unname(table(bns$q24)['No'])` people that participated in the surve
 ## Current Housing Situation
 **Which best describes your current housing situation?**
 ```{r}
-cnames <- c('Current Housing Situation', 'Percent')
+cnames <- c('Current Housing Situation', 'Yes (%)')
 qs <- unique(bns[['q25']]) %>% na.omit()
 question_table('q25', qs, cnames)
 ```
@@ -41,16 +41,16 @@ question_table('q25', qs, cnames)
 *The following were asked as a series of Yes/No questions to help better understand the living situations of participating students.*
 ```{r}
 questions <- paste0('q', 26:33)
-rnames <- c('Was there a rent or mortgage increase that made it difficult to pay?',
-            'Have you been unable to pay or underpaid your rent or mortgage?',
-            'Have you ever been late paying rent or mortgage?',
-            'Have you been unable to pay or underpaid a utility bill?',
-            'Have you lived with others beyond the expected capacity of your house or apartment?',
-            'Have you been asked to leave your home by someone you lived with?',
-            'Have you been evicted?',
-            'Have you had to stay in a hostile housing environment or abusive relationship because you had no other place to live?')
+rnames <- c('Was there a rent or mortgage increase that made it difficult to pay',
+            'Have you been unable to pay or underpaid your rent or mortgage',
+            'Have you ever been late paying rent or mortgage',
+            'Have you been unable to pay or underpaid a utility bill',
+            'Have you lived with others beyond the expected capacity of your house or apartment',
+            'Have you been asked to leave your home by someone you lived with',
+            'Have you been evicted',
+            'Have you had to stay in a hostile housing environment or abusive relationship because you had no other place to live')
 
-binary_table(questions, "Yes", rnames)
+binary_table(questions, "Yes", rnames, "?")
 ```
 
 *The following were asked as frequency questions to help better understand the living situations of participating students.*

@@ -117,7 +117,7 @@ plot_likert(questions[11:22],
 ```
 
 ## CalFresh Barriers
-**What are the reasons you do not have CalFresh or have never used CalFresh? (Select all that apply)**
+**What are the reasons you do not have CalFresh or have never used CalFresh? (Select all that apply).**
 ```{r}
 question <- "barrier"
 qlabel <- c('I do not think I’m eligible ',
@@ -140,7 +140,7 @@ cf_barrier_vars <- prep_binary_vars(question, qlabel)
 
 # Plot table of Percentages
 cf_barrier_vars %>% 
-  select(Measure = xlab, Percent = pct_lab) %>% 
+  select(Measure = xlab, "Yes (%)" = pct_lab) %>% 
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
 
@@ -197,7 +197,7 @@ plot_frq(bns$q54, wrap.labels = 15) + xlab('Food Pantry Use Frequency')
 When people use the food pantry, the majority do not use it every week (`r unname(sort(table(bns$q54), decreasing = TRUE)['Not every week'])` people). `r unname(sort(table(bns$q54), decreasing = TRUE)['About once a week'])` people claim to use it about once a week, `r unname(sort(table(bns$q54), decreasing = TRUE)['More than once a week'])` people use it more than once a week, and `r unname(sort(table(bns$q54), decreasing = TRUE)['Other'])` people claim other uses.
 
 ### Reasons Not Using Food Pantries
-**What are the reasons for you to not go to campus food pantries? (Select all that apply)**
+**What are the reasons for you to not go to campus food pantries? (Select all that apply).**
 ```{r}
 question <- "no_pantry"
 qlabel <- c("My family doesn't want me to go to campus food pantries or local food banks.",
@@ -214,7 +214,7 @@ pantry_vars <- prep_binary_vars(question, qlabel)
 
 # Plot table of Percentages
 pantry_vars %>% 
-  select(Measure = xlab, Percent = pct_lab) %>% 
+  select(Measure = xlab, "Yes (%)" = pct_lab) %>% 
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
 
@@ -246,7 +246,7 @@ plot_likert(questions,
 ```
 
 ### Reasons Not Using RMP
-**What are the reasons for you to not have RMP or have never used RMP? (Select all that apply)**
+**What are the reasons for you to not have RMP or have never used RMP? (Select all that apply).**
 ```{r}
 question <- "RMP"
 qlabel <- c("I don’t need this Restaurant Meal Program (RMP).",
@@ -263,7 +263,7 @@ rmp_vars <- prep_binary_vars(question, qlabel)
 
 # Plot table of Percentages
 rmp_vars %>% 
-  select(Measure = xlab, Percent = pct_lab) %>% 
+  select(Measure = xlab, "Yes (%)" = pct_lab) %>% 
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
 
@@ -288,7 +288,7 @@ plot_likert(questions,
 ```
 
 ### Reasons Not Using Medical
-**What are the reasons you do not have MediCal or have never used MediCal? (Select all that apply)**
+**What are the reasons you do not have MediCal or have never used MediCal? (Select all that apply).**
 ```{r}
 question <- "no_medical"
 qlabel <- c("I don’t need MediCal.",
@@ -307,7 +307,7 @@ medical_vars <- prep_binary_vars(question, qlabel)
 
 # Plot table of Percentages
 medical_vars %>% 
-  select(Measure = xlab, Percent = pct_lab) %>% 
+  select(Measure = xlab, "Yes (%)" = pct_lab) %>% 
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
 
@@ -354,6 +354,6 @@ ehs_vars <- prep_binary_vars(question, qlabel)
 
 # Plot table of Percentages
 ehs_vars %>% 
-  select(Measure = xlab, Percent = pct_lab) %>% 
+  select(Measure = xlab, "Yes (%)" = pct_lab) %>% 
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
