@@ -24,6 +24,7 @@ ggplot(bns, aes(x=age, group=school, fill=school)) + geom_histogram(aes(y=..dens
 Looking at the age across each campus, it seems that again the distribution seems very similar for each. CSU Chico has an average age of `r unname(round(tapply(bns$age, bns$school, mean, na.rm=TRUE),2)[1])` years old, and a median of `r unname(round(tapply(bns$age, bns$school, median, na.rm=TRUE),2)[1])` years old. CSU Fresno has an average age of `r unname(round(tapply(bns$age, bns$school, mean, na.rm=TRUE),2)[2])` years old, and a median of `r unname(round(tapply(bns$age, bns$school, median, na.rm=TRUE),2)[2])` years old. CSU Northridge has an average age of `r unname(round(tapply(bns$age, bns$school, mean, na.rm=TRUE),2)[3])` years old, and a median of `r unname(round(tapply(bns$age, bns$school, median, na.rm=TRUE),2)[3])` years old.
 
 ## Gender
+**What is your gender identity?**
 ```{r, fig.height=4.6, fig.width=7}
 plot_grpfrq(bns$q7, bns$school, wrap.labels = 20, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
@@ -31,6 +32,15 @@ plot_grpfrq(bns$q7, bns$school, wrap.labels = 20, wrap.legend.labels = 30, geom.
 Looking at the distribution of gender across the campuses for survey participants, we can see that the majority of them are female. Chico seems to have the highest number of participants for each gender, with Fresno coming in second, and Northridge coming in behind them. 
 
 ## Ethnicity
+**In the US Census, Hispanic Origins are not races. Do you identify as Hispanic or Latino or Spanish Origin?**
+```{r, fig.height=4.6, fig.width=8}
+plot_grpfrq(bns$q8, bns$school, wrap.labels = 18, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
+  xlab('') + theme(legend.position="top")
+```
+It seems that Northridge has the most students who identify as Mexican, Mexican American, or Chicano. Chico has the most students who identify as not being of Hispanic, Latino, or Spanish origin (as well as the only students who identify as Puerto Rican). Fresno seems to have the most students who identify as another Hispanic, Latino, or Spanish origin.  
+
+## Race
+**What race do you identify as? (Select all that apply).**
 ```{r}
 tmp <- bns %>% select(starts_with("eth_"), school)
 tmp <- aggregate(.~school, tmp, sum)
@@ -45,6 +55,7 @@ tmp %>% kable() %>% kable_styling(bootstrap_options = "striped")
 It seems that for participants in the survey, over 50% identify as White for each campus. Both Chico and Fresno had their second most common ethnicity being Other Asian. Northridge had its second most common ethnicity being American Indian, closely followed by African American.
 
 ## Parents Education
+**What is the highest level of education completed by your parents/guardians?**
 ```{r, fig.height=5.8, fig.width=8.3}
 plot_grpfrq(bns$q13, bns$school, wrap.labels = 10, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
@@ -53,10 +64,10 @@ It seems that for students with parents that have some type of college education
 
 ## First Generation
 ```{r, fig.height=4.6}
-plot_grpfrq(bns$firstgen, bns$school, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
+plot_grpfrq(bns$firstgen, bns$school, wrap.legend.labels = 30, ylim=c(0,150), geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```
-Looking at the first generation students (see *Demographics: Personal Demographics* for definition of first generation students), we can see that CSU Chico seems to have the most first generation college students followed by Northridge and Fresno which are almost tied. It seems that Fresno has the most students that are not first gen, followed by Chico, and then Northridge.
+Looking at the first generation students (see *Demographics: Personal Demographics* for definition of first generation students), we can see that CSU Chico seems to have the most first generation college students followed by Northridge and Fresno which are tied. It seems that Chico also has the most students that are not first gen, followed by Fresno, and then Northridge.
 
 
 ---

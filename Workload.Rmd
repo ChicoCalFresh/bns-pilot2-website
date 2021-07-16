@@ -51,7 +51,7 @@ plot_frq(bns$q20, ylim=c(0,135), wrap.labels = 20, sort.frq = 'desc') + xlab('')
 With the impact of COVID, it seems that most people were able to keep their current paid jobs with only slight changes. `r unname(table(bns$q20)['Yes, my hours have decreased but I still have a job.'])` people had their hours decrease, `r unname(table(bns$q20)['No, my hours have remained the same.'])` people maintained the same hours, and `r unname(table(bns$q20)['Yes, my hours have increased and I still have a job or I have a new job.'])` people had their hours increase. There was also `r unname(table(bns$q20)['Yes, I no longer have my job/internship.'])` people who claimed that they no longer had their paid position due to the impact of COVID, while `r unname(table(bns$q20)['I did not have a job or internship before COVID-19 and I still do not.'])` people also claimed that they did not have a paid position before COVID.
 
 ## Unpaid Work Hours
-**Estimate the number of hours you work in an UNPAID internship (for example, training, shadowing, practicum, and/or volunteer, etc.). Do not combine with answers above. **
+**Estimate the number of hours you work in an UNPAID internship (for example, training, shadowing, practicum, and/or volunteer, etc.). Do not combine with answers above.**
 ```{r, fig.height=4.5}
 bns$unpaid_work_hours <- fct_relevel(factor(bns$unpaid_work_hours), "0", "1-5", "6-10")
 
@@ -153,7 +153,7 @@ The average number of total hours worked per week (denoted by the dotted line) i
 ## CalFresh Workload
 People are required to meet a certain work criteria in order to receive CalFresh benefits. All able-bodied adults are required to work a minimum of 80 hours per month, which can be broken down into roughly 20 hours per week. This can be either paid or unpaid work, and more information on this requirement can be found on the  [Department of Social Services](https://www.cdss.ca.gov/inforesources/calfresh/abawd#:~:text=People%20who%20are%20ABAWDs%20must,%2C%20and%20in%2Dkind%20work.) website. If you are an student, you may be enrolled in at least 6 academic units or more (equivalent to 18+ hours per week of academic workload) rather than having a paid/unpaid job. For more information on student eligibility, see the [College Student Eligibility](https://www.csuchico.edu/calfresh/basics/college-student-eligibility.shtml) requirements on Chico State's website. 
 
-The below graphs breaks down if a person is eligible based solely on one of the following criteria:
+The below graphs breaks down if a person meets the workload requirements based solely on one of the following criteria:
 
 - Academic workload - enrolled in 6 or more units (18 or more hours).
 - Paid Workload - working 20+ weekly hours at a paid position.
@@ -164,10 +164,10 @@ The below graphs breaks down if a person is eligible based solely on one of the 
 ```{r, fig.height=3.4, fig.width=8}
 tmp <- tmp2
 tmp <- tmp %>% mutate(student=factor(ifelse(is.na(q18), NA, ifelse(q18 >= 18, "Eligible", "Not Eligible")), levels=c("Not Eligible", "Eligible")),
-                      paid=factor(ifelse(is.na(q19), NA, ifelse(q19 >= 20, "Not Eligible", "Eligible")), levels=c("Eligible", "Not Eligible")),
-                      unpaid=factor(ifelse(is.na(q21), NA, ifelse(q21 >= 20, "Not Eligible", "Eligible")), levels=c("Eligible", "Not Eligible")),
-                      total=factor(ifelse(is.na(TotalHours), NA, ifelse(TotalHours >= 20, "Not Eligible", "Eligible")), 
-                                   levels=c("Eligible", "Not Eligible"))) %>%
+                      paid=factor(ifelse(is.na(q19), NA, ifelse(q19 >= 20, "Eligible", "Not Eligible")), levels=c("Not Eligible", "Eligible")),
+                      unpaid=factor(ifelse(is.na(q21), NA, ifelse(q21 >= 20, "Eligible", "Not Eligible")), levels=c("Not Eligible", "Eligible")),
+                      total=factor(ifelse(is.na(TotalHours), NA, ifelse(TotalHours >= 20, "Eligible", "Not Eligible")), 
+                                   levels=c("Not Eligible", "Eligible"))) %>%
   select(student, paid, unpaid, total)
 
 names(tmp) <- c("Academic Workload", "Paid Workload", "Unpaid Workload", "Total Workload")

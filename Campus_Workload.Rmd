@@ -24,6 +24,7 @@ tmp2$TotalHours <- rowSums(tmp2[, c('units','NonAcademic')], na.rm = TRUE)
 The following is a comparison across the 3 campuses (Chico, Fresno, and Northridge) for information relating to the workload taken on by students, both academic and non-academic. This includes both paid/unpaid hours worked per week, as well as the academic workload taken on by students. A total of the hours worked each week is also looked at for each campus. The purpose is to see if any key differences are seen between the campuses, or if similar information is captured among them.
 
 ## Paid Hours Per Week
+**Estimate the number of hours you work in a PAID job (for example, server at a restaurant, office assistant, etc.) or paid internship (for example, training, shadowing, or practicum) per week.**
 ```{r, fig.height=4.6, fig.width=8.5}
 bns$paid_work_hours <- fct_relevel(factor(bns$paid_work_hours), "0", "1-5", "6-10")
 
@@ -47,6 +48,7 @@ Looking at the breakdown of both graphs, the distribution of paid weekly hours w
 
 
 ## Unpaid Hours Per Week
+**Estimate the number of hours you work in an UNPAID internship (for example, training, shadowing, practicum, and/or volunteer, etc.). Do not combine with answers above.**
 ```{r, fig.height=4.6, fig.width=8.5}
 bns$unpaid_work_hours <- fct_relevel(factor(bns$unpaid_work_hours), "0", "1-5", "6-10")
 
@@ -68,6 +70,7 @@ Looking at the breakdown of both graphs, the distribution of unpaid weekly hours
 
 
 ## Academic Hours
+**Below is a breakdown of the academic workload (using the 3 hours of work per unit measurement).**  
 *Note: below the values corresponding to "22+" were rounded to 22. Values were also filtered so that only people who take classes (> 0 hours per week) were included.*
 ```{r, fig.height=8, fig.width=8}
 tmp <- tmp2 %>% filter(units > 0)
@@ -80,6 +83,7 @@ ggplot(tmp, aes(x=units, group=school, fill=school)) + geom_histogram(aes(y=..de
 Looking at the academic hours across each campus, it seems that the distribution seems very similar for each. CSU Chico has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[1])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[1])` units. CSU Fresno has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[2])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[2])` units. CSU Northridge has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[3])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[3])` units.
 
 ## Non-Academic Hours
+**Below is a combination of both paid and unpaid hours worked by students to get a further understanding of the workload participants face on a weekly basis.**  
 *Note: below the values corresponding to "41+" were rounded to 41. Values were also filtered so that only people who work (> 0 hours per week) were included.*
 ```{r, fig.height=8, fig.width=8}
 tmp <- tmp2 %>% filter(NonAcademic > 0)
@@ -92,6 +96,7 @@ ggplot(tmp, aes(x=NonAcademic, group=school, fill=school)) + geom_histogram(aes(
 Looking at the non-academic workload across each campus, it seems the distributions are slightly different for each campus. CSU Chico, who seem to have students who work the most paid/unpaid weekly hours, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[1])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[1])` hours. CSU Fresno, who seem to have students who work the least paid/unpaid weekly hours, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[2])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[2])` hours. CSU Northridge, who seem to be between the other two campuses, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[3])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[3])` hours.
 
 ## Total Workload Hours
+**Below is a combination of all worked hours per week, both academic and non-academic. This includes units (3 hr/unit), paid, and unpaid worked hours.**  
 *Note: below the values corresponding to "41+" were rounded to 41, as well as values corresponding to "22+" being rounded to 22. Values were also filtered so that only people who work (> 0 hours per week) were included.*
 ```{r, fig.height=8, fig.width=8}
 tmp <- tmp2 %>% filter(TotalHours > 0)
