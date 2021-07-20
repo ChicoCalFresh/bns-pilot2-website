@@ -16,14 +16,14 @@ source("common_code.R")
 The following questions were asking in regards to students current and past housing situations. This includes changes due to COVID, if they are living near their college (with most schools being remote at the time of the survey), the type of home they current live in, and hardships that they faced in the past year with housing. 
 
 ## COVID Housing Impact
-**Has your housing  situation changed due to COVID-19?**
+**Has your housing  situation changed due to COVID-19? `r print_n_reporting("q23")`**
 ```{r}
 plot_frq(bns$q23, ylim=c(0,285)) + xlab('')
 ```
 There are `r unname(table(bns$q23)['No'])` people that participated in the survey that claim their housing has not changed due to the impacts of COVID. There also are `r unname(table(bns$q23)['Yes'])` people that say their housing situation did change due to the impacts of COVID.
 
 ## Living Near College
-**Are you currently living in the city/area in which you are enrolled in college?**
+**Are you currently living in the city/area in which you are enrolled in college? `r print_n_reporting("q24")`**
 ```{r}
 plot_frq(bns$q24, ylim=c(0,265)) + xlab('')
 ```
@@ -54,7 +54,6 @@ binary_table(questions, "Yes", rnames, "?")
 ```
 
 *The following were asked as frequency questions to help better understand the living situations of participating students.*
-
 ```{r, fig.height=5, fig.width=9.4}
 p1 <- plot_frq(bns$q34, wrap.title=40, wrap.labels =12, ylim=c(0,360),
                title = 'How many times have you been unsure of where you were going to sleep at night?') + xlab('')
@@ -91,7 +90,7 @@ rm(tmp, tmp2)
 ```
 
 ## Unstable Housing
-**In the past 12 months, if you have experienced unstable housing, what was the most common reason?**
+**In the past 12 months, if you have experienced unstable housing, what was the most common reason? `r print_n_reporting("q37")`**
 ```{r, fig.width=8.3}
 plot_frq(bns$q37, wrap.labels = 17, sort.frq = 'desc') + xlab('')
 ```

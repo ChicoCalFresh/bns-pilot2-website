@@ -40,7 +40,7 @@ plot_likert(questions,
 
 ## Daily Consumption
 ### Fruits & Vegetables
-**How many servings of fruits and vegetables do you usually consume per day? (not including fruit juices)**
+**How many servings of fruits and vegetables do you usually consume per day? (not including fruit juices) `r print_n_reporting("fruit_veg_serv_daily")`**
 
 *1 serving= 1 medium piece of fruit; 1/2 cup fresh, frozen, or canned fruits/vegetables; 1 cup salad greens; or 1/4 cup dried fruit.*
 ```{r, fig.height=3.5}
@@ -49,7 +49,7 @@ plot_frq(bns$fruit_veg_serv_daily) + xlab('Daily Fruit & Vegetable Servings')
 Looking at the daily consumption of fruits and vegetables, the majority of people claim to eat between `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[1]` servings (`r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[2]` people claim to eat `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[2]` servings, `r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[3]` people claim to eat `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[3]` servings, and `r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[4]` people claim to eat `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[4]` servings.
 
 ### Sugar/Energy Drinks
-**How many ounces of regular soda/cola/pop, sports drink, or energy drinks do you consume each day?**
+**How many ounces of regular soda/cola/pop, sports drink, or energy drinks do you consume each day? `r print_n_reporting("sugar_drinks_ounces_daily")`**
 ```{r, fig.width=7}
 plot_frq(bns$sugar_drinks_ounces_daily) + xlab('Daily Sugar/Energy Drink Servings (Ounces)')
 ```
@@ -57,14 +57,14 @@ Looking at daily consumption of regular soda/cola/pop, sports drink, or energy d
 
 ## Weekly Consumption
 ### Eating Out
-**How frequently do you eat from fast food restaurants, convenience stores, or vending machines for a meal or meal replacement?**
+**How frequently do you eat from fast food restaurants, convenience stores, or vending machines for a meal or meal replacement? `r print_n_reporting("eating_out_weekly")`**
 ```{r}
 plot_frq(bns$eating_out_weekly) + xlab('Weekly Eating Out Frequency')
 ```
 Looking at the weekly consumption of eating fast food, the majority of people claim to eat out `r names(sort(table(bns$eating_out_weekly), decreasing = TRUE))[1]` times per week (`r unname(sort(table(bns$eating_out_weekly), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$eating_out_weekly), decreasing = TRUE))[2]` people claim to eat out `r names(sort(table(bns$eating_out_weekly), decreasing = TRUE))[2]` times, `r unname(sort(table(bns$eating_out_weekly), decreasing = TRUE))[3]` people claim to eat out `r names(sort(table(bns$eating_out_weekly), decreasing = TRUE))[3]` times, and only a small minority of people claim to eat out 5 or more times per week.
 
 ### Alcohol Consumption
-**How often do you consume at least one serving of alcohol? If consumed, how many servings of alcohol do you consume when you drink alcohol?**
+**How often do you consume at least one serving of alcohol `r print_n_reporting("alc_consumption_weekly")` If consumed, how many servings of alcohol do you consume when you drink alcohol `r print_n_reporting("alc_servings_if_consumed")`**
 ```{r, fig.height=4.3, fig.width=8}
 p1 <- plot_frq(bns$alc_consumption_weekly, ylim=c(0,310), title="How often do you consume alcohol:") +xlab('Days Consumed')
 p2 <- plot_frq(bns$alc_servings_if_consumed, title="If consumed, how many servings:") + xlab('Number of Alcohol Servings')

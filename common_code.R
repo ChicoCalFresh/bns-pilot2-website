@@ -44,6 +44,22 @@ display.text <- function(data, var){
                   bootstrap_options =c("striped", "responsive", "hover", "condensed"))
 }
 
+## Print number of respondents and percent they compose (non-missing) - use this for general bns questions.
+print_n_reporting <- function(x) {
+  paste0("(n=", 
+         sum(!is.na(bns[[x]])), ", ", 
+         percent(mean(!is.na(bns[[x]])), accuracy=1), " reporting)."
+  )
+}
+
+## Print number of respondents and percent they compose (non-missing) - use this for tmp data frames.
+print_n_reporting_tmp <- function(x) {
+  paste0("(n=", 
+         sum(!is.na(tmp[[x]])), ", ", 
+         percent(mean(!is.na(tmp[[x]])), accuracy=1), " reporting)."
+  )
+}
+
 ## Plot histogram with a box plot overlay
 hist_with_box <- function(question, bpos, bwidth, jwidth, gsize, ylim, xlab) {
   plot_frq(bns[[question]], type='histogram', show.mean = TRUE, ylim=ylim, show.mean.val = FALSE, show.sd = FALSE, geom.size = gsize) +
@@ -72,12 +88,6 @@ question_table <- function(question, values, cnames) {
 }
 
 ## Show percentage of students who selected given value of multiple binary variables (ex: Student Demographics - Identifiers)
-# binary_table <- function(var, value, rnames) {
-#   tmp <- as.data.frame(t(bns[var]))
-#   tmp2 <- data.frame(Percent=apply(tmp, 1, get_perct, value))
-#   rownames(tmp2) <- rnames
-#   tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spec(2, width='3.5cm')
-# }
 binary_table <- function(var, value, rnames, punc) {
   tmp <- as.data.frame(t(bns[var]))
   tmp2 <- data.frame(Freq=apply(tmp, 1, function(x, value) sum(x == value, na.rm=TRUE), value))

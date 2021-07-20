@@ -43,6 +43,7 @@ plot_likert(questions,
 # Impact
 
 ## CalFresh EBT
+*Note: for the first graph on EBT application we have `r print_n_reporting("q47")` And for the second graph on how many people are fed we have `r print_n_reporting("fed_through_EBT")`*
 ```{r, fig.width=8.5}
 p1 <- plot_frq(bns$q47, wrap.title = 40, ylim=c(0,125), wrap.labels = 15, 
                title="Did you apply for CalFresh EBT as an individual or with other people in your household?") +
@@ -55,13 +56,14 @@ rm(p1,p2)
 Looking at the above graphs, the majority of people apply for CalFresh EBT as an individual (`r unname(table(bns$q47)['As an individual'])` people) while only `r unname(table(bns$q47)['With other people in my household'])` people applied with other people in their household. Similarly, the majority of people claimed only `r names(sort(table(bns$fed_through_EBT), decreasing = TRUE))[1]` person is fed through the EBT card (`r unname(sort(table(bns$fed_through_EBT), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$fed_through_EBT), decreasing = TRUE))[2]` people claim to feed `r names(sort(table(bns$fed_through_EBT), decreasing = TRUE))[2]` people through the EBT card, and only a small amount of people claim to feed 5 or more people through the EBT card.
 
 ### Monthly CalFresh Money
-**How much money do you receive from CalFresh each month?**
+**How much money do you receive from CalFresh each month? `r print_n_reporting("q49_1")`**
 ```{r, fig.width=7}
 hist_with_box('q49_1', 29, 3, 0.2, NULL, c(0,32), 'Monthly Support ($)')
 ```
 The average amount of money received for people using CalFresh (denoted by the dotted line) is \$`r round(mean(bns$q49_1, na.rm=TRUE),2)`, while the median is \$`r round(median(bns$q49_1, na.rm=TRUE),2)`. The values range from \$`r min(bns$q49_1, na.rm=TRUE)` to \$`r max(bns$q49_1, na.rm=TRUE)`. The majority of people who do receive these benefits seems to be getting around \$250 or less per month.
 
 ### Is This Enough?
+*Note: for the first graph on if the allowance is enough we have `r print_n_reporting("q50")` And for the second graph on when people run out we have `r print_n_reporting("q51")`*
 ```{r, fig.height=4.5, fig.width=8.5}
 p1 <- plot_frq(bns$q50, ylim=c(0,125), title="Do you feel that this is enough money to provide healthy food for the month?") + xlab('')
 p2 <- plot_frq(bns$q51, wrap.labels = 12, title="If \"No\", then when do you typically run out?") + xlab('')
@@ -190,7 +192,7 @@ plot_likert(questions[11:22],
 ```
 
 ### Food Pantry Use
-**How often do you normally use the food pantry or if you are not currently using it, how often did you use it?**
+**How often do you normally use the food pantry or if you are not currently using it, how often did you use it? `r print_n_reporting("q54")`**
 ```{r}
 plot_frq(bns$q54, wrap.labels = 15) + xlab('Food Pantry Use Frequency')
 ```

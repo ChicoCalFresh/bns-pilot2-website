@@ -39,7 +39,7 @@ plot_likert(questions,
 *The following are statements that people have made about their eating situations over the last 30 days:*
 
 ### Cut/Skip Meals
-**Did you ever cut the size of your meals or skip meals because there wasn’t enough money for food? If yes, how many days did this happen?**
+**Did you ever cut the size of your meals or skip meals because there wasn’t enough money for food `r print_n_reporting("q67")` If yes, how many days did this happen `r print_n_reporting("q68")`**
 ```{r, fig.height=3}
 plot_frq(bns$q67, ylim=c(0,300), title="Did you cut/skip any meals") +xlab('')
 ```
@@ -50,7 +50,7 @@ hist_with_box('q68', 24, 3, 0.4, NULL, c(0,27), 'Number of days meals were cut/s
 The majority of people claim that they did not have to skip meals due to not having enough money (`r unname(table(bns$q67)['No'])` people). However, `r unname(table(bns$q67)['Yes'])` people claimed that they did have to skip meals due to not having enough money. Of the people that did skip meals, the average number of days where they had to skip/cut a meal (denoted by the dotted line) was `r round(mean(bns$q68, na.rm = TRUE))` days, while the median was `r round(median(bns$q68, na.rm = TRUE))` days. The majority of the data is below 10 days, but a small amount of students did report skipping/cutting a meal more than 10 days in the last month.
 
 ### No Food All Day
-**Did you ever not eat for a whole day because there wasn’t enough money for food? If yes, how many days did this happen?**
+**Did you ever not eat for a whole day because there wasn’t enough money for food `r print_n_reporting("q72")` If yes, how many days did this happen `r print_n_reporting("q73")`**
 ```{r, fig.height=3}
 plot_frq(bns$q72, title="Did you not eat for a whole day") +xlab('')
 ```

@@ -16,14 +16,14 @@ source("common_code.R")
 The following questions were asked in regards to students feelings about their mental health. This includes if they have experienced any increased mental stress, if they have sought out services to help them, and how often they have felt certain types of mental stress over the past month.
 
 ## Increased Mental Stress
-**How many days in the past month have you experienced heightened anxiety, stress, depression and/or problems with emotions?**
+**How many days in the past month have you experienced heightened anxiety, stress, depression and/or problems with emotions? `r print_n_reporting("q90")`**
 ```{r}
 hist_with_box('q90', 48, 7, 0.4, NULL, c(0,54), 'Number of Days in Last Month')
 ```
 Over the past month, the participants of the survey claimed to have experienced increased mental stress for any average (denoted by the dotted line) of `r round(mean(bns$q90, na.rm = TRUE), 1)` days, with a median value of `r round(median(bns$q90, na.rm = TRUE), 1)` days. A large amount, and the most selected answer, claim to have experienced increased mental stress every day over the last month (`r unname(table(bns$q90)['30'])` people).
 
 ## Mental Health Services 
-**Have you received or tried to receive mental health services over the past 12 months?**
+**Have you received or tried to receive mental health services over the past 12 months? `r print_n_reporting("q91")`**
 ```{r}
 plot_frq(bns$q91) + xlab('Seeked Out Services')
 ```

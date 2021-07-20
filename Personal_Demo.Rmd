@@ -17,27 +17,28 @@ source("common_code.R")
 The following set of questions were asked in regards to the students personal demographics. This includes the students age at the time of the survey (2020), ethnicities they identify as, and the number of dependents they are responsible for taking care of. They were also asked about parents education, which will help us identify first generation college students based on certain criteria.
 
 ## Age
+**The following was determined by taking the difference between birthdate and the time at which the survey was completed `r print_n_reporting('age')`**
 ```{r}
 hist_with_box('age', 93, 15, 0.3, 1, c(0,105), 'Age')
 ```
 The age for participants in the survey range from `r min(bns$age, na.rm = TRUE)` to `r max(bns$age, na.rm = TRUE)` at the time of completion, with the majority of participants being between 20-30 years old. The average age of a participant in this survey is `r round(mean(bns$age, na.rm = TRUE),1)` years old.
 
 ## Gender Identity
-**What is your gender identity?**
+**What is your gender identity? `r print_n_reporting('q7')`**
 ```{r}
 plot_frq(bns$q7, sort.frq="desc") + xlab('Gender')
 ```
 Of the people who participated in the survey, `r unname(table(bns$q7)['Woman'])` of them identify as a Woman, `r unname(table(bns$q7)['Man'])` identify as a Man, and `r unname(table(bns$q7)['Gender non-binary, non-conforming'])` identify as Gender non-binary, non-conforming. There are also people who preferred not to answer.
 
 ## Ethnicity
-**In the US Census, Hispanic Origins are not races. Do you identify as Hispanic or Latino or Spanish Origin?**
+**In the US Census, Hispanic Origins are not races. Do you identify as Hispanic or Latino or Spanish Origin? `r print_n_reporting('q8')`**
 ```{r}
 plot_frq(bns$q8, wrap.labels = 15, ylim=c(0,280), sort.frq="desc") + xlab('')
 ```
 Looking at the above graph we see `r unname(table(bns$q8)['Yes, Mexican, Mexican American, Chicano'])` people identify as Mexican, Mexican American, or Chicano. `r unname(table(bns$q8)['No, not Hispanic, Latino or Spanish Origin'])` people do no identify as Hispanic, Latin, or Spanish Origin. `r unname(table(bns$q8)['Yes, another Hispanic, Latino or Spanish Origin'])` people identify as another Hispanic, Latino, or Spanish Origin. `r unname(table(bns$q8)['Yes, Puerto Rican'])` people identify as Puerto Rican.
 
 ### *Proposed Collapse (Ethnicity)*
-**In the US Census, Hispanic Origins are not races. Do you identify as Hispanic or Latino or Spanish Origin?**
+**In the US Census, Hispanic Origins are not races. Do you identify as Hispanic or Latino or Spanish Origin? `r print_n_reporting('q8')`**
 ```{r, fig.height=2, fig.width=8}
 tmp <- data.frame(q8=bns$q8) %>% mutate(hispanic=as.factor(ifelse(is.na(q8), NA, ifelse(grepl("Yes", q8), "Yes", "No")))) %>% select(-q8)
 xlbl <- "Do you identify as Hispanic or Latino or Spanish Origin?"
@@ -81,16 +82,43 @@ ethnicity_vars %>%
 #   theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) + xlab("") + ylab("")
 ```
 
+### *Proposed Collapse (Race)*
+```{r}
+tmp <- bns %>% select(starts_with("eth_")) %>% mutate(white=ifelse(is.na(eth_white), NA, ifelse(eth_white == 1, 1, 0)),
+                                                      black=ifelse(is.na(eth_african_amer), NA, ifelse(eth_african_amer == 1, 1, 0)),
+                                                      amer_indian=ifelse(is.na(eth_amer_inidian), NA, ifelse(eth_amer_inidian == 1, 1, 0)),
+                                                      asian=ifelse((is.na(eth_chinese) | is.na(eth_filipino) | is.na(eth_asian_indian) |
+                                                                      is.na(eth_other_asian) | is.na(eth_vietnamese) | is.na(eth_korean) |
+                                                                      is.na(eth_japanese)), NA, 
+                                                                   ifelse((eth_chinese == 1 | eth_filipino == 1 | eth_asian_indian  == 1 |
+                                                                      eth_other_asian == 1 | eth_vietnamese == 1 | eth_korean == 1 |
+                                                                      eth_japanese == 1), 1, 0)),
+                                                      hawaiian=ifelse((is.na(eth_pacific_islander) | is.na(eth_chamorro) | is.na(eth_hawaiian) |
+                                                                         is.na(eth_samoan)), NA, 
+                                                                       ifelse((eth_pacific_islander == 1 | eth_chamorro == 1 | eth_hawaiian == 1 |
+                                                                        eth_samoan == 1), 1, 0))) %>% select(15:19)
+```
+**What race do you identify as? Select all that apply `r print_n_reporting_tmp('white')`** *Note that races were collapsed from an original 14 options down to 5 broad groups defined by [census.gov](https://www.census.gov/quickfacts/fact/note/US/RHI625219) (follow link to see what specific races fall under the following groups).*
+```{r}
+cnames <- c("White", "Black or African American", "American Indian and Alaska Native", "Asian", "Native Hawaiian and Other Pacific Islander")
+tmp2 <- tmp %>% na.omit()
+colnames(tmp2) <- cnames
+tmp2 <- as.data.frame(t(tmp2)) %>% mutate(sums=rowSums(.),
+                                          label=paste0(sums, " (", percent(sums/ncol(.), accuracy=0.1), ")")) %>% arrange(desc(sums)) %>% select(label)
+colnames(tmp2) <- "Yes (%)"
+tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped")
+```
+
 
 ## Marital Status
-**What is your marital status?**
+**What is your marital status? `r print_n_reporting('q10')`**
 ```{r}
 plot_frq(bns$q10, wrap.labels = 10, sort.frq="desc") + xlab('Marital Status')
 ```
 The above graph tells us that the majority of people (`r unname(table(bns$q10)['Single, never married'])`) are single or never been married. `r unname(table(bns$q10)['Married'])` people are married, and `r unname(table(bns$q10)['Living with a partner'])` are living with a partner.
 
 ## Dependents
-**If you have dependents, then how many of them receive more than 50% of their financial support from you?**
+**If you have dependents, then how many of them receive more than 50% of their financial support from you? `r print_n_reporting('q11')`**
 ```{r}
 plot_frq(bns$q11) + xlab('Number of Dependents')
 ```
@@ -109,7 +137,7 @@ plot_frq(dep.ages.df$Ages, type='histogram', show.mean = TRUE, ylim=c(0,30), xli
 From the above graphs, the majority of dependents are under the age of 18. The ages of these dependents ranges from `r min(dep.ages)` to `r max(dep.ages)` with a standard deviation of `r round(sd(dep.ages),2)`. The average age for a dependent is `r round(mean(dep.ages),2)` while the median value is `r round(median(dep.ages),2)`. The most common dependent age is `r names(sort(table(dep.ages), decreasing=TRUE)[1])`, which appears `r unname(sort(table(dep.ages), decreasing=TRUE)[1])` times in the data.
 
 ## Parents Education
-**What is the highest level of education completed by your parents/guardians?**
+**What is the highest level of education completed by your parents/guardians? `r print_n_reporting('q13')`**
 ```{r, fig.height=4.5, fig.width=8}
 tmp <- as.data.frame(table(bns$q13)) %>% 
   mutate(Percent=lapply(Freq, function(x) paste0('(', percent(x/sum(!is.na(bns[['q13']])), accuracy = 0.1), ')')),
@@ -126,7 +154,7 @@ ggplot(tmp, aes(x=factor(Var1, levels=Var1), y=Freq, fill=FirstGen, label=Percen
 The highest level of education completed by most students parents is `r names(sort(table(bns$q13), decreasing=TRUE)[1])` (`r unname(sort(table(bns$q13), decreasing=TRUE)[1])`). `r unname(sort(table(bns$q13), decreasing=TRUE)[2])` students claim their parents highest level is `r names(sort(table(bns$q13), decreasing=TRUE)[2])`, and `r unname(sort(table(bns$q13), decreasing=TRUE)[3])` students claim their parents highest level is `r names(sort(table(bns$q13), decreasing=TRUE)[3])`. Only a minority of students have parents who have some type of college level degree.
 
 ### First Generation
-*Note: students with parents education identified as "Other/Unknown" were not marked as first gen or not since they could not be determined.*
+**`r print_n_reporting('firstgen')`** *Note: students with parents education identified as "Other/Unknown" were not marked as first gen or not since they could not be determined.*
 ```{r}
 tmp <- data.frame(firstgen=bns$firstgen) %>% 
   mutate(firstgen=factor(ifelse(is.na(firstgen), NA, ifelse(firstgen == 0, "Not First Gen", "First Gen")), levels=c("Not First Gen", "First Gen")))
