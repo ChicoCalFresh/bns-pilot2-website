@@ -48,7 +48,7 @@ display.text <- function(data, var){
 print_n_reporting <- function(x) {
   paste0("(n=", 
          sum(!is.na(bns[[x]])), ", ", 
-         percent(mean(!is.na(bns[[x]])), accuracy=1), " reporting)."
+         percent(mean(!is.na(bns[[x]])), accuracy=1), " of ", nrow(bns), " reporting)."
   )
 }
 
@@ -56,7 +56,7 @@ print_n_reporting <- function(x) {
 print_n_reporting_tmp <- function(x) {
   paste0("(n=", 
          sum(!is.na(tmp[[x]])), ", ", 
-         percent(mean(!is.na(tmp[[x]])), accuracy=1), " reporting)."
+         percent(sum(!is.na(tmp[[x]]))/nrow(bns), accuracy=1), " of ", nrow(bns), " reporting)."
   )
 }
 

@@ -27,20 +27,12 @@ Looking at the age across each campus, it seems that again the distribution seem
 ## Gender
 **What is your gender identity? `r print_n_reporting('q7')`**
 ```{r, fig.height=4.6, fig.width=7}
-plot_grpfrq(bns$q7, bns$school, wrap.labels = 20, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
+plot_grpfrq(bns$school, bns$q7, wrap.labels = 25, ylim=c(0,104), wrap.legend.labels = 20, geom.colors = likert.pal.3, legend.title = "") + 
   xlab('') + theme(legend.position="top")
 ```
 Looking at the distribution of gender across the campuses for survey participants, we can see that the majority of them are female. Chico seems to have the highest number of participants for each gender, with Fresno coming in second, and Northridge coming in behind them. 
 
 ## Ethnicity
-**In the US Census, Hispanic Origins are not races. Do you identify as Hispanic or Latino or Spanish Origin? `r print_n_reporting('q8')`**
-```{r, fig.height=4.6, fig.width=8}
-plot_grpfrq(bns$q8, bns$school, wrap.labels = 18, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
-  xlab('') + theme(legend.position="top")
-```
-It seems that Northridge has the most students who identify as Mexican, Mexican American, or Chicano. Chico has the most students who identify as not being of Hispanic, Latino, or Spanish origin (as well as the only students who identify as Puerto Rican). Fresno seems to have the most students who identify as another Hispanic, Latino, or Spanish origin.  
-
-### *Proposed Collapse (Ethnicity)*
 ```{r}
 tmp <- data.frame(q8=bns$q8, school=bns$school) %>% 
   mutate(hispanic=as.factor(ifelse(is.na(q8), NA, ifelse(grepl("Yes", q8), "Yes", "No"))),
@@ -48,37 +40,67 @@ tmp <- data.frame(q8=bns$q8, school=bns$school) %>%
 ```
 **In the US Census, Hispanic Origins are not races. Do you identify as Hispanic or Latino or Spanish Origin? `r print_n_reporting_tmp('hispanic')`**
 ```{r, fig.height=4.5, fig.width=7}
-plot_grpfrq(tmp$hispanic, tmp$school, geom.colors = campus.colors, legend.title = "") + xlab("") + theme(legend.position="top")
+plot_grpfrq(tmp$school, tmp$hispanic, wrap.labels = 25, geom.colors = campus.colors[c(2,1)], legend.title = "") + xlab("") + theme(legend.position="top")
 ```
 For the above graph, Hispanic Origin includes: Mexican, Mexican American, Chicano, Puerto Rican, or another Hispanic/Latino/Spanish origin. It seems that most of the campuses have around the same number of students who do identify as having Hispanic origin (Fresno first, followed by Chico, and finally Northridge). Looking at students who do not identify as having Hispanic origin, Chico seems to have the most (`r table(tmp$hispanic, tmp$school)["No","California State University, Chico"]` people), followed by Fresno, and finally Northridge.
 
 ## Race
-**What race do you identify as? (Select all that apply).** *Note that below only the values within the table represent "Yes (% of school total)".*
+**What race do you identify as? (Select all that apply).**  
+*Note that below only the values within the table represent "Yes (% of school total)".*
 ```{r}
-tmp <- bns %>% select(starts_with("eth_"), school)
-tmp <- aggregate(.~school, tmp, sum)
-rownames(tmp) <- tmp$school
-tmp <- tmp %>% select(-school)
-tmp <- as.data.frame(apply(tmp, 1, function(x) paste0(x, " (", percent(x/sum(x), accuracy = 0.1), ")")))
-rownames(tmp) <- c('White','African American','American Indian','Chinese','Filipino','Asian Indian','Other Asian',
-                   'Vietnamese','Korean','Japanese','Native Hawaiian','Samoan','Chamorro','Other Pacific Islander')
+# tmp <- bns %>% select(starts_with("eth_"), school)
+# tmp <- aggregate(.~school, tmp, sum)
+# rownames(tmp) <- tmp$school
+# tmp <- tmp %>% select(-school)
+# tmp <- as.data.frame(apply(tmp, 1, function(x) paste0(x, " (", percent(x/sum(x), accuracy = 0.1), ")")))
+# rownames(tmp) <- c('White','African American','American Indian','Chinese','Filipino','Asian Indian','Other Asian',
+#                    'Vietnamese','Korean','Japanese','Native Hawaiian','Samoan','Chamorro','Other Pacific Islander')
+# 
+# tmp %>% kable() %>% kable_styling(bootstrap_options = "striped")
 
-tmp %>% kable() %>% kable_styling(bootstrap_options = "striped")
+tmp <- bns %>% select(starts_with("eth_"), school) %>% mutate(white=ifelse(is.na(eth_white), NA, ifelse(eth_white == 1, 1, 0)),
+                                                              black=ifelse(is.na(eth_african_amer), NA, ifelse(eth_african_amer == 1, 1, 0)),
+                                                              amer_indian=ifelse(is.na(eth_amer_inidian), NA, ifelse(eth_amer_inidian == 1, 1, 0)),
+                                                              asian=ifelse((is.na(eth_chinese) | is.na(eth_filipino) | is.na(eth_asian_indian) |
+                                                                              is.na(eth_other_asian) | is.na(eth_vietnamese) | is.na(eth_korean) |
+                                                                              is.na(eth_japanese)), NA, 
+                                                                           ifelse((eth_chinese == 1 | eth_filipino == 1 | eth_asian_indian  == 1 |
+                                                                                     eth_other_asian == 1 | eth_vietnamese == 1 | eth_korean == 1 |
+                                                                                     eth_japanese == 1), 1, 0)),
+                                                              hawaiian=ifelse((is.na(eth_pacific_islander) | is.na(eth_chamorro) | is.na(eth_hawaiian) |
+                                                                                 is.na(eth_samoan)), NA, 
+                                                                              ifelse((eth_pacific_islander == 1 | eth_chamorro == 1 | eth_hawaiian == 1 |
+                                                                                        eth_samoan == 1), 1, 0))) %>% select(15:20)
+
+rnames <- c("White", "Black or African American", "American Indian and Alaska Native", "Asian", "Native Hawaiian and Other Pacific Islander")
+tmp2 <- tmp %>% na.omit()
+tmp2 <- tmp2 %>% group_by(school) %>% summarise(across(where(is.numeric), sum)) %>% t() %>% 
+  janitor::row_to_names(row_number = 1) %>% as.data.frame()
+tmp2 <- as.data.frame(sapply(tmp2, as.numeric))
+tmp2 <- as.data.frame(apply(tmp2, 2, function(x) paste0(x, " (", percent(x/sum(x), accuracy = 0.1), ")")))
+rownames(tmp2) <- rnames
+
+tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped")
+rm(tmp,tmp2)
 ```
 It seems that for participants in the survey, over 50% identify as White for each campus. Both Chico and Fresno had their second most common ethnicity being Other Asian. Northridge had its second most common ethnicity being American Indian, closely followed by African American.
 
 ## Parents Education
 **What is the highest level of education completed by your parents/guardians? `r print_n_reporting('q13')`**
-```{r, fig.height=5.8, fig.width=8.3}
-plot_grpfrq(bns$q13, bns$school, wrap.labels = 10, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
-  xlab('') + theme(legend.position="top")
+```{r, fig.height=5.2, fig.width=8.5}
+plot_grpfrq(bns$school, bns$q13, wrap.labels = 25, wrap.legend.labels = 26, geom.colors = RColorBrewer::brewer.pal(8, "Set3"),
+            legend.title = "", show.prc = FALSE) + xlab('') + 
+  theme(legend.position="top", legend.key = element_rect(size = 6), legend.key.size = unit(1, "cm"))
 ```
 It seems that for students with parents that have some type of college education (Associate's, Bachelor's, Master's) CSU Chico leads in all categories, followed by CSU Fresno, and finally CSU Northridge. CSU Chico also seems to have the most students whose parents had some college education, but no degree. CSU Fresno seems to have the most students who claim their parents highest level of education is less than high school. 
 
 ## First Generation
 **`r print_n_reporting('firstgen')`**
-```{r, fig.height=4.6}
-plot_grpfrq(bns$firstgen, bns$school, wrap.legend.labels = 30, ylim=c(0,150), geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
+```{r, fig.height=4.2}
+tmp <- data.frame(firstgen=bns$firstgen) %>% 
+  mutate(firstgen=factor(ifelse(is.na(firstgen), NA, ifelse(firstgen == 0, "Not First Gen", "First Gen")), levels=c("Not First Gen", "First Gen")))
+
+plot_grpfrq(bns$school, tmp$firstgen, wrap.labels = 25, ylim=c(0,150), geom.colors = campus.colors[c(1,2)], legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```
 Looking at the first generation students (see *Demographics: Personal Demographics* for definition of first generation students), we can see that CSU Chico seems to have the most first generation college students followed by Northridge and Fresno which are tied. It seems that Chico also has the most students that are not first gen, followed by Fresno, and then Northridge.

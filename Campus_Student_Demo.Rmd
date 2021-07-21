@@ -17,19 +17,19 @@ The following is a comparison across the 3 campuses (Chico, Fresno, and Northrid
 
 ## Major
 **What is your major? `r print_n_reporting('q16')`**
-```{r, fig.height=4.6, fig.width=7.2}
+```{r, fig.height=5, fig.width=8}
 bns <- bns %>% mutate(q16=recode(q16, 
                                  "Science, Technology, Engineering and Math (STEM) (Includes Medicine, Computer Science, Agriculture, Accounting, Statistics, Nursing, and Nutrition)" = "Science, Technology, Engineering and Math (STEM)"))
 
-plot_grpfrq(bns$q16, bns$school, wrap.labels = 15, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
+plot_grpfrq(bns$school, bns$q16, wrap.labels = 25, wrap.legend.labels = 20, geom.colors = likert.pal.5, legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```
 For the most part, each campus has a similar number of students identifying as each major. CSU Fresno seems to have slightly lower "Arts and Humanities" majors and slightly higher "Public Health, Social Services, Social Science, Education" majors. Each campus has almost equal STEM majors.
 
 ## Overall GPA
 **What is your approximate overall grade point average (GPA)? `r print_n_reporting('q17')`**
-```{r, fig.height=4.6, fig.width=7}
-plot_grpfrq(bns$q17, bns$school, wrap.labels = 15, wrap.legend.labels = 30, geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
+```{r, fig.height=4.2, fig.width=8}
+plot_grpfrq(bns$school, bns$q17, wrap.labels = 25, geom.colors = likert.pal.5, legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```
 Looking at the overall GPA, it seems that CSU Chico has the most in the 2.01-3.0 range (2 groups combined). Fresno seems to be leading for students with an overall GPA of 3.01 to 3.5, and has a clear lead for student with an overall GPA of 3.51 or above. Northridge seems to have the majority of their students having a 3.01 or above (2 groups combined). 
@@ -53,7 +53,7 @@ Looking at the currently enrolled units across each campus, it seems that again 
 ## Transfer Students
 **I identify as a transfer student: `r print_n_reporting('q14_1')`**
 ```{r, fig.width=7.2}
-plot_grpfrq(bns$q14_1, bns$school, wrap.legend.labels = 30, ylim=c(0,83), geom.colors = campus.colors, legend.title = "", show.prc = FALSE) + 
+plot_grpfrq(bns$school, bns$q14_1, wrap.labels = 25, ylim=c(0,83), geom.colors = campus.colors[c(2,1)], legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```
 Looking at the breakdown of transfer students, we can see that Northridge has the most students who claim to not be transfer students (`r table(bns$q14_1, bns$school)[5]` people). It seems that Chico has the highest number of transfer students, with `r table(bns$q14_1, bns$school)[2]` people identifying as this.
