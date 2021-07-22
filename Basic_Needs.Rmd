@@ -39,6 +39,7 @@ plot_likert(questions,
             geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
+Figure 9.1: Participation in Basic Needs Programs
 
 # Impact
 
@@ -53,6 +54,8 @@ p2 <- plot_frq(bns$fed_through_EBT, wrap.title = 40, title="How many people in t
 grid.arrange(p1, p2, nrow=1)
 rm(p1,p2)
 ```
+Figure 9.2: CalFresh EBT: Application & Feeding
+
 Looking at the above graphs, the majority of people apply for CalFresh EBT as an individual (`r unname(table(bns$q47)['As an individual'])` people) while only `r unname(table(bns$q47)['With other people in my household'])` people applied with other people in their household. Similarly, the majority of people claimed only `r names(sort(table(bns$fed_through_EBT), decreasing = TRUE))[1]` person is fed through the EBT card (`r unname(sort(table(bns$fed_through_EBT), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$fed_through_EBT), decreasing = TRUE))[2]` people claim to feed `r names(sort(table(bns$fed_through_EBT), decreasing = TRUE))[2]` people through the EBT card, and only a small amount of people claim to feed 5 or more people through the EBT card.
 
 ### Monthly CalFresh Money
@@ -60,6 +63,8 @@ Looking at the above graphs, the majority of people apply for CalFresh EBT as an
 ```{r, fig.width=7}
 hist_with_box('q49_1', 29, 3, 0.2, NULL, c(0,32), 'Monthly Support ($)')
 ```
+Figure 9.3: Monthly Allowance from CalFresh
+
 The average amount of money received for people using CalFresh (denoted by the dotted line) is \$`r round(mean(bns$q49_1, na.rm=TRUE),2)`, while the median is \$`r round(median(bns$q49_1, na.rm=TRUE),2)`. The values range from \$`r min(bns$q49_1, na.rm=TRUE)` to \$`r max(bns$q49_1, na.rm=TRUE)`. The majority of people who do receive these benefits seems to be getting around \$250 or less per month.
 
 ### Is This Enough?
@@ -71,6 +76,8 @@ p2 <- plot_frq(bns$q51, wrap.labels = 12, title="If \"No\", then when do you typ
 grid.arrange(p1, p2, nrow=1)
 rm(p1,p2)
 ```
+Figure 9.4: Enough Monthly Allowance and Time of Exhaustion 
+
 Of the people who do receive money from CalFresh, `r unname(table(bns$q50)['Yes'])` of them claim that it is enough money to provide healthy food for a month and `r unname(table(bns$q50)['No'])` of them feel that it is not enough. People who do not feel it is enough money typically run out of CalFresh money in either the second week (`r unname(table(bns$q51)['Second week after receiving benefits'])` people) or third week (`r unname(table(bns$q51)['Third week after receiving benefits'])` people). A small group also run out within the first week, while an even smaller minority run out in the fourth week.
 
 ## CalFresh Benefits
@@ -117,6 +124,7 @@ plot_likert(questions[11:22],
             geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
+Figure 9.5: Perceived Benefits of CalFresh
 
 ## CalFresh Barriers
 **What are the reasons you do not have CalFresh or have never used CalFresh? (Select all that apply).**
@@ -190,12 +198,15 @@ plot_likert(questions[11:22],
             geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
+Figure 9.6: Perceived Impact of Campus Food Pantry
 
 ### Food Pantry Use
 **How often do you normally use the food pantry or if you are not currently using it, how often did you use it? `r print_n_reporting("q54")`**
 ```{r}
 plot_frq(bns$q54, wrap.labels = 15) + xlab('Food Pantry Use Frequency')
 ```
+Figure 9.7: Food Pantry Use Frequency
+
 When people use the food pantry, the majority do not use it every week (`r unname(sort(table(bns$q54), decreasing = TRUE)['Not every week'])` people). `r unname(sort(table(bns$q54), decreasing = TRUE)['About once a week'])` people claim to use it about once a week, `r unname(sort(table(bns$q54), decreasing = TRUE)['More than once a week'])` people use it more than once a week, and `r unname(sort(table(bns$q54), decreasing = TRUE)['Other'])` people claim other uses.
 
 ### Reasons Not Using Food Pantries
@@ -246,6 +257,7 @@ plot_likert(questions,
             geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
+Figure 9.8: Perceived Impact of Restaurant Meal Program (RMP)
 
 ### Reasons Not Using RMP
 **What are the reasons for you to not have RMP or have never used RMP? (Select all that apply).**
@@ -288,6 +300,8 @@ plot_likert(questions,
             geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
+Figure 9.9: Perceived Impact of Medical
+
 
 ### Reasons Not Using Medical
 **What are the reasons you do not have MediCal or have never used MediCal? (Select all that apply).**
@@ -337,6 +351,8 @@ plot_likert(questions,
             geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
+Figure 9.10: Perceived Impact of Emergency Housing Services (EHS)
+
 
 
 ### Reasons Not Using EHS

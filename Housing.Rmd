@@ -20,6 +20,8 @@ The following questions were asking in regards to students current and past hous
 ```{r}
 plot_frq(bns$q23, ylim=c(0,285)) + xlab('')
 ```
+Figure 7.1: Impact of COVID on Housing
+
 There are `r unname(table(bns$q23)['No'])` people that participated in the survey that claim their housing has not changed due to the impacts of COVID. There also are `r unname(table(bns$q23)['Yes'])` people that say their housing situation did change due to the impacts of COVID.
 
 ## Living Near College
@@ -27,6 +29,8 @@ There are `r unname(table(bns$q23)['No'])` people that participated in the surve
 ```{r}
 plot_frq(bns$q24, ylim=c(0,265)) + xlab('')
 ```
+Figure 7.2: Living Near Enrolled College
+
 There are `r unname(table(bns$q24)['No'])` people that participated in the survey that do not currently live in the city/area of their enrolled college. There also are `r unname(table(bns$q24)['Yes'])` people that say they do live in the city/area of their enrolled college. This high "No" value could likely be due to many campuses being remote and students choosing to live at home or in an area with lower cost of living.
 
 ## Current Housing Situation
@@ -61,6 +65,8 @@ p2 <- plot_frq(bns$q35, wrap.labels =12, title = 'How many times have you moved?
 grid.arrange(p1, p2, nrow=1)
 rm(p1,p2)
 ```
+Figure 7.3: Unsure of Sleeping and Times Moved
+
 Over the past 12 months, the majority of people were never unsure of where they would be sleeping (`r unname(table(bns$q34)['Never'])` people ) or have not moved housing (`r unname(table(bns$q35)['None'])` people). For uncertainty in where they would be sleeping, the remaining responses were mostly evenly distributed over the other options. For number of times that a person has moved, `r unname(table(bns$q35)['Once'])` people have claimed they moved once in the last 12 months and `r unname(table(bns$q35)['Twice'])` people have moved twice. Only a small minority have moved 3 or more times in the last 12 months.
 
 ## Sleeping Places
@@ -94,6 +100,8 @@ rm(tmp, tmp2)
 ```{r, fig.width=8.3}
 plot_frq(bns$q37, wrap.labels = 17, sort.frq = 'desc') + xlab('')
 ```
+Figure 7.4: Unstable Housing Identification
+
 It seems that of the people who experienced unstable housing, the most common cause was not having enough money to cover housing expenses (`r unname(table(bns$q37)["I did not have enough money to cover housing expenses (rent, mortgage, or utility bill)"])` people). The next most common was cause was from issues with roommates, both having conflicts (`r unname(table(bns$q37)["I had a conflict with someone I was living with"])` people) and them being unable/unwilling to pay living expenses (`r unname(table(bns$q37)["A roommate was unable/unwilling to pay rent or a bill"])` people). 
 
 

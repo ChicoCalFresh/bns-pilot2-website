@@ -18,18 +18,23 @@ The following is a comparison across the 3 campuses (Chico, Fresno, and Northrid
 **The following was determined by taking the difference between birthdate and the time at which the survey was completed `r print_n_reporting('age')`**
 ```{r, fig.height=8, fig.width=8}
 ggplot(bns, aes(x=age, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
-  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Enrolled Units') + ylab("Density") + 
+  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Age (Years)') + ylab("Density") + 
   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
   scale_fill_manual(values=campus.colors)
 ```
+Figure 5.1: Age Distribution by Campus
+
 Looking at the age across each campus, it seems that again the distribution seems very similar for each. CSU Chico has an average age of `r unname(round(tapply(bns$age, bns$school, mean, na.rm=TRUE),2)[1])` years old, and a median of `r unname(round(tapply(bns$age, bns$school, median, na.rm=TRUE),2)[1])` years old. CSU Fresno has an average age of `r unname(round(tapply(bns$age, bns$school, mean, na.rm=TRUE),2)[2])` years old, and a median of `r unname(round(tapply(bns$age, bns$school, median, na.rm=TRUE),2)[2])` years old. CSU Northridge has an average age of `r unname(round(tapply(bns$age, bns$school, mean, na.rm=TRUE),2)[3])` years old, and a median of `r unname(round(tapply(bns$age, bns$school, median, na.rm=TRUE),2)[3])` years old.
 
 ## Gender
 **What is your gender identity? `r print_n_reporting('q7')`**
 ```{r, fig.height=4.6, fig.width=7}
-plot_grpfrq(bns$school, bns$q7, wrap.labels = 25, ylim=c(0,104), wrap.legend.labels = 20, geom.colors = likert.pal.3, legend.title = "") + 
+plot_grpfrq(bns$school, bns$q7, wrap.labels = 25, ylim=c(0,104), wrap.legend.labels = 20, geom.colors = RColorBrewer::brewer.pal(5, "Spectral")[c(2,4,5)], 
+            legend.title = "") + 
   xlab('') + theme(legend.position="top")
 ```
+Figure 5.2: Gender Identification by Campus
+
 Looking at the distribution of gender across the campuses for survey participants, we can see that the majority of them are female. Chico seems to have the highest number of participants for each gender, with Fresno coming in second, and Northridge coming in behind them. 
 
 ## Ethnicity
@@ -42,11 +47,14 @@ tmp <- data.frame(q8=bns$q8, school=bns$school) %>%
 ```{r, fig.height=4.5, fig.width=7}
 plot_grpfrq(tmp$school, tmp$hispanic, wrap.labels = 25, geom.colors = campus.colors[c(2,1)], legend.title = "") + xlab("") + theme(legend.position="top")
 ```
+Figure 5.3: Hispanic Origin Identification by Campus
+
 For the above graph, Hispanic Origin includes: Mexican, Mexican American, Chicano, Puerto Rican, or another Hispanic/Latino/Spanish origin. It seems that most of the campuses have around the same number of students who do identify as having Hispanic origin (Fresno first, followed by Chico, and finally Northridge). Looking at students who do not identify as having Hispanic origin, Chico seems to have the most (`r table(tmp$hispanic, tmp$school)["No","California State University, Chico"]` people), followed by Fresno, and finally Northridge.
 
 ## Race
-**What race do you identify as? (Select all that apply).**  
-*Note that below only the values within the table represent "Yes (% of school total)".*
+**What race do you identify as? (Select all that apply).** *Note that below only the values within the table represent "Yes (% of school total)".*
+
+Table 5.1: Race Identification by Campus
 ```{r}
 # tmp <- bns %>% select(starts_with("eth_"), school)
 # tmp <- aggregate(.~school, tmp, sum)
@@ -88,10 +96,12 @@ It seems that for participants in the survey, over 50% identify as White for eac
 ## Parents Education
 **What is the highest level of education completed by your parents/guardians? `r print_n_reporting('q13')`**
 ```{r, fig.height=5.2, fig.width=8.5}
-plot_grpfrq(bns$school, bns$q13, wrap.labels = 25, wrap.legend.labels = 26, geom.colors = RColorBrewer::brewer.pal(8, "Set3"),
+plot_grpfrq(bns$school, bns$q13, wrap.labels = 25, wrap.legend.labels = 26, geom.colors = RColorBrewer::brewer.pal(8, "Spectral"),
             legend.title = "", show.prc = FALSE) + xlab('') + 
   theme(legend.position="top", legend.key = element_rect(size = 6), legend.key.size = unit(1, "cm"))
 ```
+Figure 5.4: Parents Highest Education by Campus
+
 It seems that for students with parents that have some type of college education (Associate's, Bachelor's, Master's) CSU Chico leads in all categories, followed by CSU Fresno, and finally CSU Northridge. CSU Chico also seems to have the most students whose parents had some college education, but no degree. CSU Fresno seems to have the most students who claim their parents highest level of education is less than high school. 
 
 ## First Generation
@@ -100,9 +110,11 @@ It seems that for students with parents that have some type of college education
 tmp <- data.frame(firstgen=bns$firstgen) %>% 
   mutate(firstgen=factor(ifelse(is.na(firstgen), NA, ifelse(firstgen == 0, "Not First Gen", "First Gen")), levels=c("Not First Gen", "First Gen")))
 
-plot_grpfrq(bns$school, tmp$firstgen, wrap.labels = 25, ylim=c(0,150), geom.colors = campus.colors[c(1,2)], legend.title = "", show.prc = FALSE) + 
+plot_grpfrq(bns$school, tmp$firstgen, wrap.labels = 25, ylim=c(0,150), geom.colors = campus.colors[c(2,1)], legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```
+Figure 5.5: First Generation College Students by Campus
+
 Looking at the first generation students (see *Demographics: Personal Demographics* for definition of first generation students), we can see that CSU Chico seems to have the most first generation college students followed by Northridge and Fresno which are tied. It seems that Chico also has the most students that are not first gen, followed by Fresno, and then Northridge.
 
 

@@ -37,6 +37,7 @@ plot_likert(questions,
             geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
+Figure 11.1: Current Eating and Cooking Habits
 
 ## Daily Consumption
 ### Fruits & Vegetables
@@ -46,6 +47,8 @@ plot_likert(questions,
 ```{r, fig.height=3.5}
 plot_frq(bns$fruit_veg_serv_daily) + xlab('Daily Fruit & Vegetable Servings')
 ```
+Figure 11.2: Daily Fruit & Vegetable Consumption
+
 Looking at the daily consumption of fruits and vegetables, the majority of people claim to eat between `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[1]` servings (`r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[2]` people claim to eat `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[2]` servings, `r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[3]` people claim to eat `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[3]` servings, and `r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[4]` people claim to eat `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[4]` servings.
 
 ### Sugar/Energy Drinks
@@ -53,6 +56,8 @@ Looking at the daily consumption of fruits and vegetables, the majority of peopl
 ```{r, fig.width=7}
 plot_frq(bns$sugar_drinks_ounces_daily) + xlab('Daily Sugar/Energy Drink Servings (Ounces)')
 ```
+Figure 11.3: Daily Sugar/Energy Drink Consumption
+
 Looking at daily consumption of regular soda/cola/pop, sports drink, or energy drinks the majority of people claim to drink `r names(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[1]` ounces (`r unname(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[2]` people claim to drink between `r names(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[2]` ounces, `r unname(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[3]` people claim to drink between `r names(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[3]`, and only a small number of participants claim to drink 17 or more ounces per day.
 
 ## Weekly Consumption
@@ -61,6 +66,8 @@ Looking at daily consumption of regular soda/cola/pop, sports drink, or energy d
 ```{r}
 plot_frq(bns$eating_out_weekly) + xlab('Weekly Eating Out Frequency')
 ```
+Figure 11.4: Weekly Eating Out Consumption
+
 Looking at the weekly consumption of eating fast food, the majority of people claim to eat out `r names(sort(table(bns$eating_out_weekly), decreasing = TRUE))[1]` times per week (`r unname(sort(table(bns$eating_out_weekly), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$eating_out_weekly), decreasing = TRUE))[2]` people claim to eat out `r names(sort(table(bns$eating_out_weekly), decreasing = TRUE))[2]` times, `r unname(sort(table(bns$eating_out_weekly), decreasing = TRUE))[3]` people claim to eat out `r names(sort(table(bns$eating_out_weekly), decreasing = TRUE))[3]` times, and only a small minority of people claim to eat out 5 or more times per week.
 
 ### Alcohol Consumption
@@ -72,6 +79,8 @@ p2 <- plot_frq(bns$alc_servings_if_consumed, title="If consumed, how many servin
 grid.arrange(p1, p2, nrow=1)
 rm(p1,p2)
 ```
+Figure 11.5: Weekly Alcohol Consumption - Days & Servings
+
 Looking at the weekly alcohol consumption, the majority of people claim to consume alcohol `r names(sort(table(bns$alc_consumption_weekly), decreasing = TRUE))[1]` days per week (`r unname(sort(table(bns$alc_consumption_weekly), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$alc_consumption_weekly), decreasing = TRUE))[2]` people claim to drink `r names(sort(table(bns$alc_consumption_weekly), decreasing = TRUE))[2]` days per week. Only a small number of people claim to drink 3 or more days per week. Of the people who do consume alcohol, the majority consume `r names(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[1]` servings (`r unname(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[2]` people claim to drink `r names(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[2]` servings,  `r unname(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[3]` people claim to drink `r names(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[3]` servings, and only a small number drink 5 or more servings.
 
 ## Food Comfort
@@ -91,6 +100,8 @@ plot_likert(questions,
             geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
+Figure 11.6: Buying/Preparing Food Comfort 
+
 
 ---
 
