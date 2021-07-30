@@ -373,5 +373,5 @@ ehs_vars <- prep_binary_vars(question, qlabel)
 # Plot table of Percentages
 ehs_vars %>% 
   select(Measure = xlab, "Yes (%)" = pct_lab) %>% 
-  kable() %>% kable_styling(bootstrap_options = "striped")
+  kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spec(2, width='3.5cm')
 ```

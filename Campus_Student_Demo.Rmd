@@ -21,7 +21,7 @@ The following is a comparison across the 3 campuses (Chico, Fresno, and Northrid
 bns <- bns %>% mutate(q16=recode(q16, 
                                  "Science, Technology, Engineering and Math (STEM) (Includes Medicine, Computer Science, Agriculture, Accounting, Statistics, Nursing, and Nutrition)" = "Science, Technology, Engineering and Math (STEM)"))
 
-plot_grpfrq(bns$school, bns$q16, wrap.labels = 25, wrap.legend.labels = 20, geom.colors = RColorBrewer::brewer.pal(5, "Spectral"), 
+plot_grpfrq(bns$school, bns$q16, wrap.labels = 25, wrap.legend.labels = 20, geom.colors = RColorBrewer::brewer.pal(5, "Set2"), 
             legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```
@@ -32,7 +32,7 @@ For the most part, each campus has a similar number of students identifying as e
 ## Overall GPA
 **What is your approximate overall grade point average (GPA)? `r print_n_reporting('q17')`**
 ```{r, fig.height=4.2, fig.width=8}
-plot_grpfrq(bns$school, bns$q17, wrap.labels = 25, geom.colors = RColorBrewer::brewer.pal(5, "Spectral"), legend.title = "", show.prc = FALSE) + 
+plot_grpfrq(bns$school, bns$q17, wrap.labels = 25, geom.colors = RColorBrewer::brewer.pal(5, "Set2"), legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```
 Figure 4.2: Approximate GPA Ranges by Campus

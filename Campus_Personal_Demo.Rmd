@@ -29,7 +29,7 @@ Looking at the age across each campus, it seems that again the distribution seem
 ## Gender
 **What is your gender identity? `r print_n_reporting('q7')`**
 ```{r, fig.height=4.6, fig.width=7}
-plot_grpfrq(bns$school, bns$q7, wrap.labels = 25, ylim=c(0,104), wrap.legend.labels = 20, geom.colors = RColorBrewer::brewer.pal(5, "Spectral")[c(2,4,5)], 
+plot_grpfrq(bns$school, bns$q7, wrap.labels = 25, ylim=c(0,104), wrap.legend.labels = 20, geom.colors = RColorBrewer::brewer.pal(5, "Set2")[c(2,4,5)], 
             legend.title = "") + 
   xlab('') + theme(legend.position="top")
 ```
@@ -96,7 +96,7 @@ It seems that for participants in the survey, over 50% identify as White for eac
 ## Parents Education
 **What is the highest level of education completed by your parents/guardians? `r print_n_reporting('q13')`**
 ```{r, fig.height=5.2, fig.width=8.5}
-plot_grpfrq(bns$school, bns$q13, wrap.labels = 25, wrap.legend.labels = 26, geom.colors = RColorBrewer::brewer.pal(8, "Spectral"),
+plot_grpfrq(bns$school, bns$q13, wrap.labels = 25, wrap.legend.labels = 26, geom.colors = RColorBrewer::brewer.pal(8, "Set2"),
             legend.title = "", show.prc = FALSE) + xlab('') + 
   theme(legend.position="top", legend.key = element_rect(size = 6), legend.key.size = unit(1, "cm"))
 ```
@@ -117,6 +117,19 @@ Figure 5.5: First Generation College Students by Campus
 
 Looking at the first generation students (see *Demographics: Personal Demographics* for definition of first generation students), we can see that CSU Chico seems to have the most first generation college students followed by Northridge and Fresno which are tied. It seems that Chico also has the most students that are not first gen, followed by Fresno, and then Northridge.
 
+```{r}
+### Within Campus Breakdown
+# Table 5.2: First Generation Percentages (within Campus)
+# 
+# tmp %>% mutate(School=bns$school) %>% group_by(School) %>% count(firstgen) %>% na.omit() %>% 
+#   reshape2::dcast(School ~ firstgen) %>% mutate(nfg.percent=percent(.[,2]/apply(.[,2:3], 1, sum)),
+#                                                 fg.percent=percent(.[,3]/apply(.[,2:3], 1, sum)),
+#                                                 `Not First Gen`=paste0(`Not First Gen`, " (", nfg.percent, ")"),
+#                                                 `First Gen`=paste0(`First Gen`, " (", fg.percent, ")")) %>%
+#   select(c(1,2,3)) %>% kable() %>% kable_styling(bootstrap_options = "striped") 
+# 
+# *Above is a breakdown of first gen percentages within campuses (not as a percent of the total).* Looking at the table breakdown, we can see that over 92.0% of students at each campus (that participated in the survey) are considered first generation college students. Less than 8.0% of students are not first generation college students.
+```
 
 ---
 
