@@ -25,14 +25,36 @@ Figure 1.1: Student Age Distribution
 
 The age for participants in the survey range from `r min(bns$age, na.rm = TRUE)` to `r max(bns$age, na.rm = TRUE)` at the time of completion, with the majority of participants being between 20-30 years old. The average age of a participant in this survey is `r round(mean(bns$age, na.rm = TRUE),1)` years old.
 
+### Campus Breakdown
+```{r, fig.height=8, fig.width=8}
+ggplot(bns, aes(x=age, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
+  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Age (Years)') + ylab("Density") + 
+  theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
+  scale_fill_manual(values=campus.colors)
+```
+Figure 1.2: Age Distribution by Campus
+
+Looking at the age across each campus, it seems that again the distribution seems very similar for each. CSU Chico has an average age of `r unname(round(tapply(bns$age, bns$school, mean, na.rm=TRUE),2)[1])` years old, and a median of `r unname(round(tapply(bns$age, bns$school, median, na.rm=TRUE),2)[1])` years old. CSU Fresno has an average age of `r unname(round(tapply(bns$age, bns$school, mean, na.rm=TRUE),2)[2])` years old, and a median of `r unname(round(tapply(bns$age, bns$school, median, na.rm=TRUE),2)[2])` years old. CSU Northridge has an average age of `r unname(round(tapply(bns$age, bns$school, mean, na.rm=TRUE),2)[3])` years old, and a median of `r unname(round(tapply(bns$age, bns$school, median, na.rm=TRUE),2)[3])` years old.
+
 ## Gender Identity
 **What is your gender identity? `r print_n_reporting('q7')`**
 ```{r}
 plot_frq(bns$q7, sort.frq="desc") + xlab('Gender')
 ```
-Figure 1.2: Student Gender Identity
+Figure 1.3: Student Gender Identity
 
 Of the people who participated in the survey, `r unname(table(bns$q7)['Woman'])` of them identify as a Woman, `r unname(table(bns$q7)['Man'])` identify as a Man, and `r unname(table(bns$q7)['Gender non-binary, non-conforming'])` identify as Gender non-binary, non-conforming. There are also people who preferred not to answer.
+
+### Campus Breakdown
+```{r, fig.height=4.6, fig.width=7}
+plot_grpfrq(bns$school, bns$q7, wrap.labels = 25, ylim=c(0,104), wrap.legend.labels = 20, geom.colors = RColorBrewer::brewer.pal(5, "Set2")[c(2,4,5)], 
+            legend.title = "") + 
+  xlab('') + theme(legend.position="top")
+```
+Figure 1.4: Gender Identification by Campus
+
+Looking at the distribution of gender across the campuses for survey participants, we can see that the majority of them are female. Chico seems to have the highest number of participants for each gender, with Fresno coming in second, and Northridge coming in behind them. 
+
 
 ## Ethnicity
 **In the US Census, Hispanic Origins are not races. Do you identify as Hispanic or Latino or Spanish Origin? `r print_n_reporting('q8')`**
@@ -41,23 +63,26 @@ tmp <- data.frame(q8=bns$q8) %>% mutate(hispanic=as.factor(ifelse(is.na(q8), NA,
 
 plot_frq(tmp$hispanic, coord.flip = TRUE, hjust = -0.1, vjust = 0.3) + xlab("")
 ```
-Figure 1.3: Hispanic Origin Identification
+Figure 1.5: Hispanic Origin Identification
 
 For the above figure, Hispanic Origin includes: Mexican, Mexican American, Chicano, Puerto Rican, or another Hispanic/Latino/Spanish origin. It seems that the majority of people identify as some type of Hispanic Origins (`r unname(table(tmp$hispanic)['Yes'])` people), while around a quarter of them do not identify as having Hispanic Origins (`r unname(table(tmp$hispanic)['No'])` people).
 
+### Campus Breakdown
 ```{r}
-rm(tmp) # remove data set
+tmp <- data.frame(q8=bns$q8, school=bns$school) %>% 
+  mutate(hispanic=as.factor(ifelse(is.na(q8), NA, ifelse(grepl("Yes", q8), "Yes", "No"))),
+         school=ifelse(is.na(hispanic), NA, school)) %>% select(-q8)
 ```
+
+```{r, fig.height=4.5, fig.width=7}
+plot_grpfrq(tmp$school, tmp$hispanic, wrap.labels = 25, geom.colors = campus.colors[c(2,1)], legend.title = "") + xlab("") + theme(legend.position="top")
+```
+Figure 1.6: Hispanic Origin Identification by Campus
+
+For the above graph, Hispanic Origin includes: Mexican, Mexican American, Chicano, Puerto Rican, or another Hispanic/Latino/Spanish origin. It seems that most of the campuses have around the same number of students who do identify as having Hispanic origin (Fresno first, followed by Chico, and finally Northridge). Looking at students who do not identify as having Hispanic origin, Chico seems to have the most (`r table(tmp$hispanic, tmp$school)["No","California State University, Chico"]` people), followed by Fresno, and finally Northridge.
 
 ## Race
 ```{r}
-# question <- "eth"
-# qlabels <- c('White','African American','American Indian','Chinese','Filipino','Asian Indian','Other Asian',
-#              'Vietnamese','Korean','Japanese','Native Hawaiian','Samoan','Chamorro','Other Pacific Islander')
-# ethnicity_vars <- prep_binary_vars(question, qlabels)
-# ethnicity_vars %>% 
-#   select(Measure = xlab, "Yes (%)" = pct_lab) %>% 
-#   kable() %>% kable_styling(bootstrap_options = "striped")
 tmp <- bns %>% select(starts_with("eth_")) %>% mutate(white=ifelse(is.na(eth_white), NA, ifelse(eth_white == 1, 1, 0)),
                                                       black=ifelse(is.na(eth_african_amer), NA, ifelse(eth_african_amer == 1, 1, 0)),
                                                       amer_indian=ifelse(is.na(eth_amer_inidian), NA, ifelse(eth_amer_inidian == 1, 1, 0)),
@@ -85,13 +110,43 @@ colnames(tmp2) <- "Yes (%)"
 tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped")
 ```
 
+### Campus Breakdown
+Table 1.2: Race Identification by Campus
+```{r}
+tmp <- bns %>% select(starts_with("eth_"), school) %>% mutate(white=ifelse(is.na(eth_white), NA, ifelse(eth_white == 1, 1, 0)),
+                                                              black=ifelse(is.na(eth_african_amer), NA, ifelse(eth_african_amer == 1, 1, 0)),
+                                                              amer_indian=ifelse(is.na(eth_amer_inidian), NA, ifelse(eth_amer_inidian == 1, 1, 0)),
+                                                              asian=ifelse((is.na(eth_chinese) | is.na(eth_filipino) | is.na(eth_asian_indian) |
+                                                                              is.na(eth_other_asian) | is.na(eth_vietnamese) | is.na(eth_korean) |
+                                                                              is.na(eth_japanese)), NA, 
+                                                                           ifelse((eth_chinese == 1 | eth_filipino == 1 | eth_asian_indian  == 1 |
+                                                                                     eth_other_asian == 1 | eth_vietnamese == 1 | eth_korean == 1 |
+                                                                                     eth_japanese == 1), 1, 0)),
+                                                              hawaiian=ifelse((is.na(eth_pacific_islander) | is.na(eth_chamorro) | is.na(eth_hawaiian) |
+                                                                                 is.na(eth_samoan)), NA, 
+                                                                              ifelse((eth_pacific_islander == 1 | eth_chamorro == 1 | eth_hawaiian == 1 |
+                                                                                        eth_samoan == 1), 1, 0))) %>% select(15:20)
+
+rnames <- c("White", "Black or African American", "American Indian and Alaska Native", "Asian", "Native Hawaiian and Other Pacific Islander")
+tmp2 <- tmp %>% na.omit()
+tmp2 <- tmp2 %>% group_by(school) %>% summarise(across(where(is.numeric), sum)) %>% t() %>% 
+  janitor::row_to_names(row_number = 1) %>% as.data.frame()
+tmp2 <- as.data.frame(sapply(tmp2, as.numeric))
+tmp2 <- as.data.frame(apply(tmp2, 2, function(x) paste0(x, " (", percent(x/sum(x), accuracy = 0.1), ")")))
+rownames(tmp2) <- rnames
+
+tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped")
+rm(tmp,tmp2)
+```
+It seems that for participants in the survey, over 50% identify as White for each campus. Both Chico and Fresno had their second most common ethnicity being Other Asian. Northridge had its second most common ethnicity being American Indian, closely followed by African American.
+
 
 ## Marital Status
 **What is your marital status? `r print_n_reporting('q10')`**
 ```{r}
 plot_frq(bns$q10, wrap.labels = 10, sort.frq="desc") + xlab('Marital Status')
 ```
-Figure 1.4: Martial Status Identification
+Figure 1.7: Martial Status Identification
 
 The above figure tells us that the majority of people (`r unname(table(bns$q10)['Single, never married'])`) are single or never been married. `r unname(table(bns$q10)['Married'])` people are married, and `r unname(table(bns$q10)['Living with a partner'])` are living with a partner.
 
@@ -100,7 +155,7 @@ The above figure tells us that the majority of people (`r unname(table(bns$q10)[
 ```{r}
 plot_frq(bns$q11) + xlab('Number of Dependents')
 ```
-Figure 1.5: Number of Dependents
+Figure 1.8: Number of Dependents
 
 The majority of people who participated in the survey (`r unname(table(bns$q11)['0'])`) claim to have 0 dependents. `r unname(table(bns$q11)['1'])` people claim to have only 1 dependent, and only `r nrow(bns[bns$q11 > 1, 'q11'] %>% na.omit())` people have 2 or more dependents.
 
@@ -114,7 +169,7 @@ plot_frq(dep.ages.df$Ages, type='histogram', show.mean = TRUE, ylim=c(0,32), xli
   geom_boxplot(data=dep.ages.df, aes(x=Ages, y=28), alpha=0.6, width=5, fill="#336699") +
   geom_jitter(data=dep.ages.df, aes(x=Ages, y=28), position=position_jitter(height=2)) + xlab('Dependent Ages (Years)')
 ```
-Figure 1.6: Dependent Age Distribution
+Figure 1.9: Dependent Age Distribution
 
 From the above figure, the majority of dependents are under the age of 18. The ages of these dependents ranges from `r min(dep.ages)` to `r max(dep.ages)` with a standard deviation of `r round(sd(dep.ages),2)`. The average age for a dependent is `r round(mean(dep.ages),2)` while the median age is `r round(median(dep.ages),2)`. The most common dependent age is `r names(sort(table(dep.ages), decreasing=TRUE)[1])`, which appears `r unname(sort(table(dep.ages), decreasing=TRUE)[1])` times in the data.
 
@@ -131,11 +186,21 @@ ggplot(tmp, aes(x=factor(Var1, levels=Var1), y=Freq, fill=FirstGen, label=Percen
   scale_x_discrete(labels=label_wrap(10)) +   geom_text(aes(y=Freq + 29, label=Freq)) + 
   xlab('') + ylab('') + theme(legend.position = "none")
 ```
-Figure 1.7: Parents Highest Education
+Figure 1.10: Parents Highest Education
 
-*Note: Variables filled with yellow above are used to show the conditions used to build the First Generation variable in the next plot*.
+*Note: Variables filled with yellow above are used to show the conditions used to build the First Generation variable*.
 
 The highest level of education completed by most students parents is `r names(sort(table(bns$q13), decreasing=TRUE)[1])` (`r unname(sort(table(bns$q13), decreasing=TRUE)[1])`). `r unname(sort(table(bns$q13), decreasing=TRUE)[2])` students claim their parents highest level is `r names(sort(table(bns$q13), decreasing=TRUE)[2])`, and `r unname(sort(table(bns$q13), decreasing=TRUE)[3])` students claim their parents highest level is `r names(sort(table(bns$q13), decreasing=TRUE)[3])`. Only a minority of students have parents who have some type of college level degree.
+
+### Campus Breakdown
+```{r, fig.height=5.2, fig.width=8.5}
+plot_grpfrq(bns$school, bns$q13, wrap.labels = 25, wrap.legend.labels = 26, geom.colors = RColorBrewer::brewer.pal(8, "Set2"),
+            legend.title = "", show.prc = FALSE) + xlab('') + 
+  theme(legend.position="top", legend.key = element_rect(size = 6), legend.key.size = unit(1, "cm"))
+```
+Figure 1.11: Parents Highest Education by Campus
+
+It seems that for students with parents that have some type of college education (Associate's, Bachelor's, Master's) CSU Chico leads in all categories, followed by CSU Fresno, and finally CSU Northridge. CSU Chico also seems to have the most students whose parents had some college education, but no degree. CSU Fresno seems to have the most students who claim their parents highest level of education is less than high school. 
 
 ### First Generation
 **`r print_n_reporting('firstgen')`** *Note: students with parents education identified as "Other/Unknown" were not marked as first gen or not since they could not be determined.*
@@ -145,7 +210,19 @@ tmp <- data.frame(firstgen=bns$firstgen) %>%
 
 plot_frq(tmp$firstgen, ylim=c(0,420)) + xlab('')
 ```
-Figure 1.8. First Generation College Students
+Figure 1.12. First Generation College Students
+
+#### Campus Breakdown
+```{r, fig.height=4.2}
+tmp <- data.frame(firstgen=bns$firstgen) %>% 
+  mutate(firstgen=factor(ifelse(is.na(firstgen), NA, ifelse(firstgen == 0, "Not First Gen", "First Gen")), levels=c("Not First Gen", "First Gen")))
+
+plot_grpfrq(bns$school, tmp$firstgen, wrap.labels = 25, ylim=c(0,150), geom.colors = campus.colors[c(2,1)], legend.title = "", show.prc = FALSE) + 
+  xlab('') + theme(legend.position="top")
+```
+Figure 1.13: First Generation College Students by Campus
+
+Looking at the first generation students (see *Demographics: Personal Demographics* for definition of first generation students), we can see that CSU Chico seems to have the most first generation college students followed by Northridge and Fresno which are tied. It seems that Chico also has the most students that are not first gen, followed by Fresno, and then Northridge.
 
 
 As defined by the [University of California](https://www.universityofcalifornia.edu/sites/default/files/First-Generation%20Student%20Success%20at%20UC%208-2017.pdf), we define first generation students as "working to be part of the first generation in their families to earn a four-year university degree". This means based upon parents education, students in the data set are considered first generation if their parents do not have a Bachelor's or Master's degree from a four-year university. From the *Parents Education* graph, all bars highlighted as yellow are considered first gen, while all bars in blue are not (excluding Other/Unknown).

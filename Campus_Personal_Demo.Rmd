@@ -56,16 +56,6 @@ For the above graph, Hispanic Origin includes: Mexican, Mexican American, Chican
 
 Table 5.1: Race Identification by Campus
 ```{r}
-# tmp <- bns %>% select(starts_with("eth_"), school)
-# tmp <- aggregate(.~school, tmp, sum)
-# rownames(tmp) <- tmp$school
-# tmp <- tmp %>% select(-school)
-# tmp <- as.data.frame(apply(tmp, 1, function(x) paste0(x, " (", percent(x/sum(x), accuracy = 0.1), ")")))
-# rownames(tmp) <- c('White','African American','American Indian','Chinese','Filipino','Asian Indian','Other Asian',
-#                    'Vietnamese','Korean','Japanese','Native Hawaiian','Samoan','Chamorro','Other Pacific Islander')
-# 
-# tmp %>% kable() %>% kable_styling(bootstrap_options = "striped")
-
 tmp <- bns %>% select(starts_with("eth_"), school) %>% mutate(white=ifelse(is.na(eth_white), NA, ifelse(eth_white == 1, 1, 0)),
                                                               black=ifelse(is.na(eth_african_amer), NA, ifelse(eth_african_amer == 1, 1, 0)),
                                                               amer_indian=ifelse(is.na(eth_amer_inidian), NA, ifelse(eth_amer_inidian == 1, 1, 0)),

@@ -45,6 +45,19 @@ Figure 2.3: Declaration of Major
 
 The majority of students in the data seem to be majoring in some type of `r names(sort(table(bns$q16), decreasing=TRUE)[1])` program (`r unname(sort(table(bns$q16), decreasing=TRUE)[1])` people). `r unname(sort(table(bns$q16), decreasing=TRUE)[2])` of the students are `r names(sort(table(bns$q16), decreasing=TRUE)[2])` majors. Students were also given the option of "Other" to fill in a major if it did not fall into one of the above categories and of the `r unname(sort(table(bns$q16), decreasing=TRUE)['Other'])` who selected this, `r unname(colSums(!is.na(bns))['q16_6_text'])` gave their responses below.
 
+### Campus Breakdown
+```{r, fig.height=5, fig.width=8}
+bns <- bns %>% mutate(q16=recode(q16, 
+                                 "Science, Technology, Engineering and Math (STEM) (Includes Medicine, Computer Science, Agriculture, Accounting, Statistics, Nursing, and Nutrition)" = "Science, Technology, Engineering and Math (STEM)"))
+
+plot_grpfrq(bns$school, bns$q16, wrap.labels = 25, wrap.legend.labels = 20, geom.colors = RColorBrewer::brewer.pal(5, "Set2"), 
+            legend.title = "", show.prc = FALSE) + 
+  xlab('') + theme(legend.position="top")
+```
+Figure 2.4: Major Declaration by Campus
+
+For the most part, each campus has a similar number of students identifying as each major. CSU Fresno seems to have slightly lower "Arts and Humanities" majors and slightly higher "Public Health, Social Services, Social Science, Education" majors. Each campus has almost equal STEM majors.
+
 ### Other Majors
 
 Table 2.1: Other Major Declarations
@@ -59,9 +72,18 @@ question_table('q16_6_text', qs, cnames)
 ```{r}
 plot_frq(bns$q17) + xlab('GPA')
 ```
-Figure 2.4: Approximate Overall GPA
+Figure 2.5: Approximate Overall GPA
 
 The most common GPA for the data ranges between `r names(sort(table(bns$q17), decreasing=TRUE)[1])` (`r unname(sort(table(bns$q17), decreasing=TRUE)[1])` students), followed by`r names(sort(table(bns$q17), decreasing=TRUE)[2])` (`r unname(sort(table(bns$q17), decreasing=TRUE)[2])` students). There are also `r unname(sort(table(bns$q17), decreasing=TRUE)[3])` students who have an overall GPA between `r names(sort(table(bns$q17), decreasing=TRUE)[3])`. 
+
+### Campus Breakdown
+```{r, fig.height=4.2, fig.width=8}
+plot_grpfrq(bns$school, bns$q17, wrap.labels = 25, geom.colors = RColorBrewer::brewer.pal(5, "Set2"), legend.title = "", show.prc = FALSE) + 
+  xlab('') + theme(legend.position="top")
+```
+Figure 2.6: Approximate GPA Ranges by Campus
+
+Looking at the overall GPA, it seems that CSU Chico has the most in the 2.01-3.0 range (2 groups combined). Fresno seems to be leading for students with an overall GPA of 3.01 to 3.5, and has a clear lead for student with an overall GPA of 3.51 or above. Northridge seems to have the majority of their students having a 3.01 or above (2 groups combined). 
 
 ## Currently Enrolled Units
 **How many units are you currently taking? `r print_n_reporting('q18')`**
@@ -72,11 +94,24 @@ bns <- bns %>% mutate(q18=recode(q18, "22+"="22"),
 
 plot_frq(bns$q18, type='histogram', show.prc = FALSE, show.n = FALSE) + scale_x_continuous(breaks=0:22, labels=xlbls) + xlab('Units')
 ```
-Figure 2.5: Currently Enrolled Academic Units
+Figure 2.7: Currently Enrolled Academic Units
 
 *Note that "22+" was rounded for 22 in the following analysis for the currently enrolled number of units*. 
 
 The average number of units that a student in this data is enrolled in is `r round(mean(bns$q18, na.rm = TRUE), 2)` units, while the median is `r median(bns$q18, na.rm = TRUE)` units. It seems that the majority of students are considered full-time (12 or more units), with `r names(sort(table(bns$q18), decreasing=TRUE)[1])` units being most common and `r names(sort(table(bns$q18), decreasing=TRUE)[2])` units following that.
+
+### Campus Breakdown
+```{r, fig.height=8, fig.width=8}
+ggplot(bns, aes(x=q18, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
+  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Enrolled Units') + ylab("Density") + 
+  theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
+  scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=0:22, labels=xlbls)
+```
+Figure 2.8: Academic Unit Enrollments by Campus
+
+*Note: values corresponding to "22+" were rounded to 22.*
+
+Looking at the currently enrolled units across each campus, it seems that again the distribution seems very similar for each. CSU Chico has an average `r unname(round(tapply(bns$q18, bns$school, mean, na.rm=TRUE),2)[1])` enrolled units, with a median of `r unname(round(tapply(bns$q18, bns$school, median, na.rm=TRUE),2)[1])` units. CSU Fresno has an average `r unname(round(tapply(bns$q18, bns$school, mean, na.rm=TRUE),2)[2])` enrolled units, with a median of `r unname(round(tapply(bns$q18, bns$school, median, na.rm=TRUE),2)[2])` units. CSU Northridge has an average `r unname(round(tapply(bns$q18, bns$school, mean, na.rm=TRUE),2)[3])` enrolled units, with a median of `r unname(round(tapply(bns$q18, bns$school, median, na.rm=TRUE),2)[3])` units. 
 
 ## Student Identifiers
 
@@ -93,6 +128,16 @@ rnames <- c("A Transfer Student", "LGBTQA+", "A student with a disability", "A f
             "A DACA (i.e. Deferred Action for Childhood Arrivals) student")
 binary_table(questions, "Yes", rnames, ".")
 ```
+
+### Transfer Students (Campus Breakdown)
+**I identify as a transfer student: `r print_n_reporting('q14_1')`**
+```{r, fig.width=7.2}
+plot_grpfrq(bns$school, bns$q14_1, wrap.labels = 25, ylim=c(0,83), geom.colors = campus.colors[c(2,1)], legend.title = "", show.prc = FALSE) + 
+  xlab('') + theme(legend.position="top")
+```
+Figure 2.9: Transfer Student Identification by Campus
+
+Looking at the breakdown of transfer students, we can see that Northridge has the most students who claim to not be transfer students (`r table(bns$q14_1, bns$school)[5]` people). It seems that Chico has the highest number of transfer students, with `r table(bns$q14_1, bns$school)[2]` people identifying as this.
 
 ### Disability Support Services (??)
 *Note*: This name varies by campus and may not always be called the Disability Support Service Center.
@@ -126,6 +171,7 @@ rnames <- c('Approved, awarded, or accepted for work study (with or without a wo
             'Enrolled in a Teaching Credential Program', 'Enrolled in the School of Social Work Practicum Program (Field work program)')
 binary_table(questions, "Yes", rnames, ".")
 ```
+
 
 ---
 
