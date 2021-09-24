@@ -13,7 +13,7 @@ editor_options:
 source("common_code.R")
 ```
 
-The following questions were asked in regards to the participation and impact of Basic Needs programs and services on students lives. Students were asked to evaluate how they feel these programs have benefited them both academically and non-academically, as well as barriers/reasons in regards to why they are not using certain programs. This includes programs such as CalFresh, Food Pantries, Meal Programs, Medical, and Emergency Housing Services. 
+The following questions were asked in regards to the participation and impact of Basic Needs programs and services on students lives. Students were asked to evaluate how they feel these programs have benefited them both academically and non-academically, as well as barriers/reasons in regards to why they are not using certain programs. This includes programs such as CalFresh, Food Pantries, Meal Programs, Medi-Cal (also known as Medi-Cade in the United States), and Emergency Housing Services. 
 
 # Participation
 **Pick all Basic Needs Programs and Services that you participate in (mark all that apply):**
@@ -281,8 +281,8 @@ rmp_vars %>%
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
 
-## Medical
-**Knowing that you have MediCal:**
+## Medi-Cal
+**Knowing that you have Medi-Cal:**
 ```{r, fig.width=8.5}
 questions <- bns %>% select(starts_with("q59_"), "q60")
 names(questions) <- c("My mental health has improved.",
@@ -300,11 +300,11 @@ plot_likert(questions,
             geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
-Figure 9.9: Perceived Impact of Medical
+Figure 9.9: Perceived Impact of Medi-Cal
 
 
-### Reasons Not Using Medical
-**What are the reasons you do not have MediCal or have never used MediCal? (Select all that apply).**
+### Reasons Not Using Medi-Cal
+**What are the reasons you do not have Medi-Cal or have never used Medi-Cal? (Select all that apply).**
 ```{r}
 question <- "no_medical"
 qlabel <- c("I don’t need MediCal.",

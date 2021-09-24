@@ -26,6 +26,8 @@ Figure 1.1: Student Age Distribution
 The age for participants in the survey range from `r min(bns$age, na.rm = TRUE)` to `r max(bns$age, na.rm = TRUE)` at the time of completion, with the majority of participants being between 20-30 years old. The average age of a participant in this survey is `r round(mean(bns$age, na.rm = TRUE),1)` years old.
 
 ### Campus Breakdown
+<details>
+<summary> Click arrow for campus breakdown of age distribution. </summary>
 ```{r, fig.height=8, fig.width=8}
 ggplot(bns, aes(x=age, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
   geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Age (Years)') + ylab("Density") + 
@@ -35,6 +37,8 @@ ggplot(bns, aes(x=age, group=school, fill=school)) + geom_histogram(aes(y=..dens
 Figure 1.2: Age Distribution by Campus
 
 Looking at the age across each campus, it seems that again the distribution seems very similar for each. CSU Chico has an average age of `r unname(round(tapply(bns$age, bns$school, mean, na.rm=TRUE),2)[1])` years old, and a median of `r unname(round(tapply(bns$age, bns$school, median, na.rm=TRUE),2)[1])` years old. CSU Fresno has an average age of `r unname(round(tapply(bns$age, bns$school, mean, na.rm=TRUE),2)[2])` years old, and a median of `r unname(round(tapply(bns$age, bns$school, median, na.rm=TRUE),2)[2])` years old. CSU Northridge has an average age of `r unname(round(tapply(bns$age, bns$school, mean, na.rm=TRUE),2)[3])` years old, and a median of `r unname(round(tapply(bns$age, bns$school, median, na.rm=TRUE),2)[3])` years old.
+</details>
+<br />
 
 ## Gender Identity
 **What is your gender identity? `r print_n_reporting('q7')`**
