@@ -130,7 +130,6 @@ tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped")
 ### `r emo::ji("school")` `r emo::ji("bar_chart")` Campus Breakdown
 <details>
 <summary> Click arrow for campus breakdown of race distribution. </summary>
-Table 1.2: Race Identification by Campus
 ```{r}
 tmp <- bns %>% select(starts_with("eth_"), school) %>% mutate(white=ifelse(is.na(eth_white), NA, ifelse(eth_white == 1, 1, 0)),
                                                               black=ifelse(is.na(eth_african_amer), NA, ifelse(eth_african_amer == 1, 1, 0)),
@@ -157,6 +156,8 @@ rownames(tmp2) <- rnames
 tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped")
 rm(tmp,tmp2)
 ```
+Table 1.2: Race Identification by Campus
+
 It seems that for participants in the survey, over 50% identify as White for each campus. Both Chico and Fresno had their second most common ethnicity being Other Asian. Northridge had its second most common ethnicity being American Indian, closely followed by African American.
 </details>
 <br />

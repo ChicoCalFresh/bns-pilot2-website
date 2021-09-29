@@ -9,7 +9,9 @@ Food insecurity among college students is a serious problem that can impact stud
 
 The purpose of this second cross-sectional pilot study was to revise the BNS3 tool and validate whether questions measured student perception of the impact of receiving [CalFresh](https://www.csuchico.edu/calfresh/index.shtml) assistance and the utilization of the campus food pantry on their health, nutrition, cooking confidence, time management and academic performance.
 
-This report provides a top level descriptive analysis of each question in the survey. Researchers and campus staff are encouraged to review the information in this analysis to formulate additional research questions and hypotheses.  
+This report provides a top level descriptive analysis of each question in the survey. Researchers and campus staff are encouraged to review the information in this analysis to formulate additional research questions and hypotheses.
+
+<br />
 
 ### `r emo::ji("magnifying_glass_tilted_right")` How to use this website!
 <details>
