@@ -13,14 +13,6 @@ navbar:
           href: Student_Demo.html
     - text: "Workload"
       href: Workload.html
-    - text: "Campus Comparison"
-      menu:
-        - text: "Student Demographics"
-          href: Campus_Student_Demo.html
-        - text: "Personal Demographics"
-          href: Campus_Personal_Demo.html
-        - text: "Workload"
-          href: Campus_Workload.html
     - text: "Housing"
       href: Housing.html
     - text: "CalFresh"

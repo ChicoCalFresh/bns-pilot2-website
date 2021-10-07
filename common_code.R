@@ -34,6 +34,9 @@ primary.chc.col <- "#336699"
 
 campus.colors <- c("#b5d43b", "#587db6", "#ecf0b7")
 
+emoji.1 <- emo::ji("school")
+emoji.2 <- emo::ji("bar_chart")
+
 # Helper functions
 
 ## Display text answers without blank lines
@@ -128,5 +131,5 @@ prep_binary_vars <- function(question, xlabels) {
 
 # Load data
 load("../data/BNSp2_clean.Rdata")
-bns <- BNSp2
-rm(BNSp2)
+bns <- BNSp2b
+rm(BNSp2b)

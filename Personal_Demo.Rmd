@@ -27,10 +27,10 @@ The age for participants in the survey range from `r min(bns$age, na.rm = TRUE)`
 
 <br />
 
-### `r emo::ji("school")` `r emo::ji("bar_chart")` Campus Breakdown
+### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
 <summary> Click arrow for campus breakdown of age distribution. </summary>
-```{r, fig.height=7, fig.width=8}
+```{r, fig.height=7 ,fig.width=7}
 ggplot(bns, aes(x=age, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
   geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Age (Years)') + ylab("Density") + 
   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
@@ -53,7 +53,7 @@ Of the people who participated in the survey, `r unname(table(bns$q7)['Woman'])`
 
 <br />
 
-### `r emo::ji("school")` `r emo::ji("bar_chart")` Campus Breakdown
+### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
 <summary> Click arrow for campus breakdown of gender distribution. </summary>
 ```{r, fig.height=4.6, fig.width=7}
@@ -80,7 +80,7 @@ For the above figure, Hispanic Origin includes: Mexican, Mexican American, Chica
 
 <br />
 
-### `r emo::ji("school")` `r emo::ji("bar_chart")` Campus Breakdown
+### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
 <summary> Click arrow for campus breakdown of ethnicity distribution. </summary>
 ```{r}
@@ -127,7 +127,7 @@ colnames(tmp2) <- "Yes (%)"
 tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped")
 ```
 
-### `r emo::ji("school")` `r emo::ji("bar_chart")` Campus Breakdown
+### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
 <summary> Click arrow for campus breakdown of race distribution. </summary>
 ```{r}
@@ -215,7 +215,7 @@ The highest level of education completed by most students parents is `r names(so
 
 <br />
 
-### `r emo::ji("school")` `r emo::ji("bar_chart")` Campus Breakdown
+### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
 <summary> Click arrow for campus breakdown of parents education distribution. </summary>
 ```{r, fig.height=5.2, fig.width=8.5}
@@ -245,7 +245,7 @@ From this information, we can see that `r unname(sort(table(bns$firstgen), decre
 
 <br />
 
-#### `r emo::ji("school")` `r emo::ji("bar_chart")` Campus Breakdown
+#### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
 <summary> Click arrow for campus breakdown of first generation student distribution. </summary>
 ```{r, fig.height=4.2}
