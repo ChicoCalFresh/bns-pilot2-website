@@ -11,6 +11,7 @@ editor_options:
 
 ```{r, include=FALSE}
 source("common_code.R")
+page.num <- 5
 ```
 
 The following questions were asked in regards to criteria laid out by the CalFresh Requirements. This includes U.S. citizenship (or lawful permanent resident), receiving Cal Grant A/B, and receiving food from a campus meal plan. Household size and monthly income is also looked at and broken down into a chart to show CalFresh eligibility. Students were also determined to be eligible or not for CalFresh based on their responses to these criteria questions.
@@ -33,7 +34,7 @@ Of the participants in the survey `r unname(table(bns$q38)['Yes'])` claim to be 
 ```{r, fig.height=2}
 plot_frq(bns$meals_per_week_mp, ylim=c(0,3.8), coord.flip = TRUE, hjust="left", y.offset = 0.05) + xlab('Meals Per Week')
 ```
-Figure 8.1: Meals Per Week from Meal Plan
+`r fig.cap(page.num, "Meals Per Week from Meal Plan")`
 
 `r unname(table(bns$meals_per_week_mp)['11+'])` people get more than 11 meals per week from Campus Meal Plans, while `r unname(table(bns$meals_per_week_mp)['<11'])` people get less than 11 meals per week from a Campus Meal Plan.
 
@@ -61,7 +62,7 @@ huxtable(tmp, add_rownames = "") %>% set_background_color(2:11, 2:9, "tomato") %
 
 rm(tmp)
 ```
-Table 8.1: Housing Size vs. Income (CalFresh Eligibility)
+Table 5.1: Housing Size vs. Income (CalFresh Eligibility)
 
 *In the above graph, cells highlighted in green & bold indicate a person is eligible for CalFresh based on their income and cells highlighted in red & italics indicate a person is not eligible. This information is pulled from the CalFresh requirements section A2 (see below for link).*
 
@@ -80,7 +81,7 @@ The majority of people claim to purchase/prepare food (household size) for `r na
 ```{r}
 plot_frq(bns$calfresh_eligible) + xlab('CalFresh Eligible')
 ```
-Figure 8.2: Eligible for CalFresh
+`r fig.cap(page.num, "Eligible for CalFresh")`
 
 We can see that the majority of participants are eligible for CalFresh (`r unname(table(bns$calfresh_eligible)['Yes'])` people), while `r unname(table(bns$calfresh_eligible)['No'])` people are not eligible for these benefits.
 

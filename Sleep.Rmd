@@ -11,6 +11,7 @@ editor_options:
 
 ```{r, include=FALSE}
 source("common_code.R")
+page.num <- 10
 ```
 
 The following questions were asked in regards to students sleep patterns. This includes their average nightly sleep during the academic year (week and weekend), if they feel sleep deprived, and what the causes of their sleep deprivation come from. They were also asked if they are tired at work/school, how often they are tired here, and if they have fallen asleep in class in the past year. 
@@ -22,14 +23,13 @@ The following questions were asked in regards to students sleep patterns. This i
 ```{r, fig.height=3.5, fig.width=7}
 hist_with_box('q84', 145, 24, 0.4, NULL, c(0,162), 'Number of Hours')
 ```
-Figure 13.1: Weekday Hours of Sleep Distribution
-
+`r fig.cap(page.num, "Weekday Hours of Sleep Distribution")`
 
 #### During the Weekend (Saturday-Sunday)
 ```{r, fig.height=3.5, fig.width=7}
 hist_with_box('q85', 108, 17, 0.4, NULL, c(0,122), 'Number of Hours')
 ```
-Figure 13.2: Weekend Hours of Sleep Distribution
+`r fig.cap(page.num, "Weekend Hours of Sleep Distribution")`
 
 During the week, students claim to get an average (denoted by the dotted line) of `r round(mean(bns$q84, na.rm = TRUE), 2)` hours per night, with a median of `r round(median(bns$q84, na.rm = TRUE), 2)` hours. During the weekend, students claim to get an average (denoted by the dotted line) of `r round(mean(bns$q85, na.rm = TRUE), 2)` hours per night, with a median of `r round(median(bns$q85, na.rm = TRUE), 2)` hours. Students get an average of `r round(mean(bns$q85, na.rm = TRUE), 2)-round(mean(bns$q84, na.rm = TRUE), 2)` more hours of sleep on the weekend versus during the week.
 
@@ -38,7 +38,7 @@ During the week, students claim to get an average (denoted by the dotted line) o
 ```{r}
 hist_with_box('q86', 55, 6, 0.4, NULL, c(0,61), 'Days Per Month')
 ```
-Figure 13.3: Sleep Deprivation Distribution
+`r fig.cap(page.num, "Sleep Deprivation Distribution")`
 
 Students claim that on average they were feeling sleep deprived (denoted by the dotted line) for `r round(mean(bns$q86, na.rm = TRUE), 1)` days out of the month, with a median of `r round(median(bns$q86, na.rm = TRUE), 1)` days per month. 
 
@@ -67,15 +67,14 @@ sleep_loss_vars %>%
     scale_y_continuous(limits = c(0,1), labels=percent) + 
     scale_x_discrete(labels=label_wrap(13)) + xlab("") + ylab("Percent")
 ```
-Figure 13.4: Sleep Deprivation Causes
-
+`r fig.cap(page.num, "Sleep Deprivation Causes")`
 
 ## Tired at Work/School
 **How frequently do you feel tired while at work or school? `r print_n_reporting("q88")`**
 ```{r}
 plot_frq(bns$q88) + xlab('Frequency')
 ```
-Figure 13.5: Frequency of Tired at Work/School
+`r fig.cap(page.num, "Frequency of Tired at Work/School")`
 
 The most common response that people felt tired at work or school was `r tolower(names(sort(table(bns$q88), decreasing = TRUE))[1])` (`r unname(sort(table(bns$q88), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$q88), decreasing = TRUE))[2]` people claimed that they were `r tolower(names(sort(table(bns$q88), decreasing = TRUE))[2])` tired, `r unname(sort(table(bns$q88), decreasing = TRUE))[3]` people claimed that they were `r tolower(names(sort(table(bns$q88), decreasing = TRUE))[3])` tired, and `r unname(sort(table(bns$q88), decreasing = TRUE))[4]` people claimed that they were `r tolower(names(sort(table(bns$q88), decreasing = TRUE))[4])` tired.
 
@@ -84,7 +83,7 @@ The most common response that people felt tired at work or school was `r tolower
 ```{r}
 plot_frq(bns$q89, ylim=c(0,240)) + xlab('')
 ```
-Figure 13.6: Fallen Asleep in Class (Past Year)
+`r fig.cap(page.num, "Fallen Asleep in Class (Past Year)")`
 
 The majority of students (`r unname(sort(table(bns$q89), decreasing = TRUE)['No'])` people) claim that they have not fallen asleep in class in the past year, while `r unname(sort(table(bns$q89), decreasing = TRUE)['Yes'])` people claim that they have fallen asleep in class.
 

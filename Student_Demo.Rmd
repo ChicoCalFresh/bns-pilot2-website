@@ -11,6 +11,8 @@ editor_options:
 
 ```{r, include=FALSE}
 source("common_code.R")
+
+page.num <- 2
 ```
 
 The following set of questions were asked in regards to the students academic demographic. This includes information such as what Cal State University they are currently enrolled in, their class standing, major, GPA, and enrolled units. They were also asked questions about programs they participate in as well as what type of student they are (transfer, international, etc.) to help identify groups of students.
@@ -20,7 +22,7 @@ The following set of questions were asked in regards to the students academic de
 ```{r}
 plot_frq(bns$school, ylim=c(0,180)) + xlab('School')
 ```
-Figure 2.1: Current CSU Enrollment
+`r fig.cap(page.num, "Current CSU Enrollment")`
 
 Three schools participated in this pilot of the survey: `r names(sort(table(bns$school), decreasing=TRUE)[1])` (`r unname(sort(table(bns$school), decreasing=TRUE)[1])`), `r names(sort(table(bns$school), decreasing=TRUE)[2])` (`r unname(sort(table(bns$school), decreasing=TRUE)[2])`), and C`r names(sort(table(bns$school), decreasing=TRUE)[3])` (`r unname(sort(table(bns$school), decreasing=TRUE)[3])`). From the above figure, it seems that students from each campus will be nearly equally represented in the data.
 
@@ -29,7 +31,7 @@ Three schools participated in this pilot of the survey: `r names(sort(table(bns$
 ```{r, fig.width=8}
 plot_frq(bns$academic_level, wrap.labels = 10) + xlab('Class Standing')
 ```
-Figure 2.2: Current Academic Level
+`r fig.cap(page.num, "Current Academic Level")`
 
 It seems that the majority of the people are either in their Junior (`r unname(sort(table(bns$academic_level), decreasing=TRUE)['Junior (60-89 semester units)'])` people) or Senior (`r unname(sort(table(bns$academic_level), decreasing=TRUE)['Senior (90+ semester units)'])` people) semester. There are a few Sophomores and very few Freshman or higher education students.
 
@@ -41,7 +43,7 @@ bns <- bns %>% mutate(q16=recode(q16,
 
 plot_frq(bns$q16, ylim=c(0,190), wrap.labels = 20, sort.frq = 'desc') + xlab('')
 ```
-Figure 2.3: Declaration of Major
+`r fig.cap(page.num, "Declaration of Major")`
 
 The majority of students in the data seem to be majoring in some type of `r names(sort(table(bns$q16), decreasing=TRUE)[1])` program (`r unname(sort(table(bns$q16), decreasing=TRUE)[1])` people). `r unname(sort(table(bns$q16), decreasing=TRUE)[2])` of the students are `r names(sort(table(bns$q16), decreasing=TRUE)[2])` majors. Students were also given the option of "Other" to fill in a major if it did not fall into one of the above categories and of the `r unname(sort(table(bns$q16), decreasing=TRUE)['Other'])` who selected this, `r unname(colSums(!is.na(bns))['q16_6_text'])` gave their responses below.
 
@@ -58,7 +60,7 @@ plot_grpfrq(bns$school, bns$q16, wrap.labels = 25, wrap.legend.labels = 20, geom
             legend.title = "", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```
-Figure 2.4: Major Declaration by Campus
+`r fig.cap(page.num, "Major Declaration by Campus")`
 
 For the most part, each campus has a similar number of students identifying as each major. CSU Fresno seems to have slightly lower "Arts and Humanities" majors and slightly higher "Public Health, Social Services, Social Science, Education" majors. Each campus has almost equal STEM majors.
 </details>
@@ -78,7 +80,7 @@ question_table('q16_6_text', qs, cnames)
 ```{r}
 plot_frq(bns$q17) + xlab('GPA')
 ```
-Figure 2.5: Approximate Overall GPA
+`r fig.cap(page.num, "Approximate Overall GPA")`
 
 The most common GPA for the data ranges between `r names(sort(table(bns$q17), decreasing=TRUE)[1])` (`r unname(sort(table(bns$q17), decreasing=TRUE)[1])` students), followed by`r names(sort(table(bns$q17), decreasing=TRUE)[2])` (`r unname(sort(table(bns$q17), decreasing=TRUE)[2])` students). There are also `r unname(sort(table(bns$q17), decreasing=TRUE)[3])` students who have an overall GPA between `r names(sort(table(bns$q17), decreasing=TRUE)[3])`. 
 
@@ -88,10 +90,10 @@ The most common GPA for the data ranges between `r names(sort(table(bns$q17), de
 <details>
 <summary> Click arrow for campus breakdown of overall GPA. </summary>
 ```{r, fig.height=4.2, fig.width=8}
-plot_grpfrq(bns$school, bns$q17, wrap.labels = 25, geom.colors = RColorBrewer::brewer.pal(5, "Set2"), legend.title = "", show.prc = FALSE) + 
+plot_grpfrq(bns$school, bns$q17, wrap.labels = 25, geom.colors = RColorBrewer::brewer.pal(5, "Set2"), legend.title = "GPA", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```
-Figure 2.6: Approximate GPA Ranges by Campus
+`r fig.cap(page.num, "Approximate GPA Ranges by Campus")`
 
 Looking at the overall GPA, it seems that CSU Chico has the most in the 2.01-3.0 range (2 groups combined). Fresno seems to be leading for students with an overall GPA of 3.01 to 3.5, and has a clear lead for student with an overall GPA of 3.51 or above. Northridge seems to have the majority of their students having a 3.01 or above (2 groups combined). 
 </details>
@@ -106,7 +108,7 @@ bns <- bns %>% mutate(q18=recode(q18, "22+"="22"),
 
 plot_frq(bns$q18, type='histogram', show.prc = FALSE, show.n = FALSE) + scale_x_continuous(breaks=0:22, labels=xlbls) + xlab('Units')
 ```
-Figure 2.7: Currently Enrolled Academic Units
+`r fig.cap(page.num, "Currently Enrolled Academic Units")`
 
 *Note that "22+" was rounded for 22 in the following analysis for the currently enrolled number of units*. 
 
@@ -123,7 +125,7 @@ ggplot(bns, aes(x=q18, group=school, fill=school)) + geom_histogram(aes(y=..dens
   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
   scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=0:22, labels=xlbls)
 ```
-Figure 2.8: Academic Unit Enrollments by Campus
+`r fig.cap(page.num, "Academic Unit Enrollments by Campus")`
 
 *Note: values corresponding to "22+" were rounded to 22.*
 
@@ -155,10 +157,10 @@ binary_table(questions, "Yes", rnames, ".")
 <summary> Click arrow for campus breakdown of transfer students. </summary>
 **I identify as a transfer student: `r print_n_reporting('q14_1')`**
 ```{r, fig.width=6.5}
-plot_grpfrq(bns$school, bns$q14_1, wrap.labels = 25, ylim=c(0,83), geom.colors = campus.colors[c(2,1)], legend.title = "", show.prc = FALSE) + 
+plot_grpfrq(bns$school, bns$q14_1, wrap.labels = 25, ylim=c(0,83), geom.colors = campus.colors[c(2,1)], legend.title = "Identifies", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
 ```
-Figure 2.9: Transfer Student Identification by Campus
+`r fig.cap(page.num, "Transfer Student Identification by Campus")`
 
 Looking at the breakdown of transfer students, we can see that Northridge has the most students who claim to not be transfer students (`r table(bns$q14_1, bns$school)[5]` people). It seems that Chico has the highest number of transfer students, with `r table(bns$q14_1, bns$school)[2]` people identifying as this.
 </details>

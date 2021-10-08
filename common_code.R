@@ -39,6 +39,12 @@ emoji.2 <- emo::ji("bar_chart")
 
 # Helper functions
 
+fig.num <<- 0 # global var
+fig.cap <- function(page.num, cap) {
+  fig.num <<- fig.num + 1 # override global var
+  paste0("Figure ", page.num, ".", fig.num, ": ", cap)
+}
+
 ## Display text answers without blank lines
 display.text <- function(data, var){
   data %>% filter(!!as.symbol(var)!="") %>% select(!!as.symbol(var)) %>%

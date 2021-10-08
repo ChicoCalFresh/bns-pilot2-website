@@ -11,6 +11,7 @@ editor_options:
 
 ```{r, include=FALSE}
 source("common_code.R")
+page.num <- 9
 ```
 
 The following questions were asked in regards to their physical activity over the past week. Students were asked to select how many days in the last week they had done any of the following exercise types: moderate, vigorous, or strength training. 
@@ -38,9 +39,9 @@ ggplot(pa.data) +
         legend.title = element_text(size=13),
         legend.text = element_text(size=11))
 ```
-Figure 12.1: Weekly Physical Activity
+`r fig.cap(page.num, "Weekly Physical Activity")`
 
-Table 12.1: Weekly Physical Activity Breakdown
+Table 9.1: Weekly Physical Activity Breakdown
 ```{r, results='asis'}
 tmp <- data.frame(rbind(table(bns$moderate_exercise_past_week),
                         table(bns$strength_training_past_week),

@@ -11,6 +11,7 @@ editor_options:
 
 ```{r, include=FALSE}
 source("common_code.R")
+page.num <- 7
 ```
 
 The following questions were asked in regards to students feelings towards food security due to a lack/no money. Students were asked in they had to cut or skip meals (and how often), went entire days without eating, and other situations due to a lack of money. Students were also asked how they handled situations when they had run out of money for food, and if they had gotten any assistance.
@@ -34,7 +35,7 @@ plot_likert(questions,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 
 ```
-Figure 10.1: Food Eaten in Household
+`r fig.cap(page.num, "Food Eaten in Household")`
 
 ## Eating Situations (Lack of Money)
 *The following are statements that people have made about their eating situations over the last 30 days:*
@@ -47,7 +48,7 @@ plot_frq(bns$q67, ylim=c(0,300), title="Did you cut/skip any meals") +xlab('')
 ```{r, fig.width=7}
 hist_with_box('q68', 24, 3, 0.4, NULL, c(0,27), 'Number of days meals were cut/skipped')
 ```
-Figure 10.2: Cut/Skip Meal: Identification & Distribution
+`r fig.cap(page.num, "Cut/Skip Meal: Identification & Distribution")`
 
 The majority of people claim that they did not have to skip meals due to not having enough money (`r unname(table(bns$q67)['No'])` people). However, `r unname(table(bns$q67)['Yes'])` people claimed that they did have to skip meals due to not having enough money. Of the people that did skip meals, the average number of days where they had to skip/cut a meal (denoted by the dotted line) was `r round(mean(bns$q68, na.rm = TRUE))` days, while the median was `r round(median(bns$q68, na.rm = TRUE))` days. The majority of the data is below 10 days, but a small amount of students did report skipping/cutting a meal more than 10 days in the last month.
 
@@ -59,7 +60,7 @@ plot_frq(bns$q72, title="Did you not eat for a whole day") +xlab('')
 ```{r, fig.width=7}
 hist_with_box('q73', 9, 1.5, 0.4, NULL, c(0,10.5), 'Number of days all meals were cut/skipped')
 ```
-Figure 10.3: No Food All Day: Identification & Distribution
+`r fig.cap(page.num, "No Food All Day: Identification & Distribution")`
 
 Over the past 30 days at the time of the survey, `r unname(table(bns$q72)['No'])` people claimed they did not have to skip eating for a full day due to not having enough money for food and `r unname(table(bns$q72)['Yes'])` people claimed that they did skip eating for a full day. Of the people that did skip meals for an entire day, the average number of days where they had to skip/cut all meals (denoted by the dotted line) was `r round(mean(bns$q73, na.rm = TRUE))` days, while the median was `r round(median(bns$q73, na.rm = TRUE))` days. The majority of the data is below 5 days, but a small amount of students did report skipping/cutting a meal more than 5 days in the last month.
 
