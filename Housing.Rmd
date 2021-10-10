@@ -18,8 +18,8 @@ The following questions were asking in regards to students current and past hous
 
 ## COVID Housing Impact
 **Has your housing  situation changed due to COVID-19? `r print_n_reporting("q23")`**
-```{r}
-plot_frq(bns$q23, ylim=c(0,285)) + xlab('')
+```{r, fig.height=2}
+plot_frq(bns$q23, ylim=c(0,315), coord.flip = TRUE, hjust = -0.1) + xlab('')
 ```
 `r fig.cap(page.num, "Impact of COVID on Housing")`
 
@@ -27,8 +27,8 @@ There are `r unname(table(bns$q23)['No'])` people that participated in the surve
 
 ## Living Near College
 **Are you currently living in the city/area in which you are enrolled in college? `r print_n_reporting("q24")`**
-```{r}
-plot_frq(bns$q24, ylim=c(0,265)) + xlab('')
+```{r, fig.height=2}
+plot_frq(bns$q24, ylim=c(0,285), coord.flip = TRUE, hjust = -0.1) + xlab('')
 ```
 `r fig.cap(page.num, "Living Near Enrolled College")`
 

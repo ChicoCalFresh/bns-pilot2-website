@@ -66,7 +66,7 @@ The average number of paid hours worked per week (denoted by the dotted line) is
 <details>
 <summary> Click arrow for campus breakdown of paid weekly hours. </summary>
 ```{r}
-tmp <- tmp2 %>% filter(q19 > 0 | is.na(q19))
+tmp <- tmp2 %>% filter(q19 > 0)
 ```
 **`r print_n_reporting_tmp('q19')`** *Note: below hours were filtered to only include people that worked (> 0 hours) a paid job. The value "41+" was also rounded to 41 for the graph/calculations.* 
 ```{r, fig.height=7, fig.width=7}
@@ -130,7 +130,7 @@ The average number of unpaid hours worked per week (denoted by the dotted line) 
 <details>
 <summary> Click arrow for campus breakdown of unpaid weekly hours. </summary>
 ```{r}
-tmp <- tmp2 %>% filter(q21> 0 | is.na(q21))
+tmp <- tmp2 %>% filter(q21> 0)
 ```
 **`r print_n_reporting_tmp('q21')`**  
 *Note: below hours were filtered to only include people that worked (> 0 hours) an unpaid job. The value "41+" was also rounded to 41 for the graph/calculations.*
@@ -197,9 +197,9 @@ The average number of academic hours worked per week (denoted by the dotted line
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of unpaid weekly hours. </summary>
+<summary> Click arrow for campus breakdown of academic workload. </summary>
 ```{r}
-tmp <- tmp2 %>% filter(units > 0 | is.na(units))
+tmp <- tmp2 %>% filter(units > 0)
 ```
 **Below is a breakdown of the academic workload using the 3 hours of work per unit measurement `r print_n_reporting_tmp('units')`**  
 *Note: below the values corresponding to "22+" were rounded to 22. Values were also filtered so that only people who take classes (> 0 hours per week) were included.*
@@ -237,9 +237,9 @@ The average number of total hours worked per week (denoted by the dotted line) i
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of unpaid weekly hours. </summary>
+<summary> Click arrow for campus breakdown of non-academic workload. </summary>
 ```{r}
-tmp <- tmp2 %>% filter(NonAcademic > 0 | is.na(NonAcademic))
+tmp <- tmp2 %>% filter(NonAcademic > 0)
 ```
 **Below is a combination of both paid and unpaid hours worked by students to get a further understanding of the workload participants face on a weekly basis `r print_n_reporting_tmp('NonAcademic')`**  
 *Note: below the values corresponding to "41+" were rounded to 41. Values were also filtered so that only people who work (> 0 hours per week) were included.*
@@ -257,7 +257,7 @@ Looking at the non-academic workload across each campus, it seems the distributi
 
 ## Total Workload
 ```{r}
-tmp <- tmp2 %>% filter(TotalHours > 0 | is.na(TotalHours))
+tmp <- tmp2 %>% filter(TotalHours > 0)
 ```
 **Below is a combination of all worked hours per week, both academic and non-academic. This includes units (3 hr/unit), paid, and unpaid worked hours `r print_n_reporting_tmp("TotalHours")`** *Note that values denoted as "41+" and "22+" were rounded to 41 and 22 (respectively) for the below analysis*.
 ```{r, fig.width=8}
@@ -275,7 +275,7 @@ The average number of total hours worked per week (denoted by the dotted line) i
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of unpaid weekly hours. </summary>
+<summary> Click arrow for campus breakdown of total workload. </summary>
 ```{r}
 tmp <- tmp2 %>% filter(TotalHours > 0 | is.na(TotalHours))
 ```

@@ -11,6 +11,8 @@ The purpose of this second cross-sectional pilot study was to revise the BNS3 to
 
 This report provides a top level descriptive analysis of each question in the survey. Researchers and campus staff are encouraged to review the information in this analysis to formulate additional research questions and hypotheses.
 
+**Disclaimer on Missing Data:** Students were allowed to select answers such as "Prefer not to answer" or "I don't know" as responses to the questions in the BNS3 survey. These answers were then converted to missing values, denoted as *NA*, and this is the cause of the missing data for certain questions (not 100% of respondents reporting). The total number of non-missing responses (and percentage of the total data) are provided for each question. 
+
 <br />
 
 ### `r emo::ji("magnifying_glass_tilted_right")` How to use this website!
