@@ -106,3 +106,27 @@ plot_frq(bns$q37, wrap.labels = 17, sort.frq = 'desc') + xlab('')
 It seems that of the people who experienced unstable housing, the most common cause was not having enough money to cover housing expenses (`r unname(table(bns$q37)["I did not have enough money to cover housing expenses (rent, mortgage, or utility bill)"])` people). The next most common was cause was from issues with roommates, both having conflicts (`r unname(table(bns$q37)["I had a conflict with someone I was living with"])` people) and them being unable/unwilling to pay living expenses (`r unname(table(bns$q37)["A roommate was unable/unwilling to pay rent or a bill"])` people). 
 
 
+### Housing Insecure
+**Students with at least 3 housing insecurity indicators present are housing insecure, they are not otherwise. `r print_n_reporting("housing_insecure")`**
+```{r, fig.height=3, fig.width=4.5}
+plot_frq(bns$housing_insecure, axis.labels = c("No", "Yes"), vjust = -0.2) + xlab("")
+```
+`r fig.cap(page.num, "Experience Housing Insecurity")`
+
+Looking at the above figure we can see that the majority of students are not considered to be housing insecure (`r unname(table(bns$housing_insecure)["0"])` students), while around 1/4 of students could be classified as housing insecure based on their indicators (`r unname(table(bns$housing_insecure)["1"])` students).
+
+### Experienced Homelessness
+**Students with at least 1 homelessness insecurity indicator present are considered to have experience homelessness at date of survey. The figure on the right represents experiencing homelessness during the past month, the left figure represents experiencing homelessness during the past 12 months `r print_n_reporting("homelessness_year")` **
+```{r, fig.height=3, fig.width=8}
+p1 <- plot_frq(bns$homelessness_month, axis.labels = c("No", "Yes"), vjust = -0.2, 
+               title = "Past Month") + xlab("")
+p2 <- plot_frq(bns$homelessness_year, axis.labels = c("No", "Yes"), ylim=c(0,500), vjust = -0.2,
+               title = "Past Year") + xlab("")
+grid.arrange(p1, p2, nrow=1)
+rm(p1,p2)
+```
+`r fig.cap(page.num, "Experiend Homelessness")`
+
+Looking at the figure above, we can see the majority of student did not experience homelessness in either the past month or year. However, we can see around 3x more students did experience homelessness during the past year (`r unname(table(bns$homelessness_year)["1"])` students) compared to during the past month (`r unname(table(bns$homelessness_month)["1"])` students).
+
+

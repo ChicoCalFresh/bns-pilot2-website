@@ -82,7 +82,7 @@ binary_table(questions, "Yes", rnames, "?")
 ## Ran Out of Money
 **In the last 30 days, if you ran out of money for food, what did you do? (choose all that apply):**
 ```{r, fig.width=8.3}
-question <- "food"
+question <- "fs"
 qlabel <- c("My friends, family or roommates gave me money for groceries.",
             "My friends, family or roommates fed me or took me out to eat.",
             "I started skipping meals.",
@@ -98,13 +98,5 @@ food_vars <- prep_binary_vars(question, qlabel) %>% slice(-8) # drop "other" sin
 food_vars %>% 
   select(Measure = xlab, "Yes (%)" = pct_lab) %>% 
   kable() %>% kable_styling(bootstrap_options = "striped")
-
-# Create bar plot of values & percentage 
-# food_vars %>% 
-#   ggplot(aes(x=xlab, y=pct, label = pct_lab)) + 
-#     geom_col(fill=primary.chc.col) + 
-#     geom_text(aes(y=pct+.08), size=3.6) +
-#     scale_y_continuous(limits = c(0,1), labels=percent) + 
-#     scale_x_discrete(labels=label_wrap(13)) + xlab("") + ylab("Percent")
 ```
 
