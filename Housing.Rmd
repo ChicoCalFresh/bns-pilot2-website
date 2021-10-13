@@ -71,9 +71,12 @@ rm(p1,p2)
 Over the past 12 months, the majority of people were never unsure of where they would be sleeping (`r unname(table(bns$q34)['Never'])` people ) or have not moved housing (`r unname(table(bns$q35)['None'])` people). For uncertainty in where they would be sleeping, the remaining responses were mostly evenly distributed over the other options. For number of times that a person has moved, `r unname(table(bns$q35)['Once'])` people have claimed they moved once in the last 12 months and `r unname(table(bns$q35)['Twice'])` people have moved twice. Only a small minority have moved 3 or more times in the last 12 months.
 
 ## Sleeping Places
-**In the last 30 days, or in the past 12 months, have you slept in any of the following places?**
+**In the last 30 days, or in the past 12 months, have you slept in any of the following places?**  
+*Note: students were only allowed to chose either "last 30 days" or "past 12 months", so students who selected past 12 months are interpreted as "over 30 days but less than 1 year". *
+
+### Stable
 ```{r}
-questions <- paste0('q36_', 1:12)
+questions <- paste0('q36_', 1:4)
 tmp <- as.data.frame(t(bns[questions]))
 tmp2 <- data.frame(Month=apply(tmp, 1, get_perct, "In the last 30 days" ),
                    Year=apply(tmp, 1, get_perct, "In the last 12 months"))
@@ -82,8 +85,21 @@ colnames(tmp2) <- c('Last 30 days', 'Last 12 months')
 rownames(tmp2) <- c('Campus or University Housing',
                     'Sorority/Fraternity house',
                     'In a rented or owned house, mobile home, or apartment (alone or with roommates or friends)',
-                    'In a rented or owned house, mobile home, or apartment with my family (parent, guardian, relative or caretaker)',
-                    'At a shelter',
+                    'In a rented or owned house, mobile home, or apartment with my family (parent, guardian, relative or caretaker)')
+
+tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spec(2, width='3.5cm') %>% column_spec(3, width='3.5cm')
+rm(tmp, tmp2)
+```
+
+### Unstable
+```{r}
+questions <- paste0('q36_', 5:12)
+tmp <- as.data.frame(t(bns[questions]))
+tmp2 <- data.frame(Month=apply(tmp, 1, get_perct, "In the last 30 days" ),
+                   Year=apply(tmp, 1, get_perct, "In the last 12 months"))
+
+colnames(tmp2) <- c('Last 30 days', 'Last 12 months')
+rownames(tmp2) <- c('At a shelter',
                     'Temporarily staying with a relative, friend or couch surfing until I find other housing',
                     'Temporarily at a hotel or motel without a permanent home to return to (not on vacation or business travel)',
                     'In a transitional housing or independent living program',
@@ -95,6 +111,7 @@ rownames(tmp2) <- c('Campus or University Housing',
 tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spec(2, width='3.5cm') %>% column_spec(3, width='3.5cm')
 rm(tmp, tmp2)
 ```
+
 
 ## Unstable Housing
 **In the past 12 months, if you have experienced unstable housing, what was the most common reason? `r print_n_reporting("q37")`**
@@ -116,8 +133,8 @@ plot_frq(bns$housing_insecure, axis.labels = c("No", "Yes"), vjust = -0.2) + xla
 Looking at the above figure we can see that the majority of students are not considered to be housing insecure (`r unname(table(bns$housing_insecure)["0"])` students), while around 1/4 of students could be classified as housing insecure based on their indicators (`r unname(table(bns$housing_insecure)["1"])` students).
 
 ### Experienced Homelessness
-**Students with at least 1 homelessness insecurity indicator present are considered to have experience homelessness at date of survey. The figure on the right represents experiencing homelessness during the past month, the left figure represents experiencing homelessness during the past 12 months `r print_n_reporting("homelessness_year")` **
-```{r, fig.height=3, fig.width=8}
+**Students with at least 1 homelessness insecurity indicator present are considered to have experience homelessness at date of survey. The figure on the left represents experiencing homelessness during the past month, the right figure represents experiencing homelessness during the past 12 months `r print_n_reporting("homelessness_year")`**
+```{r, fig.height=3, fig.width=8.3}
 p1 <- plot_frq(bns$homelessness_month, axis.labels = c("No", "Yes"), vjust = -0.2, 
                title = "Past Month") + xlab("")
 p2 <- plot_frq(bns$homelessness_year, axis.labels = c("No", "Yes"), ylim=c(0,500), vjust = -0.2,
