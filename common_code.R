@@ -7,7 +7,8 @@ library(kableExtra)
 library(questionr)
 library(gridExtra)
 library(scales)
-
+# install.packages("devtools")
+# devtools::install_github("hadley/emo")
 
 # Global options
 opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE, cache=FALSE, 
@@ -16,10 +17,7 @@ sjPlot::set_theme(base = theme_bw())
 
 # Define color palettes
 # CHC branded colors
-# blue 1 587db6
-# blue 2 5b81a3
-# green b5d43b
-# yellow ecf0b7
+# blue 1 587db6, blue 2 5b81a3, green b5d43b, yellow ecf0b7
 
 likert.pal.5 <- brewer_pal("div")(5)
 likert.pal.5[3] <- "#b2b5a8"

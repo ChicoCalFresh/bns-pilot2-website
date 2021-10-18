@@ -163,14 +163,16 @@ It seems that for participants in the survey, over 50% identify as White for eac
 </details>
 <br />
 
+```{r, eval=FALSE}
 ## Marital Status
 **What is your marital status? `r print_n_reporting('q10')`**
-```{r}
+
 plot_frq(bns$q10, wrap.labels = 10, sort.frq="desc") + xlab('Marital Status')
-```
+
 `r fig.cap(page.num, "Martial Status Identification")`
 
 The above figure tells us that the majority of people (`r unname(table(bns$q10)['Single, never married'])`) are single or never been married. `r unname(table(bns$q10)['Married'])` people are married, and `r unname(table(bns$q10)['Living with a partner'])` are living with a partner.
+```
 
 ## Dependents
 **If you have dependents, then how many of them receive more than 50% of their financial support from you? `r print_n_reporting('q11')`**
@@ -232,11 +234,11 @@ It seems that for students with parents that have some type of college education
 
 ### First Generation
 **`r print_n_reporting('firstgen')`** *Note: students with parents education identified as "Other/Unknown" were not marked as first gen or not since they could not be determined.*
-```{r}
+```{r, fig.height=2.7, fig.width=6}
 tmp <- data.frame(firstgen=bns$firstgen) %>% 
   mutate(firstgen=factor(ifelse(is.na(firstgen), NA, ifelse(firstgen == 0, "Not First Gen", "First Gen")), levels=c("Not First Gen", "First Gen")))
 
-plot_frq(tmp$firstgen, ylim=c(0,420)) + xlab('')
+plot_frq(tmp$firstgen, ylim=c(0,470), coord.flip=TRUE, hjust = -0.1, vjust = 0.3) + xlab('')
 ```
 `r fig.cap(page.num, "First Generation College Students")`
 

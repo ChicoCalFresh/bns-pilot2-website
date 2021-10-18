@@ -1,6 +1,12 @@
 ---
 title: "Exploring patterns of basic needs in college students "
-output: html_document
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    css: styles.css
+editor_options: 
+  chunk_output_type: console
 ---
 
 ### Pilot #2: 415 EOP students at CSU Fresno, Chico and Northridge
