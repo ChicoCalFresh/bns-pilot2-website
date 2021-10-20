@@ -79,13 +79,18 @@ Over the past 12 months, the majority of people were never unsure of where they 
 questions <- paste0('q36_', 1:4)
 tmp <- as.data.frame(t(bns[questions]))
 tmp2 <- data.frame(Month=apply(tmp, 1, get_perct, "In the last 30 days" ),
-                   Year=apply(tmp, 1, get_perct, "In the last 12 months"))
+                   Year=apply(tmp, 1, get_perct, "In the last 12 months"),
+                   n=apply(tmp, 1, function(x) sum(x == "In the last 12 months", na.rm=TRUE)))
 
-colnames(tmp2) <- c('Last 30 days', 'Last 12 months')
+colnames(tmp2) <- c('Last 30 days', 'Last 12 months', "n")
 rownames(tmp2) <- c('Campus or University Housing',
                     'Sorority/Fraternity house',
-                    'In a rented or owned house, mobile home, or apartment (alone or with roommates or friends)',
-                    'In a rented or owned house, mobile home, or apartment with my family (parent, guardian, relative or caretaker)')
+                    'In a rented or owned house, mobile home, or apartment 
+                    (alone or with roommates or friends)',
+                    'In a rented or owned house, mobile home, or apartment 
+                    with my family (parent, guardian, relative or caretaker)')
+
+tmp2 <- tmp2 %>% arrange(desc(n)) %>% select(-n)
 
 tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spec(2, width='3.5cm') %>% column_spec(3, width='3.5cm')
 rm(tmp, tmp2)
@@ -96,9 +101,10 @@ rm(tmp, tmp2)
 questions <- paste0('q36_', 5:12)
 tmp <- as.data.frame(t(bns[questions]))
 tmp2 <- data.frame(Month=apply(tmp, 1, get_perct, "In the last 30 days" ),
-                   Year=apply(tmp, 1, get_perct, "In the last 12 months"))
+                   Year=apply(tmp, 1, get_perct, "In the last 12 months"),
+                   n=apply(tmp, 1, function(x) sum(x == "In the last 12 months", na.rm=TRUE)))
 
-colnames(tmp2) <- c('Last 30 days', 'Last 12 months')
+colnames(tmp2) <- c('Last 30 days', 'Last 12 months', 'n')
 rownames(tmp2) <- c('At a shelter',
                     'Temporarily staying with a relative, friend or couch surfing until I find other housing',
                     'Temporarily at a hotel or motel without a permanent home to return to (not on vacation or business travel)',
@@ -107,6 +113,8 @@ rownames(tmp2) <- c('At a shelter',
                     'Outdoor location such as street, sidewalk, alley, park, etc.',
                     'In a car, truck, van, RV or camper',
                     'In a closed area/space with a roof not meant for human habitation such as an abandoned building, garage, tent, etc.')
+
+tmp2 <- tmp2 %>% arrange(desc(n)) %>% select(-n)
 
 tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spec(2, width='3.5cm') %>% column_spec(3, width='3.5cm')
 rm(tmp, tmp2)
@@ -123,27 +131,57 @@ plot_frq(bns$q37, wrap.labels = 17, sort.frq = 'desc') + xlab('')
 It seems that of the people who experienced unstable housing, the most common cause was not having enough money to cover housing expenses (`r unname(table(bns$q37)["I did not have enough money to cover housing expenses (rent, mortgage, or utility bill)"])` people). The next most common was cause was from issues with roommates, both having conflicts (`r unname(table(bns$q37)["I had a conflict with someone I was living with"])` people) and them being unable/unwilling to pay living expenses (`r unname(table(bns$q37)["A roommate was unable/unwilling to pay rent or a bill"])` people). 
 
 
-### Housing Insecure
-**Students with at least 3 housing insecurity indicators present are housing insecure, they are not otherwise. `r print_n_reporting("housing_insecure")`**
-```{r, fig.height=3, fig.width=4.5}
-plot_frq(bns$housing_insecure, axis.labels = c("No", "Yes"), vjust = -0.2) + xlab("")
+## Housing Insecure & Homeless
+- Students with at least 3 housing insecurity indicators present are housing insecure, they are not otherwise `r print_n_reporting("housing_insecure")`
+- Students with at least 1 homelessness insecurity indicator present are considered to have experience homelessness at date of survey `r print_n_reporting("homelessness_year")`
+
+```{r}
+bns %>% 
+  select(homelessness_month, homelessness_year, housing_insecure) %>%
+  summarise(across(where(is.numeric), mean, na.rm=TRUE)) %>%
+  pivot_longer(everything()) %>%
+  arrange(desc(value)) %>%
+  mutate(value = percent(value, accuracy=.1),
+         name = case_when(grepl("month", name) ~ "Homeless (month)",
+                          grepl("year", name) ~ "Homeless (year)",
+                          grepl("insecure", name) ~ "Housing Insecure")) %>% 
+  rename("Unstable Housing Type" = name,
+         "Yes (%)" = value) %>%
+  kable() %>% kable_styling(bootstrap_options = "striped")
 ```
-`r fig.cap(page.num, "Experience Housing Insecurity")`
 
-Looking at the above figure we can see that the majority of students are not considered to be housing insecure (`r unname(table(bns$housing_insecure)["0"])` students), while around 1/4 of students could be classified as housing insecure based on their indicators (`r unname(table(bns$housing_insecure)["1"])` students).
+- Looking at the above table we can see that the majority of students are not considered to be housing insecure (`r unname(table(bns$housing_insecure)["0"])` students, `r percent(unname(prop.table(table(bns$housing_insecure))["0"]), .1)`), while the remaining students could be classified as housing insecure based on their indicators (`r unname(table(bns$housing_insecure)["1"])` students, `r percent(unname(prop.table(table(bns$housing_insecure))["1"]), .1)`).
 
-### Experienced Homelessness
-**Students with at least 1 homelessness insecurity indicator present are considered to have experience homelessness at date of survey. The figure on the left represents experiencing homelessness during the past month, the right figure represents experiencing homelessness during the past 12 months `r print_n_reporting("homelessness_year")`**
-```{r, fig.height=3, fig.width=8.3}
-p1 <- plot_frq(bns$homelessness_month, axis.labels = c("No", "Yes"), vjust = -0.2, 
-               title = "Past Month") + xlab("")
-p2 <- plot_frq(bns$homelessness_year, axis.labels = c("No", "Yes"), ylim=c(0,500), vjust = -0.2,
-               title = "Past Year") + xlab("")
-grid.arrange(p1, p2, nrow=1)
-rm(p1,p2)
+- Looking at the table above, we can see the majority of student did not experience homelessness in either the past month (`r unname(table(bns$homelessness_month)["0"])` students, `r percent(unname(prop.table(table(bns$homelessness_month))["0"]), .1)`) or year (`r unname(table(bns$homelessness_year)["0"])` students, `r percent(unname(prop.table(table(bns$homelessness_year))["0"]), .1)`). However, we can see around 3x more students did experience homelessness during the past year (`r unname(table(bns$homelessness_year)["1"])` students, `r percent(unname(prop.table(table(bns$homelessness_year))["1"]), .1)`) compared to during the past month (`r unname(table(bns$homelessness_month)["1"])` students, `r percent(unname(prop.table(table(bns$homelessness_month))["1"]), .1)`).
+
+<br />
+
+### `r emoji.1` `r emoji.2` Campus Breakdown
+<details>
+<summary> Click arrow for campus breakdown of unstable housing. </summary>
+```{r, fig.width=7.3, fig.height=3.8}
+bns %>% 
+  select(homelessness_month, homelessness_year, housing_insecure, school) %>%
+  group_by(school) %>%
+  summarise(across(where(is.numeric), mean, na.rm=TRUE)) %>%
+  pivot_longer(-school) %>%
+  mutate(lab = percent(value, accuracy=.1), 
+         school = gsub("California State University, ", "", school),
+         name = case_when(grepl("month", name) ~ "Homeless (past month)",
+                          grepl("year", name) ~ "Homeless (past year)",
+                          grepl("insecure", name) ~ "Housing Insecure")) %>%
+  ggplot(aes(x=school, y=value)) + 
+  geom_col(aes(fill=school), position=position_dodge()) + 
+  scale_fill_manual(values = campus.colors) +
+  geom_text(aes(y=value + .01, label=lab)) + 
+  facet_wrap(~name) + scale_y_continuous(labels=percent) + 
+  xlab("Campus") + ylab("Percent (Yes)") + 
+  theme(legend.position = "none", strip.background=element_rect(fill="#c7dcf0"))
 ```
-`r fig.cap(page.num, "Experiend Homelessness")`
+`r fig.cap(page.num, "Unstable Housing by Campus")`
 
-Looking at the figure above, we can see the majority of student did not experience homelessness in either the past month or year. However, we can see around 3x more students did experience homelessness during the past year (`r unname(table(bns$homelessness_year)["1"])` students) compared to during the past month (`r unname(table(bns$homelessness_month)["1"])` students).
+Are these numbers right?
+</details>
+<br />
 
 

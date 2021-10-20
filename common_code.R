@@ -100,8 +100,8 @@ binary_table <- function(var, value, rnames, punc) {
   tmp2 <- data.frame(Freq=apply(tmp, 1, function(x, value) sum(x == value, na.rm=TRUE), value))
   n.s <- apply(tmp, 1, function(x) sum(!is.na(x)))
   tmp2$label <- paste0(tmp2$Freq, " (", unname(percent(tmp2$Freq/n.s, accuracy=.1)), ")")
-  tmp2 <- tmp2 %>% select(-Freq)
   rownames(tmp2) <- paste0(rnames, " (n = ", n.s, ")", punc)
+  tmp2 <- tmp2 %>% arrange(desc(Freq)) %>% select(-Freq)
   colnames(tmp2) <- "Yes (%)"
   tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spec(2, width='3.5cm')
 }
