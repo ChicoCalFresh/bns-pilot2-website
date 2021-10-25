@@ -26,12 +26,12 @@ page.num <- 1
 - Campus breakdowns were added within pages below the figures of the general survey data. They're hidden drop down menu's like the one below:
 
 <details>
-<summary> Click the arrow to the left to open the drop down! </summary>
+<summary> `r emoji.1` `r emoji.2` Click the arrow to the left to open the drop down! </summary>
 Hello! `r emo::ji("wave")`
 </details>
 <br />
 
-- Nice! And by clicking the arrow of the drop down again you can close the menu too.
+- And by clicking the arrow of the drop down again you can close the menu too.
 - *Note: emoji's will change depending on what device you are using (windows, apple, etc.), so viewing on multiple devices may look slightly different for each.*
 
 <br />
@@ -87,7 +87,3 @@ Table 1.1: Table Caption
 - The left column represents the questions along with the numbers of students who responded to the question.
 - The right column represents the number of student who responded a certain way, along with the percent that responded this way (out of all the students in total that responded).
 
----
-
-## [Personal Demographics](Personal_Demo.html)
-*Click here to start and go to the first page (Personal Demographics).*

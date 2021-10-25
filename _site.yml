@@ -31,6 +31,8 @@ navbar:
           href: Sleep.html
         - text: "Mental Health"
           href: Mental_Health.html
+    - text: "FAQ"
+      href: Instructions.html
       
 output:
   html_document:

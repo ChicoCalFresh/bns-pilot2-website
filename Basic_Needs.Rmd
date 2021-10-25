@@ -66,7 +66,21 @@ hist_with_box('q49_1', 29, 3, 0.2, NULL, c(0,32), 'Monthly Support ($)')
 ```
 `r fig.cap(page.num, "Monthly Allowance from CalFresh")`
 
-The average amount of money received for people using CalFresh (denoted by the dotted line) is \$`r round(mean(bns$q49_1, na.rm=TRUE),2)`, while the median is \$`r round(median(bns$q49_1, na.rm=TRUE),2)`. The values range from \$`r min(bns$q49_1, na.rm=TRUE)` to \$`r max(bns$q49_1, na.rm=TRUE)`. The majority of people who do receive these benefits seems to be getting around \$250 or less per month.
+The average amount of money received per household using CalFresh (denoted by the dotted line) is \$`r round(mean(bns$q49_1, na.rm=TRUE),2)`, while the median is \$`r round(median(bns$q49_1, na.rm=TRUE),2)`. The values range from \$`r min(bns$q49_1, na.rm=TRUE)` to \$`r max(bns$q49_1, na.rm=TRUE)`. The majority of households who do receive these benefits seems to be getting around \$250 or less per month.
+
+#### Household Size Breakdown
+Below is a breakdown of the average monthly allowance received from CalFresh based on household size.
+```{r, fig.width=6.5}
+tmp <- bns %>% group_by(fed_through_EBT) %>% summarise(avg = mean(q49_1, na.rm=TRUE))
+
+ggplot(tmp, aes(x=fed_through_EBT, y=avg)) + geom_bar(stat = "identity", fill="#336699") +
+  geom_text(aes(y=avg + 16, label=paste0("$", round(avg, 2)))) + 
+  xlab('Household Size') + ylab('Monthly Assistance ($)') + 
+  scale_x_discrete(limits=seq(1,8))
+```
+`r fig.cap(page.num, "Monthly Assistance per Household")`
+
+*Add analysis here*
 
 ### Is This Enough?
 *Note: for the first graph on if the allowance is enough we have `r print_n_reporting("q50")` And for the second graph on when people run out we have `r print_n_reporting("q51")`*
