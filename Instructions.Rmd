@@ -1,0 +1,93 @@
+---
+title: " "
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    css: styles.css
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+source("common_code.R")
+page.num <- 1
+```
+
+# Website Navigation
+
+- The website is a tool to present exploratory data analysis results to the public, for both general survey results and campus breakdown.
+- Each tab on the header of the website corresponds to a set of questions within the Basic Needs Survey. Some of these tabs have a drop down menu to group questions even further as well.
+- Each page on the website contains a brief paragraph at the top which explains a general overview of questions captured on the page.
+- Within the page, questions were plotted using the most appropriate style for the questions (histogram, barplot, table, etc.). Each graph then has a brief description below it analyzing the results of the graph with the appropriate summary statistics (minimum, mean, max, proportions, etc.).
+
+### The Drop Down Menu
+
+- Campus breakdowns were added within pages below the figures of the general survey data. They're hidden drop down menu's like the one below:
+
+<details>
+<summary> Click the arrow to the left to open the drop down! </summary>
+Hello! `r emo::ji("wave")`
+</details>
+<br />
+
+- Nice! And by clicking the arrow of the drop down again you can close the menu too.
+- *Note: emoji's will change depending on what device you are using (windows, apple, etc.), so viewing on multiple devices may look slightly different for each.*
+
+<br />
+
+# Graph Interpretation
+
+- Most questions fall under one of the following types of figure styles, some of which may be new to you. Below are some helpful notes on how to interpret these graphs.
+
+### Histogram with Boxplot
+```{r}
+hist_with_box('q68', 24, 3, 0.4, NULL, c(0,27), 'x-axis') + ylab("y-axis")
+```
+`r fig.cap(page.num, "Figure Caption")`
+
+- Above is a graph type used for plotting numeric questions, a histogram with a boxplot and scatter points.
+- **Histogram**: the bottom part of the graph, these bars show the occurrence (y-axis) of our variable of interest (x-axis). The higher the bar, the more frequently the x-axis value occurs. The dotted line represents the mean value (the average across the responses).
+- **Boxplot**: the blue box with the lines at the top, the box itself represents the middle 50% of the data (25% to 75%). The dark black line within the box represents the median value (where 50% of the data falls below). 
+- **Scatter**: these are the dots that overlay the boxplot. They are used to help show the distribution of the data along with the histogram (number of dots represents number of responses for a given value). 
+- **Figure Caption**: below each graph, a figure number and caption are placed in order to help keep track of the current page and the figure title.
+
+### Density Plots 
+```{r}
+plot_frq(bns$age, type="density") + xlab("x-axis") + ylab("y-axis")
+```
+`r fig.cap(page.num, "Figure Caption")`
+
+- Similar to the histogram above, the **density** plot shows the distribution for a numeric variable of interest on the x-axis and the "density" of the data on the y-axis (this is how often the value occurs in the data).
+- The smooth curve helps show the distribution of the data (as a continuous variable).
+
+
+### Barplots
+```{r}
+tmp <- data.frame(q8=bns$q8) %>% mutate(hispanic=as.factor(ifelse(is.na(q8), NA, ifelse(grepl("Yes", q8), "Yes", "No")))) %>% select(-q8)
+
+plot_frq(tmp$hispanic) + xlab("x-axis") + ylab("y-axis")
+```
+`r fig.cap(page.num, "Figure Caption")`
+
+- **Barplots** were used to graph questions which had nominal or ordinal responses (labeled data that's separated into different groups). The x-axis is the response option, and the y-axis is the frequency in which they occured.
+- The numbers above the bars represent the total respondents in the given group, as well as the percent of the data that they comprise.
+- *Note: for campus breakdowns, these numbers were left out for simplicity reasons. Numbers are only shown in the summary paragraphs below the graphs.*
+
+
+### Tables
+```{r}
+data.frame(Questions=c("Question 1 (n = #)", "Question 2 (n = #)", "Question 3 (n = #)"),
+           Responses=c("Response # (%)", "Response # (%)", "Response # (%)")) %>%
+  kable() %>% kable_styling(bootstrap_options = "striped")
+```
+Table 1.1: Table Caption
+
+- **Tables** were used to group together sets of questions that typically had a Yes/No response pattern.
+- The left column represents the questions along with the numbers of students who responded to the question.
+- The right column represents the number of student who responded a certain way, along with the percent that responded this way (out of all the students in total that responded).
+
+---
+
+## [Personal Demographics](Personal_Demo.html)
+*Click here to start and go to the first page (Personal Demographics).*

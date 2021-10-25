@@ -11,7 +11,7 @@
 
 
 
-<title>Exploring patterns of basic needs in college students</title>
+<title>Instructions.utf8</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -29,7 +29,12 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -207,6 +212,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -214,6 +282,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -296,22 +374,122 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Exploring patterns of basic needs in college students</h1>
 
 </div>
 
 
-<div id="pilot-2-415-eop-students-at-csu-fresno-chico-and-northridge" class="section level3">
-<h3>Pilot #2: 415 EOP students at CSU Fresno, Chico and Northridge</h3>
-<p>Food insecurity among college students is a serious problem that can impact student performance in the classroom and ultimately effect student success. The <a href="https://www.csuchico.edu/chc/">Center for Healthy Communities</a> (CHC) developed the <strong>Basic Needs Student Success Survey (BNS3)</strong> and administered it to undergraduate students in the <a href="https://www2.calstate.edu/attend/student-services/eop">Educational Opportunity Program (EOP)</a> at <a href="https://www.csuchico.edu/eop/">California State University, Chico, CSU</a>, <a href="https://www.fresnostate.edu/studentaffairs/eop/abouteop.html">Fresno</a> and <a href="https://www.csun.edu/csun-eop">CSU Northridge</a> in April 2020. The EOP office assisted in the recruitment and provided computers for students to take the survey. Participants were given a $25 gift card for their participation. Initially, EOP students were identified as the target population for this survey because of their low-income and first-generation status which makes these students more likely eligible to qualify for CalFresh.</p>
-<p>The purpose of this second cross-sectional pilot study was to revise the BNS3 tool and validate whether questions measured student perception of the impact of receiving <a href="https://www.csuchico.edu/calfresh/index.shtml">CalFresh</a> assistance and the utilization of the campus food pantry on their health, nutrition, cooking confidence, time management and academic performance.</p>
-<p>This report provides a top level descriptive analysis of each question in the survey. Researchers and campus staff are encouraged to review the information in this analysis to formulate additional research questions and hypotheses.</p>
-<p><strong>Disclaimer on Missing Data:</strong> Students were allowed to select answers such as “Prefer not to answer” or “I don’t know” as responses to the questions in the BNS3 survey. These answers were then converted to missing values, denoted as <em>NA</em>, and this is the cause of the missing data for certain questions (not 100% of respondents reporting). The total number of non-missing responses (and percentage of the total data) are provided for each question.</p>
+<div id="website-navigation" class="section level1">
+<h1>Website Navigation</h1>
+<ul>
+<li>The website is a tool to present exploratory data analysis results to the public, for both general survey results and campus breakdown.</li>
+<li>Each tab on the header of the website corresponds to a set of questions within the Basic Needs Survey. Some of these tabs have a drop down menu to group questions even further as well.</li>
+<li>Each page on the website contains a brief paragraph at the top which explains a general overview of questions captured on the page.</li>
+<li>Within the page, questions were plotted using the most appropriate style for the questions (histogram, barplot, table, etc.). Each graph then has a brief description below it analyzing the results of the graph with the appropriate summary statistics (minimum, mean, max, proportions, etc.).</li>
+</ul>
+<div id="the-drop-down-menu" class="section level3">
+<h3>The Drop Down Menu</h3>
+<ul>
+<li>Campus breakdowns were added within pages below the figures of the general survey data. They’re hidden drop down menu’s like the one below:</li>
+</ul>
+<details>
+<summary>
+Click the arrow to the left to open the drop down!
+</summary>
+Hello! 👋
+</details>
+<p><br /></p>
+<ul>
+<li>Nice! And by clicking the arrow of the drop down again you can close the menu too.</li>
+<li><em>Note: emoji’s will change depending on what device you are using (windows, apple, etc.), so viewing on multiple devices may look slightly different for each.</em></li>
+</ul>
 <p><br /></p>
 </div>
-<div id="how-to-use-this-website" class="section level3">
-<h3><a href="Instructions.html">🔎 How to use this website!</a></h3>
-<p><em>Click above for instructions on how to navigate the website and interpret graphs!</em></p>
+</div>
+<div id="graph-interpretation" class="section level1">
+<h1>Graph Interpretation</h1>
+<ul>
+<li>Most questions fall under one of the following types of figure styles, some of which may be new to you. Below are some helpful notes on how to interpret these graphs.</li>
+</ul>
+<div id="histogram-with-boxplot" class="section level3">
+<h3>Histogram with Boxplot</h3>
+<p><img src="Instructions_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" /> Figure 1.1: Figure Caption</p>
+<ul>
+<li>Above is a graph type used for plotting numeric questions, a histogram with a boxplot and scatter points.</li>
+<li><strong>Histogram</strong>: the bottom part of the graph, these bars show the occurrence (y-axis) of our variable of interest (x-axis). The higher the bar, the more frequently the x-axis value occurs. The dotted line represents the mean value (the average across the responses).</li>
+<li><strong>Boxplot</strong>: the blue box with the lines at the top, the box itself represents the middle 50% of the data (25% to 75%). The dark black line within the box represents the median value (where 50% of the data falls below).</li>
+<li><strong>Scatter</strong>: these are the dots that overlay the boxplot. They are used to help show the distribution of the data along with the histogram (number of dots represents number of responses for a given value).</li>
+<li><strong>Figure Caption</strong>: below each graph, a figure number and caption are placed in order to help keep track of the current page and the figure title.</li>
+</ul>
+</div>
+<div id="density-plots" class="section level3">
+<h3>Density Plots</h3>
+<p><img src="Instructions_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" /> Figure 1.2: Figure Caption</p>
+<ul>
+<li>Similar to the histogram above, the <strong>density</strong> plot shows the distribution for a numeric variable of interest on the x-axis and the “density” of the data on the y-axis (this is how often the value occurs in the data).</li>
+<li>The smooth curve helps show the distribution of the data (as a continuous variable).</li>
+</ul>
+</div>
+<div id="barplots" class="section level3">
+<h3>Barplots</h3>
+<p><img src="Instructions_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" /> Figure 1.3: Figure Caption</p>
+<ul>
+<li><strong>Barplots</strong> were used to graph questions which had nominal or ordinal responses (labeled data that’s separated into different groups). The x-axis is the response option, and the y-axis is the frequency in which they occured.</li>
+<li>The numbers above the bars represent the total respondents in the given group, as well as the percent of the data that they comprise.</li>
+<li><em>Note: for campus breakdowns, these numbers were left out for simplicity reasons. Numbers are only shown in the summary paragraphs below the graphs.</em></li>
+</ul>
+</div>
+<div id="tables" class="section level3">
+<h3>Tables</h3>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Questions
+</th>
+<th style="text-align:left;">
+Responses
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Question 1 (n = #)
+</td>
+<td style="text-align:left;">
+Response # (%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Question 2 (n = #)
+</td>
+<td style="text-align:left;">
+Response # (%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Question 3 (n = #)
+</td>
+<td style="text-align:left;">
+Response # (%)
+</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1.1: Table Caption</p>
+<ul>
+<li><strong>Tables</strong> were used to group together sets of questions that typically had a Yes/No response pattern.</li>
+<li>The left column represents the questions along with the numbers of students who responded to the question.</li>
+<li>The right column represents the number of student who responded a certain way, along with the percent that responded this way (out of all the students in total that responded).</li>
+</ul>
+<hr />
+</div>
+<div id="personal-demographics" class="section level2">
+<h2><a href="Personal_Demo.html">Personal Demographics</a></h2>
+<p><em>Click here to start and go to the first page (Personal Demographics).</em></p>
+</div>
 </div>
 
 
@@ -330,6 +508,8 @@ Partially funded by USDA SNAP, known in California as CalFresh, an equal opportu
 <img src="CHC_Logo.png" alt="CHC Logo" width="300" height="85">
 
 
+</div>
+</div>
 
 </div>
 
@@ -362,6 +542,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

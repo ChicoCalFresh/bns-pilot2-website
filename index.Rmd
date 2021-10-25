@@ -2,8 +2,7 @@
 title: "Exploring patterns of basic needs in college students "
 output: 
   html_document: 
-    toc: yes
-    toc_float: yes
+    toc: no
     css: styles.css
 editor_options: 
   chunk_output_type: console
@@ -21,9 +20,5 @@ This report provides a top level descriptive analysis of each question in the su
 
 <br />
 
-### `r emo::ji("magnifying_glass_tilted_right")` How to use this website!
-<details>
-<summary> Click arrow for guide on navigating the BNS3 website. </summary>
-*To be filled in...*
-</details>
-<br />
+### [`r emo::ji("magnifying_glass_tilted_right")` How to use this website!](Instructions.html)
+*Click above for instructions on how to navigate the website and interpret graphs!*
