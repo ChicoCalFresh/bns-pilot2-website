@@ -71,16 +71,22 @@ The average amount of money received per household using CalFresh (denoted by th
 #### Household Size Breakdown
 Below is a breakdown of the average monthly allowance received from CalFresh based on household size.
 ```{r, fig.width=6.5}
-tmp <- bns %>% group_by(fed_through_EBT) %>% summarise(avg = mean(q49_1, na.rm=TRUE))
+tmp <- bns %>% group_by(fed_through_EBT) %>% 
+  summarise(avg = round(mean(q49_1, na.rm=TRUE),2)) %>% 
+  na.omit() %>% mutate(HH.avg = round(avg/fed_through_EBT, 2),
+                       fed_through_EBT = as.character(fed_through_EBT),
+                       avg = paste0("$", as.character(avg)))
 
-ggplot(tmp, aes(x=fed_through_EBT, y=avg)) + geom_bar(stat = "identity", fill="#336699") +
-  geom_text(aes(y=avg + 16, label=paste0("$", round(avg, 2)))) + 
-  xlab('Household Size') + ylab('Monthly Assistance ($)') + 
-  scale_x_discrete(limits=seq(1,8))
+tmp[9,] <- list(" ", " ", round(mean(tmp$HH.avg),2))
+tmp <- tmp %>% mutate(HH.avg = paste0("$", as.character(HH.avg)))
+colnames(tmp) <- c("Household Size", "Household Average", "Per Person Average")
+
+tmp %>% kable() %>% kable_styling(bootstrap_options = "striped") %>%
+  row_spec(9, bold=TRUE)
 ```
-`r fig.cap(page.num, "Monthly Assistance per Household")`
+Table 6.1: CalFresh by Household Size  
 
-*Add analysis here*
+Looking at the above table, the general pattern seems to be that as household size increases so does the monthly average assistance from CalFresh. The household average was divided by the household size to find the "per person average" for CalFresh assistance. From taking the average of these values, we can see that a person on CalFresh receives an average monthly assistance of `r tmp[9,3]`.
 
 ### Is This Enough?
 *Note: for the first graph on if the allowance is enough we have `r print_n_reporting("q50")` And for the second graph on when people run out we have `r print_n_reporting("q51")`*
