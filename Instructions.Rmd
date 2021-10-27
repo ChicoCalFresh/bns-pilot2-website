@@ -26,12 +26,15 @@ page.num <- 1
 - Campus breakdowns were added within pages below the figures of the general survey data. They're hidden drop down menu's like the one below:
 
 <details>
-<summary> `r emoji.1` `r emoji.2` Click the arrow to the left to open the drop down! </summary>
-Hello! `r emo::ji("wave")`
+<summary> `r emoji.1` `r emoji.2` Click anywhere on this text to open the drop down! </summary>
+```{r, fig.height=3.2, fig.width=7}
+plot_grpfrq(bns$school, bns$alc_consumption_weekly, geom.colors = RColorBrewer::brewer.pal(5, "Set2"), legend.title = "Example Legend", wrap.labels = 25, show.prc = FALSE, ylim=c(0,110)) + 
+  xlab('x-axis') + ylab("y-axis") + theme(legend.position="top")
+```
 </details>
 <br />
 
-- And by clicking the arrow of the drop down again you can close the menu too.
+- And by clicking the text of the drop down again you can close the menu too.
 - *Note: emoji's will change depending on what device you are using (windows, apple, etc.), so viewing on multiple devices may look slightly different for each.*
 
 <br />
@@ -72,7 +75,6 @@ plot_frq(tmp$hispanic) + xlab("x-axis") + ylab("y-axis")
 
 - **Barplots** were used to graph questions which had nominal or ordinal responses (labeled data that's separated into different groups). The x-axis is the response option, and the y-axis is the frequency in which they occured.
 - The numbers above the bars represent the total respondents in the given group, as well as the percent of the data that they comprise.
-- *Note: for campus breakdowns, these numbers were left out for simplicity reasons. Numbers are only shown in the summary paragraphs below the graphs.*
 
 
 ### Tables

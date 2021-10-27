@@ -19,17 +19,26 @@ The following set of questions were asked in regards to the students academic de
 
 ## School
 **Which Cal State University are you currently enrolled in? `r print_n_reporting('school')`**
-```{r}
+
+<div class = "row">
+<div class = "col-md-7">
+```{r, fig.height=3.5, fig.width=4.5}
 plot_frq(bns$school, ylim=c(0,180)) + xlab('School')
 ```
-`r fig.cap(page.num, "Current CSU Enrollment")`
+</div>
+  
+<div class = "col-md-4">
+<br><br>`r fig.cap(page.num, "Current CSU Enrollment")` <br>
 
 Three schools participated in this pilot of the survey: `r names(sort(table(bns$school), decreasing=TRUE)[1])` (`r unname(sort(table(bns$school), decreasing=TRUE)[1])`), `r names(sort(table(bns$school), decreasing=TRUE)[2])` (`r unname(sort(table(bns$school), decreasing=TRUE)[2])`), and C`r names(sort(table(bns$school), decreasing=TRUE)[3])` (`r unname(sort(table(bns$school), decreasing=TRUE)[3])`). From the above figure, it seems that students from each campus will be nearly equally represented in the data.
+</div>
+</div>
+
 
 ## Class Standing
 **Estimate your class standing by units completed `r print_n_reporting('academic_level')`**
-```{r, fig.width=8}
-plot_frq(bns$academic_level, wrap.labels = 10) + xlab('Class Standing')
+```{r, fig.width=7}
+plot_frq(bns$academic_level, wrap.labels = 8) + xlab('Class Standing')
 ```
 `r fig.cap(page.num, "Current Academic Level")`
 
@@ -37,11 +46,11 @@ It seems that the majority of the people are either in their Junior (`r unname(s
 
 ## Major
 **What is your major? `r print_n_reporting('q16')`**
-```{r, fig.height=5, fig.width=8.2}
+```{r, fig.width=7}
 bns <- bns %>% mutate(q16=recode(q16, 
                                  "Science, Technology, Engineering and Math (STEM) (Includes Medicine, Computer Science, Agriculture, Accounting, Statistics, Nursing, and Nutrition)" = "Science, Technology, Engineering and Math (STEM)"))
 
-plot_frq(bns$q16, ylim=c(0,190), wrap.labels = 20, sort.frq = 'desc') + xlab('')
+plot_frq(bns$q16, ylim=c(0,190), wrap.labels = 16, sort.frq = 'desc') + xlab('')
 ```
 `r fig.cap(page.num, "Declaration of Major")`
 
@@ -51,7 +60,7 @@ The majority of students in the data seem to be majoring in some type of `r name
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of declared major. </summary>
+<summary> Click here for campus breakdown of declared major. </summary>
 ```{r, fig.height=5, fig.width=8}
 bns <- bns %>% mutate(q16=recode(q16, 
                                  "Science, Technology, Engineering and Math (STEM) (Includes Medicine, Computer Science, Agriculture, Accounting, Statistics, Nursing, and Nutrition)" = "Science, Technology, Engineering and Math (STEM)"))
@@ -77,18 +86,26 @@ question_table('q16_6_text', qs, cnames)
 
 ## Overall GPA
 **What is your approximate overall grade point average (GPA)? `r print_n_reporting('q17')`**
-```{r}
-plot_frq(bns$q17) + xlab('GPA')
-```
-`r fig.cap(page.num, "Approximate Overall GPA")`
 
-The most common GPA for the data ranges between `r names(sort(table(bns$q17), decreasing=TRUE)[1])` (`r unname(sort(table(bns$q17), decreasing=TRUE)[1])` students), followed by`r names(sort(table(bns$q17), decreasing=TRUE)[2])` (`r unname(sort(table(bns$q17), decreasing=TRUE)[2])` students). There are also `r unname(sort(table(bns$q17), decreasing=TRUE)[3])` students who have an overall GPA between `r names(sort(table(bns$q17), decreasing=TRUE)[3])`. 
+<div class = "row">
+<div class = "col-md-7">
+```{r, fig.height=3.5, fig.width=4.5}
+plot_frq(bns$q17, wrap.labels = 8) + xlab('GPA')
+```
+</div>
+  
+<div class = "col-md-4">
+<br><br><br><br> `r fig.cap(page.num, "Approximate Overall GPA")` <br>
+
+The most common GPA for the data ranges between `r names(sort(table(bns$q17), decreasing=TRUE)[1])` (`r unname(sort(table(bns$q17), decreasing=TRUE)[1])` students), followed by`r names(sort(table(bns$q17), decreasing=TRUE)[2])` (`r unname(sort(table(bns$q17), decreasing=TRUE)[2])` students). There are also `r unname(sort(table(bns$q17), decreasing=TRUE)[3])` students who have an overall GPA between `r names(sort(table(bns$q17), decreasing=TRUE)[3])`.
+</div>
+</div>
 
 <br />
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of overall GPA. </summary>
+<summary> Click here for campus breakdown of overall GPA. </summary>
 ```{r, fig.height=4.2, fig.width=8}
 plot_grpfrq(bns$school, bns$q17, wrap.labels = 25, geom.colors = RColorBrewer::brewer.pal(5, "Set2"), legend.title = "GPA", show.prc = FALSE) + 
   xlab('') + theme(legend.position="top")
@@ -118,7 +135,7 @@ The average number of units that a student in this data is enrolled in is `r rou
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of currently enrolled units. </summary>
+<summary> Click here for campus breakdown of currently enrolled units. </summary>
 ```{r, fig.height=7, fig.width=7}
 ggplot(bns, aes(x=q18, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
   geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Enrolled Units') + ylab("Density") + 
@@ -154,7 +171,7 @@ binary_table(questions, "Yes", rnames, ".")
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown (Transfer Students)
 <details>
-<summary> Click arrow for campus breakdown of transfer students. </summary>
+<summary> Click here for campus breakdown of transfer students. </summary>
 **I identify as a transfer student: `r print_n_reporting('q14_1')`**
 ```{r, fig.width=6.5}
 plot_grpfrq(bns$school, bns$q14_1, wrap.labels = 25, ylim=c(0,83), geom.colors = campus.colors[c(2,1)], legend.title = "Identifies", show.prc = FALSE) + 

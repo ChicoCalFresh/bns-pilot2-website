@@ -30,7 +30,7 @@ The age for participants in the survey range from `r min(bns$age, na.rm = TRUE)`
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of age distribution. </summary>
+<summary> Click here for campus breakdown of age distribution. </summary>
 ```{r, fig.height=7 ,fig.width=7}
 ggplot(bns, aes(x=age, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
   geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Age (Years)') + ylab("Density") + 
@@ -45,18 +45,26 @@ Looking at the age across each campus, it seems that again the distribution seem
 
 ## Gender Identity
 **What is your gender identity? `r print_n_reporting('q7')`**
-```{r}
+
+<div class = "row">
+<div class = "col-md-7">
+```{r, fig.height=3.5, fig.width=4.5}
 plot_frq(bns$q7, sort.frq="desc") + xlab('Gender')
 ```
-`r fig.cap(page.num, "Student Gender Identity")`
+</div>
+  
+<div class = "col-md-4">
+<br><br><br>`r fig.cap(page.num, "Student Gender Identity")` <br>
 
 Of the people who participated in the survey, `r unname(table(bns$q7)['Woman'])` of them identify as a Woman, `r unname(table(bns$q7)['Man'])` identify as a Man, and `r unname(table(bns$q7)['Gender non-binary, non-conforming'])` identify as Gender non-binary, non-conforming. There are also people who preferred not to answer.
+</div>
+</div>
 
 <br />
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of gender distribution. </summary>
+<summary> Click here for campus breakdown of gender distribution. </summary>
 ```{r, fig.height=4.6, fig.width=7}
 plot_grpfrq(bns$school, bns$q7, wrap.labels = 25, ylim=c(0,104), wrap.legend.labels = 20, geom.colors = RColorBrewer::brewer.pal(5, "Set2")[c(2,4,5)], 
             legend.title = "Gender Identity") + 
@@ -70,20 +78,28 @@ Looking at the distribution of gender across the campuses for survey participant
 
 ## Ethnicity
 **In the US Census, Hispanic Origins are not races. Do you identify as Hispanic or Latino or Spanish Origin? `r print_n_reporting('q8')`**
-```{r, fig.height=2.5, fig.width=7}
+
+<div class = "row">
+<div class = "col-md-6">
+```{r, fig.height=3, fig.width=4}
 tmp <- data.frame(q8=bns$q8) %>% mutate(hispanic=as.factor(ifelse(is.na(q8), NA, ifelse(grepl("Yes", q8), "Yes", "No")))) %>% select(-q8)
 
-plot_frq(tmp$hispanic, coord.flip = TRUE, hjust = -0.1, vjust = 0.3) + xlab("")
+plot_frq(tmp$hispanic) + xlab("")
 ```
-`r fig.cap(page.num, "Hispanic Origin Identification")`
+</div>
+  
+<div class = "col-md-5">
+<br><br>`r fig.cap(page.num, "Hispanic Origin Identification")` <br>
 
 For the above figure, Hispanic Origin includes: Mexican, Mexican American, Chicano, Puerto Rican, or another Hispanic/Latino/Spanish origin. It seems that the majority of people identify as some type of Hispanic Origins (`r unname(table(tmp$hispanic)['Yes'])` people), while around a quarter of them do not identify as having Hispanic Origins (`r unname(table(tmp$hispanic)['No'])` people).
+</div>
+</div>
 
 <br />
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of ethnicity distribution. </summary>
+<summary> Click here for campus breakdown of ethnicity distribution. </summary>
 ```{r}
 tmp <- data.frame(q8=bns$q8, school=bns$school) %>% 
   mutate(hispanic=as.factor(ifelse(is.na(q8), NA, ifelse(grepl("Yes", q8), "Yes", "No"))),
@@ -130,7 +146,7 @@ tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped")
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of race distribution. </summary>
+<summary> Click here for campus breakdown of race distribution. </summary>
 ```{r}
 tmp <- bns %>% select(starts_with("eth_"), school) %>% mutate(white=ifelse(is.na(eth_white), NA, ifelse(eth_white == 1, 1, 0)),
                                                               black=ifelse(is.na(eth_african_amer), NA, ifelse(eth_african_amer == 1, 1, 0)),
@@ -176,7 +192,7 @@ The above figure tells us that the majority of people (`r unname(table(bns$q10)[
 
 ## Dependents
 **If you have dependents, then how many of them receive more than 50% of their financial support from you? `r print_n_reporting('q11')`**
-```{r}
+```{r, fig.height=3.5, fig.width=5.5}
 plot_frq(bns$q11) + xlab('Number of Dependents')
 ```
 `r fig.cap(page.num, "Number of Dependents")`
@@ -220,7 +236,7 @@ The highest level of education completed by most students parents is `r names(so
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of parents education distribution. </summary>
+<summary> Click here for campus breakdown of parents education distribution. </summary>
 ```{r, fig.height=5.2, fig.width=8.5}
 plot_grpfrq(bns$school, bns$q13, wrap.labels = 25, wrap.legend.labels = 26, geom.colors = RColorBrewer::brewer.pal(8, "Set2"),
             legend.title = "", show.prc = FALSE) + xlab('') + 
@@ -233,24 +249,32 @@ It seems that for students with parents that have some type of college education
 <br />
 
 ### First Generation
-**`r print_n_reporting('firstgen')`** *Note: students with parents education identified as "Other/Unknown" were not marked as first gen or not since they could not be determined.*
-```{r, fig.height=2.7, fig.width=6}
+*Note: students with parents education identified as "Other/Unknown" were not marked as first gen or not since they could not be determined.* **`r print_n_reporting('firstgen')`**
+
+<div class = "row">
+<div class = "col-md-6">
+```{r, fig.height=3, fig.width=4}
 tmp <- data.frame(firstgen=bns$firstgen) %>% 
   mutate(firstgen=factor(ifelse(is.na(firstgen), NA, ifelse(firstgen == 0, "Not First Gen", "First Gen")), levels=c("Not First Gen", "First Gen")))
 
-plot_frq(tmp$firstgen, ylim=c(0,470), coord.flip=TRUE, hjust = -0.1, vjust = 0.3) + xlab('')
+plot_frq(tmp$firstgen, ylim=c(0,440)) + xlab('')
 ```
-`r fig.cap(page.num, "First Generation College Students")`
-
-As defined by the [University of California](https://www.universityofcalifornia.edu/sites/default/files/First-Generation%20Student%20Success%20at%20UC%208-2017.pdf), we define first generation students as "working to be part of the first generation in their families to earn a four-year university degree". This means based upon parents education, students in the data set are considered first generation if their parents do not have a Bachelor's or Master's degree from a four-year university. From the *Parents Education* graph, all bars highlighted as yellow are considered first gen, while all bars in blue are not (excluding Other/Unknown).
+</div>
+  
+<div class = "col-md-5">
+<br><br><br>`r fig.cap(page.num, "First Generation College Students")` <br>
 
 From this information, we can see that `r unname(sort(table(bns$firstgen), decreasing=TRUE)[1])` students who participated in the survey are First Generation College students and `r unname(sort(table(bns$firstgen), decreasing=TRUE)[2])` students are not First Generation College students. 
+</div>
+</div>
+
+As defined by the [University of California](https://www.universityofcalifornia.edu/sites/default/files/First-Generation%20Student%20Success%20at%20UC%208-2017.pdf), we define first generation students as "working to be part of the first generation in their families to earn a four-year university degree". This means based upon parents education, students in the data set are considered first generation if their parents do not have a Bachelor's or Master's degree from a four-year university. From the *Parents Education* graph, all bars highlighted as yellow are considered first gen, while all bars in blue are not (excluding Other/Unknown).
 
 <br />
 
 #### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of first generation student distribution. </summary>
+<summary> Click here for campus breakdown of first generation student distribution. </summary>
 ```{r, fig.height=4.2}
 tmp <- data.frame(firstgen=bns$firstgen) %>% 
   mutate(firstgen=factor(ifelse(is.na(firstgen), NA, ifelse(firstgen == 0, "Not First Gen", "First Gen")), levels=c("Not First Gen", "First Gen")))

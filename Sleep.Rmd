@@ -44,7 +44,7 @@ Students claim that on average they were feeling sleep deprived (denoted by the 
 
 ### Causes of Sleep Deprivation
 **Select the activities that cause you to feel deprived of sleep (Select all that apply).**
-```{r, fig.height=5, fig.width=8}
+```{r, fig.height=4.7, fig.width=7.2}
 question <- "sleep_loss"
 qlabels <- c("Studying or finishing coursework.",
              "Working a paid, unpaid job or internship.",
@@ -71,21 +71,38 @@ sleep_loss_vars %>%
 
 ## Tired at Work/School
 **How frequently do you feel tired while at work or school? `r print_n_reporting("q88")`**
-```{r}
+
+<div class = "row">
+<div class = "col-md-7">
+```{r, fig.height=3.5, fig.width=4.5}
 plot_frq(bns$q88) + xlab('Frequency')
 ```
-`r fig.cap(page.num, "Frequency of Tired at Work/School")`
+</div>
+  
+<div class = "col-md-4">
+<br><br><br>`r fig.cap(page.num, "Frequency of Tired at Work/School")` <br>
 
 The most common response that people felt tired at work or school was `r tolower(names(sort(table(bns$q88), decreasing = TRUE))[1])` (`r unname(sort(table(bns$q88), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$q88), decreasing = TRUE))[2]` people claimed that they were `r tolower(names(sort(table(bns$q88), decreasing = TRUE))[2])` tired, `r unname(sort(table(bns$q88), decreasing = TRUE))[3]` people claimed that they were `r tolower(names(sort(table(bns$q88), decreasing = TRUE))[3])` tired, and `r unname(sort(table(bns$q88), decreasing = TRUE))[4]` people claimed that they were `r tolower(names(sort(table(bns$q88), decreasing = TRUE))[4])` tired.
+</div>
+</div>
+
 
 ## Fallen Asleep in Class
 **Have you fallen asleep in class in the past 12 months? `r print_n_reporting("q89")`**
-```{r}
-plot_frq(bns$q89, ylim=c(0,240)) + xlab('')
+
+<div class = "row">
+<div class = "col-md-6">
+```{r, fig.height=3, fig.width=4}
+plot_frq(bns$q89, ylim=c(0,260)) + xlab('')
 ```
-`r fig.cap(page.num, "Fallen Asleep in Class (Past Year)")`
+</div>
+  
+<div class = "col-md-5">
+<br><br><br>`r fig.cap(page.num, "Fallen Asleep in Class (Past Year)")` <br> 
 
 The majority of students (`r unname(sort(table(bns$q89), decreasing = TRUE)['No'])` people) claim that they have not fallen asleep in class in the past year, while `r unname(sort(table(bns$q89), decreasing = TRUE)['Yes'])` people claim that they have fallen asleep in class.
+</div>
+</div>
 
 
 ---

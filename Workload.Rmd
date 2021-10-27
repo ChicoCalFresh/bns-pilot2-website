@@ -64,7 +64,7 @@ The average number of paid hours worked per week (denoted by the dotted line) is
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of paid weekly hours. </summary>
+<summary> Click here for campus breakdown of paid weekly hours. </summary>
 ```{r}
 tmp <- tmp2 %>% filter(q19 > 0)
 ```
@@ -128,7 +128,7 @@ The average number of unpaid hours worked per week (denoted by the dotted line) 
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of unpaid weekly hours. </summary>
+<summary> Click here for campus breakdown of unpaid weekly hours. </summary>
 ```{r}
 tmp <- tmp2 %>% filter(q21> 0)
 ```
@@ -197,7 +197,7 @@ The average number of academic hours worked per week (denoted by the dotted line
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of academic workload. </summary>
+<summary> Click here for campus breakdown of academic workload. </summary>
 ```{r}
 tmp <- tmp2 %>% filter(units > 0)
 ```
@@ -237,7 +237,7 @@ The average number of total hours worked per week (denoted by the dotted line) i
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of non-academic workload. </summary>
+<summary> Click here for campus breakdown of non-academic workload. </summary>
 ```{r}
 tmp <- tmp2 %>% filter(NonAcademic > 0)
 ```
@@ -275,7 +275,7 @@ The average number of total hours worked per week (denoted by the dotted line) i
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of total workload. </summary>
+<summary> Click here for campus breakdown of total workload. </summary>
 ```{r}
 tmp <- tmp2 %>% filter(TotalHours > 0 | is.na(TotalHours))
 ```

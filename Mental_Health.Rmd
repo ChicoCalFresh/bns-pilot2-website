@@ -27,12 +27,21 @@ Over the past month, the participants of the survey claimed to have experienced 
 
 ## Mental Health Services 
 **Have you received or tried to receive mental health services over the past 12 months? `r print_n_reporting("q91")`**
-```{r}
+
+<div class = "row">
+<div class = "col-md-6">
+```{r, fig.height=3, fig.width=4}
 plot_frq(bns$q91) + xlab('Seeked Out Services')
 ```
-`r fig.cap(page.num, "Sought Out Mental Health Services")`
+</div>
+  
+<div class = "col-md-5">
+<br><br><br>`r fig.cap(page.num, "Sought Out Mental Health Services")` <br>
 
 Over the past year, the majority of students did not receive or try to receive mental health services (`r unname(sort(table(bns$q91), decreasing = TRUE)['No'])` people). `r unname(sort(table(bns$q91), decreasing = TRUE)['Yes'])` people claim that they have received or try to receive mental health services.
+</div>
+</div>
+
 
 ## Mental Health Feelings
 **In the last month how often have you felt:**

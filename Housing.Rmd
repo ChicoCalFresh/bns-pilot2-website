@@ -18,22 +18,39 @@ The following questions were asking in regards to students current and past hous
 
 ## COVID Housing Impact
 **Has your housing  situation changed due to COVID-19? `r print_n_reporting("q23")`**
+
+<div class = "row">
+<div class = "col-md-6">
 ```{r, fig.height=3, fig.width=4}
 plot_frq(bns$q23, ylim=c(0,315)) + xlab('')
 ```
-`r fig.cap(page.num, "Impact of COVID on Housing")`
+</div>
+  
+<div class = "col-md-5">
+<br><br><br>`r fig.cap(page.num, "Impact of COVID on Housing")` <br> 
 
 There are `r unname(table(bns$q23)['No'])` people that participated in the survey that claim their housing has not changed due to the impacts of COVID. There also are `r unname(table(bns$q23)['Yes'])` people that say their housing situation did change due to the impacts of COVID.
+</div>
+</div>
 
 
 ## Living Near College
 **Are you currently living in the city/area in which you are enrolled in college? `r print_n_reporting("q24")`**
+
+<div class = "row">
+<div class = "col-md-6">
 ```{r, fig.height=3, fig.width=4}
 plot_frq(bns$q24, ylim=c(0,285)) + xlab('')
 ```
-`r fig.cap(page.num, "Living Near Enrolled College")`
+</div>
+  
+<div class = "col-md-5">
+<br><br>`r fig.cap(page.num, "Living Near Enrolled College")` <br>
 
 There are `r unname(table(bns$q24)['No'])` people that participated in the survey that do not currently live in the city/area of their enrolled college. There also are `r unname(table(bns$q24)['Yes'])` people that say they do live in the city/area of their enrolled college. This high "No" value could likely be due to many campuses being remote and students choosing to live at home or in an area with lower cost of living.
+</div>
+</div>
+
 
 ## Current Housing Situation
 **Which best describes your current housing situation?**
@@ -59,11 +76,11 @@ rnames <- c('Was there a rent or mortgage increase that made it difficult to pay
 binary_table(questions, "Yes", rnames, "?")
 ```
 
-*The following were asked as frequency questions to help better understand the living situations of participating students.*
-```{r, fig.height=5, fig.width=9.4}
+*The following were asked as frequency questions to help better understand the living situations of participating students.* <br>
+```{r, fig.height=4.3, fig.width=8}
 p1 <- plot_frq(bns$q34, wrap.title=40, wrap.labels =12, ylim=c(0,360),
                title = 'How many times have you been unsure of where you were going to sleep at night?') + xlab('')
-p2 <- plot_frq(bns$q35, wrap.labels =12, title = 'How many times have you moved?') + xlab('')
+p2 <- plot_frq(bns$q35, wrap.labels =10, title = 'How many times have you moved?') + xlab('')
 grid.arrange(p1, p2, nrow=1)
 rm(p1,p2)
 ```
@@ -159,7 +176,7 @@ bns %>%
 
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
-<summary> Click arrow for campus breakdown of unstable housing. </summary>
+<summary> Click here for campus breakdown of unstable housing. </summary>
 ```{r, fig.width=7.3, fig.height=3.8}
 bns %>% 
   select(homelessness_month, homelessness_year, housing_insecure, school) %>%

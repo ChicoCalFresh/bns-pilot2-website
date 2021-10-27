@@ -45,12 +45,20 @@ plot_likert(questions,
 **How many servings of fruits and vegetables do you usually consume per day? (not including fruit juices) `r print_n_reporting("fruit_veg_serv_daily")`**
 
 *1 serving= 1 medium piece of fruit; 1/2 cup fresh, frozen, or canned fruits/vegetables; 1 cup salad greens; or 1/4 cup dried fruit.*
-```{r, fig.height=3.5}
+
+<div class = "row">
+<div class = "col-md-6">
+```{r, fig.height=3, fig.width=4}
 plot_frq(bns$fruit_veg_serv_daily) + xlab('Daily Fruit & Vegetable Servings')
 ```
-`r fig.cap(page.num, "Daily Fruit & Vegetable Consumption")`
+</div>
+  
+<div class = "col-md-5">
+<br><br><br>`r fig.cap(page.num, "Daily Fruit & Vegetable Consumption")` <br> 
 
 Looking at the daily consumption of fruits and vegetables, the majority of people claim to eat between `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[1]` servings (`r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[2]` people claim to eat `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[2]` servings, `r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[3]` people claim to eat `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[3]` servings, and `r unname(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[4]` people claim to eat `r names(sort(table(bns$fruit_veg_serv_daily), decreasing = TRUE))[4]` servings.
+</div>
+</div>
 
 ### Sugar/Energy Drinks
 **How many ounces of regular soda/cola/pop, sports drink, or energy drinks do you consume each day? `r print_n_reporting("sugar_drinks_ounces_daily")`**
@@ -73,7 +81,7 @@ Looking at the weekly consumption of eating fast food, the majority of people cl
 
 ### Alcohol Consumption
 **How often do you consume at least one serving of alcohol `r print_n_reporting("alc_consumption_weekly")` If consumed, how many servings of alcohol do you consume when you drink alcohol `r print_n_reporting("alc_servings_if_consumed")`**
-```{r, fig.height=4.3, fig.width=8}
+```{r, fig.height=4, fig.width=8}
 p1 <- plot_frq(bns$alc_consumption_weekly, ylim=c(0,310), title="How often do you consume alcohol:") +xlab('Days Consumed')
 p2 <- plot_frq(bns$alc_servings_if_consumed, title="If consumed, how many servings:") + xlab('Number of Alcohol Servings')
 

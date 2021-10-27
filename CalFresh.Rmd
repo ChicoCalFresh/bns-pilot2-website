@@ -31,12 +31,21 @@ Of the participants in the survey `r unname(table(bns$q38)['Yes'])` claim to be 
 
 ### Meals Per Week
 **How many meals per week do you get on your meal plan? `r print_n_reporting("meals_per_week_mp")`**
-```{r, fig.height=2}
-plot_frq(bns$meals_per_week_mp, ylim=c(0,3.8), coord.flip = TRUE, hjust="left", y.offset = 0.05) + xlab('Meals Per Week')
+
+<div class = "row">
+<div class = "col-md-6">
+```{r, fig.height=3, fig.width=4}
+plot_frq(bns$meals_per_week_mp, vjust=-0.2, ylim=c(0,3.7)) + xlab('Meals Per Week')
 ```
-`r fig.cap(page.num, "Meals Per Week from Meal Plan")`
+</div>
+  
+<div class = "col-md-5">
+<br><br><br>`r fig.cap(page.num, "Meals Per Week from Meal Plan")` <br> 
 
 `r unname(table(bns$meals_per_week_mp)['11+'])` people get more than 11 meals per week from Campus Meal Plans, while `r unname(table(bns$meals_per_week_mp)['<11'])` people get less than 11 meals per week from a Campus Meal Plan.
+</div>
+</div>
+
 
 ## Household Size & Income
 The following two questions were asked about household size and monthly income, which were then combined into a single plot:
@@ -80,10 +89,19 @@ The majority of people claim to purchase/prepare food (household size) for `r na
 - Identifies as an EOP student.  
 - Falls under the household size/income from the [Department of Social Services](https://www.cdss.ca.gov/inforesources/cdss-programs/calfresh/eligibility-and-issuance-requirements#income) requirements.
 
-```{r}
-plot_frq(bns$calfresh_eligible, title = "Most Likely to be CalFresh Eligible") + xlab('CalFresh Eligible')
+<div class = "row">
+<div class = "col-md-6">
+```{r, fig.height=3, fig.width=4}
+plot_frq(bns$calfresh_eligible, title = "Most Likely to be CalFresh Eligible", ylim=c(0,330)) + 
+  xlab('CalFresh Eligible')
 ```
-`r fig.cap(page.num, "Eligible for CalFresh")`
+</div>
+  
+<div class = "col-md-5">
+<br><br><br><br>`r fig.cap(page.num, "Eligible for CalFresh")` <br> 
 
 We can see that the majority of participants are eligible for CalFresh (`r unname(table(bns$calfresh_eligible)['Yes'])` people), while `r unname(table(bns$calfresh_eligible)['No'])` people are not eligible for these benefits.
+</div>
+</div>
+
 
