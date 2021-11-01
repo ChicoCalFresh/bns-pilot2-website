@@ -178,7 +178,7 @@ bns %>%
 <details>
 <summary> Click here for campus breakdown of unstable housing. </summary>
 ```{r, fig.width=7.3, fig.height=3.8}
-bns %>% 
+tmp <- bns %>% 
   select(homelessness_month, homelessness_year, housing_insecure, school) %>%
   group_by(school) %>%
   summarise(across(where(is.numeric), mean, na.rm=TRUE)) %>%
@@ -187,8 +187,9 @@ bns %>%
          school = gsub("California State University, ", "", school),
          name = case_when(grepl("month", name) ~ "Homeless (past month)",
                           grepl("year", name) ~ "Homeless (past year)",
-                          grepl("insecure", name) ~ "Housing Insecure")) %>%
-  ggplot(aes(x=school, y=value)) + 
+                          grepl("insecure", name) ~ "Housing Insecure"))
+
+ggplot(data = tmp, aes(x=school, y=value)) + 
   geom_col(aes(fill=school), position=position_dodge()) + 
   scale_fill_manual(values = campus.colors) +
   geom_text(aes(y=value + .01, label=lab)) + 
@@ -198,7 +199,9 @@ bns %>%
 ```
 `r fig.cap(page.num, "Unstable Housing by Campus")`
 
-Are these numbers right?
+From the above figure, and for students who responded to the questions used for determining housing insecurity, we can see that the majority have not experienced homelessness over the past month. However, looking at experiencing homelessness over the past year, we can see a large increase for Chico and around a 2x increase for both Fresno and Northridge. For students who are considered to be housing insecure, we can see around a quarter of the students at Chico and Northridge are identified to have experienced this, with Fresno being a bit lower on average.
+
+
 </details>
 <br />
 

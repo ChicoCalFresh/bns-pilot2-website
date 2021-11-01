@@ -66,7 +66,7 @@ plot_frq(bns$age, type="density") + xlab("x-axis") + ylab("y-axis")
 
 
 ### Barplots
-```{r}
+```{r, fig.height=3.2, fig.width=5}
 tmp <- data.frame(q8=bns$q8) %>% mutate(hispanic=as.factor(ifelse(is.na(q8), NA, ifelse(grepl("Yes", q8), "Yes", "No")))) %>% select(-q8)
 
 plot_frq(tmp$hispanic) + xlab("x-axis") + ylab("y-axis")
