@@ -33,6 +33,22 @@ There are `r unname(table(bns$q23)['No'])` people that participated in the surve
 </div>
 </div>
 
+<br />
+
+### `r emoji.1` `r emoji.2` Campus Breakdown
+<details>
+<summary> Click here for campus breakdown of COVID housing impact. </summary>
+```{r, fig.width=5, fig.height=3.8}
+plot_grpfrq(bns$school, bns$q23, geom.colors = campus.colors[c(2,1)], wrap.labels = 21,
+            legend.title = "Housing Impacted", show.prc = FALSE) + xlab('') + 
+  theme(legend.position="top")
+```
+`r fig.cap(page.num, "COVID Housing Impact by Campus")`
+
+From the figure above, we can see Chico has slightly under twice as many students whose housing was not impacted by COVID. Fresno has slightly over three times as many students whose housing was not impacted by COVID. And Northridge has around 1.5 times as many students whose housing was not impacted by COVID.
+
+</details>
+<br />
 
 ## Living Near College
 **Are you currently living in the city/area in which you are enrolled in college? `r print_n_reporting("q24")`**
@@ -47,10 +63,26 @@ plot_frq(bns$q24, ylim=c(0,285)) + xlab('')
 <div class = "col-md-5">
 <br><br>`r fig.cap(page.num, "Living Near Enrolled College")` <br>
 
-There are `r unname(table(bns$q24)['No'])` people that participated in the survey that do not currently live in the city/area of their enrolled college. There also are `r unname(table(bns$q24)['Yes'])` people that say they do live in the city/area of their enrolled college. This high "No" value could likely be due to many campuses being remote and students choosing to live at home or in an area with lower cost of living.
+There are `r unname(table(bns$q24)['No'])` people that participated in the survey that do not currently live in the city/area of their enrolled college. There also are `r unname(table(bns$q24)['Yes'])` people that say they do live in the city/area of their enrolled college. This high "No" value could likely be due to many campuses being remote and students choosing to live at home or in an area with a lower cost of living.
 </div>
 </div>
 
+<br />
+
+### `r emoji.1` `r emoji.2` Campus Breakdown
+<details>
+<summary> Click here for campus breakdown of living near enrolled campus. </summary>
+```{r, fig.width=5, fig.height=3.8}
+plot_grpfrq(bns$school, bns$q24, geom.colors = campus.colors[c(2,1)], wrap.labels = 21,
+            legend.title = "Live Near College", show.prc = FALSE) + xlab('') + 
+  theme(legend.position="top")
+```
+`r fig.cap(page.num, "Living Near College by Campus")`
+
+From the figure above, we can see that all campuses have the majority of there students living near their enrolled campus. Fresno and Northridge seem to have slightly less students living near campus compared to Chico.
+
+</details>
+<br />
 
 ## Current Housing Situation
 **Which best describes your current housing situation?**

@@ -40,6 +40,41 @@ plot_likert(questions,
 ```
 `r fig.cap(page.num, "Current Eating and Cooking Habits")`
 
+<br />
+
+### `r emoji.1` `r emoji.2` Campus Breakdown
+<details>
+<summary> Click here for campus breakdown of CalFresh eligible students. </summary>
+```{r, fig.height=5.3, fig.width=7.7}
+schools <- c("California State University, Chico", "California State University, Fresno",
+             "California State University, Northridge")
+
+for (i in 1:length(schools)) {
+  tmp <- bns %>% filter(school == schools[i])
+  questions <- tmp %>% select(starts_with("q76_"))
+  names(questions) <- c("I do not regularly have access to a kitchen where I can prepare meals.",
+                        "I have a secure place to store fresh food and pantry items.",
+                        "I do not have enough room to store food items.",
+                        "Thinking about food is stressful/causes anxiety.",
+                        "I wish I had more food to eat.",
+                        "I almost always skip meals.",
+                        "I don't cook or shop for food.",
+                        "No one cooks at home.",
+                        "I do not think about my eating/food habits.")
+  plt <- plot_likert(questions, grid.range = c(1.2, 1.2), wrap.legend.labels = 20,
+                     expand.grid = FALSE, values = "sum.outside", catcount = 5,
+                     geom.colors = likert.pal.5, show.prc.sign = TRUE, reverse.scale = TRUE,
+                     title = schools[i]) +
+    theme_bw() + theme(legend.position = "top")
+  print(plt)
+}
+rm(schools, tmp, plt)
+```
+`r fig.cap(page.num, "Eating/Cooking Habits by Campus")`
+
+</details>
+<br />
+
 ## Daily Consumption
 ### Fruits & Vegetables
 **How many servings of fruits and vegetables do you usually consume per day? (not including fruit juices) `r print_n_reporting("fruit_veg_serv_daily")`**
@@ -60,6 +95,23 @@ Looking at the daily consumption of fruits and vegetables, the majority of peopl
 </div>
 </div>
 
+<br />
+
+### `r emoji.1` `r emoji.2` Campus Breakdown
+<details>
+<summary> Click here for campus breakdown of Daily Fruits & Vegetables. </summary>
+```{r, fig.width=5.8, fig.height=3.8}
+plot_grpfrq(bns$school, bns$fruit_veg_serv_daily, geom.colors = RColorBrewer::brewer.pal(4, "Set2"),
+            wrap.labels = 21, legend.title = "Servings", show.prc = FALSE) + xlab('') + 
+  theme(legend.position="top")
+```
+`r fig.cap(page.num, "Daily Fruits & Vegetables by Campus")`
+
+From the above figure, we can see that the distribution for the number of daily servings of fruits and vegetables for each campus is approximately the same. Fresno seems to have the most students who eat 0 daily servings, while Chico has the most students who consume 5+ daily servings.
+
+</details>
+<br />
+
 ### Sugar/Energy Drinks
 **How many ounces of regular soda/cola/pop, sports drink, or energy drinks do you consume each day? `r print_n_reporting("sugar_drinks_ounces_daily")`**
 ```{r, fig.width=7}
@@ -68,6 +120,31 @@ plot_frq(bns$sugar_drinks_ounces_daily) + xlab('Daily Sugar/Energy Drink Serving
 `r fig.cap(page.num, "Daily Sugar/Energy Drink Consumption")`
 
 Looking at daily consumption of regular soda/cola/pop, sports drink, or energy drinks the majority of people claim to drink `r names(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[1]` ounces (`r unname(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[2]` people claim to drink between `r names(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[2]` ounces, `r unname(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[3]` people claim to drink between `r names(sort(table(bns$sugar_drinks_ounces_daily), decreasing = TRUE))[3]`, and only a small number of participants claim to drink 17 or more ounces per day.
+
+<br />
+
+### `r emoji.1` `r emoji.2` Campus Breakdown
+<details>
+<summary> Click here for campus breakdown of Daily Sugar/Energy Drinks. </summary>
+```{r, fig.width=6.9, fig.height=4.3}
+plot_grpfrq(bns$school, bns$sugar_drinks_ounces_daily,
+            wrap.labels = 28, legend.title = "Ounces", show.prc = FALSE) + xlab('') + 
+  theme(legend.position="top")
+```
+`r fig.cap(page.num, "Daily Sugar/Energy Drinks by Campus")`
+
+```{r}
+bns %>% group_by(school) %>% 
+  summarise(tmp = percent(mean(sugar_drinks_ounces_daily == "0", na.rm = TRUE), accuracy = .1)) %>%
+  rename("School" = school, "Don't Consume Sugar/Energy Drinks" = tmp) %>%
+  kable() %>% kable_styling(bootstrap_options = "striped")
+```
+Table 8.1: Proportion of Student Consumption
+
+From the above figure, we can see that Chico has the most students who do not consume any sugar or energy drinks daily. However, if we look at the number of students relative to their campus size (number of students who responded to the survey question per  campus), we can see that Northridge actually has the highest proportion of students who do not consume any sugar or energy drinks daily.
+
+</details>
+<br />
 
 ## Weekly Consumption
 ### Eating Out

@@ -68,7 +68,7 @@ hist_with_box('q49_1', 29, 3, 0.2, NULL, c(0,32), 'Monthly Support ($)')
 
 The average amount of money received per household using CalFresh (denoted by the dotted line) is \$`r round(mean(bns$q49_1, na.rm=TRUE),2)`, while the median is \$`r round(median(bns$q49_1, na.rm=TRUE),2)`. The values range from \$`r min(bns$q49_1, na.rm=TRUE)` to \$`r max(bns$q49_1, na.rm=TRUE)`. The majority of households who do receive these benefits seems to be getting around \$250 or less per month.
 
-#### Household Size Breakdown
+### Household Size Breakdown
 Below is a breakdown of the average monthly allowance received from CalFresh based on household size.
 ```{r, fig.width=6.5}
 tmp <- bns %>% group_by(fed_through_EBT) %>% 
