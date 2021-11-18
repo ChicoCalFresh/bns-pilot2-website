@@ -243,7 +243,7 @@ plot_likert(questions,
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
 <summary> Click here for campus breakdown of food comfort. </summary>
-```{r, fig.width=7.5}
+```{r, fig.width=8}
 schools <- c("California State University, Chico", "California State University, Fresno",
              "California State University, Northridge")
 
