@@ -45,7 +45,7 @@ plot_likert(questions,
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
 <summary> Click here for campus breakdown of CalFresh eligible students. </summary>
-```{r, fig.height=5.3, fig.width=7.7}
+```{r, fig.height=5.5, fig.width=7.7}
 schools <- c("California State University, Chico", "California State University, Fresno",
              "California State University, Northridge")
 
@@ -100,7 +100,7 @@ Looking at the daily consumption of fruits and vegetables, the majority of peopl
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
 <summary> Click here for campus breakdown of Daily Fruits & Vegetables. </summary>
-```{r, fig.width=5.8, fig.height=3.8}
+```{r, fig.width=6.2, fig.height=4}
 plot_grpfrq(bns$school, bns$fruit_veg_serv_daily, geom.colors = RColorBrewer::brewer.pal(4, "Set2"),
             wrap.labels = 21, legend.title = "Servings", show.prc = FALSE) + xlab('') + 
   theme(legend.position="top")
@@ -126,7 +126,7 @@ Looking at daily consumption of regular soda/cola/pop, sports drink, or energy d
 ### `r emoji.1` `r emoji.2` Campus Breakdown
 <details>
 <summary> Click here for campus breakdown of Daily Sugar/Energy Drinks. </summary>
-```{r, fig.width=6.9, fig.height=4.3}
+```{r, fig.width=7, fig.height=4.7}
 plot_grpfrq(bns$school, bns$sugar_drinks_ounces_daily,
             wrap.labels = 28, legend.title = "Ounces", show.prc = FALSE) + xlab('') + 
   theme(legend.position="top")
@@ -139,7 +139,7 @@ bns %>% group_by(school) %>%
   rename("School" = school, "Don't Consume Sugar/Energy Drinks" = tmp) %>%
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
-Table 8.1: Proportion of Student Consumption
+Table 8.1: Proportion of Students No Consumption
 
 From the above figure, we can see that Chico has the most students who do not consume any sugar or energy drinks daily. However, if we look at the number of students relative to their campus size (number of students who responded to the survey question per  campus), we can see that Northridge actually has the highest proportion of students who do not consume any sugar or energy drinks daily.
 
@@ -156,6 +156,31 @@ plot_frq(bns$eating_out_weekly) + xlab('Weekly Eating Out Frequency')
 
 Looking at the weekly consumption of eating fast food, the majority of people claim to eat out `r names(sort(table(bns$eating_out_weekly), decreasing = TRUE))[1]` times per week (`r unname(sort(table(bns$eating_out_weekly), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$eating_out_weekly), decreasing = TRUE))[2]` people claim to eat out `r names(sort(table(bns$eating_out_weekly), decreasing = TRUE))[2]` times, `r unname(sort(table(bns$eating_out_weekly), decreasing = TRUE))[3]` people claim to eat out `r names(sort(table(bns$eating_out_weekly), decreasing = TRUE))[3]` times, and only a small minority of people claim to eat out 5 or more times per week.
 
+<br />
+
+### `r emoji.1` `r emoji.2` Campus Breakdown
+<details>
+<summary> Click here for campus breakdown of weekly eating out. </summary>
+```{r, fig.width=7, fig.height=4.7}
+plot_grpfrq(bns$school, bns$eating_out_weekly,
+            wrap.labels = 28, legend.title = "Frequency", show.prc = FALSE) + xlab('') + 
+  theme(legend.position="top")
+```
+`r fig.cap(page.num, "Weekly Eating Out by Campus")`
+
+```{r}
+bns %>% group_by(school) %>% 
+  summarise(tmp = percent(mean(eating_out_weekly == "1-2", na.rm = TRUE), accuracy = .1)) %>%
+  rename("School" = school, "Eating Out 1-2 Times Weekly" = tmp) %>%
+  kable() %>% kable_styling(bootstrap_options = "striped")
+```
+Table 8.2: Proportion of Students Eating Out
+
+From the above figure, we can see that Chico has the most students who eat out between 1-2 times per week. Again, if we look at the number of students relative to their campus size (number of students who responded to the survey question per  campus), we can see that Chico also has the highest proportion of students who eat out approximately 1-2 times per week.
+
+</details>
+<br />
+
 ### Alcohol Consumption
 **How often do you consume at least one serving of alcohol `r print_n_reporting("alc_consumption_weekly")` If consumed, how many servings of alcohol do you consume when you drink alcohol `r print_n_reporting("alc_servings_if_consumed")`**
 ```{r, fig.height=4, fig.width=8}
@@ -168,6 +193,31 @@ rm(p1,p2)
 `r fig.cap(page.num, "Weekly Alcohol Consumption - Days & Servings")`
 
 Looking at the weekly alcohol consumption, the majority of people claim to consume alcohol `r names(sort(table(bns$alc_consumption_weekly), decreasing = TRUE))[1]` days per week (`r unname(sort(table(bns$alc_consumption_weekly), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$alc_consumption_weekly), decreasing = TRUE))[2]` people claim to drink `r names(sort(table(bns$alc_consumption_weekly), decreasing = TRUE))[2]` days per week. Only a small number of people claim to drink 3 or more days per week. Of the people who do consume alcohol, the majority consume `r names(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[1]` servings (`r unname(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[2]` people claim to drink `r names(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[2]` servings,  `r unname(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[3]` people claim to drink `r names(sort(table(bns$alc_servings_if_consumed), decreasing = TRUE))[3]` servings, and only a small number drink 5 or more servings.
+
+<br />
+
+### `r emoji.1` `r emoji.2` Campus Breakdown
+<details>
+<summary> Click here for campus breakdown of weekly alcohol consumption. </summary>
+```{r, fig.width=7, fig.height=4.7}
+plot_grpfrq(bns$school, bns$alc_consumption_weekly,
+            wrap.labels = 28, legend.title = "Frequency", show.prc = FALSE) + xlab('') + 
+  theme(legend.position="top")
+```
+`r fig.cap(page.num, "Weekly Drinking by Campus")`
+
+```{r}
+bns %>% group_by(school) %>% 
+  summarise(tmp = percent(mean(alc_consumption_weekly == "0", na.rm = TRUE), accuracy = .1)) %>%
+  rename("School" = school, "Do Not Consume Alcohol" = tmp) %>%
+  kable() %>% kable_styling(bootstrap_options = "striped")
+```
+Table 8.3: Proportion of Students Drinking
+
+From the above figure, we can see that Fresno has the most students who do not consume any alcohol per week. Again, if we look at the number of students relative to their campus size (number of students who responded to the survey question per  campus), we can see that Fresno also has the highest proportion of students who do not consume any alcohol per week. We can also see that Chico has the highest proportion of students who consume alcohol between the three campuses (roughly 38.3%).
+
+</details>
+<br />
 
 ## Food Comfort
 **The following questions pertain to how comfortable you feel about buying or preparing food:**
@@ -187,6 +237,35 @@ plot_likert(questions,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 `r fig.cap(page.num, "Buying/Preparing Food Comfort")`
+
+<br />
+
+### `r emoji.1` `r emoji.2` Campus Breakdown
+<details>
+<summary> Click here for campus breakdown of food comfort. </summary>
+```{r, fig.width=7.5}
+schools <- c("California State University, Chico", "California State University, Fresno",
+             "California State University, Northridge")
+
+for (i in 1:length(schools)) {
+  tmp <- bns %>% filter(school == schools[i])
+  questions <- tmp %>% select(starts_with("q82_"))
+  names(questions) <- c("How confident are you that you can use the same healthy ingredient in more than one meal?",
+                      "How confident are you that you can use basic cooking skills, like cutting fruits and vegetables, measuring out ingredients, or following a recipe?",
+                      "How confident are you that you can buy healthy foods for your family on a budget?",
+                      "How confident are you that you can cook healthy foods for your family on a budget?")
+  plt <- plot_likert(questions, grid.range = c(1, 1), wrap.legend.labels = 20, expand.grid = FALSE,
+                     values = "sum.outside", catcount = 5, geom.colors = likert.pal.5,
+                     show.prc.sign = TRUE, reverse.scale = TRUE, title = schools[i]) +
+    theme_bw() + theme(legend.position = "top")
+  print(plt)
+}
+rm(schools, tmp, plt)
+```
+`r fig.cap(page.num, "Food Comfort by Campus")`
+
+</details>
+<br />
 
 ---
 
