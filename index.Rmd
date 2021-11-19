@@ -1,5 +1,5 @@
 ---
-title: "Exploring patterns of basic needs in college students "
+title: "Exploring Patterns of Basic Needs in College Students "
 output: 
   html_document: 
     toc: no
@@ -8,17 +8,21 @@ editor_options:
   chunk_output_type: console
 ---
 
-### Pilot #2: 415 EOP students at CSU Fresno, Chico and Northridge
+### Pilot #2: 415 EOP students at Fresno State, Chico State, and CSU, Northridge
 
-Food insecurity among college students is a serious problem that can impact student performance in the classroom and ultimately effect student success. The [Center for Healthy Communities](https://www.csuchico.edu/chc/) (CHC) developed the **Basic Needs Student Success Survey (BNS3)** and administered it to undergraduate students in the [Educational Opportunity Program (EOP)](https://www2.calstate.edu/attend/student-services/eop) at [California State University, Chico, CSU](https://www.csuchico.edu/eop/), [Fresno](https://www.fresnostate.edu/studentaffairs/eop/abouteop.html) and [CSU Northridge](https://www.csun.edu/csun-eop) from November 25, 2020 to March 24, 2021. The EOP office assisted in the recruitment and provided computers for students to take the survey. Participants were given a \$25 gift card for their participation. Initially, EOP students were identified as the target population for this survey because of their low-income and first-generation status which makes these students more likely eligible to qualify for CalFresh.
+Food insecurity among college students is a serious problem that can impact student performance in the classroom and ultimately effect student success. The [Center for Healthy Communities](https://www.csuchico.edu/chc/) (CHC) developed the **Basic Needs Student Success Survey (BNS3)** and administered it to undergraduate students participating in the [Educational Opportunity Program (EOP)](https://www2.calstate.edu/attend/student-services/eop) at [Chico State](https://www.csuchico.edu/eop/), [Fresno State](https://www.fresnostate.edu/studentaffairs/eop/abouteop.html) and [CSU, Northridge](https://www.csun.edu/csun-eop) from November 25$^{th}$, 2020 to March 24$^{th}$, 2021. The EOP office assisted in the recruitment and provided computers for students to take the survey. Participants were given a \$25 gift card for their participation. EOP students were identified as the target population for this survey based upon their low-income and first-generation student status, which indicates a higher probability of CalFresh eligibility.
 
-The purpose of this second cross-sectional pilot study was to revise the BNS3 tool and validate whether questions measured student perception of the impact of receiving [CalFresh](https://www.csuchico.edu/calfresh/index.shtml) assistance and the utilization of the campus food pantry on their health, nutrition, cooking confidence, time management and academic performance.
+The purpose of this second cross-sectional pilot study was to revise the BNS3 tool and validate student perception of the following:  
+
+1. The impact of receiving [CalFresh](https://www.csuchico.edu/calfresh/index.shtml) assistance.
+2. The impact of utilization of the campus food pantry on their health, nutrition, cooking
+confidence, time management and academic performance. 
 
 This report provides a top level descriptive analysis of each question in the survey. Researchers and campus staff are encouraged to review the information in this analysis to formulate additional research questions and hypotheses.
 
-**Disclaimer on Missing Data:** Students were allowed to select answers such as "Prefer not to answer" or "I don't know" as responses to the questions in the BNS3 survey. These answers were then converted to missing values, denoted as *NA*, and this is the cause of the missing data for certain questions (not 100% of respondents reporting). The total number of non-missing responses (and percentage of the total data) are provided for each question. 
+**Disclaimer on Missing Data:** Students were allowed to select answers such as "Prefer not to answer" or "I don't know" as responses to every question asked. These answers were then converted to missing values, denoted as *NA*, and this is the cause of the missing data for certain questions (not 100% of respondents reporting). The total number of non-missing responses (and percentage of the total data) are provided for each question. 
 
 <br />
 
-### [`r emo::ji("magnifying_glass_tilted_right")` How to use this website!](Instructions.html)
-*Click above for instructions on how to navigate the website and interpret graphs!*
+### [`r emo::ji("magnifying_glass_tilted_right")` How to use this website](Instructions.html)
+*Click above for instructions on how to navigate the website and interpret graphs.*

@@ -11,7 +11,7 @@
 
 
 
-<title>Instructions.utf8</title>
+<title>Website Navigation</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -366,7 +366,7 @@ div.tocify {
 </li>
 <li>
   <a href="Instructions.html">
-    <span class="fas fa-search"></span>
+    <span class="fas fa-chalkboard-teacher"></span>
      
   </a>
 </li>
@@ -382,26 +382,25 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Website Navigation</h1>
 
 </div>
 
 
-<div id="website-navigation" class="section level1">
-<h1>Website Navigation</h1>
 <ul>
-<li>The website is a tool to present exploratory data analysis results to the public, for both general survey results and campus breakdown.</li>
-<li>Each tab on the header of the website corresponds to a set of questions within the Basic Needs Survey. Some of these tabs have a drop down menu to group questions even further as well.</li>
-<li>Each page on the website contains a brief paragraph at the top which explains a general overview of questions captured on the page.</li>
+<li>The website is a tool to present exploratory data analysis results. Results are shown for all campuses combined, and for each campus separately.</li>
+<li>Each tab on the header of the website corresponds to a set of questions within the Basic Needs Survey. Some of these tabs have a drop-down menu (denoted by a down arrow) to further organize questions by topics.</li>
+<li>The top of each page contains a brief paragraph which explains a general overview of questions captured on the page.</li>
 <li>Within the page, questions were plotted using the most appropriate style for the questions (histogram, barplot, table, etc.). Each graph then has a brief description below it analyzing the results of the graph with the appropriate summary statistics (minimum, mean, max, proportions, etc.).</li>
 </ul>
 <div id="the-drop-down-menu" class="section level3">
 <h3>The Drop Down Menu</h3>
 <ul>
-<li>Campus breakdowns were added within pages below the figures of the general survey data. They’re hidden drop down menu’s like the one below:</li>
+<li>The per-campus results for each question are hidden in drop down menus denoted by the campus and chart icons:</li>
 </ul>
 <details>
 <summary>
-🏫 📊 Click anywhere on this text to open the drop down!
+🏫 📊 Click anywhere on this text to open the drop down.
 </summary>
 <img src="Instructions_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" />
 </details>
@@ -412,39 +411,12 @@ div.tocify {
 </ul>
 <p><br /></p>
 </div>
-</div>
-<div id="graph-interpretation" class="section level1">
-<h1>Graph Interpretation</h1>
+<div id="figure-interpretation" class="section level1">
+<h1>Figure Interpretation</h1>
 <ul>
-<li>Most questions fall under one of the following types of figure styles, some of which may be new to you. Below are some helpful notes on how to interpret these graphs.</li>
+<li>Most questions fall under one of the following types of figure styles. Here are some notes on how to interpret them</li>
 </ul>
-<div id="histogram-with-boxplot" class="section level3">
-<h3>Histogram with Boxplot</h3>
-<p><img src="Instructions_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" /> Figure 1.1: Figure Caption</p>
-<ul>
-<li>Above is a graph type used for plotting numeric questions, a histogram with a boxplot and scatter points.</li>
-<li><strong>Histogram</strong>: the bottom part of the graph, these bars show the occurrence (y-axis) of our variable of interest (x-axis). The higher the bar, the more frequently the x-axis value occurs. The dotted line represents the mean value (the average across the responses).</li>
-<li><strong>Boxplot</strong>: the blue box with the lines at the top, the box itself represents the middle 50% of the data (25% to 75%). The dark black line within the box represents the median value (where 50% of the data falls below).</li>
-<li><strong>Scatter</strong>: these are the dots that overlay the boxplot. They are used to help show the distribution of the data along with the histogram (number of dots represents number of responses for a given value).</li>
-<li><strong>Figure Caption</strong>: below each graph, a figure number and caption are placed in order to help keep track of the current page and the figure title.</li>
-</ul>
-</div>
-<div id="density-plots" class="section level3">
-<h3>Density Plots</h3>
-<p><img src="Instructions_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" /> Figure 1.2: Figure Caption</p>
-<ul>
-<li>Similar to the histogram above, the <strong>density</strong> plot shows the distribution for a numeric variable of interest on the x-axis and the “density” of the data on the y-axis (this is how often the value occurs in the data).</li>
-<li>The smooth curve helps show the distribution of the data (as a continuous variable).</li>
-</ul>
-</div>
-<div id="barplots" class="section level3">
-<h3>Barplots</h3>
-<p><img src="Instructions_files/figure-html/unnamed-chunk-5-1.png" width="480" style="display: block; margin: auto;" /> Figure 1.3: Figure Caption</p>
-<ul>
-<li><strong>Barplots</strong> were used to graph questions which had nominal or ordinal responses (labeled data that’s separated into different groups). The x-axis is the response option, and the y-axis is the frequency in which they occured.</li>
-<li>The numbers above the bars represent the total respondents in the given group, as well as the percent of the data that they comprise.</li>
-</ul>
-</div>
+<p><br></p>
 <div id="tables" class="section level3">
 <h3>Tables</h3>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
@@ -491,22 +463,64 @@ Response # (%)
 <li>The left column represents the questions along with the numbers of students who responded to the question.</li>
 <li>The right column represents the number of student who responded a certain way, along with the percent that responded this way (out of all the students in total that responded).</li>
 </ul>
+<p><br></p>
+</div>
+<div id="barplots" class="section level3">
+<h3>Barplots</h3>
+<p><img src="Instructions_files/figure-html/unnamed-chunk-4-1.png" width="480" style="display: block; margin: auto;" /> Figure 1.1: Figure Caption</p>
+<ul>
+<li><strong>Barplots</strong> were used to graph questions which had nominal or ordinal responses (labeled data that’s separated into different groups). The x-axis is the response option, and the y-axis is the frequency in which they occured.</li>
+<li>The numbers above the bars represent the total respondents in the given group, as well as the percent of the data that they comprise.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="density-plots" class="section level3">
+<h3>Density Plots</h3>
+<p><img src="Instructions_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" /> Figure 1.2: Figure Caption</p>
+<ul>
+<li>Similar to the histogram above, the <strong>density</strong> plot shows the distribution for a numeric variable of interest on the x-axis and the “density” of the data on the y-axis (this is how often the value occurs in the data).</li>
+<li>The smooth curve helps show the distribution of the data (as a continuous variable).</li>
+</ul>
+<p><br></p>
+</div>
+<div id="histogram-with-boxplot" class="section level3">
+<h3>Histogram with Boxplot</h3>
+<p><img src="Instructions_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;" /> Figure 1.3: Figure Caption</p>
+<ul>
+<li>Above is a graph type used for plotting numeric questions, a histogram with a boxplot and scatter points.</li>
+<li><strong>Histogram</strong>: the bottom part of the graph, these bars show the occurrence (y-axis) of our variable of interest (x-axis). The higher the bar, the more frequently the x-axis value occurs. The dotted line represents the mean value (the average across the responses).</li>
+<li><strong>Boxplot</strong>: the blue box with the lines at the top, the box itself represents the middle 50% of the data (25% to 75%). The dark black line within the box represents the median value (where 50% of the data falls below).</li>
+<li><strong>Scatter</strong>: these are the dots that overlay the boxplot. They are used to help show the distribution of the data along with the histogram (number of dots represents number of responses for a given value).</li>
+<li><strong>Figure Caption</strong>: below each graph, a figure number and caption are placed in order to help keep track of the current page and the figure title.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="likert-plots" class="section level3">
+<h3>Likert Plots</h3>
+<p><img src="Instructions_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ul>
+<li>The <strong>Likert plot</strong> is a barplot visualization for a Likert scale, which is used to measure feelings/opinions for a specific question.<br />
+</li>
+<li>The center line (0%) divides the responses into two groups, such as above where the left side of the chart represents often/sometimes true and the right hand side represents never true.<br />
+</li>
+<li>The percentages represent the proportion of the data for which the “group” composes.<br />
+</li>
+<li>The (n=#) next to the question denotes how many students responded to a specific question. The values can vary for each question within the same plot.</li>
+</ul>
 </div>
 </div>
 
+
+<br> 
 
 <hr>
 
 <h3>Funding</h3>
 
 Partially funded by USDA SNAP, known in California as CalFresh, an equal opportunity provider and employer, and the California Department of  Social Services. Any use of these results in further work must use the following citation: 
-
-<br> 
-
+<br> <br> 
 <i>Center for Healthy Communities, "Basic Needs Survey", June 2021. Retrieved on xx-xxx-xxxx from https://chicocalfresh.github.io/bns-pilot2-website/index.html</i>
-
-<br>
-
+<br> <br> 
 <img src="CHC_Logo.png" alt="CHC Logo" width="300" height="85">
 
 

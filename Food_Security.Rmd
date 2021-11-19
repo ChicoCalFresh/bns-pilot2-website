@@ -24,7 +24,7 @@ The following questions were asked in regards to students feelings towards food 
 questions <- bns %>% select(q64, q65, q66)
 names(questions) <- c("I/We worried whether food would run out before I/we got money to buy more.",
                       "The food that I/we bought just didn’t last, and I/we didn’t have money to get more.",
-                      "“I/We couldn’t afford to eat balanced meals.")
+                      "I/We couldn’t afford to eat balanced meals.")
 plot_likert(questions,
             grid.range = c(1.2, 1.2),
             wrap.legend.labels = 20,

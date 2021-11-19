@@ -31,7 +31,7 @@ navbar:
           href: Sleep.html
         - text: "Mental Health"
           href: Mental_Health.html
-    - icon: fa-search
+    - icon: fa-chalkboard-teacher
       href: Instructions.html
       
 output:

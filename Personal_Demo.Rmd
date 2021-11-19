@@ -15,12 +15,12 @@ source("common_code.R")
 page.num <- 1
 ```
 
-The following set of questions were asked in regards to the students personal demographics. This includes the students age at the time of the survey (2020), ethnicities they identify as, and the number of dependents they are responsible for taking care of. They were also asked about parents education, which will help us identify first generation college students based on certain criteria.
+The following set of questions were asked in regards to the students' personal demographics. This includes the students' age at the time of the survey (2020), ethnicities they identify as, and the number of dependents they are responsible for taking care of. They were also asked about parents' education, which will help us identify first generation college students based on certain criteria.
 
 ## Age
-**The following was determined by taking the difference between birthdate and the time at which the survey was completed `r print_n_reporting('age')`**
+*The following was determined by taking the difference between birth date and the time at which the survey was completed `r print_n_reporting('age')`*
 ```{r}
-hist_with_box('age', 93, 15, 0.3, 1, c(0,105), 'Age (Years)')
+hist_with_box('age', 93, 15, 0.3, 1, c(0,105), 'Age (Years)') + ylab("Count")
 ```
 `r fig.cap(page.num, "Student Age Distribution")`
 
@@ -33,7 +33,8 @@ The age for participants in the survey range from `r min(bns$age, na.rm = TRUE)`
 <summary> Click here for campus breakdown of age distribution. </summary>
 ```{r, fig.height=7 ,fig.width=7}
 ggplot(bns, aes(x=age, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
-  geom_density(alpha=0.4, color="black") + facet_wrap(~school, dir="v", scales='free') + xlab('Age (Years)') + ylab("Density") + 
+  geom_density(alpha=0.4, color="black") + ylim(0, 0.23) + 
+  facet_wrap(~school, dir="v", scales='free') + xlab('Age (Years)') + ylab("Density") + 
   theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
   scale_fill_manual(values=campus.colors)
 ```
@@ -131,7 +132,7 @@ tmp <- bns %>% select(starts_with("eth_")) %>% mutate(white=ifelse(is.na(eth_whi
                                                                        ifelse((eth_pacific_islander == 1 | eth_chamorro == 1 | eth_hawaiian == 1 |
                                                                         eth_samoan == 1), 1, 0))) %>% select(15:19)
 ```
-**What race do you identify as? Select all that apply `r print_n_reporting_tmp('white')`** *Note that races were collapsed from an original 14 options down to 5 broad groups defined by [census.gov](https://www.census.gov/quickfacts/fact/note/US/RHI625219) (follow link to see what specific races fall under the following groups).*
+**What race do you identify as? Select all that apply `r print_n_reporting_tmp('white')`** *Note that races were collapsed from an original 14 options down to 5 broad groups defined by [census.gov](https://www.census.gov/quickfacts/fact/note/US/RHI625219).*
 
 Table 1.1: Student Race Identification
 ```{r}
@@ -211,8 +212,7 @@ plot_frq(dep.ages.df$Ages, type='histogram', show.mean = TRUE, ylim=c(0,32), xli
 ```
 `r fig.cap(page.num, "Dependent Age Distribution")`
 
-From the above figure, the majority of dependents are under the age of 18. The ages of these dependents ranges from `r min(dep.ages)` to `r max(dep.ages)` with a standard deviation of `r round(sd(dep.ages),2)`. The average age for a dependent is `r round(mean(dep.ages),2)` while the median age is `r round(median(dep.ages),2)`. The most common dependent age is `r names(sort(table(dep.ages), decreasing=TRUE)[1])`, which appears `r unname(sort(table(dep.ages), decreasing=TRUE)[1])` times in the data.
-
+From the above figure, the majority of dependents are under the age of 18. The ages of these dependents ranges from `r min(dep.ages)` to `r max(dep.ages)` with a standard deviation of `r round(sd(dep.ages),2)`. The average age for a dependent is `r round(mean(dep.ages),2)` while the median age is `r round(median(dep.ages),2)`. The most common dependent age is `r names(sort(table(dep.ages), decreasing=TRUE)[1])`, with `r unname(sort(table(dep.ages), decreasing=TRUE)[1])` parents having dependents of this age.
 ## Parents Education
 **What is the highest level of education completed by your parents/guardians? `r print_n_reporting('q13')`**
 ```{r, fig.height=4.5, fig.width=8}
