@@ -17,10 +17,12 @@ page.num <- 1
 
 The following set of questions were asked in regards to the students' personal demographics. This includes the students' age at the time of the survey (2020), ethnicities they identify as, and the number of dependents they are responsible for taking care of. They were also asked about parents' education, which will help us identify first generation college students based on certain criteria.
 
+<br>
+
 ## Age
 *The following was determined by taking the difference between birth date and the time at which the survey was completed `r print_n_reporting('age')`*
 ```{r}
-hist_with_box('age', 93, 15, 0.3, 1, c(0,105), 'Age (Years)') + ylab("Count")
+hist_with_box('age', 93, 15, 0.3, 1, c(0,105), 'Age (Years)')
 ```
 `r fig.cap(page.num, "Student Age Distribution")`
 
@@ -50,7 +52,7 @@ Looking at the age across each campus, it seems that again the distribution seem
 <div class = "row">
 <div class = "col-md-7">
 ```{r, fig.height=3.5, fig.width=4.5}
-plot_frq(bns$q7, sort.frq="desc") + xlab('Gender')
+plot_frq(bns$q7, sort.frq="desc") + xlab('Gender') + ylab("Frequency")
 ```
 </div>
   
@@ -69,7 +71,7 @@ Of the people who participated in the survey, `r unname(table(bns$q7)['Woman'])`
 ```{r, fig.height=4.6, fig.width=7}
 plot_grpfrq(bns$school, bns$q7, wrap.labels = 25, ylim=c(0,104), wrap.legend.labels = 20, geom.colors = RColorBrewer::brewer.pal(5, "Set2")[c(2,4,5)], 
             legend.title = "Gender Identity") + 
-  xlab('') + theme(legend.position="top")
+  xlab('') + ylab("Frequency") + theme(legend.position="top")
 ```
 `r fig.cap(page.num, "Gender Identification by Campus")`
 
@@ -85,7 +87,7 @@ Looking at the distribution of gender across the campuses for survey participant
 ```{r, fig.height=3, fig.width=4}
 tmp <- data.frame(q8=bns$q8) %>% mutate(hispanic=as.factor(ifelse(is.na(q8), NA, ifelse(grepl("Yes", q8), "Yes", "No")))) %>% select(-q8)
 
-plot_frq(tmp$hispanic) + xlab("")
+plot_frq(tmp$hispanic) + xlab("") + ylab("Frequency")
 ```
 </div>
   
@@ -108,7 +110,7 @@ tmp <- data.frame(q8=bns$q8, school=bns$school) %>%
 ```
 
 ```{r, fig.height=4.5, fig.width=7}
-plot_grpfrq(tmp$school, tmp$hispanic, wrap.labels = 25, geom.colors = campus.colors[c(2,1)], legend.title = "Identifies") + xlab("") + theme(legend.position="top")
+plot_grpfrq(tmp$school, tmp$hispanic, wrap.labels = 25, geom.colors = campus.colors[c(2,1)], legend.title = "Identifies") + xlab("") + ylab("Frequency") + theme(legend.position="top")
 ```
 `r fig.cap(page.num, "Hispanic Origin Identification by Campus")`
 
@@ -194,11 +196,13 @@ The above figure tells us that the majority of people (`r unname(table(bns$q10)[
 ## Dependents
 **If you have dependents, then how many of them receive more than 50% of their financial support from you? `r print_n_reporting('q11')`**
 ```{r, fig.height=3.5, fig.width=5.5}
-plot_frq(bns$q11) + xlab('Number of Dependents')
+plot_frq(bns$q11) + xlab('Number of Dependents') + ylab("Frequency")
 ```
 `r fig.cap(page.num, "Number of Dependents")`
 
 The majority of people who participated in the survey (`r unname(table(bns$q11)['0'])`) claim to have 0 dependents. `r unname(table(bns$q11)['1'])` people claim to have only 1 dependent, and only `r nrow(bns[bns$q11 > 1, 'q11'] %>% na.omit())` people have 2 or more dependents.
+
+<br>
 
 ### Dependent Ages
 **What is/are the age(s) of these dependent(s)?**
@@ -208,11 +212,15 @@ dep.ages.df <- data.frame(Ages=dep.ages) # wouldn't compile in a single line for
 
 plot_frq(dep.ages.df$Ages, type='histogram', show.mean = TRUE, ylim=c(0,32), xlim=c(0,103), show.mean.val = FALSE, show.sd = FALSE) +
   geom_boxplot(data=dep.ages.df, aes(x=Ages, y=28), alpha=0.6, width=5, fill="#336699") +
-  geom_jitter(data=dep.ages.df, aes(x=Ages, y=28), position=position_jitter(height=2)) + xlab('Dependent Ages (Years)')
+  geom_jitter(data=dep.ages.df, aes(x=Ages, y=28), position=position_jitter(height=2)) +
+  xlab('Dependent Ages (Years)') + ylab("Frequency")
 ```
 `r fig.cap(page.num, "Dependent Age Distribution")`
 
 From the above figure, the majority of dependents are under the age of 18. The ages of these dependents ranges from `r min(dep.ages)` to `r max(dep.ages)` with a standard deviation of `r round(sd(dep.ages),2)`. The average age for a dependent is `r round(mean(dep.ages),2)` while the median age is `r round(median(dep.ages),2)`. The most common dependent age is `r names(sort(table(dep.ages), decreasing=TRUE)[1])`, with `r unname(sort(table(dep.ages), decreasing=TRUE)[1])` parents having dependents of this age.
+
+<br>
+
 ## Parents Education
 **What is the highest level of education completed by your parents/guardians? `r print_n_reporting('q13')`**
 ```{r, fig.height=4.5, fig.width=8}
@@ -224,7 +232,7 @@ tmp <- as.data.frame(table(bns$q13)) %>%
 ggplot(tmp, aes(x=factor(Var1, levels=Var1), y=Freq, fill=FirstGen, label=Percent)) + geom_col(colour = "black") + 
   scale_fill_manual(values=c("#336699", "#ecf0b7")) + geom_text(aes(y=Freq+13)) + ylim(0,220) + 
   scale_x_discrete(labels=label_wrap(10)) +   geom_text(aes(y=Freq + 29, label=Freq)) + 
-  xlab('') + ylab('') + theme(legend.position = "none")
+  xlab('') + ylab("Frequency") + theme(legend.position = "none")
 ```
 `r fig.cap(page.num, "Parents Highest Education")`
 
@@ -239,7 +247,7 @@ The highest level of education completed by most students parents is `r names(so
 <summary> Click here for campus breakdown of parents education distribution. </summary>
 ```{r, fig.height=5.2, fig.width=8.5}
 plot_grpfrq(bns$school, bns$q13, wrap.labels = 25, wrap.legend.labels = 26, geom.colors = RColorBrewer::brewer.pal(8, "Set2"),
-            legend.title = "", show.prc = FALSE) + xlab('') + 
+            legend.title = "", show.prc = FALSE) + xlab('') + ylab("Frequency") +  
   theme(legend.position="top", legend.key = element_rect(size = 6), legend.key.size = unit(1, "cm"))
 ```
 `r fig.cap(page.num, "Parents Highest Education by Campus")`
@@ -257,7 +265,7 @@ It seems that for students with parents that have some type of college education
 tmp <- data.frame(firstgen=bns$firstgen) %>% 
   mutate(firstgen=factor(ifelse(is.na(firstgen), NA, ifelse(firstgen == 0, "Not First Gen", "First Gen")), levels=c("Not First Gen", "First Gen")))
 
-plot_frq(tmp$firstgen, ylim=c(0,440)) + xlab('')
+plot_frq(tmp$firstgen, ylim=c(0,440)) + xlab('') + ylab("Frequency")
 ```
 </div>
   
@@ -280,7 +288,7 @@ tmp <- data.frame(firstgen=bns$firstgen) %>%
   mutate(firstgen=factor(ifelse(is.na(firstgen), NA, ifelse(firstgen == 0, "Not First Gen", "First Gen")), levels=c("Not First Gen", "First Gen")))
 
 plot_grpfrq(bns$school, tmp$firstgen, wrap.labels = 25, ylim=c(0,150), geom.colors = campus.colors[c(2,1)], legend.title = "Status", show.prc = FALSE) + 
-  xlab('') + theme(legend.position="top")
+  xlab('') + ylab("Frequency") + theme(legend.position="top")
 ```
 `r fig.cap(page.num, "First Generation College Students by Campus")`
 

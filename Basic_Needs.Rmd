@@ -16,6 +16,8 @@ page.num <- 6
 
 The following questions were asked in regards to the participation and impact of Basic Needs programs and services on students lives. Students were asked to evaluate how they feel these programs have benefited them both academically and non-academically, as well as barriers/reasons in regards to why they are not using certain programs. This includes programs such as CalFresh, Food Pantries, Meal Programs, Medi-Cal (also known as Medi-Cade in the United States), and Emergency Housing Services. 
 
+<br>
+
 # Participation
 **Pick all Basic Needs Programs and Services that you participate in (mark all that apply):**
 ```{r, fig.width=8.5}
@@ -42,6 +44,8 @@ plot_likert(questions,
 ```
 `r fig.cap(page.num, "Participation in Basic Needs Programs")`
 
+<br>
+
 # Impact
 
 ## CalFresh EBT
@@ -59,6 +63,8 @@ rm(p1,p2)
 
 Looking at the above graphs, the majority of people apply for CalFresh EBT as an individual (`r unname(table(bns$q47)['As an individual'])` people) while only `r unname(table(bns$q47)['With other people in my household'])` people applied with other people in their household. Similarly, the majority of people claimed only `r names(sort(table(bns$fed_through_EBT), decreasing = TRUE))[1]` person is fed through the EBT card (`r unname(sort(table(bns$fed_through_EBT), decreasing = TRUE))[1]` people). `r unname(sort(table(bns$fed_through_EBT), decreasing = TRUE))[2]` people claim to feed `r names(sort(table(bns$fed_through_EBT), decreasing = TRUE))[2]` people through the EBT card, and only a small amount of people claim to feed 5 or more people through the EBT card.
 
+<br>
+
 ### Monthly CalFresh Money
 **How much money do you receive from CalFresh each month? `r print_n_reporting("q49_1")`**
 ```{r, fig.width=7}
@@ -68,6 +74,8 @@ hist_with_box('q49_1', 29, 3, 0.2, NULL, c(0,32), 'Monthly Support ($)')
 
 The average amount of money received per household using CalFresh (denoted by the dotted line) is \$`r round(mean(bns$q49_1, na.rm=TRUE),2)`, while the median is \$`r round(median(bns$q49_1, na.rm=TRUE),2)`. The values range from \$`r min(bns$q49_1, na.rm=TRUE)` to \$`r max(bns$q49_1, na.rm=TRUE)`. The majority of households who do receive these benefits seems to be getting around \$250 or less per month.
 
+<br>
+
 ### Household Size Breakdown
 Below is a breakdown of the average monthly allowance received from CalFresh based on household size.
 ```{r, fig.width=6.5}
@@ -75,10 +83,10 @@ tmp <- bns %>% group_by(fed_through_EBT) %>%
   summarise(avg = round(mean(q49_1, na.rm=TRUE),2)) %>% 
   na.omit() %>% mutate(HH.avg = round(avg/fed_through_EBT, 2),
                        fed_through_EBT = as.character(fed_through_EBT),
-                       avg = paste0("$", as.character(avg)))
+                       avg = paste0("$", format(avg, nsmall=2)))
 
 tmp[9,] <- list(" ", " ", round(mean(tmp$HH.avg),2))
-tmp <- tmp %>% mutate(HH.avg = paste0("$", as.character(HH.avg)))
+tmp <- tmp %>% mutate(HH.avg = paste0("$", format(HH.avg, nsmall=2)))
 colnames(tmp) <- c("Household Size", "Household Average", "Per Person Average")
 
 tmp %>% kable() %>% kable_styling(bootstrap_options = "striped") %>%
@@ -87,6 +95,8 @@ tmp %>% kable() %>% kable_styling(bootstrap_options = "striped") %>%
 Table 6.1: CalFresh by Household Size  
 
 Looking at the above table, the general pattern seems to be that as household size increases so does the monthly average assistance from CalFresh. The household average was divided by the household size to find the "per person average" for CalFresh assistance. From taking the average of these values, we can see that a person on CalFresh receives an average monthly assistance of `r tmp[9,3]`.
+
+<br>
 
 ### Is This Enough?
 *Note: for the first graph on if the allowance is enough we have `r print_n_reporting("q50")` And for the second graph on when people run out we have `r print_n_reporting("q51")`*
@@ -100,6 +110,8 @@ rm(p1,p2)
 `r fig.cap(page.num, "Enough Monthly Allowance and Time of Exhaustion")`
 
 Of the people who do receive money from CalFresh, `r unname(table(bns$q50)['Yes'])` of them claim that it is enough money to provide healthy food for a month and `r unname(table(bns$q50)['No'])` of them feel that it is not enough. People who do not feel it is enough money typically run out of CalFresh money in either the second week (`r unname(table(bns$q51)['Second week after receiving benefits'])` people) or third week (`r unname(table(bns$q51)['Third week after receiving benefits'])` people). A small group also run out within the first week, while an even smaller minority run out in the fourth week.
+
+<br>
 
 ## CalFresh Benefits
 **While you received CalFresh benefits:**
@@ -136,7 +148,7 @@ plot_likert(questions[1:11],
             geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 
-plot_likert(questions[11:22],
+plot_likert(questions[12:22],
             grid.range = c(1.2, 1.2),
             wrap.legend.labels = 20,
             expand.grid = FALSE,
@@ -146,6 +158,8 @@ plot_likert(questions[11:22],
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 `r fig.cap(page.num, "Perceived Benefits of CalFresh")`
+
+<br>
 
 ## CalFresh Barriers
 **What are the reasons you do not have CalFresh or have never used CalFresh? (Select all that apply).**
@@ -174,6 +188,8 @@ cf_barrier_vars %>%
   select(Measure = xlab, "Yes (%)" = pct_lab) %>% 
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
+
+<br>
 
 ## Campus Food Pantry
 **For the following questions, please choose how much you agree or disagree with the impact campus food pantries has or had on your life. While I utilized campus food pantry/pantries:**
@@ -210,7 +226,7 @@ plot_likert(questions[1:11],
             geom.colors = likert.pal.5,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 
-plot_likert(questions[11:22],
+plot_likert(questions[12:22],
             grid.range = c(1.2, 1.2),
             wrap.legend.labels = 20,
             expand.grid = FALSE,
@@ -221,14 +237,18 @@ plot_likert(questions[11:22],
 ```
 `r fig.cap(page.num, "Perceived Impact of Campus Food Pantry")`
 
+<br>
+
 ### Food Pantry Use
 **How often do you normally use the food pantry or if you are not currently using it, how often did you use it? `r print_n_reporting("q54")`**
-```{r}
-plot_frq(bns$q54, wrap.labels = 15) + xlab('Food Pantry Use Frequency')
+```{r, fig.height=3.5}
+plot_frq(bns$q54, wrap.labels = 15) + xlab('Food Pantry Use Frequency') + ylab("Frequency")
 ```
 `r fig.cap(page.num, "Food Pantry Use Frequency")`
 
 When people use the food pantry, the majority do not use it every week (`r unname(sort(table(bns$q54), decreasing = TRUE)['Not every week'])` people). `r unname(sort(table(bns$q54), decreasing = TRUE)['About once a week'])` people claim to use it about once a week, `r unname(sort(table(bns$q54), decreasing = TRUE)['More than once a week'])` people use it more than once a week, and `r unname(sort(table(bns$q54), decreasing = TRUE)['Other'])` people claim other uses.
+
+<br>
 
 ### Reasons Not Using Food Pantries
 **What are the reasons for you to not go to campus food pantries? (Select all that apply).**
@@ -251,6 +271,8 @@ pantry_vars %>%
   select(Measure = xlab, "Yes (%)" = pct_lab) %>% 
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
+
+<br>
 
 ## Restaurant Meal Program (RMP)
 **While you participated in the Restaurant Meal Program (RMP):**
@@ -280,7 +302,9 @@ plot_likert(questions,
 ```
 `r fig.cap(page.num, "Perceived Impact of Restaurant Meal Program (RMP)")`
 
-### Reasons Not Using RMP
+<br>
+
+### Reasons For Not Using RMP
 **What are the reasons for you to not have RMP or have never used RMP? (Select all that apply).**
 ```{r}
 question <- "RMP"
@@ -302,6 +326,8 @@ rmp_vars %>%
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
 
+<br>
+
 ## Medi-Cal
 **Knowing that you have Medi-Cal:**
 ```{r, fig.width=8.5}
@@ -322,6 +348,8 @@ plot_likert(questions,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 `r fig.cap(page.num, "Perceived Impact of Medi-Cal")`
+
+<br>
 
 ### Reasons Not Using Medi-Cal
 **What are the reasons you do not have Medi-Cal or have never used Medi-Cal? (Select all that apply).**
@@ -347,7 +375,10 @@ medical_vars %>%
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
 
+<br>
+
 ## Emergency Housing Services (EHS)
+**While you received Emergency Housing Services:**
 ```{r, fig.height=7.5, fig.width=8.5}
 questions <- bns %>% select(starts_with("q62_"))
 names(questions) <- c('I concentrated more in class(es).',
@@ -372,6 +403,8 @@ plot_likert(questions,
             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
 ```
 `r fig.cap(page.num, "Perceived Impact of Emergency Housing Services (EHS)")`
+
+<br>
 
 ### Reasons Not Using EHS
 **What are the reasons you do not have Emergency Housing Services or have never used Emergency Housing Services?**

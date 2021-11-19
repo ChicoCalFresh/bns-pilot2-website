@@ -22,7 +22,7 @@ The following questions were asking in regards to students current and past hous
 <div class = "row">
 <div class = "col-md-6">
 ```{r, fig.height=3, fig.width=4}
-plot_frq(bns$q23, ylim=c(0,315)) + xlab('')
+plot_frq(bns$q23, ylim=c(0,315)) + xlab('') + ylab("Frequency")
 ```
 </div>
   
@@ -40,7 +40,7 @@ There are `r unname(table(bns$q23)['No'])` people that participated in the surve
 <summary> Click here for campus breakdown of COVID housing impact. </summary>
 ```{r, fig.width=5, fig.height=3.8}
 plot_grpfrq(bns$school, bns$q23, geom.colors = campus.colors[c(2,1)], wrap.labels = 21,
-            legend.title = "Housing Impacted", show.prc = FALSE) + xlab('') + 
+            legend.title = "Housing Impacted", show.prc = FALSE) + xlab('') + ylab("Frequency") + 
   theme(legend.position="top")
 ```
 `r fig.cap(page.num, "COVID Housing Impact by Campus")`
@@ -56,7 +56,7 @@ From the figure above, we can see Chico has slightly under twice as many student
 <div class = "row">
 <div class = "col-md-6">
 ```{r, fig.height=3, fig.width=4}
-plot_frq(bns$q24, ylim=c(0,285)) + xlab('')
+plot_frq(bns$q24, ylim=c(0,285)) + xlab('') + ylab("Frequency")
 ```
 </div>
   
@@ -74,7 +74,7 @@ There are `r unname(table(bns$q24)['No'])` people that participated in the surve
 <summary> Click here for campus breakdown of living near enrolled campus. </summary>
 ```{r, fig.width=5, fig.height=3.8}
 plot_grpfrq(bns$school, bns$q24, geom.colors = campus.colors[c(2,1)], wrap.labels = 21,
-            legend.title = "Live Near College", show.prc = FALSE) + xlab('') + 
+            legend.title = "Live Near College", show.prc = FALSE) + xlab('') + ylab("Frequency") + 
   theme(legend.position="top")
 ```
 `r fig.cap(page.num, "Living Near College by Campus")`
@@ -111,7 +111,7 @@ binary_table(questions, "Yes", rnames, "?")
 *The following were asked as frequency questions to help better understand the living situations of participating students.* <br>
 ```{r, fig.height=4.3, fig.width=8}
 p1 <- plot_frq(bns$q34, wrap.title=40, wrap.labels =12, ylim=c(0,360),
-               title = 'How many times have you been unsure of where you were going to sleep at night?') + xlab('')
+               title = 'How many times have you been unsure of where you were going to sleep at night?') + xlab('') + ylab("Frequency")
 p2 <- plot_frq(bns$q35, wrap.labels =10, title = 'How many times have you moved?') + xlab('')
 grid.arrange(p1, p2, nrow=1)
 rm(p1,p2)
@@ -119,6 +119,8 @@ rm(p1,p2)
 `r fig.cap(page.num, "Unsure of Sleeping and Times Moved")`
 
 Over the past 12 months, the majority of people were never unsure of where they would be sleeping (`r unname(table(bns$q34)['Never'])` people ) or have not moved housing (`r unname(table(bns$q35)['None'])` people). For uncertainty in where they would be sleeping, the remaining responses were mostly evenly distributed over the other options. For number of times that a person has moved, `r unname(table(bns$q35)['Once'])` people have claimed they moved once in the last 12 months and `r unname(table(bns$q35)['Twice'])` people have moved twice. Only a small minority have moved 3 or more times in the last 12 months.
+
+<br>
 
 ## Sleeping Places
 **In the last 30 days, or in the past 12 months, have you slept in any of the following places?**  
@@ -170,16 +172,18 @@ tmp2 %>% kable() %>% kable_styling(bootstrap_options = "striped") %>% column_spe
 rm(tmp, tmp2)
 ```
 
+<br>
 
 ## Unstable Housing
 **In the past 12 months, if you have experienced unstable housing, what was the most common reason? `r print_n_reporting("q37")`**
 ```{r, fig.width=8.3}
-plot_frq(bns$q37, wrap.labels = 17, sort.frq = 'desc') + xlab('')
+plot_frq(bns$q37, wrap.labels = 17, sort.frq = 'desc') + xlab('') + ylab("Frequency")
 ```
 `r fig.cap(page.num, "Unstable Housing Identification")`
 
 It seems that of the people who experienced unstable housing, the most common cause was not having enough money to cover housing expenses (`r unname(table(bns$q37)["I did not have enough money to cover housing expenses (rent, mortgage, or utility bill)"])` people). The next most common was cause was from issues with roommates, both having conflicts (`r unname(table(bns$q37)["I had a conflict with someone I was living with"])` people) and them being unable/unwilling to pay living expenses (`r unname(table(bns$q37)["A roommate was unable/unwilling to pay rent or a bill"])` people). 
 
+<br>
 
 ## Housing Insecure & Homeless
 - Students with at least 3 housing insecurity indicators present are housing insecure, they are not otherwise `r print_n_reporting("housing_insecure")`

@@ -72,7 +72,7 @@ hist_with_box <- function(question, bpos, bwidth, jwidth, gsize, ylim, xlab) {
   plot_frq(bns[[question]], type='histogram', show.mean = TRUE, ylim=ylim, show.mean.val = FALSE, show.sd = FALSE, geom.size = gsize) +
     geom_boxplot(data=bns, aes_string(x=question, y=bpos), alpha=0.8, width=bwidth, fill="#587db6") +
     geom_jitter(data=bns, aes_string(x=question, y=bpos), position=position_jitter(width=jwidth, height=floor(bwidth/2.3)), alpha=0.7) + 
-    xlab(xlab)
+    xlab(xlab) + ylab("Frequency")
 }
 
 ## Get percent for variable for given value (ex: Housing - Sleeping Places)

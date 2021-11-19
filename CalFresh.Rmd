@@ -17,7 +17,7 @@ page.num <- 5
 The following questions were asked in regards to criteria laid out by the CalFresh Requirements. This includes U.S. citizenship (or lawful permanent resident), receiving Cal Grant A/B, and receiving food from a campus meal plan. Household size and monthly income is also looked at and broken down into a chart to show CalFresh eligibility. Students were also determined to be eligible or not for CalFresh based on their responses to these criteria questions.
 
 ## CalFresh Criteria
-**Below are a series of Yes/No questions asked in order to help determine if a person is eligible for CalFresh benefits.**
+*Below are a series of Yes/No questions asked in order to help determine if a person is potentially eligible for CalFresh benefits.*
 ```{r}
 qs <- c('q38', 'q39', 'q40', 'q41', 'q44')
 rnames <- c("Are you a U.S. citizen", 
@@ -29,23 +29,27 @@ binary_table(qs, 'Yes', rnames, "?")
 ```
 Of the participants in the survey `r unname(table(bns$q38)['Yes'])` claim to be U.S. citizens and `r unname(table(bns$q38)['No'])` claim to not be U.S. Citizens. For people who were not, `r unname(table(bns$q39)['Yes'])` people claim to be a lawful permanent residents and `r unname(table(bns$q39)['No'])` people claim to not be a lawful permanent residents. There are `r unname(table(bns$q40)['No'])` people who claim not to be approved for work study and `r unname(table(bns$q40)['Yes'])` claim to be approved for work study. There are `r unname(table(bns$q41)['No'])` students who do not receive Cal Grant A or B (composing 12.4% of the data), and `r unname(table(bns$q41)['Yes'])` students who do receive Cal Grant A or B. The majority of people in the data (`r unname(table(bns$q44)['No'])` people) do not receive any meals from a Campus Meal Plan and the `r unname(table(bns$q44)['No'])` people that are on a Campus Meal Plan claim the following assistance below:
 
+<br>
+
 ### Meals Per Week
 **How many meals per week do you get on your meal plan? `r print_n_reporting("meals_per_week_mp")`**
 
 <div class = "row">
 <div class = "col-md-6">
 ```{r, fig.height=3, fig.width=4}
-plot_frq(bns$meals_per_week_mp, vjust=-0.2, ylim=c(0,3.7)) + xlab('Meals Per Week')
+plot_frq(bns$meals_per_week_mp, vjust=-0.2, ylim=c(0,3.7)) + 
+  xlab('Meals Per Week') + ylab("Frequency")
 ```
 </div>
   
 <div class = "col-md-5">
 <br><br><br>`r fig.cap(page.num, "Meals Per Week from Meal Plan")` <br> 
 
-`r unname(table(bns$meals_per_week_mp)['11+'])` people get more than 11 meals per week from Campus Meal Plans, while `r unname(table(bns$meals_per_week_mp)['<11'])` people get less than 11 meals per week from a Campus Meal Plan.
+`r unname(table(bns$meals_per_week_mp)['11+'])` people get more than 11 meals per week from Campus Meal Plans, while `r unname(table(bns$meals_per_week_mp)['< 11'])` people get less than 11 meals per week from a Campus Meal Plan.
 </div>
 </div>
 
+<br>
 
 ## Household Size & Income
 The following two questions were asked about household size and monthly income, which were then combined into a single plot:
@@ -73,14 +77,16 @@ rm(tmp)
 ```
 Table 5.1: Housing Size vs. Income (CalFresh Eligibility)
 
-*In the above graph, cells highlighted in green & bold indicate a person is eligible for CalFresh based on their income and cells highlighted in red & italics indicate a person is not eligible. This information is pulled from the CalFresh requirements section A2 (see below for link).*
+*In the above graph, cells highlighted in green & bold indicate a person is potentially eligible for CalFresh based on their income and cells highlighted in red & italics indicate a person is not eligible. This information is pulled from the CalFresh requirements section A2 (see below for link).*
 
 The majority of people claim to purchase/prepare food (household size) for `r names(sort(table(bns$household_size), decreasing = TRUE))[1]` people (`r unname(sort(table(bns$household_size), decreasing = TRUE))[1]` people claimed this). This is followed by `r unname(sort(table(bns$household_size), decreasing = TRUE))[2]` people claiming to have a household size of `r names(sort(table(bns$household_size), decreasing = TRUE))[2]` person, and `r unname(sort(table(bns$household_size), decreasing = TRUE))[3]` people claiming to have a household size of `r names(sort(table(bns$household_size), decreasing = TRUE))[3]` people. The majority of people's household income (despite household size) seems to be in the range `r names(sort(table(bns$monthly_hh_income), decreasing = TRUE))[1]` (`r unname(sort(table(bns$monthly_hh_income), decreasing = TRUE))[1]` people). As the income bracket increases, the number of people within those bracket decreases drastically. Only `r sum(unname(sort(table(bns$monthly_hh_income), decreasing = TRUE))[6:10])` people claim to have a monthly income greater than \$4,292.
+
+<br>
 
 ## CalFresh Eligible
 **This variable was created under the following criteria `r print_n_reporting("calfresh_eligible")`**
 
-*Disclaimer: only country eligibility workers have the authority to determine official eligibility for CalFresh. These students are just most likely to be eligible based on the below listed criteria.*
+*Disclaimer: only county eligibility workers have the authority to determine official eligibility for CalFresh. These students are just most likely to be eligible based on the below listed criteria.*
 
 - The person is between the ages 18 to 49.  
 - The person is at least a part-time student (6 units per semester for the three campuses in this survey).  
@@ -93,14 +99,14 @@ The majority of people claim to purchase/prepare food (household size) for `r na
 <div class = "col-md-6">
 ```{r, fig.height=3, fig.width=4}
 plot_frq(bns$calfresh_eligible, title = "Most Likely to be CalFresh Eligible", ylim=c(0,330)) + 
-  xlab('CalFresh Eligible')
+  xlab('CalFresh Eligible') + ylab("Frequency")
 ```
 </div>
   
 <div class = "col-md-5">
 <br><br><br><br>`r fig.cap(page.num, "Eligible for CalFresh")` <br> 
 
-We can see that the majority of participants are eligible for CalFresh (`r unname(table(bns$calfresh_eligible)['Yes'])` people), while `r unname(table(bns$calfresh_eligible)['No'])` people are not eligible for these benefits.
+We can see that the majority of participants are most likely eligible for CalFresh (`r unname(table(bns$calfresh_eligible)['Yes'])` people), while `r unname(table(bns$calfresh_eligible)['No'])` people are most likely to not be eligible for these benefits.
 </div>
 </div>
 
@@ -111,12 +117,13 @@ We can see that the majority of participants are eligible for CalFresh (`r unnam
 <summary> Click here for campus breakdown of CalFresh eligible students. </summary>
 ```{r, fig.width=5, fig.height=3.8}
 plot_grpfrq(bns$school, bns$calfresh_eligible, geom.colors = campus.colors[c(2,1)], 
-            wrap.labels = 21, legend.title = "Potentially Eligible", show.prc = FALSE) + xlab('') + 
+            wrap.labels = 21, legend.title = "Potentially Eligible", show.prc = FALSE) + 
+  xlab('') + ylab("Frequency") + 
   theme(legend.position="top")
 ```
 `r fig.cap(page.num, "CalFresh Eligible by Campus")`
 
-From the figure above, we can see that Chico has the most students who fall under the category of potentially being eligible for CalFresh. Both Fresno and Northridge have around one third less students who are potentially eligible for CalFresh, with nearly identical numberes.
+From the figure above, we can see that Chico has the most students who fall under the category of potentially being eligible for CalFresh. Both Fresno and Northridge have around one third less students who are potentially eligible for CalFresh, with nearly identical numbers.
 
 </details>
 <br />
