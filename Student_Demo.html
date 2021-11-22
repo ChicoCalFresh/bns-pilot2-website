@@ -13,7 +13,6 @@
 
 <title>Student Demographics</title>
 
-<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -288,12 +287,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -366,7 +365,7 @@ div.tocify {
 </li>
 <li>
   <a href="Instructions.html">
-    <span class="fas fa-chalkboard-teacher"></span>
+    <span class="fa fa-chalkboard-teacher"></span>
      
   </a>
 </li>
@@ -387,7 +386,7 @@ div.tocify {
 </div>
 
 
-<p>The following set of questions were asked in regards to the students academic demographic. This includes information such as what Cal State University they are currently enrolled in, their class standing, major, GPA, and enrolled units. They were also asked questions about programs they participate in as well as what type of student they are (transfer, international, etc.) to help identify students.</p>
+<p>The following set of questions were asked in regards to the students’ academic demographic. This includes information such as what Cal State University they are currently enrolled in, their class standing, major, GPA, and enrolled units. They were also asked questions about programs they participate in as well as what type of student they are (transfer, international, etc.) to help identify students.</p>
 <p><br></p>
 <div id="school" class="section level2">
 <h2>School</h2>
@@ -398,7 +397,7 @@ div.tocify {
 </div>
 <div class="col-md-4">
 <p><br><br>Figure 2.1: Current CSU Enrollment <br></p>
-<p>Three schools participated in this pilot of the survey: California State University, Chico (151), California State University, Fresno (138), and California State University, Northridge (126). From the above figure, it seems that students from each campus will be nearly equally represented in the data.</p>
+<p>Three schools participated in this pilot of the survey: California State University, Chico (151), California State University, Fresno (138), and California State University, Northridge (126). The data indicates that students from each campus will be nearly equally represented in the data.</p>
 </div>
 </div>
 <p><br></p>
@@ -406,7 +405,7 @@ div.tocify {
 <div id="class-standing" class="section level2">
 <h2>Class Standing</h2>
 <p><strong>Estimate your class standing by units completed (n=395, 95% of 415 reporting).</strong> <img src="Student_Demo_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /> Figure 2.2: Current Academic Level</p>
-<p>It seems that the majority of the people are either in their Junior (135 people) or Senior (247 people) semester. There are a few Sophomores and very few Freshman or higher education students.</p>
+<p>It seems that the majority of the survey participants are either in their junior (135 people) or senior (247 people) semester. There are a few sophomores and very few freshman or graduate students.</p>
 <p><br></p>
 </div>
 <div id="major" class="section level2">
@@ -417,11 +416,8 @@ div.tocify {
 <div id="campus-breakdown" class="section level3">
 <h3>🏫 📊 Campus Breakdown</h3>
 <details>
-<summary>
-Click here for campus breakdown of declared major.
-</summary>
-<p><img src="Student_Demo_files/figure-html/unnamed-chunk-5-1.png" width="768" style="display: block; margin: auto;" /> Figure 2.4: Major Declaration by Campus</p>
-For the most part, each campus has a similar number of students identifying as each major. CSU Fresno seems to have slightly lower “Arts and Humanities” majors and slightly higher “Public Health, Social Services, Social Science, Education” majors. Each campus has the majority of their students being STEM majors.
+<p><summary> Click here for campus breakdown of declared major. </summary> <img src="Student_Demo_files/figure-html/unnamed-chunk-5-1.png" width="768" style="display: block; margin: auto;" /> Figure 2.4: Major Declaration by Campus</p>
+<p>For each campus, the data indicates that the majority of survey participants are majoring in some type of “Public Health, Social Services, Social Science, or Education” degree. The second most frequent major for each campus is some type of STEM degree.</p>
 </details>
 <p><br /></p>
 </div>
@@ -605,11 +601,8 @@ Interior Architecture
 <div id="campus-breakdown-1" class="section level3">
 <h3>🏫 📊 Campus Breakdown</h3>
 <details>
-<summary>
-Click here for campus breakdown of overall GPA.
-</summary>
-<p><img src="Student_Demo_files/figure-html/unnamed-chunk-8-1.png" width="768" style="display: block; margin: auto;" /> Figure 2.6: Approximate GPA Ranges by Campus</p>
-Looking at the overall GPA, it seems that CSU Chico has the most in the 2.01-3.0 range (2 groups combined). Fresno seems to be leading for students with an overall GPA of 3.01 to 3.5, and has a clear lead for student with an overall GPA of 3.51 or above. Northridge seems to have the majority of their students having a 3.01 or above (2 groups combined).
+<p><summary> Click here for campus breakdown of overall GPA. </summary> <img src="Student_Demo_files/figure-html/unnamed-chunk-8-1.png" width="768" style="display: block; margin: auto;" /> Figure 2.6: Approximate GPA Ranges by Campus</p>
+<p>Breaking down overall GPA for each campus, the data indicates that Chico State has the highest proportion of students with an overall GPA between 2.51 and 3.00. Fresno State and CSU, Northridge both have the majority of their survey participants with an overall GPA between 3.01 to 3.50. Fresno State also has the highest proportion of students that have a 3.51 or higher overall GPA.</p>
 </details>
 <p><br /></p>
 </div>
@@ -618,17 +611,14 @@ Looking at the overall GPA, it seems that CSU Chico has the most in the 2.01-3.0
 <h2>Currently Enrolled Units</h2>
 <p><strong>How many units are you currently taking? (n=393, 95% of 415 reporting).</strong> <img src="Student_Demo_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /> Figure 2.7: Currently Enrolled Academic Units</p>
 <p><em>Note that “22+” was rounded for 22 in the following analysis for the currently enrolled number of units</em>.</p>
-<p>The average number of units that a student in this data is enrolled in is 13.65 units, while the median is 14 units. It seems that the majority of students are considered full-time (12 or more units), with 12 units being most common and 15 units following that.</p>
+<p>The average number of units that a survey participant in this data is enrolled in is 13.65 units, while the median is 14 units. The data indicates that the majority of students are considered full-time (12 or more units), with 12 units being the highest occurring and 15 units being the second highest occuring.</p>
 <p><br /></p>
 <div id="campus-breakdown-2" class="section level3">
 <h3>🏫 📊 Campus Breakdown</h3>
 <details>
-<summary>
-Click here for campus breakdown of currently enrolled units.
-</summary>
-<p><img src="Student_Demo_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /> Figure 2.8: Academic Unit Enrollments by Campus</p>
+<p><summary> Click here for campus breakdown of currently enrolled units. </summary> <img src="Student_Demo_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /> Figure 2.8: Academic Unit Enrollments by Campus</p>
 <p><em>Note: values corresponding to “22+” were rounded to 22.</em></p>
-Looking at the currently enrolled units across each campus, it seems that again the distribution seems very similar for each. CSU Chico has an average 13.56 enrolled units, with a median of 14 units. CSU Fresno has an average 13.66 enrolled units, with a median of 14 units. CSU Northridge has an average 13.73 enrolled units, with a median of 14 units.
+Breaking down the currently enrolled units across each campus, the data indicates that the distributions seem very similar for each. Chico State has an average 13.56 enrolled units, with a median of 14 units. Fresno State has an average 13.66 enrolled units, with a median of 14 units. CSU, Northridge has an average 13.73 enrolled units, with a median of 14 units.
 </details>
 <p><br /></p>
 </div>
@@ -760,11 +750,8 @@ An International student (n = 396).
 <div id="campus-breakdown-transfer-students" class="section level3">
 <h3>🏫 📊 Campus Breakdown (Transfer Students)</h3>
 <details>
-<summary>
-Click here for campus breakdown of transfer students.
-</summary>
-<p><strong>I identify as a transfer student: (n=397, 96% of 415 reporting).</strong> <img src="Student_Demo_files/figure-html/unnamed-chunk-12-1.png" width="624" style="display: block; margin: auto;" /> Figure 2.9: Transfer Student Identification by Campus</p>
-Looking at the breakdown of transfer students, we can see that Northridge has the most students who claim to not be transfer students (75 people). It seems that Chico has the highest number of transfer students, with 73 people identifying as this.
+<p><summary> Click here for campus breakdown of transfer students. </summary> <strong>I identify as a transfer student: (n=397, 96% of 415 reporting).</strong> <img src="Student_Demo_files/figure-html/unnamed-chunk-12-1.png" width="624" style="display: block; margin: auto;" /> Figure 2.9: Transfer Student Identification by Campus</p>
+Breaking down the number of transfer students for each campus, the data indicates that Chico State has the highest proportion of transfer students out of the three campuses. CSU, Northridge has the lowest proportion of transfer students out of the three campuses as well.
 </details>
 <p><br /></p>
 </div>
@@ -994,6 +981,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

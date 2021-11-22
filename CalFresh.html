@@ -13,7 +13,6 @@
 
 <title>CalFresh Student Eligibility</title>
 
-<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -288,12 +287,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -366,7 +365,7 @@ div.tocify {
 </li>
 <li>
   <a href="Instructions.html">
-    <span class="fas fa-chalkboard-teacher"></span>
+    <span class="fa fa-chalkboard-teacher"></span>
      
   </a>
 </li>
@@ -527,10 +526,7 @@ Are you on a campus meal plan (n = 378)?
 <div id="campus-breakdown" class="section level3">
 <h3>🏫 📊 Campus Breakdown</h3>
 <details>
-<summary>
-Click here for campus breakdown of CalFresh eligible students.
-</summary>
-<p><img src="CalFresh_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" /> Figure 5.3: CalFresh Eligible by Campus</p>
+<p><summary> Click here for campus breakdown of CalFresh eligible students. </summary> <img src="CalFresh_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" /> Figure 5.3: CalFresh Eligible by Campus</p>
 <p>From the figure above, we can see that Chico has the most students who fall under the category of potentially being eligible for CalFresh. Both Fresno and Northridge have around one third less students who are potentially eligible for CalFresh, with nearly identical numbers.</p>
 </details>
 <p><br /></p>
@@ -587,6 +583,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
