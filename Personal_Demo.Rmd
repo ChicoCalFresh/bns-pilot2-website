@@ -129,7 +129,7 @@ tmp %>% select(school, hispanic) %>% filter(!is.na(hispanic)) %>% count(hispanic
 ```
 `r fig.cap(page.num, "Hispanic Origin Identification by Campus")`
 
-Breaking down Hispanic origin for each campus, the data indicates that most of the campuses have approximately the same number of survey participants who do identify as having Hispanic origin. CSU, Northridge also has the highest proportion of survey participants who have Hispanic origin. Looking at survey participants who do not identify as having Hispanic origin, Chico State seems to have the most (`r table(tmp$hispanic, tmp$school)["No","California State University, Chico"]` people), followed by Fresno State, and finally CSU, Northridge. 
+Breaking down Hispanic origin for each campus, the data indicates that most of the campuses have approximately the same number of survey participants who do identify as having Hispanic origin. CSU, Northridge also has the highest proportion of survey participants who have Hispanic origin. Looking at survey participants who do not identify as having Hispanic origin, Chico State seems to have the most (`r table(tmp$hispanic, tmp$school)["No","Chico State"]` people), followed by Fresno State, and finally CSU, Northridge. 
 </details>
 <br />
 

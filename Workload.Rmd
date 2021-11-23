@@ -37,7 +37,7 @@ plot_frq(bns$paid_work_hours, ylim=c(0,150)) + xlab('Paid Hours Per Week') + yla
 ```
 `r fig.cap(page.num, "Weekly Paid Hour Ranges")`
 
-It seems that the majority of people work either part-time or not at all. Only a small number of people are considered to be working full-time (40 or more hours per week). Below is a breakdown of the exact paid hours worked by survey participants as well as the impacts that COVID had on their hours. 
+The data indicates that the majority of survey participants work either part-time or not at all. Only a small number of participants are considered to be working full-time (40 or more hours per week). Below is a breakdown of the exact paid hours worked by survey participants. 
 
 <br>
 
@@ -86,7 +86,7 @@ ggplot(tmp, aes(x=q19, group=school, fill=school, color=school)) + geom_histogra
 ```
 `r fig.cap(page.num, "Weekly Paid Hour Distribution by Campus")`
 
-Looking at the breakdown of both graphs, the distribution of paid weekly hours worked across all campuses seem to be mostly similar. CSU Northridge has a mean value of `r unname(round(tapply(tmp$q19, tmp$school, mean)[3],2))` hours and a median of `r unname(round(tapply(tmp$q19, tmp$school, median)[3],2))` hours.  CSU Fresno, which seems to have students who tend to work more hours, has a mean value of `r unname(round(tapply(tmp$q19, tmp$school, mean)[2],2))` hours and a median of `r unname(round(tapply(tmp$q19, tmp$school, median)[2],2))` hours. CSU Chico has a mean value of `r unname(round(tapply(tmp$q19, tmp$school, mean)[1],2))` hours and a median of `r unname(round(tapply(tmp$q19, tmp$school, median)[1],2))` hours.
+Breaking down the exact number of paid hours worked fore each campus, the distributions all have nearly equal shapes. CSU, Northridge has a mean value of `r unname(round(tapply(tmp$q19, tmp$school, mean)[2],2))` hours and a median of `r unname(round(tapply(tmp$q19, tmp$school, median)[2],2))` hours.  Fresno State, which seems to have students who tend to work more hours, has a mean value of `r unname(round(tapply(tmp$q19, tmp$school, mean)[3],2))` hours and a median of `r unname(round(tapply(tmp$q19, tmp$school, median)[3],2))` hours. Chico State has a mean value of `r unname(round(tapply(tmp$q19, tmp$school, mean)[1],2))` hours and a median of `r unname(round(tapply(tmp$q19, tmp$school, median)[1],2))` hours.
 
 </details>
 <br />
@@ -98,7 +98,7 @@ plot_frq(bns$q20, ylim=c(0,135), wrap.labels = 19, sort.frq = 'desc') + xlab('')
 ```
 `r fig.cap(page.num, "COVID Impact on Paid Hours")`
 
-With the impact of COVID, it seems that most people were able to keep their current paid jobs with only slight changes. `r unname(table(bns$q20)['Yes, my hours have decreased but I still have a job.'])` people had their hours decrease, `r unname(table(bns$q20)['No, my hours have remained the same.'])` people maintained the same hours, and `r unname(table(bns$q20)['Yes, my hours have increased and I still have a job or I have a new job.'])` people had their hours increase. There was also `r unname(table(bns$q20)['Yes, I no longer have my job/internship.'])` people who claimed that they no longer had their paid position due to the impact of COVID, while `r unname(table(bns$q20)['I did not have a job or internship before COVID-19 and I still do not.'])` people also claimed that they did not have a paid position before COVID.
+With the impact of COVID, the data indicates that most survey participants were able to keep their current paid jobs with only slight changes. `r unname(table(bns$q20)['Yes, my hours have decreased but I still have a job.'])` students had their hours decrease, `r unname(table(bns$q20)['No, my hours have remained the same.'])` students maintained the same hours, and `r unname(table(bns$q20)['Yes, my hours have increased and I still have a job or I have a new job.'])` students had their hours increase. There was also `r unname(table(bns$q20)['Yes, I no longer have my job/internship.'])` students who claimed that they no longer had their paid position due to the impact of COVID, while `r unname(table(bns$q20)['I did not have a job or internship before COVID-19 and I still do not.'])` students also claimed that they did not have a paid position before COVID.
 
 <br>
 
@@ -111,7 +111,7 @@ plot_frq(bns$unpaid_work_hours) + xlab('Unpaid Hours Per Week') + ylab("Frequenc
 ```
 `r fig.cap(page.num, "Weekly Unpaid Hour Ranges")`
 
-We can see that the majority of people (`r unname(table(bns$unpaid_work_hours)['0'])`) do not work an unpaid job. A small number of people work part-time at an unpaid job and only a select few people work full-time at an unpaid job. Below is a breakdown of the number of unpaid hours worked per week.
+We can see that the majority of survey participants (`r unname(table(bns$unpaid_work_hours)['0'])`) do not work an unpaid job. A small number of participants work part-time at an unpaid job and only a select few work full-time at an unpaid job. Below is a breakdown of the number of unpaid hours worked per week.
 
 <br>
 
@@ -135,7 +135,7 @@ plot_frq(tmp$q21, type='histogram', geom.size = 1, xlim = c(1,20), ylim=c(0,18),
 
 *Note that "41+" was rounded for 41 in the following analysis for the unpaid hours worked per week*. 
 
-The average number of unpaid hours worked per week (denoted by the dotted line) is `r round(mean(tmp$q21, na.rm = TRUE), 2)`, while the median is `r median(tmp$q21, na.rm = TRUE)` hours. It seems that the majority of students do not work unpaid positions, with `r names(sort(table(tmp$q21), decreasing=TRUE)[1])` hours being most common (`r unname(sort(table(tmp$q21), decreasing=TRUE)[1])` people) and `r names(sort(table(tmp$q21), decreasing=TRUE)[2])` hours following that.
+The average number of unpaid hours worked per week (denoted by the dotted line) is `r round(mean(tmp$q21, na.rm = TRUE), 2)`, while the median is `r median(tmp$q21, na.rm = TRUE)` hours. It seems that the majority of survey participants do not work unpaid positions, with `r names(sort(table(tmp$q21), decreasing=TRUE)[1])` hours being most common (`r unname(sort(table(tmp$q21), decreasing=TRUE)[1])` people) and `r names(sort(table(tmp$q21), decreasing=TRUE)[2])` hours following that.
 
 <br />
 
@@ -156,7 +156,7 @@ ggplot(tmp, aes(x=q21, group=school, fill=school)) + geom_histogram(aes(y=..dens
 ```
 `r fig.cap(page.num, "Weekly Unpaid Hour Distribution by Campus")`
 
-Looking at the breakdown of both graphs, the distribution of unpaid weekly hours worked for Northridge and Fresno seem to be almost identical while Chico seems to have students who work more unpaid weekly hours. CSU Northridge has a mean value of `r unname(round(tapply(tmp$q21, tmp$school, mean)[3],2))` hours and a median of `r unname(round(tapply(tmp$q21, tmp$school, median)[3],2))` hours.  CSU Fresno has a mean value of `r unname(round(tapply(tmp$q21, tmp$school, mean)[2],2))` hours and a median of `r unname(round(tapply(tmp$q21, tmp$school, median)[2],2))` hours. CSU Chico has a mean value of `r unname(round(tapply(tmp$q21, tmp$school, mean)[1],2))` hours and a median of `r unname(round(tapply(tmp$q21, tmp$school, median)[1],2))` hours.
+Breaking down unpaid weekly hours for each campus, the distributions for CSU, Northridge and Fresno State seem to be almost identical while Chico State seems to have students who work slightly more unpaid weekly hours. CSU, Northridge has a mean value of `r unname(round(tapply(tmp$q21, tmp$school, mean)[2],2))` hours and a median of `r unname(round(tapply(tmp$q21, tmp$school, median)[2],2))` hours.  Fresno State has a mean value of `r unname(round(tapply(tmp$q21, tmp$school, mean)[3],2))` hours and a median of `r unname(round(tapply(tmp$q21, tmp$school, median)[3],2))` hours. Chico State has a mean value of `r unname(round(tapply(tmp$q21, tmp$school, mean)[1],2))` hours and a median of `r unname(round(tapply(tmp$q21, tmp$school, median)[1],2))` hours.
 </details>
 <br />
 
@@ -169,7 +169,7 @@ plot_frq(bns$caregiving_hours) + xlab('Unpaid Caregiving Hours Per Week') + ylab
 ```
 `r fig.cap(page.num, "Weekly Caregiving Hour Ranges")`
 
-It seems that the majority of people in the data do spend some time each week caring for family members. Only `r unname(table(bns$caregiving_hours)['0'])` people estimated that they spent 0 hours per week for family obligations. There are also around the same number of people who estimated they work full-time (40 or more hours per week) on these family obligations. Below is a breakdown of these unpaid hours spent on family obligations each week.
+The data indicates that the majority of survey participants do spend some time each week caring for family members. Only `r unname(table(bns$caregiving_hours)['0'])` participants estimated that they spent 0 hours per week for family obligations. There are also around the same number of participants who estimated they work full-time (40 or more hours per week) on these family obligations. Below is a breakdown of these unpaid hours spent on family obligations each week.
 
 <br>
 
@@ -234,7 +234,7 @@ ggplot(tmp, aes(x=units, group=school, fill=school)) + geom_histogram(aes(y=..de
 ```
 `r fig.cap(page.num, "Weekly Academic Workload Distribution by Campus")`
 
-Looking at the academic hours across each campus, it seems that the distribution seems very similar for each. CSU Chico has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[1])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[1])` units. CSU Fresno has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[2])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[2])` units. CSU Northridge has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[3])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[3])` units.
+Breaking down the academic hours across each campus, the data indicates that the distributions are nearly identical, with each campus having two peaks around the same number of hours. Chico State has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[1])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[1])` units. Fresno State has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[3])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[3])` units. CSU, Northridge has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[2])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[2])` units.
 </details>
 <br />
 
@@ -277,7 +277,7 @@ ggplot(tmp, aes(x=NonAcademic, group=school, fill=school)) + geom_histogram(aes(
 ```
 `r fig.cap(page.num, "Weekly Non-Academic Workload Distribution by Campus")`
 
-Looking at the non-academic workload across each campus, it seems the distributions are slightly different for each campus. CSU Chico, who seem to have students who work the most paid/unpaid weekly hours, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[1])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[1])` hours. CSU Fresno, who seem to have students who work the least paid/unpaid weekly hours, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[2])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[2])` hours. CSU Northridge, who seem to be between the other two campuses, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[3])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[3])` hours.
+Breaking down the non-academic workload across each campus, the data indicates that the distributions are slightly different for each campus. Chico State, who seem to have students who work the most paid/unpaid weekly hours, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[1])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[1])` hours. Fresno State, who seem to have students who work the least paid/unpaid weekly hours, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[3])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[3])` hours. CSU, Northridge has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[2])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[2])` hours.
 </details>
 <br />
 
@@ -318,7 +318,7 @@ ggplot(tmp, aes(x=TotalHours, group=school, fill=school)) + geom_histogram(aes(y
 ```
 `r fig.cap(page.num, "Weekly Total Workload Distribution by Campus")`
 
-Looking at the total workload hours across each campus, again it seems that the distribution are very similar for each. CSU Chico has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[1])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[1])` hours. CSU Fresno has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[2])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[2])` hours. CSU Northridge has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[3])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[3])` hours. A small number of students also claim to work over 100 hours per week across academic and non-academic jobs.
+Chico State has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[1])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[1])` hours. Fresno State has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[3])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[3])` hours. CSU, Northridge has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[2])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[2])` hours. A small number of students also claim to work over 100 hours per week across academic and non-academic workloads.
 </details>
 <br />
 
@@ -362,10 +362,10 @@ plot_likert(tmp,
 ```
 `r fig.cap(page.num, "CalFresh Workload Qualification Breakdown")`
 
-- Looking at the academic workload, we can see a large majority of them are taking more than 6 units and are meet the eligibility requirements (`r unname(table(tmp['Academic Workload'])['Eligible'])` people). A very small minority of participants are not taking more than 6 units and do not meet the eligibility requirements (`r unname(table(tmp['Academic Workload'])['Not Eligible'])` people).
-- Looking at the paid workload, we can see that less than half of them work 20 or more hours per week and meet the eligibility requirements (`r unname(table(tmp['Paid Workload'])['Eligible'])` people). A little over half work less than 20 hours per week and do not meet the eligibility requirements (`r unname(table(tmp['Paid Workload'])['Not Eligible'])` people).
-- Looking at the unpaid workload, we can see that only a minority of them work 20 or more hours per week and meet the eligibility requirements (`r unname(table(tmp['Unpaid Workload'])['Eligible'])` people). The vast majority work less than 20 hours per week and do not meet the eligibility requirements (`r unname(table(tmp['Unpaid Workload'])['Not Eligible'])` people).
-- Looking at the total workload, we can see that the majority of them work 20 or more hours per week and meet the eligibility requirements (`r unname(table(tmp['Total Workload'])['Eligible'])` people). Only a small number work less than 20 hours per week and do not meet the eligibility requirements (`r unname(table(tmp['Total Workload'])['Not Eligible'])` people).
+- Based on the academic workload, the data indicates a large majority of participants are taking more than 6 units and are meet the eligibility requirements (`r unname(table(tmp['Academic Workload'])['Eligible'])` people). A very small minority of participants are not taking more than 6 units and do not meet the eligibility requirements (`r unname(table(tmp['Academic Workload'])['Not Eligible'])` people).
+-Based on the paid workload, the data indicates that less than half of participants work 20 or more hours per week and meet the eligibility requirements (`r unname(table(tmp['Paid Workload'])['Eligible'])` people). A little over half work less than 20 hours per week and do not meet the eligibility requirements (`r unname(table(tmp['Paid Workload'])['Not Eligible'])` people).
+- Based on the unpaid workload, the data indicates that only a minority of participants work 20 or more hours per week and meet the eligibility requirements (`r unname(table(tmp['Unpaid Workload'])['Eligible'])` people). The vast majority work less than 20 hours per week and do not meet the eligibility requirements (`r unname(table(tmp['Unpaid Workload'])['Not Eligible'])` people).
+- Based on the total workload, the data indicates that the majority of participants work 20 or more hours per week and meet the eligibility requirements (`r unname(table(tmp['Total Workload'])['Eligible'])` people). Only a small number work less than 20 hours per week and do not meet the eligibility requirements (`r unname(table(tmp['Total Workload'])['Not Eligible'])` people).
 
 ```{r}
 rm(tmp, tmp2) # remove data sets
