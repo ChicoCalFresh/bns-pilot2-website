@@ -70,14 +70,7 @@ The majority of students in the data seem to be majoring in some type of `r name
 bns <- bns %>% mutate(q16=recode(q16, 
                                  "Science, Technology, Engineering and Math (STEM) (Includes Medicine, Computer Science, Agriculture, Accounting, Statistics, Nursing, and Nutrition)" = "Science, Technology, Engineering and Math (STEM)"))
 
-bns %>% select(school, q16) %>% filter(!is.na(q16)) %>% count(q16, school) %>% group_by(school) %>% 
-  mutate(freq = paste0("(", percent(n/sum(n), accuracy = 0.1), ")")) %>% 
-  ggplot(data = ., aes(x=school, y=n, fill=q16)) + geom_bar(width=0.7, position = position_dodge(width=0.9), stat="identity") + 
-  xlab('') + ylab("Frequency") + theme(legend.position="right") +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) + 
-  scale_fill_manual(labels = function(x) str_wrap(x, width = 20), name="Major", 
-                    values=RColorBrewer::brewer.pal(8, "Set2")) + ylim(0,80) +
-  geom_text(position=position_dodge(width=0.9), aes(y=n + 11, label=paste0(n, " ", freq))) + coord_flip()
+plot_xtab(bns$school, bns$q16, margin="row", legend.title = "Major", axis.titles = c("School", "Campus Percent"), coord.flip = TRUE, ylim=c(0,0.7))
 ```
 `r fig.cap(page.num, "Major Declaration by Campus")`
 
@@ -121,14 +114,7 @@ The most common overall GPA for the data ranges between `r names(sort(table(bns$
 <details>
 <summary> Click here for campus breakdown of overall GPA. </summary>
 ```{r, fig.height=6, fig.width=8}
-bns %>% select(school, q17) %>% filter(!is.na(q17)) %>% count(q17, school) %>% group_by(school) %>% 
-  mutate(freq = paste0("(", percent(n/sum(n), accuracy = 0.1), ")")) %>% 
-  ggplot(data = ., aes(x=school, y=n, fill=q17)) + geom_bar(width=0.7, position = position_dodge(width=0.9), stat="identity") + 
-  xlab('') + ylab("Frequency") + theme(legend.position="right") +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) + 
-  scale_fill_manual(labels = function(x) str_wrap(x, width = 20), name="GPA", 
-                    values=RColorBrewer::brewer.pal(8, "Set2")) + ylim(0,77) +
-  geom_text(position=position_dodge(width=0.9), aes(y=n + 10, label=paste0(n, " ", freq))) + coord_flip()
+plot_xtab(bns$school, bns$q17, margin="row", legend.title = "GPA", axis.titles = c("School", "Campus Percent"), coord.flip = TRUE, ylim=c(0,0.61))
 ```
 `r fig.cap(page.num, "Approximate GPA Ranges by Campus")`
 
@@ -197,15 +183,7 @@ binary_table(questions, "Yes", rnames, ".")
 <summary> Click here for campus breakdown of transfer students. </summary>
 **I identify as a transfer student: `r print_n_reporting('q14_1')`**
 ```{r, fig.width=6.5}
-bns %>% select(school, q14_1) %>% filter(!is.na(q14_1)) %>% count(q14_1, school) %>% group_by(school) %>% 
-  mutate(freq = paste0("(", percent(n/sum(n), accuracy = 0.1), ")")) %>% 
-  ggplot(data = ., aes(x=school, y=n, fill=q14_1)) + geom_bar(width=0.7, position = position_dodge(width=0.9), stat="identity") + 
-  xlab('') + ylab("Frequency") + theme(legend.position="top") +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) + 
-  scale_fill_manual(labels = function(x) str_wrap(x, width = 20), name="Transfer Student", 
-                    values=RColorBrewer::brewer.pal(8, "Set2")) + 
-  geom_text(position=position_dodge(width=0.9), aes(y=n + 12, label=n)) + 
-  geom_text(position=position_dodge(width=0.9), aes(y=n + 5, label=freq))
+plot_xtab(bns$school, bns$q14_1, margin="row", legend.title = "Transfer Student", axis.titles = c("School", "Campus Percent")) + theme(legend.position="top")
 ```
 `r fig.cap(page.num, "Transfer Student Identification by Campus")`
 

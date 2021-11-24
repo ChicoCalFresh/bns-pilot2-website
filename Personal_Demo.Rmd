@@ -69,15 +69,7 @@ Of the survey participants, `r unname(table(bns$q7)['Woman'])` of them identify 
 <details>
 <summary> Click here for campus breakdown of gender distribution. </summary>
 ```{r, fig.height=4.6, fig.width=7}
-bns %>% select(school, q7) %>% filter(!is.na(q7)) %>% count(q7, school) %>% group_by(school) %>% 
-  mutate(freq = paste0("(", percent(n/sum(n), accuracy = 0.1), ")")) %>% 
-  ggplot(data = ., aes(x=school, y=n, fill=q7)) + geom_bar(width=0.7, position = position_dodge(width=0.9), stat="identity") + 
-  xlab('') + ylab("Frequency") + theme(legend.position="top") +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) + 
-  scale_fill_manual(labels = function(x) str_wrap(x, width = 20), name="Gender Identity", 
-                    values=RColorBrewer::brewer.pal(8, "Set2")) + 
-  geom_text(position=position_dodge(width=0.9), aes(y=n + 12, label=n)) + 
-  geom_text(position=position_dodge(width=0.9), aes(y=n + 5, label=freq))
+plot_xtab(bns$school, bns$q7, margin="row", legend.title = "Gender Identity", axis.titles = c("School", "Campus Percent")) + theme(legend.position="top")
 ```
 
 `r fig.cap(page.num, "Gender Identification by Campus")`
@@ -117,15 +109,7 @@ tmp <- data.frame(q8=bns$q8, school=bns$school) %>%
 ```
 
 ```{r, fig.height=4.5, fig.width=7}
-tmp %>% select(school, hispanic) %>% filter(!is.na(hispanic)) %>% count(hispanic, school) %>% group_by(school) %>% 
-  mutate(freq = paste0("(", percent(n/sum(n), accuracy = 0.1), ")")) %>% 
-  ggplot(data = ., aes(x=school, y=n, fill=hispanic)) + geom_bar(width=0.7, position = position_dodge(width=0.9), stat="identity") + 
-  xlab('') + ylab("Frequency") + theme(legend.position="top") +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) + 
-  scale_fill_manual(labels = function(x) str_wrap(x, width = 20), name="Hispanic Origin", 
-                    values=RColorBrewer::brewer.pal(8, "Set2")) + 
-  geom_text(position=position_dodge(width=0.9), aes(y=n + 12, label=n)) + 
-  geom_text(position=position_dodge(width=0.9), aes(y=n + 5, label=freq))
+plot_xtab(tmp$school, tmp$hispanic, margin="row", legend.title = "Hispanic Origin", axis.titles = c("School", "Campus Percent")) + theme(legend.position="top")
 ```
 `r fig.cap(page.num, "Hispanic Origin Identification by Campus")`
 
@@ -251,18 +235,7 @@ The highest level of education completed by most survey participants parents is 
 <details>
 <summary> Click here for campus breakdown of parents education distribution. </summary>
 ```{r, fig.height=6, fig.width=8}
-# plot_grpfrq(bns$school, bns$q13, wrap.labels = 25, wrap.legend.labels = 26, geom.colors = RColorBrewer::brewer.pal(8, "Set2"),
-#             legend.title = "", show.prc = FALSE) + xlab('') + ylab("Frequency") +  
-#   theme(legend.position="top", legend.key = element_rect(size = 6), legend.key.size = unit(1, "cm"))
-
-bns %>% select(school, q13) %>% filter(!is.na(q13)) %>% count(q13, school) %>% group_by(school) %>% 
-  mutate(freq = paste0("(", percent(n/sum(n), accuracy = 0.1), ")")) %>% 
-  ggplot(data = ., aes(x=school, y=n, fill=q13)) + geom_bar(width=0.7, position = position_dodge(width=0.9), stat="identity") + 
-  xlab('') + ylab("Frequency") + theme(legend.position="right") +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) + 
-  scale_fill_manual(labels = function(x) str_wrap(x, width = 20), name=" ", 
-                    values=RColorBrewer::brewer.pal(8, "Set2")) + ylim(0,90) +
-  geom_text(position=position_dodge(width=0.9), aes(y=n + 11, label=paste0(n, " ", freq))) + coord_flip()
+plot_xtab(bns$school, bns$q13, margin="row", legend.title = "Parents Education", axis.titles = c("School", "Campus Percent"), coord.flip = TRUE, ylim=c(0,0.8))
 ```
 `r fig.cap(page.num, "Parents Highest Education by Campus")`
 
@@ -302,15 +275,7 @@ As defined by the [University of California](https://www.universityofcalifornia.
 tmp <- data.frame(firstgen=bns$firstgen, school=bns$school) %>% 
   mutate(firstgen=factor(ifelse(is.na(firstgen), NA, ifelse(firstgen == 0, "Not First Gen", "First Gen")), levels=c("Not First Gen", "First Gen")))
 
-tmp %>% select(school, firstgen) %>% filter(!is.na(firstgen)) %>% count(firstgen, school) %>% group_by(school) %>% 
-  mutate(freq = paste0("(", percent(n/sum(n), accuracy = 0.1), ")")) %>% 
-  ggplot(data = ., aes(x=school, y=n, fill=firstgen)) + geom_bar(width=0.7, position = position_dodge(width=0.9), stat="identity") + 
-  xlab('') + ylab("Frequency") + theme(legend.position="top") +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) + 
-  scale_fill_manual(labels = function(x) str_wrap(x, width = 20), name="Status", 
-                    values=RColorBrewer::brewer.pal(8, "Set2")) + ylim(0,160) +
-  geom_text(position=position_dodge(width=0.9), aes(y=n + 16, label=n)) + 
-  geom_text(position=position_dodge(width=0.9), aes(y=n + 7, label=freq))
+plot_xtab(tmp$school, tmp$firstgen, margin="row", legend.title = "Status", axis.titles = c("School", "Campus Percent")) + theme(legend.position="top")
 ```
 `r fig.cap(page.num, "First Generation College Students by Campus")`
 
