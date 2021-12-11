@@ -136,5 +136,4 @@ prep_binary_vars <- function(question, xlabels) {
 # Load data
 load("../data/BNSp2_clean.Rdata")
 bns <- BNSp2b
-
 rm(BNSp2b)
