@@ -8,7 +8,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-### Pilot #2: 415 EOP students at Fresno State, Chico State, and CSU, Northridge
+### Pilot #2: 402 EOP students at Fresno State, Chico State, and CSU, Northridge
 
 Food insecurity among college students is a serious problem that can impact student performance in the classroom and ultimately effect student success. The [Center for Healthy Communities](https://www.csuchico.edu/chc/) (CHC) developed the **Basic Needs Student Success Survey (BNS3)** and administered it to undergraduate students participating in the [Educational Opportunity Program (EOP)](https://www2.calstate.edu/attend/student-services/eop) at [Chico State](https://www.csuchico.edu/eop/), [Fresno State](https://www.fresnostate.edu/studentaffairs/eop/abouteop.html) and [CSU, Northridge](https://www.csun.edu/csun-eop) from November 25$^{th}$, 2020 to March 24$^{th}$, 2021. The EOP office assisted in the recruitment and provided computers for students to take the survey. Participants were given a \$25 gift card for their participation. EOP students were identified as the target population for this survey based upon their low-income and first-generation student status, which indicates a higher probability of CalFresh eligibility.
 

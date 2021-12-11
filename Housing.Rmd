@@ -35,21 +35,6 @@ There are `r unname(table(bns$q23)['No'])` people that participated in the surve
 
 <br />
 
-### `r emoji.1` `r emoji.2` Campus Breakdown
-<details>
-<summary> Click here for campus breakdown of COVID housing impact. </summary>
-```{r, fig.width=5, fig.height=3.8}
-plot_grpfrq(bns$school, bns$q23, geom.colors = campus.colors[c(2,1)], wrap.labels = 21,
-            legend.title = "Housing Impacted", show.prc = FALSE) + xlab('') + ylab("Frequency") + 
-  theme(legend.position="top")
-```
-`r fig.cap(page.num, "COVID Housing Impact by Campus")`
-
-From the figure above, we can see Chico has slightly under twice as many students whose housing was not impacted by COVID. Fresno has slightly over three times as many students whose housing was not impacted by COVID. And Northridge has around 1.5 times as many students whose housing was not impacted by COVID.
-
-</details>
-<br />
-
 ## Living Near College
 **Are you currently living in the city/area in which you are enrolled in college? `r print_n_reporting("q24")`**
 
@@ -67,21 +52,6 @@ There are `r unname(table(bns$q24)['No'])` people that participated in the surve
 </div>
 </div>
 
-<br />
-
-### `r emoji.1` `r emoji.2` Campus Breakdown
-<details>
-<summary> Click here for campus breakdown of living near enrolled campus. </summary>
-```{r, fig.width=5, fig.height=3.8}
-plot_grpfrq(bns$school, bns$q24, geom.colors = campus.colors[c(2,1)], wrap.labels = 21,
-            legend.title = "Live Near College", show.prc = FALSE) + xlab('') + ylab("Frequency") + 
-  theme(legend.position="top")
-```
-`r fig.cap(page.num, "Living Near College by Campus")`
-
-From the figure above, we can see that all campuses have the majority of there students living near their enrolled campus. Fresno and Northridge seem to have slightly less students living near campus compared to Chico.
-
-</details>
 <br />
 
 ## Current Housing Situation
@@ -231,7 +201,8 @@ ggplot(data = tmp, aes(x=school, y=value)) +
   geom_text(aes(y=value + .01, label=lab)) + 
   facet_wrap(~name) + scale_y_continuous(labels=percent) + 
   xlab("Campus") + ylab("Percent (Yes)") + 
-  theme(legend.position = "none", strip.background=element_rect(fill="#c7dcf0"))
+  theme(legend.position = "none", strip.background=element_rect(fill="#c7dcf0")) +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
 ```
 `r fig.cap(page.num, "Unstable Housing by Campus")`
 

@@ -13,6 +13,7 @@
 
 <title>Website Navigation</title>
 
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -287,12 +288,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -365,7 +366,7 @@ div.tocify {
 </li>
 <li>
   <a href="Instructions.html">
-    <span class="fa fa-question"></span>
+    <span class="fas fa-question"></span>
      
   </a>
 </li>
@@ -398,7 +399,10 @@ div.tocify {
 <li>The per-campus results for each question are hidden in drop down menus denoted by the campus and chart icons:</li>
 </ul>
 <details>
-<summary> 🏫 📊 Click anywhere on this text to open the drop down. </summary> <img src="Instructions_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" />
+<summary>
+🏫 📊 Click anywhere on this text to open the drop down.
+</summary>
+<img src="Instructions_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" />
 </details>
 <p><br /></p>
 <ul>
@@ -506,18 +510,9 @@ Response # (%)
 </div>
 </div>
 
+<br>
 
-<br> 
-
-<hr>
-
-<h3>Funding</h3>
-
-Partially funded by USDA SNAP, known in California as CalFresh, an equal opportunity provider and employer, and the California Department of  Social Services. Any use of these results in further work must use the following citation: 
-<br> <br> 
-<i>Center for Healthy Communities, "Basic Needs Survey", June 2021. Retrieved on xx-xx-xxxx from https://chicocalfresh.github.io/bns-pilot2-website/index.html</i>
-<br> <br> 
-<img src="CHC_Logo.png" alt="CHC Logo" width="300" height="85">
+<img src="NewLogoSwoosh.PNG" alt="CHC Logo">
 
 
 </div>
@@ -556,9 +551,6 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

@@ -13,6 +13,7 @@
 
 <title>Student Demographics</title>
 
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -287,12 +288,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -365,7 +366,7 @@ div.tocify {
 </li>
 <li>
   <a href="Instructions.html">
-    <span class="fa fa-question"></span>
+    <span class="fas fa-question"></span>
      
   </a>
 </li>
@@ -390,33 +391,44 @@ div.tocify {
 <p><br></p>
 <div id="school" class="section level2">
 <h2>School</h2>
-<p><strong>Which Cal State University are you currently enrolled in? (n=415, 100% of 415 reporting).</strong></p>
+<p><strong>Which Cal State University are you currently enrolled in? (n=402, 100% of 402 reporting).</strong></p>
 <div class="row">
 <div class="col-md-7">
 <p><img src="Student_Demo_files/figure-html/unnamed-chunk-2-1.png" width="432" style="display: block; margin: auto;" /></p>
 </div>
 <div class="col-md-4">
 <p><br><br>Figure 2.1: Current CSU Enrollment <br></p>
-<p>Three schools participated in this pilot of the survey: Chico State (151), Fresno State (138), and CSU, Northridge (126). The data indicates that students from each campus will be nearly equally represented in the data.</p>
+<p>Three schools participated in this pilot of the survey: Chico State (145), Fresno State (134), and CSU, Northridge (123). The data indicates that students from each campus will be nearly equally represented in the data.</p>
 </div>
 </div>
 <p><br></p>
 </div>
 <div id="class-standing" class="section level2">
 <h2>Class Standing</h2>
-<p><strong>Estimate your class standing by units completed (n=395, 95% of 415 reporting).</strong> <img src="Student_Demo_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /> Figure 2.2: Current Academic Level</p>
-<p>It seems that the majority of the survey participants are either in their junior (135 people) or senior (247 people) semester. There are a few sophomores and very few freshman or graduate students.</p>
+<p><strong>Estimate your class standing by units completed (n=382, 95% of 402 reporting).</strong></p>
+<div class="row">
+<div class="col-md-7">
+<p><img src="Student_Demo_files/figure-html/unnamed-chunk-3-1.png" width="432" style="display: block; margin: auto;" /></p>
+</div>
+<div class="col-md-4">
+<p><br><br> Figure 2.2: Current Academic Level <br></p>
+<p>As the survey was distributed mainly to students in either their junior or senior year, we can see that there are 135 junior’s and 247 senior’s.</p>
+</div>
+</div>
 <p><br></p>
 </div>
 <div id="major" class="section level2">
 <h2>Major</h2>
-<p><strong>What is your major? (n=394, 95% of 415 reporting).</strong> <img src="Student_Demo_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /> Figure 2.3: Declaration of Major</p>
-<p>The majority of students in the data seem to be majoring in some type of Public Health, Social Services, Social Science, Education program (160 people). 108 of the students are Science, Technology, Engineering and Math (STEM) majors. Students were also given the option of “Other” to fill in a major if it did not fall into one of the above categories and of the 38 who selected this, 28 gave their responses below.</p>
+<p><strong>What is your major? (n=381, 95% of 402 reporting).</strong> <img src="Student_Demo_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /> Figure 2.3: Declaration of Major</p>
+<p>The majority of students in the data seem to be majoring in some type of Public Health, Social Services, Social Science, Education program (156 people). 106 of the students are Science, Technology, Engineering and Math (STEM) majors. Students were also given the option of “Other” to fill in a major if it did not fall into one of the above categories and of the 37 who selected this, 27 gave their responses below.</p>
 <p><br /></p>
 <div id="campus-breakdown" class="section level3">
 <h3>🏫 📊 Campus Breakdown</h3>
 <details>
-<p><summary> Click here for campus breakdown of declared major. </summary> <img src="Student_Demo_files/figure-html/unnamed-chunk-5-1.png" width="768" style="display: block; margin: auto;" /> Figure 2.4: Major Declaration by Campus</p>
+<summary>
+Click here for campus breakdown of declared major.
+</summary>
+<p><img src="Student_Demo_files/figure-html/unnamed-chunk-5-1.png" width="768" style="display: block; margin: auto;" /> Figure 2.4: Major Declaration by Campus</p>
 <p>For each campus, the data indicates that the majority of survey participants are majoring in some type of “Public Health, Social Services, Social Science, or Education” degree. The second most frequent major for each campus is some type of STEM degree.</p>
 </details>
 <p><br /></p>
@@ -441,7 +453,7 @@ Occurrence (%)
 Criminology
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-6/28 (21.4%)
+5/27 (18.5%)
 </td>
 </tr>
 <tr>
@@ -449,7 +461,7 @@ Criminology
 Communication
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-4/28 (14.3%)
+4/27 (14.8%)
 </td>
 </tr>
 <tr>
@@ -457,7 +469,7 @@ Communication
 Deaf Studies
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-2/28 (7.1%)
+2/27 (7.4%)
 </td>
 </tr>
 <tr>
@@ -465,7 +477,7 @@ Deaf Studies
 Journalism
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-2/28 (7.1%)
+2/27 (7.4%)
 </td>
 </tr>
 <tr>
@@ -473,7 +485,7 @@ Journalism
 Human and Behavioral Science
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -481,7 +493,7 @@ Human and Behavioral Science
 Special Major
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -489,7 +501,7 @@ Special Major
 Marketing
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -497,7 +509,7 @@ Marketing
 CFS
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -505,7 +517,7 @@ CFS
 Film Production
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -513,7 +525,7 @@ Film Production
 Architectural Studies
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -521,7 +533,7 @@ Architectural Studies
 Behavior science
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -529,7 +541,7 @@ Behavior science
 Animal Science - Pre Vet
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -537,7 +549,7 @@ Animal Science - Pre Vet
 Legal studies
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -545,7 +557,7 @@ Legal studies
 Hold development
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -553,7 +565,7 @@ Hold development
 Construction Management
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -561,7 +573,7 @@ Construction Management
 TV Production
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -569,7 +581,7 @@ TV Production
 International Relations
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 <tr>
@@ -577,7 +589,7 @@ International Relations
 Interior Architecture
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-1/28 (3.6%)
+1/27 (3.7%)
 </td>
 </tr>
 </tbody>
@@ -587,21 +599,24 @@ Interior Architecture
 </div>
 <div id="overall-gpa" class="section level2">
 <h2>Overall GPA</h2>
-<p><strong>What is your approximate overall grade point average (GPA)? (n=397, 96% of 415 reporting).</strong></p>
+<p><strong>What is your approximate overall grade point average (GPA)? (n=384, 96% of 402 reporting).</strong></p>
 <div class="row">
 <div class="col-md-7">
 <p><img src="Student_Demo_files/figure-html/unnamed-chunk-7-1.png" width="432" style="display: block; margin: auto;" /></p>
 </div>
 <div class="col-md-4">
 <p><br><br><br><br> Figure 2.5: Approximate Overall GPA <br></p>
-<p>The most common overall GPA for the data ranges between 3.01-3.5 (159 students), followed by 3.51 or above (105 students). There are also 97 students who have an overall GPA between 2.51-3.0.</p>
+<p>The most common overall GPA for the data ranges between 3.01-3.5 (154 students), followed by 3.51 or above (102 students). There are also 95 students who have an overall GPA between 2.51-3.0.</p>
 </div>
 </div>
 <p><br /></p>
 <div id="campus-breakdown-1" class="section level3">
 <h3>🏫 📊 Campus Breakdown</h3>
 <details>
-<p><summary> Click here for campus breakdown of overall GPA. </summary> <img src="Student_Demo_files/figure-html/unnamed-chunk-8-1.png" width="768" style="display: block; margin: auto;" /> Figure 2.6: Approximate GPA Ranges by Campus</p>
+<summary>
+Click here for campus breakdown of overall GPA.
+</summary>
+<p><img src="Student_Demo_files/figure-html/unnamed-chunk-8-1.png" width="768" style="display: block; margin: auto;" /> Figure 2.6: Approximate GPA Ranges by Campus</p>
 <p>Breaking down overall GPA for each campus, the data indicates that Chico State has the highest proportion of students with an overall GPA between 2.51 and 3.00. Fresno State and CSU, Northridge both have the majority of their survey participants with an overall GPA between 3.01 to 3.50. Fresno State also has the highest proportion of students that have a 3.51 or higher overall GPA.</p>
 </details>
 <p><br /></p>
@@ -609,16 +624,19 @@ Interior Architecture
 </div>
 <div id="currently-enrolled-units" class="section level2">
 <h2>Currently Enrolled Units</h2>
-<p><strong>How many units are you currently taking? (n=393, 95% of 415 reporting).</strong> <img src="Student_Demo_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /> Figure 2.7: Currently Enrolled Academic Units</p>
+<p><strong>How many units are you currently taking? (n=381, 95% of 402 reporting).</strong> <img src="Student_Demo_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /> Figure 2.7: Currently Enrolled Academic Units</p>
 <p><em>Note that “22+” was rounded for 22 in the following analysis for the currently enrolled number of units</em>.</p>
 <p>The average number of units that a survey participant in this data is enrolled in is 13.65 units, while the median is 14 units. The data indicates that the majority of students are considered full-time (12 or more units), with 12 units being the highest occurring and 15 units being the second highest occuring.</p>
 <p><br /></p>
 <div id="campus-breakdown-2" class="section level3">
 <h3>🏫 📊 Campus Breakdown</h3>
 <details>
-<p><summary> Click here for campus breakdown of currently enrolled units. </summary> <img src="Student_Demo_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /> Figure 2.8: Academic Unit Enrollments by Campus</p>
+<summary>
+Click here for campus breakdown of currently enrolled units.
+</summary>
+<p><img src="Student_Demo_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /> Figure 2.8: Academic Unit Enrollments by Campus</p>
 <p><em>Note: values corresponding to “22+” were rounded to 22.</em></p>
-Breaking down the currently enrolled units across each campus, the data indicates that the distributions seem very similar for each. Chico State has an average 13.56 enrolled units, with a median of 14 units. Fresno State has an average 13.73 enrolled units, with a median of 14 units. CSU, Northridge has an average 13.66 enrolled units, with a median of 14 units.
+Breaking down the currently enrolled units across each campus, the data indicates that the distributions seem very similar for each. Chico State has an average 13.52 enrolled units, with a median of 14 units. Fresno State has an average 13.71 enrolled units, with a median of 14 units. CSU, Northridge has an average 13.75 enrolled units, with a median of 14 units.
 </details>
 <p><br /></p>
 </div>
@@ -641,95 +659,87 @@ Yes (%)
 <tbody>
 <tr>
 <td style="text-align:left;">
-An EOP (Educational Opportunity Program) student (n = 399).
+An EOP (Educational Opportunity Program) student (n = 386).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-399 (100.0%)
+386 (100.0%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-A Transfer Student (n = 397).
+A Transfer Student (n = 384).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-180 (45.3%)
+170 (44.3%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-An ESL (English as a Second Language) student (n = 382).
+An ESL (English as a Second Language) student (n = 370).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-127 (33.2%)
+124 (33.5%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-An Upward Bound, Educational Talent Search, AVID, TRIO, or other college preparation program alumni student (n = 381).
+An Upward Bound, Educational Talent Search, AVID, TRIO, or other college preparation program alumni student (n = 368).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-103 (27.0%)
+100 (27.2%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-LGBTQA+ (n = 384).
+LGBTQA+ (n = 373).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-58 (15.1%)
+56 (15.0%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-A student with a disability (n = 387).
+A student with a disability (n = 374).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-40 (10.3%)
+38 (10.2%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-A former foster youth/child (n = 397).
+A former foster youth/child (n = 384).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-19 (4.8%)
+19 (4.9%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-A DREAM (i.e. undocumented) student (n = 396).
+A DREAM (i.e. undocumented) student (n = 383).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-15 (3.8%)
+14 (3.7%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-A DACA (i.e. Deferred Action for Childhood Arrivals) student (n = 397).
+A DACA (i.e. Deferred Action for Childhood Arrivals) student (n = 384).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-14 (3.5%)
+13 (3.4%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-A student athlete (n = 393).
+A student athlete (n = 380).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-13 (3.3%)
+12 (3.2%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-A non-California resident (not International) (n = 394).
-</td>
-<td style="text-align:left;width: 3.5cm; ">
-5 (1.3%)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-A Veteran of military service (n = 396).
+A non-California resident (not International) (n = 381).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
 5 (1.3%)
@@ -737,7 +747,15 @@ A Veteran of military service (n = 396).
 </tr>
 <tr>
 <td style="text-align:left;">
-An International student (n = 396).
+A Veteran of military service (n = 383).
+</td>
+<td style="text-align:left;width: 3.5cm; ">
+5 (1.3%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+An International student (n = 383).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
 1 (0.3%)
@@ -750,7 +768,10 @@ An International student (n = 396).
 <div id="campus-breakdown-transfer-students" class="section level3">
 <h3>🏫 📊 Campus Breakdown (Transfer Students)</h3>
 <details>
-<p><summary> Click here for campus breakdown of transfer students. </summary> <strong>I identify as a transfer student: (n=397, 96% of 415 reporting).</strong> <img src="Student_Demo_files/figure-html/unnamed-chunk-12-1.png" width="624" style="display: block; margin: auto;" /> Figure 2.9: Transfer Student Identification by Campus</p>
+<summary>
+Click here for campus breakdown of transfer students.
+</summary>
+<p><strong>I identify as a transfer student: (n=384, 96% of 402 reporting).</strong> <img src="Student_Demo_files/figure-html/unnamed-chunk-12-1.png" width="624" style="display: block; margin: auto;" /> Figure 2.9: Transfer Student Identification by Campus</p>
 Breaking down the number of transfer students for each campus, the data indicates that Chico State has the highest proportion of transfer students out of the three campuses. CSU, Northridge has the lowest proportion of transfer students out of the three campuses as well.
 </details>
 <p><br /></p>
@@ -771,18 +792,18 @@ Yes (%)
 <tbody>
 <tr>
 <td style="text-align:left;">
-I have NOT received services through the Disability Support Services Center (n = 374).
+I have NOT received services through the Disability Support Services Center (n = 361).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-197 (52.7%)
+189 (52.4%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-I receive services through the Disability Support Services Center (n = 391).
+I receive services through the Disability Support Services Center (n = 378).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-33 (8.4%)
+32 (8.5%)
 </td>
 </tr>
 </tbody>
@@ -803,34 +824,34 @@ Yes (%)
 <tbody>
 <tr>
 <td style="text-align:left;">
-CalWorks (i.e. TANF or cash aid for needy families) or Aid to Families with Dependent Children (AFDC) (n = 375).
+CalWorks (i.e. TANF or cash aid for needy families) or Aid to Families with Dependent Children (AFDC) (n = 362).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-59 (15.7%)
+56 (15.5%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-The CalFresh Employment or Training (CFET) Program (n = 381).
+The CalFresh Employment or Training (CFET) Program (n = 368).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-41 (10.8%)
+41 (11.1%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-The Greek system. (i.e. sorority, fraternity) (n = 393).
+The Greek system. (i.e. sorority, fraternity) (n = 380).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-34 (8.7%)
+33 (8.7%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-The Job Opportunities and Basic Skills (JOBS) program (n = 378).
+The Job Opportunities and Basic Skills (JOBS) program (n = 365).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-10 (2.6%)
+10 (2.7%)
 </td>
 </tr>
 </tbody>
@@ -851,63 +872,63 @@ Yes (%)
 <tbody>
 <tr>
 <td style="text-align:left;">
-Currently a Pell Grant recipient (n = 358).
+Currently a Pell Grant recipient (n = 345).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-311 (86.9%)
+300 (87.0%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Approved, awarded, or accepted for work study (with or without a work study job) (n = 349).
+Approved, awarded, or accepted for work study (with or without a work study job) (n = 336).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-197 (56.4%)
+192 (57.1%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-A single parent of a dependent household member under the age of 12 (n = 398).
+A single parent of a dependent household member under the age of 12 (n = 385).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-27 (6.8%)
+27 (7.0%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-The parent/guardian of a dependent household member between the age of 6 and 12 with no adequate childcare (n = 397).
+The parent/guardian of a dependent household member between the age of 6 and 12 with no adequate childcare (n = 384).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-22 (5.5%)
+22 (5.7%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Enrolled in a program that increases employability for current and former foster youth (PATH Scholars, Educational Opportunity Resilient Scholars Program (RSP), Renaissance Scholars Program) (n = 387).
+Enrolled in a program that increases employability for current and former foster youth (PATH Scholars, Educational Opportunity Resilient Scholars Program (RSP), Renaissance Scholars Program) (n = 374).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-21 (5.4%)
+21 (5.6%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Enrolled in the Mathematics, Engineering, Science achievement (MESA) program (n = 390).
+Enrolled in the Mathematics, Engineering, Science achievement (MESA) program (n = 377).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-19 (4.9%)
+19 (5.0%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Enrolled in the School of Social Work Practicum Program (Field work program) (n = 140).
+Enrolled in the School of Social Work Practicum Program (Field work program) (n = 134).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-6 (4.3%)
+6 (4.5%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Enrolled in Workforce Innovation and Opportunity Act (WIOA) (n = 390).
+Enrolled in Workforce Innovation and Opportunity Act (WIOA) (n = 377).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
 2 (0.5%)
@@ -915,7 +936,7 @@ Enrolled in Workforce Innovation and Opportunity Act (WIOA) (n = 390).
 </tr>
 <tr>
 <td style="text-align:left;">
-Enrolled in a Teaching Credential Program (n = 141).
+Enrolled in a Teaching Credential Program (n = 135).
 </td>
 <td style="text-align:left;width: 3.5cm; ">
 0 (0.0%)
@@ -931,18 +952,9 @@ Enrolled in a Teaching Credential Program (n = 141).
 <p><em>Click here to go to the Personal Demographics page.</em></p>
 </div>
 
+<br>
 
-<br> 
-
-<hr>
-
-<h3>Funding</h3>
-
-Partially funded by USDA SNAP, known in California as CalFresh, an equal opportunity provider and employer, and the California Department of  Social Services. Any use of these results in further work must use the following citation: 
-<br> <br> 
-<i>Center for Healthy Communities, "Basic Needs Survey", June 2021. Retrieved on xx-xx-xxxx from https://chicocalfresh.github.io/bns-pilot2-website/index.html</i>
-<br> <br> 
-<img src="CHC_Logo.png" alt="CHC Logo" width="300" height="85">
+<img src="NewLogoSwoosh.PNG" alt="CHC Logo">
 
 
 </div>
@@ -981,9 +993,6 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

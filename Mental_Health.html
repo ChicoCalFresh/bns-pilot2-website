@@ -13,6 +13,7 @@
 
 <title>Mental Health</title>
 
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -285,12 +286,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -363,7 +364,7 @@ div.tocify {
 </li>
 <li>
   <a href="Instructions.html">
-    <span class="fa fa-question"></span>
+    <span class="fas fa-question"></span>
      
   </a>
 </li>
@@ -388,20 +389,20 @@ div.tocify {
 <p><br></p>
 <div id="increased-mental-stress" class="section level2">
 <h2>Increased Mental Stress</h2>
-<p><strong>How many days in the past month have you experienced heightened anxiety, stress, depression and/or problems with emotions? (n=368, 89% of 415 reporting).</strong> <img src="Mental_Health_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" /> Figure 11.1: Increased Mental Stress Distribution</p>
-<p>Over the past month, the participants of the survey claimed to have experienced increased mental stress for any average (denoted by the dotted line) of 10.1 days, with a median value of 6 days. A large amount, and the most selected answer, claim to have experienced increased mental stress every day over the last month (41 people).</p>
+<p><strong>How many days in the past month have you experienced heightened anxiety, stress, depression and/or problems with emotions? (n=356, 89% of 402 reporting).</strong> <img src="Mental_Health_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" /> Figure 11.1: Increased Mental Stress Distribution</p>
+<p>Over the past month, the participants of the survey claimed to have experienced increased mental stress for any average (denoted by the dotted line) of 10.1 days, with a median value of 6 days. A large amount, and the most selected answer, claim to have experienced increased mental stress every day over the last month (40 people).</p>
 <p><br></p>
 </div>
 <div id="mental-health-services" class="section level2">
 <h2>Mental Health Services</h2>
-<p><strong>Have you received or tried to receive mental health services over the past 12 months? (n=365, 88% of 415 reporting).</strong></p>
+<p><strong>Have you received or tried to receive mental health services over the past 12 months? (n=353, 88% of 402 reporting).</strong></p>
 <div class="row">
 <div class="col-md-6">
 <p><img src="Mental_Health_files/figure-html/unnamed-chunk-3-1.png" width="384" style="display: block; margin: auto;" /></p>
 </div>
 <div class="col-md-5">
 <p><br><br><br>Figure 11.2: Sought Out Mental Health Services <br></p>
-<p>Over the past year, the majority of students did not receive or try to receive mental health services (281 people). 84 people claim that they have received or try to receive mental health services.</p>
+<p>Over the past year, the majority of students did not receive or try to receive mental health services (272 people). 81 people claim that they have received or try to receive mental health services.</p>
 </div>
 </div>
 <p><br></p>
@@ -424,18 +425,9 @@ div.tocify {
 <p><em>Click here to go to the Sleep page.</em></p>
 </div>
 
+<br>
 
-<br> 
-
-<hr>
-
-<h3>Funding</h3>
-
-Partially funded by USDA SNAP, known in California as CalFresh, an equal opportunity provider and employer, and the California Department of  Social Services. Any use of these results in further work must use the following citation: 
-<br> <br> 
-<i>Center for Healthy Communities, "Basic Needs Survey", June 2021. Retrieved on xx-xx-xxxx from https://chicocalfresh.github.io/bns-pilot2-website/index.html</i>
-<br> <br> 
-<img src="CHC_Logo.png" alt="CHC Logo" width="300" height="85">
+<img src="NewLogoSwoosh.PNG" alt="CHC Logo">
 
 
 </div>
@@ -474,9 +466,6 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

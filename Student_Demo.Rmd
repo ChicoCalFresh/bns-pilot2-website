@@ -40,14 +40,23 @@ Three schools participated in this pilot of the survey: `r names(sort(table(bns$
 
 ## Class Standing
 **Estimate your class standing by units completed `r print_n_reporting('academic_level')`**
-```{r, fig.width=7}
-plot_frq(bns$academic_level, wrap.labels = 8) + xlab('Class Standing') + ylab("Frequency")
+
+<div class = "row">
+<div class = "col-md-7">
+```{r, fig.height=3.5, fig.width=4.5}
+plot_frq(bns$academic_level, wrap.labels = 8, ylim=c(0,300)) + xlab('Class Standing') + 
+  ylab("Frequency")
 ```
-`r fig.cap(page.num, "Current Academic Level")`
+</div>
+  
+<div class = "col-md-4">
+<br><br> `r fig.cap(page.num, "Current Academic Level")` <br>
 
-It seems that the majority of the survey participants are either in their junior (`r unname(sort(table(bns$academic_level), decreasing=TRUE)['Junior (60-89 semester units)'])` people) or senior (`r unname(sort(table(bns$academic_level), decreasing=TRUE)['Senior (90+ semester units)'])` people) semester. There are a few sophomores and very few freshman or graduate students.
+As the survey was distributed mainly to students in either their junior or senior year, we can see that there are `r unname(sort(table(bns$academic_level), decreasing=TRUE)['Junior (60-89 semester units)'])` junior's and `r unname(sort(table(bns$academic_level), decreasing=TRUE)['Senior (90+ semester units)'])` senior's.
+</div>
+</div>
 
-<br>
+<br> 
 
 ## Major
 **What is your major? `r print_n_reporting('q16')`**

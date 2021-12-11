@@ -68,29 +68,6 @@ The average number of paid hours worked per week (denoted by the dotted line) is
 
 <br />
 
-### `r emoji.1` `r emoji.2` Campus Breakdown
-<details>
-<summary> Click here for campus breakdown of paid weekly hours. </summary>
-```{r}
-tmp <- tmp2 %>% filter(q19 > 0)
-```
-**`r print_n_reporting_tmp('q19')`** *Note: below hours were filtered to only include people that worked (> 0 hours) a paid job. The value "41+" was also rounded to 41 for the graph/calculations.* 
-```{r, fig.height=7, fig.width=7}
-ggplot(tmp, aes(x=q19, group=school, fill=school, color=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
-  geom_density(alpha=0.4, color="black") + ylim(0,0.19) + 
-  facet_wrap(~school, dir="v", scales='free') + xlab('Weekly Paid Hours') + ylab("Density") + 
-  theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
-  scale_fill_manual(values=campus.colors) + scale_color_manual(values=campus.colors) + 
-  scale_x_continuous(breaks=seq(1,41,5), labels=c(as.character(seq(1,36,5)), "41+"))
-
-```
-`r fig.cap(page.num, "Weekly Paid Hour Distribution by Campus")`
-
-Breaking down the exact number of paid hours worked fore each campus, the distributions all have nearly equal shapes. CSU, Northridge has a mean value of `r unname(round(tapply(tmp$q19, tmp$school, mean)[2],2))` hours and a median of `r unname(round(tapply(tmp$q19, tmp$school, median)[2],2))` hours.  Fresno State, which seems to have students who tend to work more hours, has a mean value of `r unname(round(tapply(tmp$q19, tmp$school, mean)[3],2))` hours and a median of `r unname(round(tapply(tmp$q19, tmp$school, median)[3],2))` hours. Chico State has a mean value of `r unname(round(tapply(tmp$q19, tmp$school, mean)[1],2))` hours and a median of `r unname(round(tapply(tmp$q19, tmp$school, median)[1],2))` hours.
-
-</details>
-<br />
-
 ### Impact of COVID
 **Have the hours you work in a PAID job or internship changed due to COVID-19? `r print_n_reporting('q20')`**
 ```{r, fig.width=8}
@@ -139,27 +116,6 @@ The average number of unpaid hours worked per week (denoted by the dotted line) 
 
 <br />
 
-### `r emoji.1` `r emoji.2` Campus Breakdown
-<details>
-<summary> Click here for campus breakdown of unpaid weekly hours. </summary>
-```{r}
-tmp <- tmp2 %>% filter(q21> 0)
-```
-**`r print_n_reporting_tmp('q21')`**  
-*Note: below hours were filtered to only include people that worked (> 0 hours) an unpaid job. The value "41+" was also rounded to 41 for the graph/calculations.*
-```{r, fig.height=7, fig.width=7}
-ggplot(tmp, aes(x=q21, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
-  geom_density(alpha=0.4, color="black") + ylim(0,0.16) +
-  facet_wrap(~school, dir="v", scales='free') + xlab('Weekly Unpaid Hours') + ylab("Density") + 
-  theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
-  scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=seq(1,41,5), labels=c(as.character(seq(1,36,5)), "41+"))
-```
-`r fig.cap(page.num, "Weekly Unpaid Hour Distribution by Campus")`
-
-Breaking down unpaid weekly hours for each campus, the distributions for CSU, Northridge and Fresno State seem to be almost identical while Chico State seems to have students who work slightly more unpaid weekly hours. CSU, Northridge has a mean value of `r unname(round(tapply(tmp$q21, tmp$school, mean)[2],2))` hours and a median of `r unname(round(tapply(tmp$q21, tmp$school, median)[2],2))` hours.  Fresno State has a mean value of `r unname(round(tapply(tmp$q21, tmp$school, mean)[3],2))` hours and a median of `r unname(round(tapply(tmp$q21, tmp$school, median)[3],2))` hours. Chico State has a mean value of `r unname(round(tapply(tmp$q21, tmp$school, mean)[1],2))` hours and a median of `r unname(round(tapply(tmp$q21, tmp$school, median)[1],2))` hours.
-</details>
-<br />
-
 ## Unpaid Caregiving Hours
 **Estimate the number of hours you spend each week on unpaid family obligations (for example, taking care of younger siblings, preparing family meals, running errands for the family, etc.). `r print_n_reporting('caregiving_hours')`**
 ```{r}
@@ -182,9 +138,9 @@ tmp <- data.frame(q22=bns$q22) %>% mutate(q22=recode(q22, "41+"="41"), q22=as.nu
 Although some of the participants claim to work 0 hours per week, below is a breakdown of the exact number of hours for those who claim to spend time on unpaid family obligations `r print_n_reporting_tmp("q22")`
 ```{r, fig.width=8.5}
 plot_frq(tmp$q22, type='histogram', geom.size = 1, xlim = c(1,20), show.prc = FALSE, show.n = FALSE, 
-         show.mean = TRUE, show.mean.val = FALSE, show.sd = FALSE) +
-    geom_boxplot(data=tmp, aes(x=q22, y=53), alpha=0.8, width=8, fill="#587db6") +
-    geom_jitter(data=tmp, aes(x=q22, y=53), 
+         show.mean = TRUE, show.mean.val = FALSE, show.sd = FALSE, ylim=c(0,58)) +
+    geom_boxplot(data=tmp, aes(x=q22, y=52), alpha=0.8, width=8, fill="#587db6") +
+    geom_jitter(data=tmp, aes(x=q22, y=52), 
                 position=position_jitter(width=1.5, height=3), alpha=0.7) +
   scale_x_continuous(breaks=c(seq(1,40,5), 41), labels=xlbls) + 
   xlab('Weekly Hours') + ylab("Frequency")
@@ -217,27 +173,6 @@ The average number of academic hours worked per week (denoted by the dotted line
 
 <br />
 
-### `r emoji.1` `r emoji.2` Campus Breakdown
-<details>
-<summary> Click here for campus breakdown of academic workload. </summary>
-```{r}
-tmp <- tmp2 %>% filter(units > 0)
-```
-**Below is a breakdown of the academic workload using the 3 hours of work per unit measurement `r print_n_reporting_tmp('units')`**  
-*Note: below the values corresponding to "22+" were rounded to 22. Values were also filtered so that only people who take classes (> 0 hours per week) were included.*
-```{r, fig.height=7, fig.width=7}
-ggplot(tmp, aes(x=units, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
-  geom_density(alpha=0.4, color="black") + ylim(0,0.19) +
-  facet_wrap(~school, dir="v", scales='free') + xlab('Academic Hours') + ylab("Density") + 
-  theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
-  scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=c(seq(9,59,7), 66), labels=c(as.character(seq(9,59,7)), "66+"))
-```
-`r fig.cap(page.num, "Weekly Academic Workload Distribution by Campus")`
-
-Breaking down the academic hours across each campus, the data indicates that the distributions are nearly identical, with each campus having two peaks around the same number of hours. Chico State has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[1])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[1])` units. Fresno State has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[3])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[3])` units. CSU, Northridge has an average unit workload of `r unname(round(tapply(tmp$units, tmp$school, mean, na.rm=TRUE),2)[2])` units, and a median of `r unname(round(tapply(tmp$units, tmp$school, median, na.rm=TRUE),2)[2])` units.
-</details>
-<br />
-
 
 ## Non-Academic Workload
 ```{r}
@@ -260,26 +195,6 @@ The average number of total hours worked per week (denoted by the dotted line) i
 
 <br />
 
-### `r emoji.1` `r emoji.2` Campus Breakdown
-<details>
-<summary> Click here for campus breakdown of non-academic workload. </summary>
-```{r}
-tmp <- tmp2 %>% filter(NonAcademic > 0)
-```
-**Below is a combination of both paid and unpaid hours worked by students to get a further understanding of the workload participants face on a weekly basis `r print_n_reporting_tmp('NonAcademic')`**  
-*Note: below the values corresponding to "41+" were rounded to 41. Values were also filtered so that only people who work (> 0 hours per week) were included.*
-```{r, fig.height=7, fig.width=7}
-ggplot(tmp, aes(x=NonAcademic, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
-  geom_density(alpha=0.4, color="black") + ylim(0,0.16) +
-  facet_wrap(~school, dir="v", scales='free') + xlab('Non-Academic Hours') + ylab("Density") + 
-  theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
-  scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=seq(2,82,10), labels=c(as.character(seq(2,72,10)), "82+"))
-```
-`r fig.cap(page.num, "Weekly Non-Academic Workload Distribution by Campus")`
-
-Breaking down the non-academic workload across each campus, the data indicates that the distributions are slightly different for each campus. Chico State, who seem to have students who work the most paid/unpaid weekly hours, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[1])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[1])` hours. Fresno State, who seem to have students who work the least paid/unpaid weekly hours, has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[3])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[3])` hours. CSU, Northridge has an average non-academic workload of `r unname(round(tapply(tmp$NonAcademic, tmp$school, mean, na.rm=TRUE),2)[2])` hours and a median of `r unname(round(tapply(tmp$NonAcademic, tmp$school, median, na.rm=TRUE),2)[2])` hours.
-</details>
-<br />
 
 ## Total Workload
 ```{r}
@@ -301,26 +216,6 @@ The average number of total hours worked per week (denoted by the dotted line) i
 
 <br />
 
-### `r emoji.1` `r emoji.2` Campus Breakdown
-<details>
-<summary> Click here for campus breakdown of total workload. </summary>
-```{r}
-tmp <- tmp2 %>% filter(TotalHours > 0 | is.na(TotalHours))
-```
-**Below is a combination of all worked hours per week, both academic and non-academic. This includes units (3 hr/unit), paid, and unpaid worked hours `r print_n_reporting_tmp('TotalHours')`**    
-*Note: below the values corresponding to "41+" were rounded to 41, as well as values corresponding to "22+" being rounded to 22. Values were also filtered so that only people who work (> 0 hours per week) were included.*
-```{r, fig.height=7, fig.width=7}
-ggplot(tmp, aes(x=TotalHours, group=school, fill=school)) + geom_histogram(aes(y=..density..), color="black", position = "identity")  +
-  geom_density(alpha=0.4, color="black") + ylim(0,0.045) +
-  facet_wrap(~school, dir="v", scales='free') + xlab('Total Hours') + ylab("Density") + 
-  theme(legend.position="none", strip.background = element_rect(fill="#c7dcf0"), strip.text = element_text(size=11)) +
-  scale_fill_manual(values=campus.colors) + scale_x_continuous(breaks=c(seq(9,134,10), 134), labels=as.character(c(seq(9,134,10), 134)))
-```
-`r fig.cap(page.num, "Weekly Total Workload Distribution by Campus")`
-
-Chico State has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[1])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[1])` hours. Fresno State has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[3])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[3])` hours. CSU, Northridge has an average total workload of `r unname(round(tapply(tmp$TotalHours, tmp$school, mean, na.rm=TRUE),2)[2])` hours, and a median of `r unname(round(tapply(tmp$TotalHours, tmp$school, median, na.rm=TRUE),2)[2])` hours. A small number of students also claim to work over 100 hours per week across academic and non-academic workloads.
-</details>
-<br />
 
 ## CalFresh Workload
 People are required to meet a certain work criteria in order to receive CalFresh benefits. All able-bodied adults are required to work a minimum of 80 hours per month, which can be broken down into roughly 20 hours per week. This can be either paid or unpaid work, and more information on this requirement can be found on the  [Department of Social Services](https://www.cdss.ca.gov/inforesources/calfresh/abawd#:~:text=People%20who%20are%20ABAWDs%20must,%2C%20and%20in%2Dkind%20work.) website. If you are an student, you may be enrolled in at least 6 academic units or more (equivalent to 18+ hours per week of academic workload) rather than having a paid/unpaid job. For more information on student eligibility, see the [College Student Eligibility](https://www.csuchico.edu/calfresh/basics/college-student-eligibility.shtml) requirements on Chico State's website. 

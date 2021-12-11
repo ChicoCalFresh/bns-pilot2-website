@@ -137,8 +137,4 @@ prep_binary_vars <- function(question, xlabels) {
 load("../data/BNSp2_clean.Rdata")
 bns <- BNSp2b
 
-# add to cleaning script
-bns <- bns %>% mutate(school=case_when(grepl("Chico", school) ~ "Chico State",
-                                       grepl("Fresno", school) ~ "Fresno State",
-                                       grepl("Northridge", school) ~ "CSU, Northridge"))
 rm(BNSp2b)
