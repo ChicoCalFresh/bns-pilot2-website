@@ -41,6 +41,32 @@ plot_likert(questions,
 
 <br>
 
+### Food Insecurity
+The following was determined using the two item food insecurity screening questions. If a student answered "sometimes true" or "often true" to either question, they were considered to be food insecure `r print_n_reporting("food_insecure_2item")`:
+
+- "I/We worried whether food would run out before I/we got money to buy more."
+- "The food that I/we bought just didn’t last, and I/we didn’t have money to get more."
+
+<div class = "row">
+<div class = "col-md-7">
+```{r, fig.height=3.5, fig.width=4.5}
+bns <- bns %>% mutate(two.item = case_when(food_insecure_2item == 0 ~ "No",
+                                           food_insecure_2item == 1 ~ "Yes",
+                                           TRUE ~ as.character(food_insecure_2item)))
+plot_frq(bns$two.item, ylim=c(0,240)) + xlab('Food Insecure') + ylab("Frequency")
+```
+</div>
+  
+<div class = "col-md-4">
+<br><br><br> `r fig.cap(page.num, "Two Item Food Insecure")` <br>
+
+Of the survey participants, the data indicates that the majority of them are considered to be food insecure (`r unname(table(bns$two.item)['Yes'])` people). There are `r unname(table(bns$two.item)['No'])` survey participants not considered to be food insecure, meaning they answered "never true" to the above question criteria.
+</div>
+</div>
+
+<br>
+
+
 ## Eating Situations (Lack of Money)
 *The following are statements that people have made about their eating situations over the last 30 days:*
 
