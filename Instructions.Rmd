@@ -22,7 +22,7 @@ page.num <- 1
 
 ### The Drop Down Menu
 
-- The per-campus results for each question are hidden in drop down menus denoted by the campus and chart icons:
+- The per-campus results for select question are hidden in drop down menus denoted by the campus and chart icons:
 
 <details>
 <summary> `r emoji.1` `r emoji.2` Click anywhere on this text to open the drop down. </summary>

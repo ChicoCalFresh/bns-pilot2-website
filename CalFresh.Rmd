@@ -118,7 +118,7 @@ We can see that the majority of participants are most likely eligible for CalFre
 ```{r, fig.width=5, fig.height=3.8}
 plot_grpfrq(bns$school, bns$calfresh_eligible, geom.colors = campus.colors[c(2,1)], 
             wrap.labels = 21, legend.title = "Potentially Eligible", show.prc = FALSE) + 
-  xlab('') + ylab("Frequency") + 
+  xlab('Campus') + ylab("Frequency") + 
   theme(legend.position="top")
 ```
 `r fig.cap(page.num, "CalFresh Eligible by Campus")`

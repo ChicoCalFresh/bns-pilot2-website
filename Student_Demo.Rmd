@@ -25,14 +25,14 @@ The following set of questions were asked in regards to the students' academic d
 <div class = "row">
 <div class = "col-md-7">
 ```{r, fig.height=3.5, fig.width=4.5}
-plot_frq(bns$school, ylim=c(0,185), wrap.labels = 16) + xlab('School') + ylab("Frequency")
+plot_frq(bns$school, ylim=c(0,185), wrap.labels = 16) + xlab('Campus') + ylab("Frequency")
 ```
 </div>
   
 <div class = "col-md-4">
 <br><br>`r fig.cap(page.num, "Current CSU Enrollment")` <br>
 
-Three schools participated in this pilot of the survey: `r names(sort(table(bns$school), decreasing=TRUE)[1])` (`r unname(sort(table(bns$school), decreasing=TRUE)[1])`), `r names(sort(table(bns$school), decreasing=TRUE)[2])` (`r unname(sort(table(bns$school), decreasing=TRUE)[2])`), and `r names(sort(table(bns$school), decreasing=TRUE)[3])` (`r unname(sort(table(bns$school), decreasing=TRUE)[3])`). The data indicates that students from each campus will be nearly equally represented in the data.
+Three campuses participated in this pilot of the survey: `r names(sort(table(bns$school), decreasing=TRUE)[1])` (`r unname(sort(table(bns$school), decreasing=TRUE)[1])`), `r names(sort(table(bns$school), decreasing=TRUE)[2])` (`r unname(sort(table(bns$school), decreasing=TRUE)[2])`), and `r names(sort(table(bns$school), decreasing=TRUE)[3])` (`r unname(sort(table(bns$school), decreasing=TRUE)[3])`). The data indicates that students from each campus will be nearly equally represented in the data.
 </div>
 </div>
 
@@ -68,6 +68,8 @@ plot_frq(bns$q16, ylim=c(0,190), wrap.labels = 16, sort.frq = 'desc') + xlab('')
 ```
 `r fig.cap(page.num, "Declaration of Major")`
 
+*NOTE: Science, Technology, Engineering and Math (STEM) was shortened for the figure above, but also includes the following majors: Medicine, Computer Science, Agriculture, Accounting, Statistics, Nursing, and Nutrition.*
+
 The majority of students in the data seem to be majoring in some type of `r names(sort(table(bns$q16), decreasing=TRUE)[1])` program (`r unname(sort(table(bns$q16), decreasing=TRUE)[1])` people). `r unname(sort(table(bns$q16), decreasing=TRUE)[2])` of the students are `r names(sort(table(bns$q16), decreasing=TRUE)[2])` majors. Students were also given the option of "Other" to fill in a major if it did not fall into one of the above categories and of the `r unname(sort(table(bns$q16), decreasing=TRUE)['Other'])` who selected this, `r unname(colSums(!is.na(bns))['q16_6_text'])` gave their responses below.
 
 <br />
@@ -79,7 +81,7 @@ The majority of students in the data seem to be majoring in some type of `r name
 bns <- bns %>% mutate(q16=recode(q16, 
                                  "Science, Technology, Engineering and Math (STEM) (Includes Medicine, Computer Science, Agriculture, Accounting, Statistics, Nursing, and Nutrition)" = "Science, Technology, Engineering and Math (STEM)"))
 
-plot_xtab(bns$school, bns$q16, margin="row", legend.title = "Major", axis.titles = c("School", "Campus Percent"), coord.flip = TRUE, ylim=c(0,0.7))
+plot_xtab(bns$school, bns$q16, margin="row", legend.title = "Major", axis.titles = c("Campus", "Campus Percent"), coord.flip = TRUE, ylim=c(0,0.7))
 ```
 `r fig.cap(page.num, "Major Declaration by Campus")`
 
@@ -123,7 +125,7 @@ The most common overall GPA for the data ranges between `r names(sort(table(bns$
 <details>
 <summary> Click here for campus breakdown of overall GPA. </summary>
 ```{r, fig.height=6, fig.width=8}
-plot_xtab(bns$school, bns$q17, margin="row", legend.title = "GPA", axis.titles = c("School", "Campus Percent"), coord.flip = TRUE, ylim=c(0,0.61))
+plot_xtab(bns$school, bns$q17, margin="row", legend.title = "GPA", axis.titles = c("Campus", "Campus Percent"), coord.flip = TRUE, ylim=c(0,0.61))
 ```
 `r fig.cap(page.num, "Approximate GPA Ranges by Campus")`
 
@@ -192,7 +194,7 @@ binary_table(questions, "Yes", rnames, ".")
 <summary> Click here for campus breakdown of transfer students. </summary>
 **I identify as a transfer student: `r print_n_reporting('q14_1')`**
 ```{r, fig.width=6.5}
-plot_xtab(bns$school, bns$q14_1, margin="row", legend.title = "Transfer Student", axis.titles = c("School", "Campus Percent")) + theme(legend.position="top")
+plot_xtab(bns$school, bns$q14_1, margin="row", legend.title = "Transfer Student", axis.titles = c("Campus", "Campus Percent")) + theme(legend.position="top")
 ```
 `r fig.cap(page.num, "Transfer Student Identification by Campus")`
 

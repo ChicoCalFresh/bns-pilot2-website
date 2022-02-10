@@ -69,7 +69,7 @@ Of the survey participants, `r unname(table(bns$q7)['Woman'])` of them identify 
 <details>
 <summary> Click here for campus breakdown of gender distribution. </summary>
 ```{r, fig.height=4.6, fig.width=7}
-plot_xtab(bns$school, bns$q7, margin="row", legend.title = "Gender Identity", axis.titles = c("School", "Campus Percent")) + theme(legend.position="top")
+plot_xtab(bns$school, bns$q7, margin="row", legend.title = "Gender Identity", axis.titles = c("Campus", "Campus Percent")) + theme(legend.position="top")
 ```
 
 `r fig.cap(page.num, "Gender Identification by Campus")`
@@ -109,7 +109,7 @@ tmp <- data.frame(q8=bns$q8, school=bns$school) %>%
 ```
 
 ```{r, fig.height=4.5, fig.width=7}
-plot_xtab(tmp$school, tmp$hispanic, margin="row", legend.title = "Hispanic Origin", axis.titles = c("School", "Campus Percent")) + theme(legend.position="top")
+plot_xtab(tmp$school, tmp$hispanic, margin="row", legend.title = "Hispanic Origin", axis.titles = c("Campus", "Campus Percent")) + theme(legend.position="top")
 ```
 `r fig.cap(page.num, "Hispanic Origin Identification by Campus")`
 
@@ -235,7 +235,7 @@ The highest level of education completed by most survey participants parents is 
 <details>
 <summary> Click here for campus breakdown of parents education distribution. </summary>
 ```{r, fig.height=6, fig.width=8}
-plot_xtab(bns$school, bns$q13, margin="row", legend.title = "Parents Education", axis.titles = c("School", "Campus Percent"), coord.flip = TRUE, ylim=c(0,0.8))
+plot_xtab(bns$school, bns$q13, margin="row", legend.title = "Parents Education", axis.titles = c("Campus", "Campus Percent"), coord.flip = TRUE, ylim=c(0,0.8))
 ```
 `r fig.cap(page.num, "Parents Highest Education by Campus")`
 
@@ -275,7 +275,7 @@ As defined by the [University of California](https://www.universityofcalifornia.
 tmp <- data.frame(firstgen=bns$firstgen, school=bns$school) %>% 
   mutate(firstgen=factor(ifelse(is.na(firstgen), NA, ifelse(firstgen == 0, "Not First Gen", "First Gen")), levels=c("Not First Gen", "First Gen")))
 
-plot_xtab(tmp$school, tmp$firstgen, margin="row", legend.title = "Status", axis.titles = c("School", "Campus Percent")) + theme(legend.position="top")
+plot_xtab(tmp$school, tmp$firstgen, margin="row", legend.title = "Status", axis.titles = c("Campus", "Campus Percent")) + theme(legend.position="top")
 ```
 `r fig.cap(page.num, "First Generation College Students by Campus")`
 
