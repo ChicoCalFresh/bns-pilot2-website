@@ -19,7 +19,7 @@ The following questions were asked in regard to students' sleep patterns. This i
 <br>
 
 ## Academic Year
-**On average, during the academic year, how many hours of sleep do you get in a typical 24-hour period?** *Note that for the week days we have `r print_n_reporting("q84")` And for the weekends we have `r print_n_reporting("q85")`*
+**On average, during the academic year, how many hours of sleep do you get in a typical 24-hour period?**[^1] *Note that for the week days we have `r print_n_reporting("q84")` And for the weekends we have `r print_n_reporting("q85")`* 
 
 #### During the Week (Monday-Friday)
 ```{r, fig.height=3.5, fig.width=7}
@@ -115,6 +115,7 @@ The majority of students (`r unname(sort(table(bns$q89), decreasing = TRUE)['No'
 </div>
 </div>
 
+[^1]: This question was developed by the [Behavioral Risk Factor Surveillance System (BRFSS)](https://www.cdc.gov/brfss/questionnaires/pdf-ques/2018_BRFSS_English_Questionnaire.pdf) designed by the Centers for Disease Control and Prevention (CDC).
 
 ---
 

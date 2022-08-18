@@ -14,7 +14,7 @@ source("common_code.R")
 page.num <- 7
 ```
 
-The following questions were asked in regard to students' feelings towards food security due to a lack of or no money. Students were asked in they had to cut or skip meals (and how often), went entire days without eating, and other situations due to a lack of money. Students were also asked how they handled situations when they had run out of money for food, and if they had gotten any assistance.
+The following questions were asked in regard to students' feelings towards food security due to a lack of or no money. Students were asked in they had to cut or skip meals (and how often), went entire days without eating, and other situations due to a lack of money.[^1] Students were also asked how they handled situations when they had run out of money for food, and if they had gotten any assistance.
 
 <br>
 
@@ -42,7 +42,7 @@ plot_likert(questions,
 <br>
 
 ### Food Insecurity
-The following was determined using the two item food insecurity screening questions. If a student answered "sometimes true" or "often true" to either question, they were considered to be food insecure `r print_n_reporting("food_insecure_2item")`:
+The following was determined using the two item food insecurity screening questions. If a student answered "sometimes true" or "often true" to either question, they were considered to be food insecure `r print_n_reporting("food_insecure_2item")`: 
 
 - "I/We worried whether food would run out before I/we got money to buy more."
 - "The food that I/we bought just didn’t last, and I/we didn’t have money to get more."
@@ -117,6 +117,7 @@ binary_table(questions, "Yes", rnames, "?")
 
 <br>
 
+
 ## Ran Out of Money
 **In the last 30 days, if you ran out of money for food, what did you do? (choose all that apply):**
 ```{r, fig.width=8.3}
@@ -138,3 +139,6 @@ food_vars %>%
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
 
+<br>
+
+[^1]: These questions were developed by the [USDA’s screener for food insecurity status](https://www.ers.usda.gov/media/8279/ad2012.pdf)
