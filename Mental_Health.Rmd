@@ -49,7 +49,7 @@ Over the past year, the majority of students did not receive or try to receive m
 <br>
 
 ## Mental Health Feelings
-**In the last month how often have you felt:**
+**In the last month how often have you felt:**[^1]
 ```{r, fig.width=8}
 questions <- bns %>% select(q92, q93, q94, q97)
 names(questions) <- c("That you were unable to control the important things in your life.",
@@ -67,6 +67,8 @@ plot_likert(questions,
 ```
 `r fig.cap(page.num, "Feelings Around Mental Health")`
 
+
+[^1]: These questions were developed from the validated [Perceived Stress Scale (PSS)](https://www.das.nh.gov/wellness/docs/percieved%20stress%20scale.pdf)
 
 ---
 

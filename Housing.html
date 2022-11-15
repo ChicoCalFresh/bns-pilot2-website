@@ -13,7 +13,7 @@
 
 <title>Housing</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -52,6 +52,7 @@
 
 
 
+
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
 
@@ -76,6 +77,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -133,11 +137,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -166,8 +174,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -175,16 +183,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -301,7 +302,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -314,7 +315,7 @@ div.tocify {
   <a href="index.html">Overview</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Demographics
      
     <span class="caret"></span>
@@ -344,7 +345,7 @@ div.tocify {
   <a href="Food_Security.html">Food Security</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Health
      
     <span class="caret"></span>
@@ -387,11 +388,11 @@ div.tocify {
 </div>
 
 
-<p>The following questions were asking in regards to students current
-and past housing situations. This includes changes due to COVID, if they
-are living near their college (with most schools being remote at the
-time of the survey), the type of home they current live in, and
-hardships that they faced in the past year with housing.</p>
+<p>The following questions were asked in regards to students current and
+past housing situations, including changes due to COVID, if they are
+living near their college (with most schools being remote at the time of
+the survey), the type of home they current live in, and hardships that
+they faced in the past year with housing.</p>
 <div id="covid-housing-impact" class="section level2">
 <h2>COVID Housing Impact</h2>
 <p><strong>Has your housing situation changed due to COVID-19? (n=360,
@@ -403,7 +404,7 @@ hardships that they faced in the past year with housing.</p>
 <div class="col-md-5">
 <p><br><br><br>Figure 4.1: Impact of COVID on Housing <br></p>
 <p>There are 240 people that participated in the survey that claim their
-housing has not changed due to the impacts of COVID. There also are 120
+housing has not changed due to the impacts of COVID. There are also 120
 people that say their housing situation did change due to the impacts of
 COVID.</p>
 </div>
@@ -421,8 +422,8 @@ enrolled in college? (n=375, 93% of 402 reporting).</strong></p>
 <div class="col-md-5">
 <p><br><br>Figure 4.2: Living Near Enrolled College <br></p>
 <p>There are 160 people that participated in the survey that do not
-currently live in the city/area of their enrolled college. There also
-are 215 people that say they do live in the city/area of their enrolled
+currently live in the city/area of their enrolled college. There are
+also 215 people that say they do live in the city/area of their enrolled
 college. This high “No” value could likely be due to many campuses being
 remote and students choosing to live at home or in an area with a lower
 cost of living.</p>
@@ -831,9 +832,9 @@ housing, what was the most common reason? (n=116, 29% of 402
 reporting).</strong>
 <img src="Housing_files/figure-html/unnamed-chunk-9-1.png" width="796.8" style="display: block; margin: auto;" />
 Figure 4.4: Unstable Housing Identification</p>
-<p>It seems that of the people who experienced unstable housing, the
-most common cause was not having enough money to cover housing expenses
-(54 people). The next most common was cause was from issues with
+<p>The data shows that of the people who experienced unstable housing,
+the most common cause was not having enough money to cover housing
+expenses (54 people). The next most common cause was from issues with
 roommates, both having conflicts (18 people) and them being
 unable/unwilling to pay living expenses (17 people).</p>
 <p><br></p>
@@ -841,12 +842,12 @@ unable/unwilling to pay living expenses (17 people).</p>
 <div id="housing-insecure-homeless" class="section level2">
 <h2>Housing Insecure &amp; Homeless</h2>
 <ul>
-<li>Students with at least 3 housing insecurity indicators present are
-housing insecure, they are not otherwise (n=283, 70% of 402
-reporting).</li>
-<li>Students with at least 1 homelessness insecurity indicator present
-are considered to have experience homelessness at date of survey (n=370,
-92% of 402 reporting).</li>
+<li>Students who answered Yes to 3 or more questions from the “In the
+past 12 months…” section above were deemed housing insecure (n=324, 81%
+of 402 reporting).</li>
+<li>Students who answered “last 30 days” and/or “last 12 months” in any
+question from the “Unstable” section above were deemed homeless in the
+past month or year (n=370, 92% of 402 reporting).</li>
 </ul>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -865,7 +866,7 @@ Yes (%)
 Housing Insecure
 </td>
 <td style="text-align:left;">
-21.2%
+27.2%
 </td>
 </tr>
 <tr>
@@ -873,7 +874,7 @@ Housing Insecure
 Homeless (year)
 </td>
 <td style="text-align:left;">
-9.5%
+12.2%
 </td>
 </tr>
 <tr>
@@ -887,15 +888,13 @@ Homeless (month)
 </tbody>
 </table>
 <ul>
-<li><p>Looking at the above table we can see that the majority of
-students are not considered to be housing insecure (223 students,
-78.8%), while the remaining students could be classified as housing
-insecure based on their indicators (60 students, 21.2%).</p></li>
-<li><p>Looking at the table above, we can see the majority of student
-did not experience homelessness in either the past month (357 students,
-96.5%) or year (335 students, 90.5%). However, we can see around 3x more
-students did experience homelessness during the past year (35 students,
-9.5%) compared to during the past month (13 students, 3.5%).</p></li>
+<li><p>The data indicates that the majority of students are not
+considered to be housing insecure (236 students, 72.8%), while the
+remaining students could be classified as housing insecure based on
+these indicators (88 students, 27.2%).</p></li>
+<li><p>The data indicates that the majority of students did not
+experience homelessness in either the past month (357 students, 96.5%)
+or year (325 students, 87.8%).</p></li>
 </ul>
 <p><br /></p>
 <div id="campus-breakdown" class="section level3">
@@ -906,15 +905,13 @@ Click here for campus breakdown of unstable housing.
 </summary>
 <p><img src="Housing_files/figure-html/unnamed-chunk-11-1.png" width="700.8" style="display: block; margin: auto;" />
 Figure 4.5: Unstable Housing by Campus</p>
-<p>From the above figure, and for students who responded to the
-questions used for determining housing insecurity, we can see that the
-majority have not experienced homelessness over the past month. However,
-looking at experiencing homelessness over the past year, we can see a
-large increase for Chico and around a 2x increase for both Fresno and
-Northridge. For students who are considered to be housing insecure, we
-can see around a quarter of the students at Chico and Northridge are
-identified to have experienced this, with Fresno being a bit lower on
-average.</p>
+<p>The majority of students have not experienced homelessness over the
+past month and are not housing insecure. However, there is a large
+increase in homelessness over the past year compared to the past month
+for Chico State students and around a 2 times increase for both Fresno
+and Northridge. Around 1 out of 3 students at Chico and Northridge and
+around 1 out of 5 students at Fresno are identified as housing
+insecure.</p>
 </details>
 <p><br /></p>
 </div>
