@@ -24,5 +24,11 @@ This report provides a top level descriptive analysis of each question in the su
 
 <br />
 
+If you are interested in viewing the other campuses results please select the campus you would like to view from below:
+
+- [Chico State](https://chicocalfresh.github.io/bns-pilot2-chico/)
+- [CSU, Northridge](https://chicocalfresh.github.io/bns-pilot2-csun/)
+- [Fresno State](https://chicocalfresh.github.io/bns-pilot2-fresno/)
+
 ### [`r emo::ji("magnifying_glass_tilted_right")` How to use this website](Instructions.html)
 *Click above for instructions on how to navigate the website and interpret graphs.*

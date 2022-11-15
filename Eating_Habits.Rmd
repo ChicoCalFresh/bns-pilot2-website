@@ -94,7 +94,7 @@ Looking at the weekly consumption of eating fast food, the majority of people cl
 
 
 ### Alcohol Consumption
-**How often do you consume at least one serving of alcohol `r print_n_reporting("alc_consumption_weekly")` If consumed, how many servings of alcohol do you consume when you drink alcohol `r print_n_reporting("alc_servings_if_consumed")`** [^2]
+**How often do you consume at least one serving of alcohol `r print_n_reporting("alc_consumption_weekly")` If consumed, how many servings of alcohol do you consume when you drink alcohol `r print_n_reporting("alc_servings_if_consumed")`**[^2]
 ```{r, fig.height=4, fig.width=8}
 p1 <- plot_frq(bns$alc_consumption_weekly, ylim=c(0,310), title="How often do you consume alcohol:") +xlab('Days Consumed')
 p2 <- plot_frq(bns$alc_servings_if_consumed, title="If consumed, how many servings:") + xlab('Number of Alcohol Servings')
@@ -130,9 +130,9 @@ plot_likert(questions,
 
 <br />
 
-[^1]: This question was developed by the [American College Health Association’s (ACHA) National College Health Assessment ](https://www.acha.org/documents/ncha/ACHA-NCHA_IIc_Web_Survey_2011_SAMPLE.pdf) (NCHA).
-[^2]: These questions were developed by the [National Institute on Alcohol Abuse and Alcoholism (NIAAA)](https://pubs.niaaa.nih.gov/publications/aa65/AA65.pdf) screening tool.
-[^3]: These questions were developed by the [Share Our Strength’s Cooking Matters survey tool](https://foodsharelc.org/wp-content/uploads/2019/07/2017-Survey.CMF_.English.pdf) (a USDA-SNAP-Ed approved survey).
+[^1]: This question was developed by the [American College Health Association’s (ACHA) National College Health Assessment ](https://www.acha.org/documents/ncha/ACHA-NCHA_IIc_Web_Survey_2011_SAMPLE.pdf#page=15) (NCHA).
+[^2]: These questions were developed by the [National Institute on Alcohol Abuse and Alcoholism (NIAAA)](https://pubs.niaaa.nih.gov/publications/aa65/AA65.pdf#page=4) screening tool.
+[^3]: These questions were developed by the [Share Our Strength’s Cooking Matters survey tool](https://foodsharelc.org/wp-content/uploads/2019/07/2017-Survey.CMF_.English.pdf#page=5) (a USDA-SNAP-Ed approved survey).
 
 
 

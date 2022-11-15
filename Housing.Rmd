@@ -14,7 +14,7 @@ source("common_code.R")
 page.num <- 4
 ```
 
-The following questions were asking in regards to students current and past housing situations. This includes changes due to COVID, if they are living near their college (with most schools being remote at the time of the survey), the type of home they current live in, and hardships that they faced in the past year with housing. 
+The following questions were asked in regards to students current and past housing situations, including changes due to COVID, if they are living near their college (with most schools being remote at the time of the survey), the type of home they current live in, and hardships that they faced in the past year with housing. 
 
 ## COVID Housing Impact
 **Has your housing  situation changed due to COVID-19? `r print_n_reporting("q23")`**
@@ -29,7 +29,7 @@ plot_frq(bns$q23, ylim=c(0,315)) + xlab('') + ylab("Frequency")
 <div class = "col-md-5">
 <br><br><br>`r fig.cap(page.num, "Impact of COVID on Housing")` <br> 
 
-There are `r unname(table(bns$q23)['No'])` people that participated in the survey that claim their housing has not changed due to the impacts of COVID. There also are `r unname(table(bns$q23)['Yes'])` people that say their housing situation did change due to the impacts of COVID.
+There are `r unname(table(bns$q23)['No'])` people that participated in the survey that claim their housing has not changed due to the impacts of COVID. There are also `r unname(table(bns$q23)['Yes'])` people that say their housing situation did change due to the impacts of COVID.
 </div>
 </div>
 
@@ -48,7 +48,7 @@ plot_frq(bns$q24, ylim=c(0,285)) + xlab('') + ylab("Frequency")
 <div class = "col-md-5">
 <br><br>`r fig.cap(page.num, "Living Near Enrolled College")` <br>
 
-There are `r unname(table(bns$q24)['No'])` people that participated in the survey that do not currently live in the city/area of their enrolled college. There also are `r unname(table(bns$q24)['Yes'])` people that say they do live in the city/area of their enrolled college. This high "No" value could likely be due to many campuses being remote and students choosing to live at home or in an area with a lower cost of living.
+There are `r unname(table(bns$q24)['No'])` people that participated in the survey that do not currently live in the city/area of their enrolled college. There are also `r unname(table(bns$q24)['Yes'])` people that say they do live in the city/area of their enrolled college. This high "No" value could likely be due to many campuses being remote and students choosing to live at home or in an area with a lower cost of living.
 </div>
 </div>
 
@@ -151,13 +151,13 @@ plot_frq(bns$q37, wrap.labels = 17, sort.frq = 'desc') + xlab('') + ylab("Freque
 ```
 `r fig.cap(page.num, "Unstable Housing Identification")`
 
-It seems that of the people who experienced unstable housing, the most common cause was not having enough money to cover housing expenses (`r unname(table(bns$q37)["I did not have enough money to cover housing expenses (rent, mortgage, or utility bill)"])` people). The next most common was cause was from issues with roommates, both having conflicts (`r unname(table(bns$q37)["I had a conflict with someone I was living with"])` people) and them being unable/unwilling to pay living expenses (`r unname(table(bns$q37)["A roommate was unable/unwilling to pay rent or a bill"])` people). 
+The data shows that of the people who experienced unstable housing, the most common cause was not having enough money to cover housing expenses (`r unname(table(bns$q37)["I did not have enough money to cover housing expenses (rent, mortgage, or utility bill)"])` people). The next most common cause was from issues with roommates, both having conflicts (`r unname(table(bns$q37)["I had a conflict with someone I was living with"])` people) and them being unable/unwilling to pay living expenses (`r unname(table(bns$q37)["A roommate was unable/unwilling to pay rent or a bill"])` people). 
 
 <br>
 
 ## Housing Insecure & Homeless
-- Students with at least 3 housing insecurity indicators present are housing insecure, they are not otherwise `r print_n_reporting("housing_insecure")`
-- Students with at least 1 homelessness insecurity indicator present are considered to have experience homelessness at date of survey `r print_n_reporting("homelessness_year")`
+- Students who answered Yes to 3 or more questions from the “In the past 12 months…” section above were deemed housing insecure `r print_n_reporting("housing_insecure")`
+- Students who answered “last 30 days” and/or “last 12 months” in any question from the “Unstable” section above were deemed homeless in the past month or year `r print_n_reporting("homelessness_year")`
 
 ```{r}
 bns %>% 
@@ -174,9 +174,9 @@ bns %>%
   kable() %>% kable_styling(bootstrap_options = "striped")
 ```
 
-- Looking at the above table we can see that the majority of students are not considered to be housing insecure (`r unname(table(bns$housing_insecure)["0"])` students, `r percent(unname(prop.table(table(bns$housing_insecure))["0"]), .1)`), while the remaining students could be classified as housing insecure based on their indicators (`r unname(table(bns$housing_insecure)["1"])` students, `r percent(unname(prop.table(table(bns$housing_insecure))["1"]), .1)`).
+- The data indicates that the majority of students are not considered to be housing insecure (`r unname(table(bns$housing_insecure)["0"])` students, `r percent(unname(prop.table(table(bns$housing_insecure))["0"]), .1)`), while the remaining students could be classified as housing insecure based on these indicators (`r unname(table(bns$housing_insecure)["1"])` students, `r percent(unname(prop.table(table(bns$housing_insecure))["1"]), .1)`).
 
-- Looking at the table above, we can see the majority of student did not experience homelessness in either the past month (`r unname(table(bns$homelessness_month)["0"])` students, `r percent(unname(prop.table(table(bns$homelessness_month))["0"]), .1)`) or year (`r unname(table(bns$homelessness_year)["0"])` students, `r percent(unname(prop.table(table(bns$homelessness_year))["0"]), .1)`). However, we can see around 3x more students did experience homelessness during the past year (`r unname(table(bns$homelessness_year)["1"])` students, `r percent(unname(prop.table(table(bns$homelessness_year))["1"]), .1)`) compared to during the past month (`r unname(table(bns$homelessness_month)["1"])` students, `r percent(unname(prop.table(table(bns$homelessness_month))["1"]), .1)`).
+- The data indicates that the majority of students did not experience homelessness in either the past month (`r unname(table(bns$homelessness_month)["0"])` students, `r percent(unname(prop.table(table(bns$homelessness_month))["0"]), .1)`) or year (`r unname(table(bns$homelessness_year)["0"])` students, `r percent(unname(prop.table(table(bns$homelessness_year))["0"]), .1)`). 
 
 <br />
 
@@ -206,7 +206,8 @@ ggplot(data = tmp, aes(x=school, y=value)) +
 ```
 `r fig.cap(page.num, "Unstable Housing by Campus")`
 
-From the above figure, and for students who responded to the questions used for determining housing insecurity, we can see that the majority have not experienced homelessness over the past month. However, looking at experiencing homelessness over the past year, we can see a large increase for Chico and around a 2x increase for both Fresno and Northridge. For students who are considered to be housing insecure, we can see around a quarter of the students at Chico and Northridge are identified to have experienced this, with Fresno being a bit lower on average.
+
+The majority of students have not experienced homelessness over the past month and are not housing insecure. However, there is a large increase in homelessness over the past year compared to the past month for Chico State students and around a 2 times increase for both Fresno and Northridge. Around 1 out of 3 students at Chico and Northridge and around 1 out of 5 students at Fresno are identified as housing insecure.
 
 
 </details>
