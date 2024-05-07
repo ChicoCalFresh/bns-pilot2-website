@@ -10,7 +10,7 @@ editor_options:
 
 ### Pilot #2: 402 EOP students at Fresno State, Chico State, and CSU, Northridge
 
-Food insecurity among college students is a serious problem that can impact student performance in the classroom and ultimately effect student success. The [Center for Healthy Communities](https://www.csuchico.edu/chc/) (CHC) developed the **Basic Needs Student Success Survey (BNS3)** and administered it to undergraduate students participating in the [Educational Opportunity Program (EOP)](https://www2.calstate.edu/attend/student-services/eop) at [Chico State](https://www.csuchico.edu/eop/), [Fresno State](https://www.fresnostate.edu/studentaffairs/eop/abouteop.html) and [CSU, Northridge](https://www.csun.edu/csun-eop) from November 25$^{th}$, 2020 to March 24$^{th}$, 2021. The EOP office assisted in the recruitment and provided computers for students to take the survey. Participants were given a \$25 gift card for their participation. EOP students were identified as the target population for this survey based upon their low-income and first-generation student status, which indicates a higher probability of CalFresh eligibility.
+Food insecurity among college students is a serious problem that can impact student performance in the classroom and ultimately effect student success. The [Center for Healthy Communities](https://www.csuchico.edu/chc/) (CHC) developed the **Basic Needs Student Success Survey (BNS3)** and administered it to undergraduate students participating in the [Educational Opportunity Program (EOP)](https://www2.calstate.edu/attend/student-services/eop) at [Chico State](https://www.csuchico.edu/eop/), [Fresno State](https://www.fresnostate.edu/studentaffairs/eop/abouteop.html) and [CSU, Northridge](https://www.csun.edu/csun-eop) from November 25$^{th}$, 2020 to March 24$^{th}$, 2021. The EOP offices assisted in the recruitment by emailing students a link to an interest form where eligibility criteria to take the survey was assessed *(being 18 years or older, undergraduate juniors/seniors, and being enrolled in the EOP)*. Participants were given a \$25 gift card for their participation. EOP students were identified as the target population for this survey based upon their low-income and first-generation student status, which indicates a higher probability of CalFresh eligibility.
 
 The purpose of this second cross-sectional pilot study was to revise the BNS3 tool and validate student perception of the following:  
 
@@ -32,3 +32,4 @@ If you are interested in viewing the other campuses results please select the ca
 
 ### [`r emo::ji("magnifying_glass_tilted_right")` How to use this website](Instructions.html)
 *Click above for instructions on how to navigate the website and interpret graphs.*
+

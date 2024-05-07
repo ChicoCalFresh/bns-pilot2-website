@@ -266,5 +266,3 @@ plot_likert(tmp,
 rm(tmp, tmp2) # remove data sets
 ```
 
-
-

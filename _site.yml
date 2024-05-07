@@ -39,5 +39,5 @@ output:
     highlight: null
     css: styles.css
     include:
-      after_body: footer.html
+      after_body: bns_logo_array.svg
 
