@@ -24,11 +24,6 @@ This report provides a top level descriptive analysis of each question in the su
 
 <br />
 
-If you are interested in viewing the other campuses results please select the campus you would like to view from below:
-
-- [Chico State](https://chicocalfresh.github.io/bns-pilot2-chico/)
-- [CSU, Northridge](https://chicocalfresh.github.io/bns-pilot2-csun/)
-- [Fresno State](https://chicocalfresh.github.io/bns-pilot2-fresno/)
 
 ### [`r emo::ji("magnifying_glass_tilted_right")` How to use this website](Instructions.html)
 *Click above for instructions on how to navigate the website and interpret graphs.*
@@ -43,6 +38,12 @@ Center for Healthy Communities. (2021). Pilot 2 Basic Needs and Student Success 
 ### Other Sites
 
 [Pilot 1 Basic Needs and Student Success Survey](https://chicocalfresh.github.io/bns-website/)
+
+[Pilot 2 Basic Needs and Student Success Survey, CSU Chico Results](https://chicocalfresh.github.io/bns-pilot2-chico/)
+
+[Pilot 2 Basic Needs and Student Success Survey, CSU Northridge Results](https://chicocalfresh.github.io/bns-pilot2-csun/)
+
+[Pilot 2 Basic Needs and Student Success Survey, Fresno State Results](https://chicocalfresh.github.io/bns-pilot2-fresno/)
 
 [Statewide Basic Needs and Student Success Survey](https://chicocalfresh.github.io/BNS3_Statewide_Summary/)
 
