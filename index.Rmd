@@ -35,17 +35,14 @@ Center for Healthy Communities. (2021). Pilot 2 Basic Needs and Student Success 
 
 <br />
 
-### Other Sites
+### Related Works
 
-[Pilot 1 Basic Needs and Student Success Survey](https://chicocalfresh.github.io/bns-website/)
-
-[Pilot 2 Basic Needs and Student Success Survey, CSU Chico Results](https://chicocalfresh.github.io/bns-pilot2-chico/)
-
-[Pilot 2 Basic Needs and Student Success Survey, CSU Northridge Results](https://chicocalfresh.github.io/bns-pilot2-csun/)
-
-[Pilot 2 Basic Needs and Student Success Survey, Fresno State Results](https://chicocalfresh.github.io/bns-pilot2-fresno/)
-
-[Statewide Basic Needs and Student Success Survey](https://chicocalfresh.github.io/BNS3_Statewide_Summary/)
+* [Pilot 1 Basic Needs and Student Success Survey](https://chicocalfresh.github.io/bns-website/)
+* [Pilot 2 Basic Needs and Student Success Survey, CSU Chico Results](https://chicocalfresh.github.io/bns-pilot2-chico/)
+* [Pilot 2 Basic Needs and Student Success Survey, CSU Northridge Results](https://chicocalfresh.github.io/bns-pilot2-csun/)
+* [Pilot 2 Basic Needs and Student Success Survey, Fresno State Results](https://chicocalfresh.github.io/bns-pilot2-fresno/)
+* [Statewide Basic Needs and Student Success Survey](https://chicocalfresh.github.io/BNS3_Statewide_Summary/)
+* [Publication in the Journal of Hunger & Environmental Nutrition: Differences in Cooking Behavior and Infrastructure by Food Security Status Among Historically Underserved College Students](https://www.tandfonline.com/doi/epdf/10.1080/19320248.2024.2442943?needAccess=true)
 
 
 
