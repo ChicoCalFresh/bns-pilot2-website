@@ -37,7 +37,7 @@ Center for Healthy Communities. (2021). Pilot 2 Basic Needs and Student Success 
 
 ### Related Works
 
-* [Pilot 1 Basic Needs and Student Success Survey](https://chicocalfresh.github.io/bns-website/)
+* [Pilot 1 Basic Needs and Student Success Survey](https://chicocalfresh.github.io/BNS-Pilot1-website/)
 * [Pilot 2 Basic Needs and Student Success Survey, CSU Chico Results](https://chicocalfresh.github.io/bns-pilot2-chico/)
 * [Pilot 2 Basic Needs and Student Success Survey, CSU Northridge Results](https://chicocalfresh.github.io/bns-pilot2-csun/)
 * [Pilot 2 Basic Needs and Student Success Survey, Fresno State Results](https://chicocalfresh.github.io/bns-pilot2-fresno/)
