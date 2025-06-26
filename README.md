@@ -11,3 +11,6 @@ The purpose of this second cross-sectional pilot study was to revise the BNS3 to
 * The impact of utilization of the campus food pantry on their health, nutrition, cooking confidence, time management and academic performance.
 
 This report provides a top level descriptive analysis of each question in the survey. Researchers and campus staff are encouraged to review the information in this analysis to formulate additional research questions and hypotheses.
+
+#### How to Cite This Website
+Center for Healthy Communities. (2021). Pilot 2 Basic Needs and Student Success Survey. https://doi.org/10.5281/zenodo.12763019
