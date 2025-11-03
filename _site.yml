@@ -33,6 +33,9 @@ navbar:
           href: Mental_Health.html
     - icon: fa-question
       href: Instructions.html
+  right: 
+    - href: https://chcchicostate.org/research-evaluation/
+      text: Related Works
       
 output:
   html_document:
